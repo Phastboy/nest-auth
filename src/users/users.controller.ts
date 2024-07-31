@@ -1,7 +1,8 @@
-import { Body, Controller, Post, Get, Param } from '@nestjs/common';
+import { Controller, Post, Get, Param, UseGuards, Body } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { User } from '../schemas/user.schema';
+import { JwtAuthGuard } from 'src/auth/gaurds/jwt-auth/jwt-auth.guard';
 
 /**
  * User Controller
@@ -26,6 +27,7 @@ export class UsersController {
    * @param username - The username of the user.
    * @returns The user document if found.
    */
+  @UseGuards(JwtAuthGuard)
   @Get(':username')
   async findByUsername(@Param('username') username: string): Promise<User> {
     return this.usersService.findByUsername(username);
