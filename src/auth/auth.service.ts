@@ -71,7 +71,7 @@ export class AuthService {
    * Generate a salt for password hashing.
    * @returns The generated salt.
    */
-  private generateSalt(): string {
+  generateSalt(): string {
     return crypto.randomBytes(16).toString('hex');
   }
 
@@ -81,7 +81,7 @@ export class AuthService {
    * @param salt - The salt to use for hashing.
    * @returns The hashed password.
    */
-  private async hashPassword(password: string, salt: string): Promise<string> {
+  async hashPassword(password: string, salt: string): Promise<string> {
     return new Promise((resolve, reject) => {
       crypto.pbkdf2(password, salt, 1000, 64, 'sha512', (err, derivedKey) => {
         if (err) reject(err);
@@ -97,7 +97,7 @@ export class AuthService {
    * @param salt - The salt used to hash the password.
    * @returns True if the password is valid, false otherwise.
    */
-  private async verifyPassword(
+  async verifyPassword(
     password: string,
     hash: string,
     salt: string,

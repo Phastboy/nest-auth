@@ -1,7 +1,14 @@
-import { RoleGuard } from './role.guard';
+import { Reflector } from '@nestjs/core';
+import { RolesGuard } from './role.guard';
 
-describe('RoleGuard', () => {
+describe('RolesGuard', () => {
+  let reflector: Reflector;
+
+  beforeEach(() => {
+    reflector = new Reflector();
+  });
+
   it('should be defined', () => {
-    expect(new RoleGuard()).toBeDefined();
+    expect(new RolesGuard(reflector)).toBeDefined();
   });
 });
