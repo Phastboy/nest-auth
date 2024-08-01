@@ -19,7 +19,8 @@ export class UsersService {
    */
   async create(createUserDto: CreateUserDTO): Promise<User> {
     const createdUser = new this.userModel(createUserDto);
-    return createdUser.save();
+    const savedUser = await createdUser.save();
+    return savedUser;
   }
 
   /**
@@ -29,10 +30,16 @@ export class UsersService {
    * @throws NotFoundException if user is not found.
    */
   async findByUsername(username: string): Promise<User> {
+    console.log('Searching for username:', username);
     const user = await this.userModel.findOne({ username }).exec();
     if (!user) {
+      console.log('User not found');
       throw new NotFoundException('User not found');
     }
+    console.log({
+      success: true,
+      message: `username ${user.username} is found`,
+    });
     return user;
   }
 
