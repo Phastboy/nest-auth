@@ -42,21 +42,4 @@ export class UsersService {
     });
     return user;
   }
-
-  /**
-   * Update a user's role.
-   * @param username - The username of the user.
-   * @param role - The new role of the user.
-   * @returns The updated user document.
-   * @throws NotFoundException if user is not found.
-   */
-  async updateUserRole(username: string, role: string): Promise<User> {
-    const user = await this.userModel
-      .findOneAndUpdate({ username }, { role }, { new: true })
-      .exec();
-    if (!user) {
-      throw new NotFoundException('User not found');
-    }
-    return user;
-  }
 }
