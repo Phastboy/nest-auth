@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from '../schemas/user.schema';
 import { CreateUserDTO } from './dto/create-user.dto';
 
 /**
- * User Service
- * Handles business logic related to user data.
+ * Users Service
+ * Handles business logic related to user operations.
  */
 @Injectable()
 export class UsersService {
@@ -26,17 +26,30 @@ export class UsersService {
    * Find a user by username.
    * @param username - The username of the user.
    * @returns The user document if found.
+   * @throws NotFoundException if user is not found.
    */
-  async findByUsername(username: string): Promise<User | undefined> {
-    return this.userModel.findOne({ username }).exec();
+  async findByUsername(username: string): Promise<User> {
+    const user = await this.userModel.findOne({ username }).exec();
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
   }
 
   /**
-   * Find a user by email.
-   * @param email - The email of the user.
-   * @returns The user document if found.
+   * Update a user's role.
+   * @param username - The username of the user.
+   * @param role - The new role of the user.
+   * @returns The updated user document.
+   * @throws NotFoundException if user is not found.
    */
-  async findByEmail(email: string): Promise<User | undefined> {
-    return this.userModel.findOne({ email }).exec();
+  async updateUserRole(username: string, role: string): Promise<User> {
+    const user = await this.userModel
+      .findOneAndUpdate({ username }, { role }, { new: true })
+      .exec();
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
   }
 }
