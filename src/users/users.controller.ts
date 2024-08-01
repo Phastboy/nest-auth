@@ -1,35 +1,21 @@
 import { Controller, Post, Get, Param, UseGuards, Body } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDTO } from './dto/create-user.dto';
-import { User } from '../schemas/user.schema';
 import { JwtAuthGuard } from 'src/auth/gaurds/jwt-auth/jwt-auth.guard';
+import { RolesGuard } from 'src/auth/gaurds/role/role.guard';
+import { Roles } from 'src/auth/decorators/roles/roles.decorator';
 
 /**
- * User Controller
- * Handles HTTP requests related to user operations.
+ * Users Controller
+ * Handles requests related to user operations.
  */
 @Controller('users')
+@UseGuards(JwtAuthGuard, RolesGuard)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  /**
-   * Create a new user.
-   * @param createUserDto - Data transfer object containing user data.
-   * @returns The newly created user document.
-   */
-  @Post()
-  async create(@Body() createUserDto: CreateUserDTO): Promise<User> {
-    return this.usersService.create(createUserDto);
-  }
-
-  /**
-   * Find a user by username.
-   * @param username - The username of the user.
-   * @returns The user document if found.
-   */
-  @UseGuards(JwtAuthGuard)
   @Get(':username')
-  async findByUsername(@Param('username') username: string): Promise<User> {
+  @Roles('admin')
+  async findOne(@Param('username') username: string) {
     return this.usersService.findByUsername(username);
   }
 }

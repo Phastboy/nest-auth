@@ -3,6 +3,7 @@ import { UsersService } from '../users/users.service';
 import { User } from '../schemas/user.schema';
 import * as crypto from 'crypto';
 import { JwtService } from '@nestjs/jwt';
+import { CreateUserDTO } from '../users/dto/create-user.dto';
 
 /**
  * Auth Service
@@ -35,11 +36,30 @@ export class AuthService {
    * @param user - The user for whom the token is generated.
    * @returns An object containing the access token.
    */
-  async login(user: User): Promise<{ access_token: string }> {
-    const payload = { username: user.username, sub: user.id };
+  async login(user: any) {
+    const payload = {
+      username: user.username,
+      sub: user._id,
+      role: user.role,
+    };
     return {
       access_token: this.jwtService.sign(payload),
     };
+  }
+
+  /**
+   * Register a new user.
+   * @param createUserDto - Data transfer object containing user data.
+   * @returns The newly created user document.
+   */
+  async register(createUserDto: CreateUserDTO): Promise<User> {
+    const hashedPassword = await this.hashPassword(createUserDto.password);
+    const user = await this.usersService.create({
+      ...createUserDto,
+      password: hashedPassword,
+      role: 'user',
+    });
+    return user;
   }
 
   /**
