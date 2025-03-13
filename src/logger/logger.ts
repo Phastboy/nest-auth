@@ -10,36 +10,36 @@ export class AppLogger implements LoggerService {
       level: 'info',
       format: winston.format.combine(
         winston.format.timestamp(),
-        winston.format.json()
+        winston.format.json(), // Logs in JSON format
       ),
       transports: [
         new winston.transports.Console({
           format: winston.format.combine(
-            winston.format.colorize(),
-            winston.format.simple()
+            winston.format.colorize(), // Colorized logs for readability
+            winston.format.simple(), // Simplified log output for console
           ),
         }),
         new winston.transports.DailyRotateFile({
-          dirname: 'logs', // Directory for logs
-          filename: 'application-%DATE%.log',
+          dirname: 'logs', // Store logs in the 'logs' directory
+          filename: 'app-%DATE%.log',
           datePattern: 'YYYY-MM-DD',
           zippedArchive: true,
           maxSize: '20m',
-          maxFiles: '14d', // Keep logs for 14 days
+          maxFiles: '14d',
         }),
       ],
     });
   }
 
-  log(message: string) {
-    this.logger.info(message);
+  log(message: string, meta: object = {}) {
+    this.logger.info({ message, ...meta });
   }
 
-  error(message: string, trace?: string) {
-    this.logger.error(message, { trace });
+  error(message: string, trace?: string, meta: object = {}) {
+    this.logger.error({ message, trace, ...meta });
   }
 
-  warn(message: string) {
-    this.logger.warn(message);
+  warn(message: string, meta: object = {}) {
+    this.logger.warn({ message, ...meta });
   }
 }

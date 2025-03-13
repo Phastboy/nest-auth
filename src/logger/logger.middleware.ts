@@ -1,6 +1,6 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
-import { AppLogger } from './logger';
+import { AppLogger } from '../logger/logger';
 
 @Injectable()
 export class LoggerMiddleware implements NestMiddleware {
@@ -9,6 +9,7 @@ export class LoggerMiddleware implements NestMiddleware {
   use(req: Request, res: Response, next: NextFunction) {
     const start = Date.now();
 
+    // Safe stringification to prevent circular JSON errors
     const safeStringify = (obj: any) => {
       try {
         return JSON.stringify(obj);
@@ -17,20 +18,32 @@ export class LoggerMiddleware implements NestMiddleware {
       }
     };
 
-    this.logger.log(
-      `Incoming Request - Method: ${req.method}, URL: ${req.originalUrl}, IP: ${req.ip}, Headers: ${safeStringify(req.headers)}, Body: ${safeStringify(req.body)}, Query Params: ${safeStringify(req.query)}`,
-    );
+    // Log request details
+    this.logger.log('Incoming request', {
+      method: req.method,
+      url: req.originalUrl,
+      ip: req.ip,
+      headers: req.headers,
+      query: req.query,
+      body: safeStringify(req.body),
+    });
 
+    // Log response when finished
     res.on('finish', () => {
       const duration = Date.now() - start;
-      const message = `[Response] ${req.method} ${req.originalUrl} - ${res.statusCode} - ${duration}ms`;
+      const logData = {
+        method: req.method,
+        url: req.originalUrl,
+        statusCode: res.statusCode,
+        duration: `${duration}ms`,
+      };
 
       if (res.statusCode >= 500) {
-        this.logger.error(message);
+        this.logger.error('Response sent', undefined, logData);
       } else if (res.statusCode >= 400) {
-        this.logger.warn(message);
+        this.logger.warn('Response sent', logData);
       } else {
-        this.logger.log(message);
+        this.logger.log('Response sent', logData);
       }
     });
 
