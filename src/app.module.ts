@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
-import { RequestLoggerMiddleware } from './request-logger/request-logger.middleware';
+import { LoggerMiddleware } from './logger/logger.middleware';
 
 @Module({
   imports: [AuthModule, UsersModule],
@@ -12,6 +12,6 @@ import { RequestLoggerMiddleware } from './request-logger/request-logger.middlew
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(RequestLoggerMiddleware).forRoutes('*');
+    consumer.apply(LoggerMiddleware).forRoutes('*');
   }
 }
