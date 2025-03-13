@@ -14,8 +14,15 @@ async function bootstrap() {
     .setTitle('authentication')
     .setVersion('1.0.0')
     .build();
-  const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/', app, documentFactory);
+  const document = () => SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('/', app, document, {
+    swaggerOptions: {
+      requestInterceptor: (req: any) => {
+        req.credentials = 'include';
+        return req;
+      },
+    },
+  });
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
 }
