@@ -9,16 +9,20 @@ erDiagram
 "User" {
   Int id PK
   String email UK
-  String username "nullable"
+  String username UK "nullable"
+  String password
+  DateTime createdAt
+  DateTime updatedAt
 }
 "Post" {
   Int id PK
-  String title
-  String content "nullable"
-  Boolean published "nullable"
-  Int authorId FK "nullable"
+  String content
+  Boolean published
+  Int authorId FK
+  DateTime createdAt
+  DateTime updatedAt
 }
-"Post" }o--o| "User" : author
+"Post" }o--|| "User" : author
 ```
 
 ### `User`
@@ -27,12 +31,16 @@ erDiagram
   - `id`: 
   - `email`: 
   - `username`: 
+  - `password`: 
+  - `createdAt`: 
+  - `updatedAt`: 
 
 ### `Post`
 
 **Properties**
   - `id`: 
-  - `title`: 
   - `content`: 
   - `published`: 
   - `authorId`: 
+  - `createdAt`: 
+  - `updatedAt`: 
