@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateUserDto } from 'src/dto/create-user.dto';
+import { UpdateUserDto } from 'src/dto/update-user.dto';
 import { UserWithoutPassword } from 'src/interfaces/user.types';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -24,15 +25,31 @@ export class UsersService {
     });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number): Promise<UserWithoutPassword> {
+    return await this.prismaService.user.findUniqueOrThrow({
+      where: {
+        id,
+      },
+    });
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(
+    id: number,
+    updateUserDto: UpdateUserDto,
+  ): Promise<UserWithoutPassword> {
+    return await this.prismaService.user.update({
+      where: {
+        id,
+      },
+      data: updateUserDto,
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async remove(id: number): Promise<UserWithoutPassword> {
+    return await this.prismaService.user.delete({
+      where: {
+        id,
+      },
+    });
   }
 }
