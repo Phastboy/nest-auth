@@ -7,7 +7,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(createUserDto: CreateUserDto): UserWithoutPassword {
+  async create(createUserDto: CreateUserDto): Promise<UserWithoutPassword> {
     return await this.prismaService.user.create({
       data: createUserDto,
       omit: {
@@ -16,8 +16,12 @@ export class UsersService {
     });
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll(): Promise<UserWithoutPassword[]> {
+    return await this.prismaService.user.findMany({
+      omit: {
+        password: true,
+      },
+    });
   }
 
   findOne(id: number) {
