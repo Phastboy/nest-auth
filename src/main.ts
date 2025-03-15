@@ -13,16 +13,10 @@ async function bootstrap() {
   const config = new DocumentBuilder()
     .setTitle('authentication')
     .setVersion('1.0.0')
+    .addBearerAuth()
     .build();
   const document = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/', app, document, {
-    swaggerOptions: {
-      requestInterceptor: (req: any) => {
-        req.credentials = 'include';
-        return req;
-      },
-    },
-  });
+  SwaggerModule.setup('/', app, document);
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
 }

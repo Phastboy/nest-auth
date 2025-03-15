@@ -4,6 +4,7 @@ import { Tokens } from 'src/interfaces/auth.types';
 import { UserWithoutPassword } from 'src/interfaces/user.types';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -13,17 +14,14 @@ export class AuthService {
   ) {}
 
   async create(userData: CreateUserDto): Promise<UserWithoutPassword> {
-    return this.usersService.create(userData);
+    return await this.usersService.create(userData);
   }
 
-  async validateUser(
-    email: string,
-    password: string,
-  ): Promise<UserWithoutPassword> {
-    return await this.usersService.validateUser(email, password);
-  }
-
-  async login(user: UserWithoutPassword): Promise<Tokens> {
+  async login(loginDto: LoginDto): Promise<Tokens> {
+    const user = await this.usersService.validateUser(
+      loginDto.email,
+      loginDto.password,
+    );
     const payload = { email: user.email, sub: user.id };
     return {
       accessToken: this.jwtService.sign(payload),
