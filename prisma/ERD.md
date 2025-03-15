@@ -6,7 +6,7 @@
 ## default
 ```mermaid
 erDiagram
-"User" {
+"users" {
   Int id PK
   String email UK
   String username UK "nullable"
@@ -14,7 +14,7 @@ erDiagram
   DateTime createdAt
   DateTime updatedAt
 }
-"Post" {
+"posts" {
   Int id PK
   String content
   Boolean published
@@ -22,10 +22,10 @@ erDiagram
   DateTime createdAt
   DateTime updatedAt
 }
-"Post" }o--|| "User" : author
+"posts" }o--|| "users" : author
 ```
 
-### `User`
+### `users`
 
 **Properties**
   - `id`: 
@@ -35,7 +35,7 @@ erDiagram
   - `createdAt`: 
   - `updatedAt`: 
 
-### `Post`
+### `posts`
 
 **Properties**
   - `id`: 
