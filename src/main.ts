@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConsoleLogger } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { SwaggerModuleConfig } from './swagger/swagger.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -10,22 +10,9 @@ async function bootstrap() {
       colors: true,
     }),
   });
-  const config = new DocumentBuilder()
-    .setTitle('authentication')
-    .setVersion('1.0.0')
-    .addBearerAuth(
-      {
-        type: 'http',
-        scheme: 'bearer',
-        bearerFormat: 'JWT',
-        description: 'enter JWT token',
-        in: 'header',
-      },
-      'JWT-auth',
-    )
-    .build();
-  const document = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('/', app, document);
+
+  SwaggerModuleConfig.setup(app);
+
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
 }

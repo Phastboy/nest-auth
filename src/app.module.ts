@@ -4,9 +4,16 @@ import { UsersModule } from './users/users.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { PrismaModule } from './prisma/prisma.module';
 import { PostsModule } from './posts/posts.module';
+import { SwaggerModuleConfig } from './swagger/swagger.module';
 
 @Module({
-  imports: [AuthModule, UsersModule, PrismaModule, PostsModule],
+  imports: [
+    AuthModule,
+    UsersModule,
+    PrismaModule,
+    PostsModule,
+    SwaggerModuleConfig,
+  ],
   controllers: [],
   providers: [],
 })
