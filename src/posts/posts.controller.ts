@@ -9,19 +9,21 @@ import {
   Req,
   UseGuards,
 } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post as PostEntity } from '@prisma/client';
 import { PostsService } from './posts.service';
 import { Logger } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
   @Post()
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT-auth')
   async create(
     @Req() req: any,
     @Body() createPostDto: CreatePostDto,
@@ -41,7 +43,8 @@ export class PostsController {
   }
 
   @Put(':id')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT-auth')
   async update(
     @Req() req: any,
     @Param('id') id: string,
@@ -51,7 +54,8 @@ export class PostsController {
   }
 
   @Delete(':id')
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT-auth')
   async remove(@Req() req: any, @Param('id') id: string): Promise<PostEntity> {
     return await this.postsService.remove(req.user.userId, +id);
   }
