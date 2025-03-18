@@ -1,9 +1,10 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserWithoutPassword } from '../interfaces/user.types';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcryptjs';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from '@prisma/client';
 
 @Injectable()
 export class UsersService {
@@ -30,36 +31,19 @@ export class UsersService {
     });
   }
 
-  async findOne(id: number): Promise<UserWithoutPassword> {
-    return await this.prismaService.user.findUniqueOrThrow({
+  async findOne(id: number): Promise<UserWithoutPassword | null> {
+    return await this.prismaService.user.findUnique({
       where: { id },
+      omit: {
+        password: true,
+      },
     });
   }
 
-  async findByEmail(email: string) {
+  async findByEmail(email: string): Promise<User | null> {
     return await this.prismaService.user.findUnique({
       where: { email },
     });
-  }
-
-  async validateUser(
-    email: string,
-    password: string,
-  ): Promise<UserWithoutPassword> {
-    const user = await this.findByEmail(email);
-    if (!user) {
-      throw new UnauthorizedException(
-        `User with email ${email} does not exist`,
-      );
-    }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
-      throw new UnauthorizedException('Incorrect password');
-    }
-
-    const { password: _, ...userWithoutPassword } = user;
-    return userWithoutPassword;
   }
 
   async update(
