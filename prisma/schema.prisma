@@ -9,37 +9,6 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator markdown {
-  provider = "prisma-markdown"
-  output   = "./ERD.md"
-  title    = "authentication"
-}
-
-model User {
-  id        Int     @id @default(autoincrement())
-  email     String  @unique
-  username  String @unique
-  password  String
-  avatar    String?
-  posts     Post[]  
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  @@map("users")
-}
-
-model Post {
-  id          Int      @id @default(autoincrement())
-  content     String   
-  published   Boolean  @default(false) 
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade) 
-  userId      Int
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-
-  @@map("posts")
 }
