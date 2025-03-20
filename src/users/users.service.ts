@@ -4,11 +4,11 @@ import {
   InternalServerErrorException,
 } from '@nestjs/common';
 import { UserWithoutPassword } from '../interfaces/user.types';
-import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcryptjs';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Prisma, User } from '@prisma/client';
+import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()
 export class UsersService {

@@ -2,9 +2,9 @@ import { MiddlewareConsumer, Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
-import { PrismaModule } from './prisma/prisma.module';
 import { PostsModule } from './posts/posts.module';
 import { SwaggerModuleConfig } from './swagger/swagger.module';
+import { PrismaModule } from 'nestjs-prisma';
 
 @Module({
   imports: [
