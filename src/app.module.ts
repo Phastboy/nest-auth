@@ -5,14 +5,33 @@ import { LoggerMiddleware } from './logger/logger.middleware';
 import { PostsModule } from './posts/posts.module';
 import { SwaggerModuleConfig } from './swagger/swagger.module';
 import { PrismaModule } from 'nestjs-prisma';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
     AuthModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     UsersModule,
-    PrismaModule,
     PostsModule,
     SwaggerModuleConfig,
+    PrismaModule.forRootAsync({
+      isGlobal: true,
+      useFactory: async (configService: ConfigService) => {
+        return {
+          prismaOptions: {
+            log: ['info', 'query', 'warn', 'error'],
+            datasources: {
+              db: {
+                url: configService.get('DATABASE_URL'),
+              },
+            },
+          },
+        };
+      },
+      inject: [ConfigService],
+    }),
   ],
   controllers: [],
   providers: [],
