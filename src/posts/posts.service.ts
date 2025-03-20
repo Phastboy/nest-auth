@@ -16,7 +16,7 @@ export class PostsService {
     return await this.prismaService.post.create({
       data: {
         ...createPostDto,
-        authorId: userId,
+        userId,
       },
     });
   }
@@ -46,7 +46,7 @@ export class PostsService {
     if (!post) {
       throw new NotFoundException('Post not found');
     }
-    if (post.authorId !== userId) {
+    if (post.userId !== userId) {
       throw new UnauthorizedException('You are not the author of this post');
     }
     return await this.prismaService.post.update({
@@ -60,7 +60,7 @@ export class PostsService {
     if (!post) {
       throw new NotFoundException('Post not found');
     }
-    if (post.authorId !== userId) {
+    if (post.userId !== userId) {
       throw new UnauthorizedException('You are not the author of this post');
     }
     return await this.prismaService.post.delete({ where: { id } });

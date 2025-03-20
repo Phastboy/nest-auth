@@ -9,8 +9,9 @@ erDiagram
 "users" {
   Int id PK
   String email UK
-  String username UK "nullable"
+  String username UK
   String password
+  String avatar "nullable"
   DateTime createdAt
   DateTime updatedAt
 }
@@ -18,11 +19,11 @@ erDiagram
   Int id PK
   String content
   Boolean published
-  Int authorId FK
+  Int userId FK
   DateTime createdAt
   DateTime updatedAt
 }
-"posts" }o--|| "users" : author
+"posts" }o--|| "users" : user
 ```
 
 ### `users`
@@ -32,6 +33,7 @@ erDiagram
   - `email`: 
   - `username`: 
   - `password`: 
+  - `avatar`: 
   - `createdAt`: 
   - `updatedAt`: 
 
@@ -41,6 +43,6 @@ erDiagram
   - `id`: 
   - `content`: 
   - `published`: 
-  - `authorId`: 
+  - `userId`: 
   - `createdAt`: 
   - `updatedAt`: 
