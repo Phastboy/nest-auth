@@ -28,7 +28,7 @@ import { SeedModule } from './seed/seed.module';
             log: ['info', 'query', 'warn', 'error'],
             datasources: {
               db: {
-                url: configService.get('DATABASE_URL'),
+                url: await configService.get('DATABASE_URL'),
               },
             },
           },

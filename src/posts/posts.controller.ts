@@ -11,34 +11,40 @@ import {
 } from '@nestjs/common';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { Post as PostEntity } from '@prisma/client';
+import { Post as IPost } from '@prisma/client';
 import { PostsService } from './posts.service';
 import { Logger } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import {
+  AuthenticatedRequest,
+  AuthenticatedUser,
+} from 'src/interfaces/auth.types';
 
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
+  private readonly logger = new Logger(PostsController.name);
 
   @Post()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('JWT-auth')
   async create(
-    @Req() req: any,
+    @Req() req: AuthenticatedRequest,
     @Body() createPostDto: CreatePostDto,
-  ): Promise<PostEntity> {
-    Logger.log(req);
-    return await this.postsService.create(req.user.userId, createPostDto);
+  ): Promise<IPost> {
+    const { user }: { user: AuthenticatedUser } = req;
+    this.logger.log(user);
+    return await this.postsService.create(user.userId, createPostDto);
   }
 
   @Get()
-  async findAll(): Promise<PostEntity[]> {
+  async findAll(): Promise<IPost[]> {
     return await this.postsService.findAll();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string): Promise<PostEntity> {
+  async findOne(@Param('id') id: string): Promise<IPost> {
     return await this.postsService.findOne(+id);
   }
 
@@ -46,17 +52,22 @@ export class PostsController {
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('JWT-auth')
   async update(
-    @Req() req: any,
+    @Req() req: AuthenticatedRequest,
     @Param('id') id: string,
     @Body() updatePostDto: UpdatePostDto,
-  ): Promise<PostEntity> {
-    return await this.postsService.update(req.user.userId, +id, updatePostDto);
+  ): Promise<IPost> {
+    const { user }: { user: AuthenticatedUser } = req;
+    return await this.postsService.update(user.userId, +id, updatePostDto);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('JWT-auth')
-  async remove(@Req() req: any, @Param('id') id: string): Promise<PostEntity> {
-    return await this.postsService.remove(req.user.userId, +id);
+  async remove(
+    @Req() req: AuthenticatedRequest,
+    @Param('id') id: string,
+  ): Promise<IPost> {
+    const { user }: { user: AuthenticatedUser } = req;
+    return await this.postsService.remove(user.userId, +id);
   }
 }
