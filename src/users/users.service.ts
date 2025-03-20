@@ -1,13 +1,9 @@
-import {
-  ConflictException,
-  Injectable,
-  InternalServerErrorException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { UserWithoutPassword } from '../interfaces/user.types';
 import * as argon from 'argon2';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Prisma, User } from '@prisma/client';
+import { User } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()

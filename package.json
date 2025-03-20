@@ -22,7 +22,7 @@
     "migrate:dev:create": "npx prisma migrate dev --name init --create-only",
     "migrate:deploy": "npx prisma migrate deploy",
     "prisma:generate": "npx prisma generate",
-    "prisma:studio": "npx prisma studio",
+    "prisma:studio": "npx prisma studio"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.12",

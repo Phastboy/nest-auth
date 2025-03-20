@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ConsoleLogger } from '@nestjs/common';
+import { ConsoleLogger, Logger } from '@nestjs/common';
 import { SwaggerModuleConfig } from './swagger/swagger.module';
 
 async function bootstrap() {
@@ -16,4 +16,7 @@ async function bootstrap() {
   const port = process.env.PORT ?? 3000;
   await app.listen(port);
 }
-bootstrap();
+
+bootstrap().catch((error) => {
+  Logger.error('Error during bootstrap:', error);
+});

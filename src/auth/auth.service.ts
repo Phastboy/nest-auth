@@ -1,8 +1,7 @@
 import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Payload, Tokens } from 'src/interfaces/auth.types';
+import { AuthenticatedUser, Payload, Tokens } from 'src/interfaces/auth.types';
 import { UserWithoutPassword } from 'src/interfaces/user.types';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
 import * as argon from 'argon2';
 import { LoginDto } from './dto/login.dto';
@@ -15,15 +14,6 @@ export class AuthService {
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
   ) {}
-
-  async create(userData: CreateUserDto): Promise<UserWithoutPassword> {
-    try {
-      return await this.usersService.create(userData);
-    } catch (error) {
-      this.logger.error(`Error creating user: ${error.message}`, error.stack);
-      throw error;
-    }
-  }
 
   async validateUser(loginDto: LoginDto): Promise<UserWithoutPassword> {
     try {
@@ -50,21 +40,24 @@ export class AuthService {
       }
 
       // Remove password before returning the user
-      const { password: _, ...userWithoutPassword } = user;
+      const userWithoutPassword: UserWithoutPassword = {
+        ...user,
+      };
       return userWithoutPassword;
-    } catch (error) {
-      this.logger.error(
-        `Error during user validation for email: ${loginDto.email}`,
-        error.stack,
-      );
+    } catch (error: any) {
+      if (error instanceof Error)
+        this.logger.error(
+          `Error during user validation for email: ${loginDto.email}`,
+          error.stack,
+        );
       throw error;
     }
   }
 
-  generateTokens(user: UserWithoutPassword): Tokens {
+  generateTokens(user: AuthenticatedUser): Tokens {
     const payload: Payload = {
       email: user.email,
-      sub: user.id,
+      sub: user.userId,
     };
 
     return {
