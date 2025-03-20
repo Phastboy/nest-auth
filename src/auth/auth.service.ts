@@ -4,7 +4,7 @@ import { Payload, Tokens } from 'src/interfaces/auth.types';
 import { UserWithoutPassword } from 'src/interfaces/user.types';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { UsersService } from 'src/users/users.service';
-import * as bcrypt from 'bcryptjs';
+import * as argon from 'argon2';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()
@@ -38,9 +38,9 @@ export class AuthService {
       }
 
       // check password validity
-      const isPasswordValid = await bcrypt.compare(
-        loginDto.password,
+      const isPasswordValid = await argon.verify(
         user.password,
+        loginDto.password,
       );
       if (!isPasswordValid) {
         this.logger.warn(
