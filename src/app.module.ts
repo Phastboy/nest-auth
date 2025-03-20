@@ -10,6 +10,7 @@ import {
 } from 'nestjs-prisma';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SeedModule } from './seed/seed.module';
+import { CloudinaryModule } from './cloudinary/cloudinary.module';
 
 @Module({
   imports: [
@@ -37,6 +38,7 @@ import { SeedModule } from './seed/seed.module';
       inject: [ConfigService],
     }),
     SeedModule,
+    CloudinaryModule,
   ],
   controllers: [],
   providers: [
