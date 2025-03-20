@@ -14,6 +14,7 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LocalAuthGuard } from './auth.guard';
 import { JwtAuthGuard } from './jwt/jwt.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
+import { Tokens } from 'src/interfaces/auth.types';
 
 @Controller('auth')
 export class AuthController {
@@ -31,7 +32,7 @@ export class AuthController {
     @Request() req: any,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const tokens = this.authService.generateTokens(await req.user);
+    const tokens: Tokens = this.authService.generateTokens(await req.user);
     res.setHeader('Authorization', `Bearer ${tokens.accessToken}`);
     return { message: 'Login successful', accessToken: tokens.accessToken };
   }

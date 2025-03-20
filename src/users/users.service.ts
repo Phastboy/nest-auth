@@ -17,35 +17,15 @@ export class UsersService {
   async create(createUserDto: CreateUserDto): Promise<UserWithoutPassword> {
     const hashedPassword = await argon.hash(createUserDto.password);
 
-    try {
-      const user = await this.prismaService.user.create({
-        data: {
-          ...createUserDto,
-          password: hashedPassword,
-        },
-        omit: {
-          password: true,
-        },
-      });
-      return user;
-    } catch (error) {
-      if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        // Handle unique constraint violations
-        if (error.code === 'P2002') {
-          const target = error.meta?.target as string[];
-          if (target.includes('email')) {
-            throw new ConflictException('Email already exists.');
-          } else if (target.includes('username')) {
-            throw new ConflictException('Username already exists.');
-          }
-        }
-      }
-
-      // other errors
-      throw new InternalServerErrorException(
-        'Something went wrong while creating the user.',
-      );
-    }
+    return await this.prismaService.user.create({
+      data: {
+        ...createUserDto,
+        password: hashedPassword,
+      },
+      omit: {
+        password: true,
+      },
+    });
   }
 
   async findAll(): Promise<UserWithoutPassword[]> {
