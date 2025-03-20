@@ -9,6 +9,7 @@ import {
   providePrismaClientExceptionFilter,
 } from 'nestjs-prisma';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       },
       inject: [ConfigService],
     }),
+    SeedModule,
   ],
   controllers: [],
   providers: [
