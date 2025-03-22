@@ -10,7 +10,6 @@ import {
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { Response } from 'express';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LocalAuthGuard } from './auth.guard';
 import { JwtAuthGuard } from './jwt/jwt.guard';
 import { ApiBearerAuth } from '@nestjs/swagger';
@@ -20,6 +19,7 @@ import {
   Tokens,
 } from 'src/interfaces/auth.types';
 import { UsersService } from 'src/users/users.service';
+import { UserCreateInput } from 'src/@generated';
 
 @Controller('auth')
 export class AuthController {
@@ -29,7 +29,7 @@ export class AuthController {
   ) {}
 
   @Post('register')
-  async register(@Body() createUserDto: CreateUserDto) {
+  async register(@Body() createUserDto: UserCreateInput) {
     return await this.usersService.create(createUserDto);
   }
 

@@ -24,9 +24,7 @@ export class PostsService {
   }
 
   async findAll(): Promise<Post[]> {
-    return await this.prismaService.post.findMany({
-      where: { published: true },
-    });
+    return await this.prismaService.post.findMany({});
   }
 
   async findOne(id: number): Promise<Post> {
