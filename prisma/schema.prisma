@@ -18,6 +18,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator nestgraphql {
+  provider = "node node_modules/prisma-nestjs-graphql"
+  output   = "../src/@generated"
+  reExport = "All"
+}
+
 generator markdown {
   provider = "prisma-markdown"
   output   = "./ERD.md"
