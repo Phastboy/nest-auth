@@ -5,20 +5,16 @@ import {
 } from '@nestjs/common';
 import { Post } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
-import { PostCreateInput, PostUpdateInput } from 'src/@generated';
+import { PostCreateManyInput, PostUpdateInput } from 'src/@generated';
 
 @Injectable()
 export class PostsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(
-    // userId: number,
-    createPostDto: PostCreateInput,
-  ): Promise<Post> {
+  async create(createPostDto: PostCreateManyInput): Promise<Post> {
     return await this.prismaService.post.create({
       data: {
         ...createPostDto,
-        //userId,
       },
     });
   }

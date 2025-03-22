@@ -1,13 +1,13 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { PostsService } from './posts.service';
-import { PostCreateInput, PostUpdateInput } from 'src/@generated';
+import { PostCreateManyInput, PostUpdateInput } from 'src/@generated';
 
 @Resolver('Post')
 export class PostsResolver {
   constructor(private readonly postsService: PostsService) {}
 
   @Mutation('createPost')
-  create(@Args('createPostInput') createPostInput: PostCreateInput) {
+  create(@Args('createPostInput') createPostInput: PostCreateManyInput) {
     return this.postsService.create(createPostInput);
   }
 
