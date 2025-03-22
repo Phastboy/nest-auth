@@ -1,11 +1,18 @@
 type User {
-  # Example field (placeholder)
-  exampleField: Int
+  id: ID!
+  email: String!
+  username: String!
+  password: String!
+  avatar: String
+  posts:     [Post]  
+  createdAt: Date!
+  updatedAt: Date!
 }
 
 input CreateUserInput {
-  # Example field (placeholder)
-  exampleField: Int
+  email: String!
+  username: String!
+  password: String!
 }
 
 input UpdateUserInput {

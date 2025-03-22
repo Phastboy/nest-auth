@@ -1,14 +1,13 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { PostsService } from './posts.service';
-import { CreatePostInput } from './dto/create-post.input';
-import { UpdatePostInput } from './dto/update-post.input';
+import { PostCreateInput, PostUpdateInput } from 'src/@generated';
 
 @Resolver('Post')
 export class PostsResolver {
   constructor(private readonly postsService: PostsService) {}
 
   @Mutation('createPost')
-  create(@Args('createPostInput') createPostInput: CreatePostInput) {
+  create(@Args('createPostInput') createPostInput: PostCreateInput) {
     return this.postsService.create(createPostInput);
   }
 
@@ -23,12 +22,16 @@ export class PostsResolver {
   }
 
   @Mutation('updatePost')
-  update(@Args('updatePostInput') updatePostInput: UpdatePostInput) {
-    return this.postsService.update(updatePostInput.id, updatePostInput);
+  update(
+    @Args('updatePostInput') updatePostInput: PostUpdateInput,
+    id: number,
+    userId: number,
+  ) {
+    return this.postsService.update(userId, id, updatePostInput);
   }
 
   @Mutation('removePost')
-  remove(@Args('id') id: number) {
-    return this.postsService.remove(id);
+  remove(@Args('id') id: number, userId: number) {
+    return this.postsService.remove(userId, id);
   }
 }

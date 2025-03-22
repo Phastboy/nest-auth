@@ -1,26 +1,76 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
+import { UserWithoutPassword } from '../interfaces/user.types';
+import * as argon from 'argon2';
+import { User } from '@prisma/client';
+import { PrismaService } from 'nestjs-prisma';
+import { UserCreateInput, UserUpdateInput } from 'src/@generated';
 
 @Injectable()
 export class UsersService {
-  create(createUserInput: CreateUserInput) {
-    return 'This action adds a new user';
+  constructor(private readonly prismaService: PrismaService) {}
+
+  async create(createUserDto: UserCreateInput): Promise<UserWithoutPassword> {
+    const hashedPassword = await argon.hash(createUserDto.password);
+
+    return await this.prismaService.user.create({
+      data: {
+        ...createUserDto,
+        password: hashedPassword,
+      },
+      omit: {
+        password: true,
+      },
+    });
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll(): Promise<UserWithoutPassword[]> {
+    return await this.prismaService.user.findMany({
+      omit: {
+        password: true,
+      },
+      include: {
+        posts: true,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number): Promise<UserWithoutPassword | null> {
+    return await this.prismaService.user.findUnique({
+      where: { id },
+      omit: {
+        password: true,
+      },
+      include: {
+        posts: true,
+      },
+    });
   }
 
-  update(id: number, updateUserInput: UpdateUserInput) {
-    return `This action updates a #${id} user`;
+  async findByEmail(email: string): Promise<User | null> {
+    return await this.prismaService.user.findUnique({
+      where: { email },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  async update(
+    id: number,
+    updateUserDto: UserUpdateInput,
+  ): Promise<UserWithoutPassword> {
+    return await this.prismaService.user.update({
+      where: { id },
+      data: updateUserDto,
+      omit: {
+        password: true,
+      },
+    });
+  }
+
+  async remove(id: number): Promise<UserWithoutPassword> {
+    return await this.prismaService.user.delete({
+      where: { id },
+      omit: {
+        password: true,
+      },
+    });
   }
 }

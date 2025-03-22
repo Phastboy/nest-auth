@@ -1,11 +1,14 @@
 type Post {
-  # Example field (placeholder)
-  exampleField: Int
+  id: ID!
+  userId: ID!
+  content: String!
+  createdAt: Date!
+  updatedAt: Date!
 }
 
 input CreatePostInput {
-  # Example field (placeholder)
-  exampleField: Int
+  userId: ID!
+  content: String!
 }
 
 input UpdatePostInput {
