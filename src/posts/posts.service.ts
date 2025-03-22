@@ -1,68 +1,26 @@
-import {
-  Injectable,
-  NotFoundException,
-  UnauthorizedException,
-} from '@nestjs/common';
-import { CreatePostDto } from './dto/create-post.dto';
-import { UpdatePostDto } from './dto/update-post.dto';
-import { Post } from '@prisma/client';
-import { PrismaService } from 'nestjs-prisma';
+import { Injectable } from '@nestjs/common';
+import { CreatePostInput } from './dto/create-post.input';
+import { UpdatePostInput } from './dto/update-post.input';
 
 @Injectable()
 export class PostsService {
-  constructor(private readonly prismaService: PrismaService) {}
-
-  async create(userId: number, createPostDto: CreatePostDto): Promise<Post> {
-    return await this.prismaService.post.create({
-      data: {
-        ...createPostDto,
-        userId,
-      },
-    });
+  create(createPostInput: CreatePostInput) {
+    return 'This action adds a new post';
   }
 
-  async findAll(): Promise<Post[]> {
-    return await this.prismaService.post.findMany({
-      where: { published: true },
-    });
+  findAll() {
+    return `This action returns all posts`;
   }
 
-  async findOne(id: number): Promise<Post> {
-    const post = await this.prismaService.post.findUnique({
-      where: { id },
-    });
-    if (!post) {
-      throw new NotFoundException('Post not found');
-    }
-    return post;
+  findOne(id: number) {
+    return `This action returns a #${id} post`;
   }
 
-  async update(
-    userId: number,
-    id: number,
-    updatePostDto: UpdatePostDto,
-  ): Promise<Post> {
-    const post = await this.prismaService.post.findUnique({ where: { id } });
-    if (!post) {
-      throw new NotFoundException('Post not found');
-    }
-    if (post.userId !== userId) {
-      throw new UnauthorizedException('You are not the author of this post');
-    }
-    return await this.prismaService.post.update({
-      where: { id },
-      data: updatePostDto,
-    });
+  update(id: number, updatePostInput: UpdatePostInput) {
+    return `This action updates a #${id} post`;
   }
 
-  async remove(userId: number, id: number): Promise<Post> {
-    const post = await this.prismaService.post.findUnique({ where: { id } });
-    if (!post) {
-      throw new NotFoundException('Post not found');
-    }
-    if (post.userId !== userId) {
-      throw new UnauthorizedException('You are not the author of this post');
-    }
-    return await this.prismaService.post.delete({ where: { id } });
+  remove(id: number) {
+    return `This action removes a #${id} post`;
   }
 }
