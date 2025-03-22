@@ -12,9 +12,6 @@ export class PostCountAggregate {
     content!: number;
 
     @Field(() => Int, {nullable:false})
-    published!: number;
-
-    @Field(() => Int, {nullable:false})
     userId!: number;
 
     @Field(() => Int, {nullable:false})

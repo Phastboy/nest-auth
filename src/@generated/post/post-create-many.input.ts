@@ -11,9 +11,6 @@ export class PostCreateManyInput {
     @Field(() => String, {nullable:false})
     content!: string;
 
-    @Field(() => Boolean, {nullable:true})
-    published?: boolean;
-
     @Field(() => Int, {nullable:false})
     userId!: number;
 

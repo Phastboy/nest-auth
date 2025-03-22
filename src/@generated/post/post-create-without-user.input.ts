@@ -7,9 +7,6 @@ export class PostCreateWithoutUserInput {
     @Field(() => String, {nullable:false})
     content!: string;
 
-    @Field(() => Boolean, {nullable:true})
-    published?: boolean;
-
     @Field(() => Date, {nullable:true})
     createdAt?: Date | string;
 

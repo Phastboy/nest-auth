@@ -13,9 +13,6 @@ export class PostOrderByWithRelationInput {
     content?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})
-    published?: `${SortOrder}`;
-
-    @Field(() => SortOrder, {nullable:true})
     userId?: `${SortOrder}`;
 
     @Field(() => SortOrder, {nullable:true})

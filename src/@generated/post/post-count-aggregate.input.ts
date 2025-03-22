@@ -11,9 +11,6 @@ export class PostCountAggregateInput {
     content?: true;
 
     @Field(() => Boolean, {nullable:true})
-    published?: true;
-
-    @Field(() => Boolean, {nullable:true})
     userId?: true;
 
     @Field(() => Boolean, {nullable:true})

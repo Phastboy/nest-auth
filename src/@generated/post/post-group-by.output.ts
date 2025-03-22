@@ -16,9 +16,6 @@ export class PostGroupBy {
     @Field(() => String, {nullable:false})
     content!: string;
 
-    @Field(() => Boolean, {nullable:false})
-    published!: boolean;
-
     @Field(() => Int, {nullable:false})
     userId!: number;
 

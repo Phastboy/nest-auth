@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { PostWhereInput } from './post-where.input';
 import { StringFilter } from '../prisma/string-filter.input';
-import { BoolFilter } from '../prisma/bool-filter.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
@@ -25,9 +24,6 @@ export class PostWhereUniqueInput {
 
     @Field(() => StringFilter, {nullable:true})
     content?: StringFilter;
-
-    @Field(() => BoolFilter, {nullable:true})
-    published?: BoolFilter;
 
     @Field(() => IntFilter, {nullable:true})
     userId?: IntFilter;

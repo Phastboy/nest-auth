@@ -13,9 +13,6 @@ export class Post {
     @Field(() => String, {nullable:false})
     content!: string;
 
-    @Field(() => Boolean, {defaultValue:false,nullable:false})
-    published!: boolean;
-
     @Field(() => Int, {nullable:false})
     userId!: number;
 

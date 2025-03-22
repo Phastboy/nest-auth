@@ -18,7 +18,6 @@ erDiagram
 "posts" {
   Int id PK
   String content
-  Boolean published
   Int userId FK
   DateTime createdAt
   DateTime updatedAt
@@ -42,7 +41,6 @@ erDiagram
 **Properties**
   - `id`: 
   - `content`: 
-  - `published`: 
   - `userId`: 
   - `createdAt`: 
   - `updatedAt`: 

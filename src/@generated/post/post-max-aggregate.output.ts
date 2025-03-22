@@ -11,9 +11,6 @@ export class PostMaxAggregate {
     @Field(() => String, {nullable:true})
     content?: string;
 
-    @Field(() => Boolean, {nullable:true})
-    published?: boolean;
-
     @Field(() => Int, {nullable:true})
     userId?: number;
 
