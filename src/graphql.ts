@@ -9,7 +9,8 @@
 /* eslint-disable */
 
 export interface CreatePostInput {
-    exampleField?: Nullable<number>;
+    userId: string;
+    content: string;
 }
 
 export interface UpdatePostInput {
@@ -17,7 +18,9 @@ export interface UpdatePostInput {
 }
 
 export interface CreateUserInput {
-    exampleField?: Nullable<number>;
+    email: string;
+    username: string;
+    password: string;
 }
 
 export interface UpdateUserInput {
@@ -25,7 +28,11 @@ export interface UpdateUserInput {
 }
 
 export interface Post {
-    exampleField?: Nullable<number>;
+    id: string;
+    userId: string;
+    content: string;
+    createdAt?: Nullable<string>;
+    updatedAt?: Nullable<string>;
 }
 
 export interface IQuery {
@@ -45,7 +52,14 @@ export interface IMutation {
 }
 
 export interface User {
-    exampleField?: Nullable<number>;
+    id: string;
+    email: string;
+    username: string;
+    password: string;
+    avatar?: Nullable<string>;
+    posts?: Nullable<Nullable<Post>[]>;
+    createdAt?: Nullable<string>;
+    updatedAt?: Nullable<string>;
 }
 
 type Nullable<T> = T | null;
