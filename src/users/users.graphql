@@ -5,8 +5,8 @@ type User {
   password: String!
   avatar: String
   posts:     [Post]  
-  createdAt: Date!
-  updatedAt: Date!
+  createdAt: String
+  updatedAt: String
 }
 
 input CreateUserInput {
