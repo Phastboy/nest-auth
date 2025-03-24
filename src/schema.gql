@@ -30,11 +30,11 @@ input IntFilter {
 }
 
 type Mutation {
-  createPost(createPostInput: PostCreateManyInput!): Post!
+  create(createPostInput: PostCreateManyInput!): Post!
   createUser(createUserInput: UserCreateInput!): User!
-  removePost(id: Int!): Post!
+  remove(id: Float!): Post!
   removeUser(id: Int!): User!
-  updatePost(updatePostInput: UpdatePostInput!): Post!
+  update(updatePostInput: UpdatePostInput!): Post!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
@@ -200,7 +200,7 @@ input PostWhereUniqueInput {
 }
 
 type Query {
-  post(id: Int!): Post!
+  post(id: Float!): Post!
   posts: [Post!]!
   user(id: Int!): User!
   users: [User!]!

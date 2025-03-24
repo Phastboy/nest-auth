@@ -1,7 +1,5 @@
 import { HttpStatus, MiddlewareConsumer, Module } from '@nestjs/common';
 //import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { PostsModule } from './posts/posts.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { SwaggerModuleConfig } from './swagger/swagger.module';
 import {
@@ -11,6 +9,8 @@ import {
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { SeedModule } from './seed/seed.module';
 import { GraphqlModule } from './graphql/graphql.module';
+import { UsersModule } from './users/users.module';
+import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
@@ -18,8 +18,6 @@ import { GraphqlModule } from './graphql/graphql.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    UsersModule,
-    PostsModule,
     SwaggerModuleConfig,
     PrismaModule.forRootAsync({
       isGlobal: true,
@@ -39,6 +37,8 @@ import { GraphqlModule } from './graphql/graphql.module';
     }),
     SeedModule,
     GraphqlModule,
+    UsersModule,
+    PostsModule,
   ],
   controllers: [],
   providers: [
