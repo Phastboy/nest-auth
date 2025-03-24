@@ -5,13 +5,14 @@ import {
 } from '@nestjs/common';
 import { Post } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
-import { PostCreateManyInput, PostUpdateInput } from 'src/@generated';
+import { CreatePostInput } from './dto/create-post.input';
+import { UpdatePostInput } from './dto/update-post.input';
 
 @Injectable()
 export class PostsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(createPostDto: PostCreateManyInput): Promise<Post> {
+  async create(createPostDto: CreatePostInput): Promise<Post> {
     return await this.prismaService.post.create({
       data: {
         ...createPostDto,
@@ -36,7 +37,7 @@ export class PostsService {
   async update(
     userId: number,
     id: number,
-    updatePostDto: PostUpdateInput,
+    updatePostDto: UpdatePostInput,
   ): Promise<Post> {
     const post = await this.prismaService.post.findUnique({ where: { id } });
     if (!post) {
