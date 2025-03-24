@@ -3,13 +3,14 @@ import { UserWithoutPassword } from '../interfaces/user.types';
 import * as argon from 'argon2';
 import { User } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
-import { UserCreateInput, UserUpdateInput } from 'src/@generated';
+import { CreateUserInput } from './dto/create-user.input';
+import { UpdateUserInput } from './dto/update-user.input';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(createUserDto: UserCreateInput): Promise<UserWithoutPassword> {
+  async create(createUserDto: CreateUserInput): Promise<UserWithoutPassword> {
     const hashedPassword = await argon.hash(createUserDto.password);
 
     return await this.prismaService.user.create({
@@ -54,7 +55,7 @@ export class UsersService {
 
   async update(
     id: number,
-    updateUserDto: UserUpdateInput,
+    updateUserDto: UpdateUserInput,
   ): Promise<UserWithoutPassword> {
     return await this.prismaService.user.update({
       where: { id },

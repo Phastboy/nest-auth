@@ -1,0 +1,338 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+input DateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+type Mutation {
+  create(createPostInput: PostCreateManyInput!): Post!
+  createUser(createUserInput: UserCreateInput!): User!
+  remove(id: Float!): Post!
+  removeUser(id: Int!): User!
+  update(updatePostInput: UpdatePostInput!): Post!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+input NestedDateTimeFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeFilter
+  notIn: [DateTime!]
+}
+
+input NestedIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input NestedStringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+type Post {
+  content: String!
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+  user: User!
+  userId: Int!
+}
+
+type PostAvgAggregate {
+  id: Float
+  userId: Float
+}
+
+type PostCountAggregate {
+  _all: Int!
+  content: Int!
+  createdAt: Int!
+  id: Int!
+  updatedAt: Int!
+  userId: Int!
+}
+
+input PostCreateManyInput {
+  content: String!
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+  userId: Int!
+}
+
+input PostCreateManyUserInput {
+  content: String!
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+}
+
+input PostCreateManyUserInputEnvelope {
+  data: [PostCreateManyUserInput!]!
+}
+
+input PostCreateNestedManyWithoutUserInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutUserInput!]
+  create: [PostCreateWithoutUserInput!]
+  createMany: PostCreateManyUserInputEnvelope
+}
+
+input PostCreateOrConnectWithoutUserInput {
+  create: PostCreateWithoutUserInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostCreateWithoutUserInput {
+  content: String!
+  createdAt: DateTime
+  updatedAt: DateTime
+}
+
+input PostListRelationFilter {
+  every: PostWhereInput
+  none: PostWhereInput
+  some: PostWhereInput
+}
+
+type PostMaxAggregate {
+  content: String
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+  userId: Int
+}
+
+type PostMinAggregate {
+  content: String
+  createdAt: DateTime
+  id: Int
+  updatedAt: DateTime
+  userId: Int
+}
+
+type PostSumAggregate {
+  id: Int
+  userId: Int
+}
+
+input PostWhereInput {
+  AND: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  content: StringFilter
+  createdAt: DateTimeFilter
+  id: IntFilter
+  updatedAt: DateTimeFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+input PostWhereUniqueInput {
+  AND: [PostWhereInput!]
+  NOT: [PostWhereInput!]
+  OR: [PostWhereInput!]
+  content: StringFilter
+  createdAt: DateTimeFilter
+  id: Int
+  updatedAt: DateTimeFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+type Query {
+  post(id: Float!): Post!
+  posts: [Post!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input StringNullableFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: NestedStringNullableFilter
+  notIn: [String!]
+  startsWith: String
+}
+
+input UpdatePostInput {
+  content: String
+  createdAt: DateTime
+  id: Int!
+  updatedAt: DateTime
+  userId: Int
+}
+
+input UpdateUserInput {
+  avatar: String
+  createdAt: DateTime
+  email: String
+  id: Int!
+  password: String
+  posts: PostCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String
+}
+
+type User {
+  _count: UserCount!
+  avatar: String
+  createdAt: DateTime!
+  email: String!
+  id: ID!
+  password: String!
+  posts: [Post!]
+  updatedAt: DateTime!
+  username: String!
+}
+
+type UserAvgAggregate {
+  id: Float
+}
+
+type UserCount {
+  posts: Int!
+}
+
+type UserCountAggregate {
+  _all: Int!
+  avatar: Int!
+  createdAt: Int!
+  email: Int!
+  id: Int!
+  password: Int!
+  updatedAt: Int!
+  username: Int!
+}
+
+input UserCreateInput {
+  avatar: String
+  createdAt: DateTime
+  email: String!
+  password: String!
+  posts: PostCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String!
+}
+
+type UserMaxAggregate {
+  avatar: String
+  createdAt: DateTime
+  email: String
+  id: Int
+  password: String
+  updatedAt: DateTime
+  username: String
+}
+
+type UserMinAggregate {
+  avatar: String
+  createdAt: DateTime
+  email: String
+  id: Int
+  password: String
+  updatedAt: DateTime
+  username: String
+}
+
+input UserScalarRelationFilter {
+  is: UserWhereInput
+  isNot: UserWhereInput
+}
+
+type UserSumAggregate {
+  id: Int
+}
+
+input UserWhereInput {
+  AND: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  avatar: StringNullableFilter
+  createdAt: DateTimeFilter
+  email: StringFilter
+  id: IntFilter
+  password: StringFilter
+  posts: PostListRelationFilter
+  updatedAt: DateTimeFilter
+  username: StringFilter
+}
