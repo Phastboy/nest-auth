@@ -1,10 +1,10 @@
 import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { AuthenticatedUser, Payload, Tokens } from 'src/interfaces/auth.types';
+import { Payload, Tokens } from 'src/interfaces/auth.types';
 import { UserWithoutPassword } from 'src/interfaces/user.types';
 import { UsersService } from 'src/users/users.service';
 import * as argon from 'argon2';
-import { LoginDto } from './dto/login.dto';
+import { LoginDto } from './dto/login.input';
 
 @Injectable()
 export class AuthService {
@@ -54,10 +54,10 @@ export class AuthService {
     }
   }
 
-  generateTokens(user: AuthenticatedUser): Tokens {
+  generateTokens(user: UserWithoutPassword): Tokens {
     const payload: Payload = {
       email: user.email,
-      sub: user.userId,
+      sub: user.id,
     };
 
     return {
