@@ -1,12 +1,28 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 
-export interface Tokens {
+@ObjectType()
+export class Tokens {
+  @Field(() => String, {
+    nullable: false,
+  })
   accessToken: string;
+
+  @Field(() => String, {
+    nullable: false,
+  })
   refreshToken: string;
 }
 
-export interface JwtPayload {
+@ObjectType()
+export class JwtPayload {
+  @Field(() => String, {
+    nullable: false,
+  })
   email: string;
+
+  @Field(() => ID, {
+    nullable: false,
+  })
   sub: number;
 }
 

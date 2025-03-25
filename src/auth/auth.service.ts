@@ -70,7 +70,7 @@ export class AuthService {
     };
   }
 
-  async refreshTokens(userId: number, refreshToken: string) {
+  async refreshTokens(userId: number, refreshToken: string): Promise<Tokens> {
     try {
       // Remove quotes if present
       const cleanToken = refreshToken.replace(/^"(.*)"$/, '$1');
