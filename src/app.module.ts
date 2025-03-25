@@ -1,5 +1,5 @@
 import { HttpStatus, MiddlewareConsumer, Module } from '@nestjs/common';
-//import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/auth.module';
 import { LoggerMiddleware } from './logger/logger.middleware';
 import { SwaggerModuleConfig } from './swagger/swagger.module';
 import {
@@ -14,7 +14,7 @@ import { PostsModule } from './posts/posts.module';
 
 @Module({
   imports: [
-    //AuthModule,
+    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
     }),

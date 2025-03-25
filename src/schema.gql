@@ -29,9 +29,23 @@ input IntFilter {
   notIn: [Int!]
 }
 
+input LoginDto {
+  email: String!
+  password: String!
+}
+
+type LoginResponse {
+  message: String!
+  tokens: Tokens!
+}
+
 type Mutation {
-  create(createPostInput: PostCreateManyInput!): Post!
+  create(createPostInput: PostCreateInput!): Post!
   createUser(createUserInput: UserCreateInput!): User!
+  login(loginInput: LoginDto!): LoginResponse!
+
+  """for creating a new user"""
+  register(createUserInput: UserCreateInput!): User!
   remove(id: Float!): Post!
   removeUser(id: Int!): User!
   update(updatePostInput: UpdatePostInput!): Post!
@@ -111,12 +125,11 @@ type PostCountAggregate {
   userId: Int!
 }
 
-input PostCreateManyInput {
+input PostCreateInput {
   content: String!
   createdAt: DateTime
-  id: Int
   updatedAt: DateTime
-  userId: Int!
+  user: UserCreateNestedOneWithoutPostsInput!
 }
 
 input PostCreateManyUserInput {
@@ -234,12 +247,17 @@ input StringNullableFilter {
   startsWith: String
 }
 
+type Tokens {
+  accessToken: String!
+  refreshToken: String!
+}
+
 input UpdatePostInput {
   content: String
   createdAt: DateTime
   id: Int!
   updatedAt: DateTime
-  userId: Int
+  user: UserCreateNestedOneWithoutPostsInput
 }
 
 input UpdateUserInput {
@@ -294,6 +312,26 @@ input UserCreateInput {
   username: String!
 }
 
+input UserCreateNestedOneWithoutPostsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutPostsInput
+  create: UserCreateWithoutPostsInput
+}
+
+input UserCreateOrConnectWithoutPostsInput {
+  create: UserCreateWithoutPostsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateWithoutPostsInput {
+  avatar: String
+  createdAt: DateTime
+  email: String!
+  password: String!
+  updatedAt: DateTime
+  username: String!
+}
+
 type UserMaxAggregate {
   avatar: String
   createdAt: DateTime
@@ -335,4 +373,18 @@ input UserWhereInput {
   posts: PostListRelationFilter
   updatedAt: DateTimeFilter
   username: StringFilter
+}
+
+input UserWhereUniqueInput {
+  AND: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  avatar: StringNullableFilter
+  createdAt: DateTimeFilter
+  email: String
+  id: Int
+  password: StringFilter
+  posts: PostListRelationFilter
+  updatedAt: DateTimeFilter
+  username: String
 }
