@@ -61,8 +61,35 @@ export class AuthService {
     };
 
     return {
-      accessToken: this.jwtService.sign(payload),
-      refreshToken: this.jwtService.sign(payload, { expiresIn: '7d' }),
+      accessToken: this.jwtService.sign(payload, {
+        expiresIn: '1h',
+      }),
+      refreshToken: this.jwtService.sign(payload, {
+        expiresIn: '7d',
+      }),
     };
+  }
+
+  async refreshTokens(userId: number, refreshToken: string) {
+    try {
+      // Remove quotes if present
+      const cleanToken = refreshToken.replace(/^"(.*)"$/, '$1');
+
+      const payload = this.jwtService.verify(cleanToken);
+
+      if (payload.sub !== userId) {
+        throw new UnauthorizedException('Invalid user for refresh token');
+      }
+
+      const user = await this.usersService.findOne(payload.sub);
+      if (!user) {
+        throw new UnauthorizedException('User not found');
+      }
+
+      return this.generateTokens(user);
+    } catch (error) {
+      this.logger.error('Refresh token validation failed', error.message);
+      throw new UnauthorizedException('Invalid refresh token');
+    }
   }
 }

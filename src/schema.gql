@@ -44,6 +44,9 @@ type Mutation {
   createUser(createUserInput: UserCreateInput!): User!
   login(loginInput: LoginDto!): LoginResponse!
 
+  """resfreshes access and refresh tokens"""
+  refreshTokens: Tokens!
+
   """for creating a new user"""
   register(createUserInput: UserCreateInput!): User!
   remove(id: Float!): Post!
