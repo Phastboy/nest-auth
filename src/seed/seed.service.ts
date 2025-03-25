@@ -44,7 +44,6 @@ export class SeedService implements OnModuleInit {
 
     const posts = userIds.map((user) => ({
       content: faker.lorem.sentence(),
-      published: faker.datatype.boolean(),
       userId: user.id,
     }));
 
