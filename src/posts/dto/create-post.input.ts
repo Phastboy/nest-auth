@@ -1,1 +1,1 @@
-export { PostCreateManyInput as CreatePostInput } from 'src/@generated';
+export { PostCreateInput as CreatePostInput } from 'src/@generated';

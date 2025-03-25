@@ -48,7 +48,9 @@ export class PostsService {
     }
     return await this.prismaService.post.update({
       where: { id },
-      data: updatePostDto,
+      data: {
+        content: updatePostDto.content,
+      },
     });
   }
 
