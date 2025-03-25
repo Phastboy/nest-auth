@@ -3,6 +3,8 @@ import { PostsService } from './posts.service';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { Post } from 'src/@generated';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
 
 @Resolver('Post')
 export class PostsResolver {
@@ -13,6 +15,7 @@ export class PostsResolver {
     return this.postsService.create(createPostInput);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Query(() => [Post], { name: 'posts' })
   findAll() {
     return this.postsService.findAll();

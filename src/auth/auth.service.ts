@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Payload, Tokens } from 'src/interfaces/auth.types';
+import { JwtPayload, Tokens } from 'src/interfaces/auth.types';
 import { UserWithoutPassword } from 'src/interfaces/user.types';
 import { UsersService } from 'src/users/users.service';
 import * as argon from 'argon2';
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   generateTokens(user: UserWithoutPassword): Tokens {
-    const payload: Payload = {
+    const payload: JwtPayload = {
       email: user.email,
       sub: user.id,
     };

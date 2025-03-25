@@ -3,7 +3,7 @@ export interface Tokens {
   refreshToken: string;
 }
 
-export interface Payload {
+export interface JwtPayload {
   email: string;
   sub: number;
 }

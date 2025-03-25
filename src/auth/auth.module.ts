@@ -3,6 +3,8 @@ import { AuthService } from './auth.service';
 import { AuthResolver } from './auth.resolver';
 import { UsersService } from 'src/users/users.service';
 import { JwtModule } from '@nestjs/jwt';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [
@@ -10,7 +12,8 @@ import { JwtModule } from '@nestjs/jwt';
       secret: process.env.JWT_SECRET || 'JWT_SECRET',
       signOptions: { expiresIn: '1h' },
     }),
+    PassportModule,
   ],
-  providers: [AuthResolver, AuthService, UsersService],
+  providers: [AuthResolver, AuthService, UsersService, JwtStrategy],
 })
 export class AuthModule {}
