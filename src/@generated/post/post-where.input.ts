@@ -7,31 +7,30 @@ import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.in
 
 @InputType()
 export class PostWhereInput {
+  @Field(() => [PostWhereInput], { nullable: true })
+  AND?: Array<PostWhereInput>;
 
-    @Field(() => [PostWhereInput], {nullable:true})
-    AND?: Array<PostWhereInput>;
+  @Field(() => [PostWhereInput], { nullable: true })
+  OR?: Array<PostWhereInput>;
 
-    @Field(() => [PostWhereInput], {nullable:true})
-    OR?: Array<PostWhereInput>;
+  @Field(() => [PostWhereInput], { nullable: true })
+  NOT?: Array<PostWhereInput>;
 
-    @Field(() => [PostWhereInput], {nullable:true})
-    NOT?: Array<PostWhereInput>;
+  @Field(() => IntFilter, { nullable: true })
+  id?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    id?: IntFilter;
+  @Field(() => StringFilter, { nullable: true })
+  content?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    content?: StringFilter;
+  @Field(() => IntFilter, { nullable: true })
+  userId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    userId?: IntFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  updatedAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: DateTimeFilter;
-
-    @Field(() => UserScalarRelationFilter, {nullable:true})
-    user?: UserScalarRelationFilter;
+  @Field(() => UserScalarRelationFilter, { nullable: true })
+  user?: UserScalarRelationFilter;
 }

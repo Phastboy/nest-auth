@@ -7,12 +7,11 @@ import { PostUpdateWithoutUserInput } from './post-update-without-user.input';
 
 @InputType()
 export class PostUpdateWithWhereUniqueWithoutUserInput {
+  @Field(() => PostWhereUniqueInput, { nullable: false })
+  @Type(() => PostWhereUniqueInput)
+  where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 
-    @Field(() => PostWhereUniqueInput, {nullable:false})
-    @Type(() => PostWhereUniqueInput)
-    where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
-
-    @Field(() => PostUpdateWithoutUserInput, {nullable:false})
-    @Type(() => PostUpdateWithoutUserInput)
-    data!: PostUpdateWithoutUserInput;
+  @Field(() => PostUpdateWithoutUserInput, { nullable: false })
+  @Type(() => PostUpdateWithoutUserInput)
+  data!: PostUpdateWithoutUserInput;
 }

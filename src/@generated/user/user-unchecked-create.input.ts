@@ -5,28 +5,29 @@ import { PostUncheckedCreateNestedManyWithoutUserInput } from '../post/post-unch
 
 @InputType()
 export class UserUncheckedCreateInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => String, { nullable: false })
+  email!: string;
 
-    @Field(() => String, {nullable:false})
-    email!: string;
+  @Field(() => String, { nullable: false })
+  username!: string;
 
-    @Field(() => String, {nullable:false})
-    username!: string;
+  @Field(() => String, { nullable: false })
+  password!: string;
 
-    @Field(() => String, {nullable:false})
-    password!: string;
+  @Field(() => String, { nullable: true })
+  avatar?: string;
 
-    @Field(() => String, {nullable:true})
-    avatar?: string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
-
-    @Field(() => PostUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
-    posts?: PostUncheckedCreateNestedManyWithoutUserInput;
+  @Field(() => PostUncheckedCreateNestedManyWithoutUserInput, {
+    nullable: true,
+  })
+  posts?: PostUncheckedCreateNestedManyWithoutUserInput;
 }

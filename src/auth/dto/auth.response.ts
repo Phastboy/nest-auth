@@ -1,14 +1,15 @@
 import { Field, ObjectType } from '@nestjs/graphql';
+import { TokenPair } from './token.type';
 
 @ObjectType()
-export class TokenPair {
+export class AuthResponse {
   @Field(() => String, {
     nullable: false,
   })
-  accessToken: string;
+  message: string;
 
-  @Field(() => String, {
+  @Field(() => TokenPair, {
     nullable: false,
   })
-  refreshToken: string;
+  tokens: TokenPair;
 }
