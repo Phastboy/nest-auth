@@ -10,10 +10,10 @@ export class RefreshTokenAuthGuard extends AuthGuard('jwt-refresh') {
   getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context);
     const request = ctx.getContext().req;
-    
+
     // Log headers for debugging
     this.logger.debug(`Received headers: ${JSON.stringify(request.headers)}`);
-    
+
     return request;
   }
 }

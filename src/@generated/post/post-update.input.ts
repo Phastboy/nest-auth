@@ -6,16 +6,15 @@ import { UserUpdateOneRequiredWithoutPostsNestedInput } from '../user/user-updat
 
 @InputType()
 export class PostUpdateInput {
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  content?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    content?: StringFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, {nullable:true})
-    user?: UserUpdateOneRequiredWithoutPostsNestedInput;
+  @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, { nullable: true })
+  user?: UserUpdateOneRequiredWithoutPostsNestedInput;
 }
