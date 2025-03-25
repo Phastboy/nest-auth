@@ -50,7 +50,7 @@ import { PostsModule } from './posts/posts.module';
   ],
 })
 export class AppModule {
-  //configure(consumer: MiddlewareConsumer) {
-  //  consumer.apply(LoggerMiddleware).forRoutes('*');
-  //}
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(LoggerMiddleware).forRoutes('*');
+  }
 }

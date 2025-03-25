@@ -6,7 +6,7 @@ export class AuthResponse {
   @Field(() => String, {
     nullable: false,
   })
-  message: String;
+  message: string;
 
   @Field(() => TokenPair, {
     nullable: false,
