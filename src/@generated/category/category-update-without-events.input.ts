@@ -9,9 +9,6 @@ import { PostUpdateManyWithoutCategoriesNestedInput } from '../post/post-update-
 @InputType()
 export class CategoryUpdateWithoutEventsInput {
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  id?: StringFieldUpdateOperationsInput;
-
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
   name?: StringFieldUpdateOperationsInput;
 
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })

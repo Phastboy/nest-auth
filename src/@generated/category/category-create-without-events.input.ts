@@ -6,9 +6,6 @@ import { PostCreateNestedManyWithoutCategoriesInput } from '../post/post-create-
 
 @InputType()
 export class CategoryCreateWithoutEventsInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
-
   @Field(() => String, { nullable: false })
   name!: string;
 

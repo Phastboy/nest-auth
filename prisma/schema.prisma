@@ -52,10 +52,10 @@ model User {
 }
 
 model Category {
-  id          String      @id @default(uuid())
+  id          Int         @id @default(autoincrement())
   name        String      @unique
   slug        String      @unique
-  parentId    String?
+  parentId    Int?
   parent      Category?   @relation("CategoryHierarchy", fields: [parentId], references: [id])
   children    Category[]  @relation("CategoryHierarchy")
   posts       Post[]

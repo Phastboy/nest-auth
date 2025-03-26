@@ -20,9 +20,14 @@ type Category {
   id: ID!
   name: String!
   parent: Category
-  parentId: String
+  parentId: Int
   posts: [Post!]
   slug: String!
+}
+
+type CategoryAvgAggregate {
+  id: Float
+  parentId: Float
 }
 
 type CategoryCount {
@@ -40,9 +45,19 @@ type CategoryCountAggregate {
   slug: Int!
 }
 
+input CategoryCreateInput {
+  children: CategoryCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  events: EventCreateNestedManyWithoutCategoriesInput
+  name: String!
+  parent: CategoryCreateNestedOneWithoutChildrenInput
+  posts: PostCreateNestedManyWithoutCategoriesInput
+  slug: String!
+}
+
 input CategoryCreateManyParentInput {
   createdAt: DateTime
-  id: String
+  id: Int
   name: String!
   slug: String!
 }
@@ -99,7 +114,6 @@ input CategoryCreateOrConnectWithoutPostsInput {
 input CategoryCreateWithoutChildrenInput {
   createdAt: DateTime
   events: EventCreateNestedManyWithoutCategoriesInput
-  id: String
   name: String!
   parent: CategoryCreateNestedOneWithoutChildrenInput
   posts: PostCreateNestedManyWithoutCategoriesInput
@@ -109,7 +123,6 @@ input CategoryCreateWithoutChildrenInput {
 input CategoryCreateWithoutEventsInput {
   children: CategoryCreateNestedManyWithoutParentInput
   createdAt: DateTime
-  id: String
   name: String!
   parent: CategoryCreateNestedOneWithoutChildrenInput
   posts: PostCreateNestedManyWithoutCategoriesInput
@@ -120,7 +133,6 @@ input CategoryCreateWithoutParentInput {
   children: CategoryCreateNestedManyWithoutParentInput
   createdAt: DateTime
   events: EventCreateNestedManyWithoutCategoriesInput
-  id: String
   name: String!
   posts: PostCreateNestedManyWithoutCategoriesInput
   slug: String!
@@ -130,7 +142,6 @@ input CategoryCreateWithoutPostsInput {
   children: CategoryCreateNestedManyWithoutParentInput
   createdAt: DateTime
   events: EventCreateNestedManyWithoutCategoriesInput
-  id: String
   name: String!
   parent: CategoryCreateNestedOneWithoutChildrenInput
   slug: String!
@@ -144,23 +155,28 @@ input CategoryListRelationFilter {
 
 type CategoryMaxAggregate {
   createdAt: DateTime
-  id: String
+  id: Int
   name: String
-  parentId: String
+  parentId: Int
   slug: String
 }
 
 type CategoryMinAggregate {
   createdAt: DateTime
-  id: String
+  id: Int
   name: String
-  parentId: String
+  parentId: Int
   slug: String
 }
 
 input CategoryNullableScalarRelationFilter {
   is: CategoryWhereInput
   isNot: CategoryWhereInput
+}
+
+type CategorySumAggregate {
+  id: Int
+  parentId: Int
 }
 
 input CategoryWhereInput {
@@ -170,10 +186,10 @@ input CategoryWhereInput {
   children: CategoryListRelationFilter
   createdAt: DateTimeFilter
   events: EventListRelationFilter
-  id: StringFilter
+  id: IntFilter
   name: StringFilter
   parent: CategoryNullableScalarRelationFilter
-  parentId: StringNullableFilter
+  parentId: IntNullableFilter
   posts: PostListRelationFilter
   slug: StringFilter
 }
@@ -185,10 +201,10 @@ input CategoryWhereUniqueInput {
   children: CategoryListRelationFilter
   createdAt: DateTimeFilter
   events: EventListRelationFilter
-  id: String
+  id: Int
   name: String
   parent: CategoryNullableScalarRelationFilter
-  parentId: StringNullableFilter
+  parentId: IntNullableFilter
   posts: PostListRelationFilter
   slug: String
 }
@@ -471,11 +487,6 @@ input CommentWhereUniqueInput {
   replies: CommentListRelationFilter
   user: UserScalarRelationFilter
   userId: IntFilter
-}
-
-input CreateCategoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
 }
 
 input CreateNotificationInput {
@@ -1071,7 +1082,7 @@ input LoginDto {
 
 type Mutation {
   create(createPostInput: PostCreateInput!): Post!
-  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  createCategory(createCategoryInput: CategoryCreateInput!): Category!
   createComment(createCommentInput: CommentCreateInput!): Comment!
   createEvent(createEventInput: EventCreateInput!): Event!
   createLike(createLikeInput: LikeCreateInput!): Like!
@@ -1754,9 +1765,14 @@ type TokenPair {
 }
 
 input UpdateCategoryInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  children: CategoryCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  events: EventCreateNestedManyWithoutCategoriesInput
   id: Int!
+  name: String
+  parent: CategoryCreateNestedOneWithoutChildrenInput
+  posts: PostCreateNestedManyWithoutCategoriesInput
+  slug: String
 }
 
 input UpdateCommentInput {

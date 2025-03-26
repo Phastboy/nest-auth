@@ -18,10 +18,10 @@ erDiagram
   DateTime updatedAt
 }
 "categories" {
-  String id PK
+  Int id PK
   String name UK
   String slug UK
-  String parentId FK "nullable"
+  Int parentId FK "nullable"
   DateTime createdAt
 }
 "posts" {

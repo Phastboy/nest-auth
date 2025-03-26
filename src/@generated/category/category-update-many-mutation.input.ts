@@ -6,9 +6,6 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 @InputType()
 export class CategoryUpdateManyMutationInput {
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  id?: StringFieldUpdateOperationsInput;
-
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
   name?: StringFieldUpdateOperationsInput;
 
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })

@@ -7,9 +7,6 @@ import { EventCreateNestedManyWithoutCategoriesInput } from '../event/event-crea
 
 @InputType()
 export class CategoryCreateInput {
-  @Field(() => String, { nullable: true })
-  id?: string;
-
   @Field(() => String, { nullable: false })
   name!: string;
 
