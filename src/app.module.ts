@@ -14,6 +14,9 @@ import { PostsModule } from './posts/posts.module';
 import { EventsModule } from './events/events.module';
 import { CommentsModule } from './comments/comments.module';
 import { LikesModule } from './likes/likes.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { RsvpsModule } from './rsvps/rsvps.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -45,6 +48,9 @@ import { LikesModule } from './likes/likes.module';
     EventsModule,
     CommentsModule,
     LikesModule,
+    NotificationsModule,
+    RsvpsModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [

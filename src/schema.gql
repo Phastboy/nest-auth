@@ -473,6 +473,21 @@ input CommentWhereUniqueInput {
   userId: IntFilter
 }
 
+input CreateCategoryInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateNotificationInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input CreateRsvpInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -1056,9 +1071,12 @@ input LoginDto {
 
 type Mutation {
   create(createPostInput: PostCreateInput!): Post!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
   createComment(createCommentInput: CommentCreateInput!): Comment!
   createEvent(createEventInput: EventCreateInput!): Event!
   createLike(createLikeInput: LikeCreateInput!): Like!
+  createNotification(createNotificationInput: CreateNotificationInput!): Notification!
+  createRsvp(createRsvpInput: CreateRsvpInput!): RSVP!
   createUser(createUserInput: UserCreateInput!): User!
   login(loginInput: LoginDto!): AuthResponse!
 
@@ -1068,14 +1086,20 @@ type Mutation {
   """for creating a new user"""
   register(createUserInput: UserCreateInput!): User!
   remove(id: Float!): Post!
+  removeCategory(id: Int!): Category!
   removeComment(id: Int!): Comment!
   removeEvent(id: Int!): Event!
   removeLike(id: Int!): Like!
+  removeNotification(id: Int!): Notification!
+  removeRsvp(id: Int!): RSVP!
   removeUser(id: Int!): User!
   update(updatePostInput: UpdatePostInput!): Post!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
   updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
   updateLike(updateLikeInput: UpdateLikeInput!): Like!
+  updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
+  updateRsvp(updateRsvpInput: UpdateRsvpInput!): RSVP!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
@@ -1535,14 +1559,20 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  categories: [Category!]!
+  category(id: Int!): Category!
   comment(id: Int!): Comment!
   comments: [Comment!]!
   event(id: Int!): Event!
   events: [Event!]!
   like(id: Int!): Like!
   likes: [Like!]!
+  notification(id: Int!): Notification!
+  notifications: [Notification!]!
   post(id: Float!): Post!
   posts: [Post!]!
+  rsvp(id: Int!): RSVP!
+  rsvps: [RSVP!]!
   user(id: Int!): User!
   users: [User!]!
 }
@@ -1723,6 +1753,12 @@ type TokenPair {
   refreshToken: String!
 }
 
+input UpdateCategoryInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
 input UpdateCommentInput {
   content: String
   createdAt: DateTime
@@ -1760,6 +1796,12 @@ input UpdateLikeInput {
   user: UserCreateNestedOneWithoutLikesInput
 }
 
+input UpdateNotificationInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
 input UpdatePostInput {
   categories: CategoryCreateNestedManyWithoutPostsInput
   comments: CommentCreateNestedManyWithoutPostInput
@@ -1772,6 +1814,12 @@ input UpdatePostInput {
   likes: LikeCreateNestedManyWithoutPostInput
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutPostsInput
+}
+
+input UpdateRsvpInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
 }
 
 input UpdateUserInput {
