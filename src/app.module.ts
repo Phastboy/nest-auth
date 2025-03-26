@@ -11,6 +11,12 @@ import { SeedModule } from './seed/seed.module';
 import { GraphqlModule } from './graphql/graphql.module';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
+import { EventsModule } from './events/events.module';
+import { CommentsModule } from './comments/comments.module';
+import { LikesModule } from './likes/likes.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { RsvpsModule } from './rsvps/rsvps.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -39,6 +45,12 @@ import { PostsModule } from './posts/posts.module';
     GraphqlModule,
     UsersModule,
     PostsModule,
+    EventsModule,
+    CommentsModule,
+    LikesModule,
+    NotificationsModule,
+    RsvpsModule,
+    CategoriesModule,
   ],
   controllers: [],
   providers: [
