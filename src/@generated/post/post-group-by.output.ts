@@ -15,6 +15,12 @@ export class PostGroupBy {
   @Field(() => String, { nullable: false })
   content!: string;
 
+  @Field(() => String, { nullable: true })
+  image?: string;
+
+  @Field(() => Boolean, { nullable: false })
+  isEvent!: boolean;
+
   @Field(() => Int, { nullable: false })
   userId!: number;
 

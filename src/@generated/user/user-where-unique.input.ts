@@ -6,6 +6,11 @@ import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { PostListRelationFilter } from '../post/post-list-relation-filter.input';
+import { EventListRelationFilter } from '../event/event-list-relation-filter.input';
+import { CommentListRelationFilter } from '../comment/comment-list-relation-filter.input';
+import { NotificationListRelationFilter } from '../notification/notification-list-relation-filter.input';
+import { LikeListRelationFilter } from '../like/like-list-relation-filter.input';
+import { RSVPListRelationFilter } from '../rsvp/rsvp-list-relation-filter.input';
 
 @InputType()
 export class UserWhereUniqueInput {
@@ -33,6 +38,12 @@ export class UserWhereUniqueInput {
   @Field(() => StringNullableFilter, { nullable: true })
   avatar?: StringNullableFilter;
 
+  @Field(() => StringNullableFilter, { nullable: true })
+  role?: StringNullableFilter;
+
+  @Field(() => StringNullableFilter, { nullable: true })
+  bio?: StringNullableFilter;
+
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
 
@@ -41,4 +52,19 @@ export class UserWhereUniqueInput {
 
   @Field(() => PostListRelationFilter, { nullable: true })
   posts?: PostListRelationFilter;
+
+  @Field(() => EventListRelationFilter, { nullable: true })
+  events?: EventListRelationFilter;
+
+  @Field(() => CommentListRelationFilter, { nullable: true })
+  comments?: CommentListRelationFilter;
+
+  @Field(() => NotificationListRelationFilter, { nullable: true })
+  notifications?: NotificationListRelationFilter;
+
+  @Field(() => LikeListRelationFilter, { nullable: true })
+  likes?: LikeListRelationFilter;
+
+  @Field(() => RSVPListRelationFilter, { nullable: true })
+  rsvps?: RSVPListRelationFilter;
 }

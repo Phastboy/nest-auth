@@ -25,6 +25,12 @@ export class UserOrderByWithAggregationInput {
   @Field(() => SortOrderInput, { nullable: true })
   avatar?: SortOrderInput;
 
+  @Field(() => SortOrderInput, { nullable: true })
+  role?: SortOrderInput;
+
+  @Field(() => SortOrderInput, { nullable: true })
+  bio?: SortOrderInput;
+
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 

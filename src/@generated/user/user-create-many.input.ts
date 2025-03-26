@@ -19,6 +19,12 @@ export class UserCreateManyInput {
   @Field(() => String, { nullable: true })
   avatar?: string;
 
+  @Field(() => String, { nullable: true })
+  role?: string;
+
+  @Field(() => String, { nullable: true })
+  bio?: string;
+
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
 

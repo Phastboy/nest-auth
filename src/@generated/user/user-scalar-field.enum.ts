@@ -6,6 +6,8 @@ export enum UserScalarFieldEnum {
   username = 'username',
   password = 'password',
   avatar = 'avatar',
+  role = 'role',
+  bio = 'bio',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
 }

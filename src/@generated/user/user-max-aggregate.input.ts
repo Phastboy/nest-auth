@@ -19,6 +19,12 @@ export class UserMaxAggregateInput {
   avatar?: true;
 
   @Field(() => Boolean, { nullable: true })
+  role?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  bio?: true;
+
+  @Field(() => Boolean, { nullable: true })
   createdAt?: true;
 
   @Field(() => Boolean, { nullable: true })

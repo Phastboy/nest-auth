@@ -10,6 +10,12 @@ export class PostMaxAggregate {
   @Field(() => String, { nullable: true })
   content?: string;
 
+  @Field(() => String, { nullable: true })
+  image?: string;
+
+  @Field(() => Boolean, { nullable: true })
+  isEvent?: boolean;
+
   @Field(() => Int, { nullable: true })
   userId?: number;
 

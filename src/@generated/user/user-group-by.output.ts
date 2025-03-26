@@ -24,6 +24,12 @@ export class UserGroupBy {
   @Field(() => String, { nullable: true })
   avatar?: string;
 
+  @Field(() => String, { nullable: true })
+  role?: string;
+
+  @Field(() => String, { nullable: true })
+  bio?: string;
+
   @Field(() => Date, { nullable: false })
   createdAt!: Date | string;
 

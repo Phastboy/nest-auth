@@ -11,6 +11,12 @@ export class PostCountAggregate {
   content!: number;
 
   @Field(() => Int, { nullable: false })
+  image!: number;
+
+  @Field(() => Int, { nullable: false })
+  isEvent!: number;
+
+  @Field(() => Int, { nullable: false })
   userId!: number;
 
   @Field(() => Int, { nullable: false })

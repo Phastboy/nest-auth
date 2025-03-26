@@ -20,6 +20,12 @@ export class UserMinOrderByAggregateInput {
   avatar?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
+  role?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  bio?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
