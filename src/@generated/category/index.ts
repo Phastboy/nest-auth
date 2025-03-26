@@ -1,5 +1,8 @@
 export { AggregateCategory } from './aggregate-category.output';
 export { CategoryAggregateArgs } from './category-aggregate.args';
+export { CategoryAvgAggregateInput } from './category-avg-aggregate.input';
+export { CategoryAvgAggregate } from './category-avg-aggregate.output';
+export { CategoryAvgOrderByAggregateInput } from './category-avg-order-by-aggregate.input';
 export { CategoryCountAggregateInput } from './category-count-aggregate.input';
 export { CategoryCountAggregate } from './category-count-aggregate.output';
 export { CategoryCountOrderByAggregateInput } from './category-count-order-by-aggregate.input';
@@ -36,6 +39,9 @@ export { CategoryOrderByWithRelationInput } from './category-order-by-with-relat
 export { CategoryScalarFieldEnum } from './category-scalar-field.enum';
 export { CategoryScalarWhereWithAggregatesInput } from './category-scalar-where-with-aggregates.input';
 export { CategoryScalarWhereInput } from './category-scalar-where.input';
+export { CategorySumAggregateInput } from './category-sum-aggregate.input';
+export { CategorySumAggregate } from './category-sum-aggregate.output';
+export { CategorySumOrderByAggregateInput } from './category-sum-order-by-aggregate.input';
 export { CategoryUncheckedCreateNestedManyWithoutEventsInput } from './category-unchecked-create-nested-many-without-events.input';
 export { CategoryUncheckedCreateNestedManyWithoutParentInput } from './category-unchecked-create-nested-many-without-parent.input';
 export { CategoryUncheckedCreateNestedManyWithoutPostsInput } from './category-unchecked-create-nested-many-without-posts.input';

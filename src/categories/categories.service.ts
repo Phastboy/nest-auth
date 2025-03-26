@@ -1,26 +1,50 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
+import { PrismaService } from 'nestjs-prisma';
 
 @Injectable()
 export class CategoriesService {
-  create(createCategoryInput: CreateCategoryInput) {
-    return 'This action adds a new category';
+  constructor(private readonly prisma: PrismaService) {}
+
+  async create(createCategoryInput: CreateCategoryInput) {
+    return await this.prisma.category.create({
+      data: createCategoryInput,
+    });
   }
 
-  findAll() {
-    return `This action returns all categories`;
+  async findAll() {
+    return await this.prisma.category.findMany({
+      include: {
+        parent: true,
+        children: true,
+        posts: true,
+      },
+    });
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} category`;
+  async findOne(id: number) {
+    return await this.prisma.category.findUniqueOrThrow({
+      where: {
+        id,
+      },
+      include: {
+        parent: true,
+        children: true,
+        posts: true,
+      },
+    });
   }
 
-  update(id: number, updateCategoryInput: UpdateCategoryInput) {
+  async update(id: number, updateCategoryInput: UpdateCategoryInput) {
     return `This action updates a #${id} category`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} category`;
+  async remove(id: number) {
+    return await this.prisma.category.delete({
+      where: {
+        id,
+      },
+    });
   }
 }

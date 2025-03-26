@@ -9,9 +9,6 @@ import { EventUpdateManyWithoutCategoriesNestedInput } from '../event/event-upda
 @InputType()
 export class CategoryUpdateWithoutChildrenInput {
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  id?: StringFieldUpdateOperationsInput;
-
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
   name?: StringFieldUpdateOperationsInput;
 
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })

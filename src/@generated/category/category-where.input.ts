@@ -1,7 +1,8 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
-import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { CategoryNullableScalarRelationFilter } from './category-nullable-scalar-relation-filter.input';
 import { CategoryListRelationFilter } from './category-list-relation-filter.input';
@@ -19,8 +20,8 @@ export class CategoryWhereInput {
   @Field(() => [CategoryWhereInput], { nullable: true })
   NOT?: Array<CategoryWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  id?: StringFilter;
+  @Field(() => IntFilter, { nullable: true })
+  id?: IntFilter;
 
   @Field(() => StringFilter, { nullable: true })
   name?: StringFilter;
@@ -28,8 +29,8 @@ export class CategoryWhereInput {
   @Field(() => StringFilter, { nullable: true })
   slug?: StringFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  parentId?: StringNullableFilter;
+  @Field(() => IntNullableFilter, { nullable: true })
+  parentId?: IntNullableFilter;
 
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
