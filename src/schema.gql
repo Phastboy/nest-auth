@@ -539,6 +539,23 @@ type EventCountAggregate {
   userId: Int!
 }
 
+input EventCreateInput {
+  categories: CategoryCreateNestedManyWithoutEventsInput
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  image: String
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String!
+  post: PostCreateNestedOneWithoutEventInput!
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput!
+}
+
 input EventCreateManyUserInput {
   createdAt: DateTime
   description: String!
@@ -1022,6 +1039,7 @@ input LoginDto {
 
 type Mutation {
   create(createPostInput: PostCreateInput!): Post!
+  createEvent(createEventInput: EventCreateInput!): Event!
   createUser(createUserInput: UserCreateInput!): User!
   login(loginInput: LoginDto!): AuthResponse!
 
@@ -1031,8 +1049,10 @@ type Mutation {
   """for creating a new user"""
   register(createUserInput: UserCreateInput!): User!
   remove(id: Float!): Post!
+  removeEvent(id: Int!): Event!
   removeUser(id: Int!): User!
   update(updatePostInput: UpdatePostInput!): Post!
+  updateEvent(updateEventInput: UpdateEventInput!): Event!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
@@ -1492,6 +1512,8 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  event(id: Int!): Event!
+  events: [Event!]!
   post(id: Float!): Post!
   posts: [Post!]!
   user(id: Int!): User!
@@ -1672,6 +1694,24 @@ input StringNullableFilter {
 type TokenPair {
   accessToken: String!
   refreshToken: String!
+}
+
+input UpdateEventInput {
+  categories: CategoryCreateNestedManyWithoutEventsInput
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String
+  endTime: DateTime
+  id: Int!
+  image: String
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String
+  post: PostCreateNestedOneWithoutEventInput
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  startTime: DateTime
+  title: String
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput
 }
 
 input UpdatePostInput {

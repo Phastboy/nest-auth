@@ -11,6 +11,7 @@ import { SeedModule } from './seed/seed.module';
 import { GraphqlModule } from './graphql/graphql.module';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { PostsModule } from './posts/posts.module';
     GraphqlModule,
     UsersModule,
     PostsModule,
+    EventsModule,
   ],
   controllers: [],
   providers: [
