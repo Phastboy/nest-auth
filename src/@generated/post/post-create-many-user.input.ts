@@ -10,6 +10,12 @@ export class PostCreateManyUserInput {
   @Field(() => String, { nullable: false })
   content!: string;
 
+  @Field(() => String, { nullable: true })
+  image?: string;
+
+  @Field(() => Boolean, { nullable: true })
+  isEvent?: boolean;
+
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
 

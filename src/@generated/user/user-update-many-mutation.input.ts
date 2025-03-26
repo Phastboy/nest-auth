@@ -18,6 +18,12 @@ export class UserUpdateManyMutationInput {
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   avatar?: NullableStringFieldUpdateOperationsInput;
 
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+  role?: NullableStringFieldUpdateOperationsInput;
+
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+  bio?: NullableStringFieldUpdateOperationsInput;
+
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;
 

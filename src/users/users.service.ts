@@ -31,6 +31,11 @@ export class UsersService {
       },
       include: {
         posts: true,
+        events: true,
+        likes: true,
+        comments: true,
+        notifications: true,
+        _count: true,
       },
     });
   }

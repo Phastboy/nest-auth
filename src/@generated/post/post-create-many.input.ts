@@ -10,6 +10,12 @@ export class PostCreateManyInput {
   @Field(() => String, { nullable: false })
   content!: string;
 
+  @Field(() => String, { nullable: true })
+  image?: string;
+
+  @Field(() => Boolean, { nullable: true })
+  isEvent?: boolean;
+
   @Field(() => Int, { nullable: false })
   userId!: number;
 

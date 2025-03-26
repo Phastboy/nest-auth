@@ -3,6 +3,11 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { User } from '../user/user.model';
+import { Category } from '../category/category.model';
+import { Comment } from '../comment/comment.model';
+import { Like } from '../like/like.model';
+import { Event } from '../event/event.model';
+import { PostCount } from './post-count.output';
 
 @ObjectType()
 export class Post {
@@ -11,6 +16,12 @@ export class Post {
 
   @Field(() => String, { nullable: false })
   content!: string;
+
+  @Field(() => String, { nullable: true })
+  image!: string | null;
+
+  @Field(() => Boolean, { defaultValue: false, nullable: false })
+  isEvent!: boolean;
 
   @Field(() => Int, { nullable: false })
   userId!: number;
@@ -23,4 +34,19 @@ export class Post {
 
   @Field(() => User, { nullable: false })
   user?: User;
+
+  @Field(() => [Category], { nullable: true })
+  categories?: Array<Category>;
+
+  @Field(() => [Comment], { nullable: true })
+  comments?: Array<Comment>;
+
+  @Field(() => [Like], { nullable: true })
+  likes?: Array<Like>;
+
+  @Field(() => Event, { nullable: true })
+  event?: Event | null;
+
+  @Field(() => PostCount, { nullable: false })
+  _count?: PostCount;
 }

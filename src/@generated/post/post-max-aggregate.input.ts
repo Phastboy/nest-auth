@@ -10,6 +10,12 @@ export class PostMaxAggregateInput {
   content?: true;
 
   @Field(() => Boolean, { nullable: true })
+  image?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  isEvent?: true;
+
+  @Field(() => Boolean, { nullable: true })
   userId?: true;
 
   @Field(() => Boolean, { nullable: true })

@@ -7,6 +7,462 @@ type AuthResponse {
   tokens: TokenPair!
 }
 
+input BoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
+type Category {
+  _count: CategoryCount!
+  children: [Category!]
+  createdAt: DateTime!
+  events: [Event!]
+  id: ID!
+  name: String!
+  parent: Category
+  parentId: String
+  posts: [Post!]
+  slug: String!
+}
+
+type CategoryCount {
+  children: Int!
+  events: Int!
+  posts: Int!
+}
+
+type CategoryCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  id: Int!
+  name: Int!
+  parentId: Int!
+  slug: Int!
+}
+
+input CategoryCreateManyParentInput {
+  createdAt: DateTime
+  id: String
+  name: String!
+  slug: String!
+}
+
+input CategoryCreateManyParentInputEnvelope {
+  data: [CategoryCreateManyParentInput!]!
+}
+
+input CategoryCreateNestedManyWithoutEventsInput {
+  connect: [CategoryWhereUniqueInput!]
+  connectOrCreate: [CategoryCreateOrConnectWithoutEventsInput!]
+  create: [CategoryCreateWithoutEventsInput!]
+}
+
+input CategoryCreateNestedManyWithoutParentInput {
+  connect: [CategoryWhereUniqueInput!]
+  connectOrCreate: [CategoryCreateOrConnectWithoutParentInput!]
+  create: [CategoryCreateWithoutParentInput!]
+  createMany: CategoryCreateManyParentInputEnvelope
+}
+
+input CategoryCreateNestedManyWithoutPostsInput {
+  connect: [CategoryWhereUniqueInput!]
+  connectOrCreate: [CategoryCreateOrConnectWithoutPostsInput!]
+  create: [CategoryCreateWithoutPostsInput!]
+}
+
+input CategoryCreateNestedOneWithoutChildrenInput {
+  connect: CategoryWhereUniqueInput
+  connectOrCreate: CategoryCreateOrConnectWithoutChildrenInput
+  create: CategoryCreateWithoutChildrenInput
+}
+
+input CategoryCreateOrConnectWithoutChildrenInput {
+  create: CategoryCreateWithoutChildrenInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryCreateOrConnectWithoutEventsInput {
+  create: CategoryCreateWithoutEventsInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryCreateOrConnectWithoutParentInput {
+  create: CategoryCreateWithoutParentInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryCreateOrConnectWithoutPostsInput {
+  create: CategoryCreateWithoutPostsInput!
+  where: CategoryWhereUniqueInput!
+}
+
+input CategoryCreateWithoutChildrenInput {
+  createdAt: DateTime
+  events: EventCreateNestedManyWithoutCategoriesInput
+  id: String
+  name: String!
+  parent: CategoryCreateNestedOneWithoutChildrenInput
+  posts: PostCreateNestedManyWithoutCategoriesInput
+  slug: String!
+}
+
+input CategoryCreateWithoutEventsInput {
+  children: CategoryCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  id: String
+  name: String!
+  parent: CategoryCreateNestedOneWithoutChildrenInput
+  posts: PostCreateNestedManyWithoutCategoriesInput
+  slug: String!
+}
+
+input CategoryCreateWithoutParentInput {
+  children: CategoryCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  events: EventCreateNestedManyWithoutCategoriesInput
+  id: String
+  name: String!
+  posts: PostCreateNestedManyWithoutCategoriesInput
+  slug: String!
+}
+
+input CategoryCreateWithoutPostsInput {
+  children: CategoryCreateNestedManyWithoutParentInput
+  createdAt: DateTime
+  events: EventCreateNestedManyWithoutCategoriesInput
+  id: String
+  name: String!
+  parent: CategoryCreateNestedOneWithoutChildrenInput
+  slug: String!
+}
+
+input CategoryListRelationFilter {
+  every: CategoryWhereInput
+  none: CategoryWhereInput
+  some: CategoryWhereInput
+}
+
+type CategoryMaxAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+  parentId: String
+  slug: String
+}
+
+type CategoryMinAggregate {
+  createdAt: DateTime
+  id: String
+  name: String
+  parentId: String
+  slug: String
+}
+
+input CategoryNullableScalarRelationFilter {
+  is: CategoryWhereInput
+  isNot: CategoryWhereInput
+}
+
+input CategoryWhereInput {
+  AND: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  children: CategoryListRelationFilter
+  createdAt: DateTimeFilter
+  events: EventListRelationFilter
+  id: StringFilter
+  name: StringFilter
+  parent: CategoryNullableScalarRelationFilter
+  parentId: StringNullableFilter
+  posts: PostListRelationFilter
+  slug: StringFilter
+}
+
+input CategoryWhereUniqueInput {
+  AND: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  children: CategoryListRelationFilter
+  createdAt: DateTimeFilter
+  events: EventListRelationFilter
+  id: String
+  name: String
+  parent: CategoryNullableScalarRelationFilter
+  parentId: StringNullableFilter
+  posts: PostListRelationFilter
+  slug: String
+}
+
+type Comment {
+  _count: CommentCount!
+  content: String!
+  createdAt: DateTime!
+  event: Event
+  eventId: Int
+  id: ID!
+  parent: Comment
+  parentId: Int
+  post: Post
+  postId: Int
+  replies: [Comment!]
+  user: User!
+  userId: Int!
+}
+
+type CommentAvgAggregate {
+  eventId: Float
+  id: Float
+  parentId: Float
+  postId: Float
+  userId: Float
+}
+
+type CommentCount {
+  replies: Int!
+}
+
+type CommentCountAggregate {
+  _all: Int!
+  content: Int!
+  createdAt: Int!
+  eventId: Int!
+  id: Int!
+  parentId: Int!
+  postId: Int!
+  userId: Int!
+}
+
+input CommentCreateManyEventInput {
+  content: String!
+  createdAt: DateTime
+  id: Int
+  parentId: Int
+  postId: Int
+  userId: Int!
+}
+
+input CommentCreateManyEventInputEnvelope {
+  data: [CommentCreateManyEventInput!]!
+}
+
+input CommentCreateManyParentInput {
+  content: String!
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  postId: Int
+  userId: Int!
+}
+
+input CommentCreateManyParentInputEnvelope {
+  data: [CommentCreateManyParentInput!]!
+}
+
+input CommentCreateManyPostInput {
+  content: String!
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  parentId: Int
+  userId: Int!
+}
+
+input CommentCreateManyPostInputEnvelope {
+  data: [CommentCreateManyPostInput!]!
+}
+
+input CommentCreateManyUserInput {
+  content: String!
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  parentId: Int
+  postId: Int
+}
+
+input CommentCreateManyUserInputEnvelope {
+  data: [CommentCreateManyUserInput!]!
+}
+
+input CommentCreateNestedManyWithoutEventInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutEventInput!]
+  create: [CommentCreateWithoutEventInput!]
+  createMany: CommentCreateManyEventInputEnvelope
+}
+
+input CommentCreateNestedManyWithoutParentInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutParentInput!]
+  create: [CommentCreateWithoutParentInput!]
+  createMany: CommentCreateManyParentInputEnvelope
+}
+
+input CommentCreateNestedManyWithoutPostInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutPostInput!]
+  create: [CommentCreateWithoutPostInput!]
+  createMany: CommentCreateManyPostInputEnvelope
+}
+
+input CommentCreateNestedManyWithoutUserInput {
+  connect: [CommentWhereUniqueInput!]
+  connectOrCreate: [CommentCreateOrConnectWithoutUserInput!]
+  create: [CommentCreateWithoutUserInput!]
+  createMany: CommentCreateManyUserInputEnvelope
+}
+
+input CommentCreateNestedOneWithoutRepliesInput {
+  connect: CommentWhereUniqueInput
+  connectOrCreate: CommentCreateOrConnectWithoutRepliesInput
+  create: CommentCreateWithoutRepliesInput
+}
+
+input CommentCreateOrConnectWithoutEventInput {
+  create: CommentCreateWithoutEventInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutParentInput {
+  create: CommentCreateWithoutParentInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutPostInput {
+  create: CommentCreateWithoutPostInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutRepliesInput {
+  create: CommentCreateWithoutRepliesInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateOrConnectWithoutUserInput {
+  create: CommentCreateWithoutUserInput!
+  where: CommentWhereUniqueInput!
+}
+
+input CommentCreateWithoutEventInput {
+  content: String!
+  createdAt: DateTime
+  parent: CommentCreateNestedOneWithoutRepliesInput
+  post: PostCreateNestedOneWithoutCommentsInput
+  replies: CommentCreateNestedManyWithoutParentInput
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutParentInput {
+  content: String!
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutCommentsInput
+  post: PostCreateNestedOneWithoutCommentsInput
+  replies: CommentCreateNestedManyWithoutParentInput
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutPostInput {
+  content: String!
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutRepliesInput
+  replies: CommentCreateNestedManyWithoutParentInput
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutRepliesInput {
+  content: String!
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutRepliesInput
+  post: PostCreateNestedOneWithoutCommentsInput
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
+input CommentCreateWithoutUserInput {
+  content: String!
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutRepliesInput
+  post: PostCreateNestedOneWithoutCommentsInput
+  replies: CommentCreateNestedManyWithoutParentInput
+}
+
+input CommentListRelationFilter {
+  every: CommentWhereInput
+  none: CommentWhereInput
+  some: CommentWhereInput
+}
+
+type CommentMaxAggregate {
+  content: String
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  parentId: Int
+  postId: Int
+  userId: Int
+}
+
+type CommentMinAggregate {
+  content: String
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  parentId: Int
+  postId: Int
+  userId: Int
+}
+
+input CommentNullableScalarRelationFilter {
+  is: CommentWhereInput
+  isNot: CommentWhereInput
+}
+
+type CommentSumAggregate {
+  eventId: Int
+  id: Int
+  parentId: Int
+  postId: Int
+  userId: Int
+}
+
+input CommentWhereInput {
+  AND: [CommentWhereInput!]
+  NOT: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  content: StringFilter
+  createdAt: DateTimeFilter
+  event: EventNullableScalarRelationFilter
+  eventId: IntNullableFilter
+  id: IntFilter
+  parent: CommentNullableScalarRelationFilter
+  parentId: IntNullableFilter
+  post: PostNullableScalarRelationFilter
+  postId: IntNullableFilter
+  replies: CommentListRelationFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+input CommentWhereUniqueInput {
+  AND: [CommentWhereInput!]
+  NOT: [CommentWhereInput!]
+  OR: [CommentWhereInput!]
+  content: StringFilter
+  createdAt: DateTimeFilter
+  event: EventNullableScalarRelationFilter
+  eventId: IntNullableFilter
+  id: Int
+  parent: CommentNullableScalarRelationFilter
+  parentId: IntNullableFilter
+  post: PostNullableScalarRelationFilter
+  postId: IntNullableFilter
+  replies: CommentListRelationFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -23,6 +479,342 @@ input DateTimeFilter {
   notIn: [DateTime!]
 }
 
+input DateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeNullableFilter
+  notIn: [DateTime!]
+}
+
+type Event {
+  _count: EventCount!
+  categories: [Category!]
+  comments: [Comment!]
+  createdAt: DateTime!
+  description: String!
+  endTime: DateTime
+  id: ID!
+  image: String
+  likes: [Like!]
+  location: String!
+  post: Post!
+  postId: Int!
+  rsvps: [RSVP!]
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime!
+  user: User!
+  userId: Int!
+}
+
+type EventAvgAggregate {
+  id: Float
+  postId: Float
+  userId: Float
+}
+
+type EventCount {
+  categories: Int!
+  comments: Int!
+  likes: Int!
+  rsvps: Int!
+}
+
+type EventCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  description: Int!
+  endTime: Int!
+  id: Int!
+  image: Int!
+  location: Int!
+  postId: Int!
+  startTime: Int!
+  title: Int!
+  updatedAt: Int!
+  userId: Int!
+}
+
+input EventCreateManyUserInput {
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  id: Int
+  image: String
+  location: String!
+  postId: Int!
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime
+}
+
+input EventCreateManyUserInputEnvelope {
+  data: [EventCreateManyUserInput!]!
+}
+
+input EventCreateNestedManyWithoutCategoriesInput {
+  connect: [EventWhereUniqueInput!]
+  connectOrCreate: [EventCreateOrConnectWithoutCategoriesInput!]
+  create: [EventCreateWithoutCategoriesInput!]
+}
+
+input EventCreateNestedManyWithoutUserInput {
+  connect: [EventWhereUniqueInput!]
+  connectOrCreate: [EventCreateOrConnectWithoutUserInput!]
+  create: [EventCreateWithoutUserInput!]
+  createMany: EventCreateManyUserInputEnvelope
+}
+
+input EventCreateNestedOneWithoutCommentsInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutCommentsInput
+  create: EventCreateWithoutCommentsInput
+}
+
+input EventCreateNestedOneWithoutLikesInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutLikesInput
+  create: EventCreateWithoutLikesInput
+}
+
+input EventCreateNestedOneWithoutPostInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutPostInput
+  create: EventCreateWithoutPostInput
+}
+
+input EventCreateNestedOneWithoutRsvpsInput {
+  connect: EventWhereUniqueInput
+  connectOrCreate: EventCreateOrConnectWithoutRsvpsInput
+  create: EventCreateWithoutRsvpsInput
+}
+
+input EventCreateOrConnectWithoutCategoriesInput {
+  create: EventCreateWithoutCategoriesInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutCommentsInput {
+  create: EventCreateWithoutCommentsInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutLikesInput {
+  create: EventCreateWithoutLikesInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutPostInput {
+  create: EventCreateWithoutPostInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutRsvpsInput {
+  create: EventCreateWithoutRsvpsInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateOrConnectWithoutUserInput {
+  create: EventCreateWithoutUserInput!
+  where: EventWhereUniqueInput!
+}
+
+input EventCreateWithoutCategoriesInput {
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  image: String
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String!
+  post: PostCreateNestedOneWithoutEventInput!
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput!
+}
+
+input EventCreateWithoutCommentsInput {
+  categories: CategoryCreateNestedManyWithoutEventsInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  image: String
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String!
+  post: PostCreateNestedOneWithoutEventInput!
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput!
+}
+
+input EventCreateWithoutLikesInput {
+  categories: CategoryCreateNestedManyWithoutEventsInput
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  image: String
+  location: String!
+  post: PostCreateNestedOneWithoutEventInput!
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput!
+}
+
+input EventCreateWithoutPostInput {
+  categories: CategoryCreateNestedManyWithoutEventsInput
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  image: String
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String!
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput!
+}
+
+input EventCreateWithoutRsvpsInput {
+  categories: CategoryCreateNestedManyWithoutEventsInput
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  image: String
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String!
+  post: PostCreateNestedOneWithoutEventInput!
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput!
+}
+
+input EventCreateWithoutUserInput {
+  categories: CategoryCreateNestedManyWithoutEventsInput
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  image: String
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String!
+  post: PostCreateNestedOneWithoutEventInput!
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  startTime: DateTime!
+  title: String!
+  updatedAt: DateTime
+}
+
+input EventListRelationFilter {
+  every: EventWhereInput
+  none: EventWhereInput
+  some: EventWhereInput
+}
+
+type EventMaxAggregate {
+  createdAt: DateTime
+  description: String
+  endTime: DateTime
+  id: Int
+  image: String
+  location: String
+  postId: Int
+  startTime: DateTime
+  title: String
+  updatedAt: DateTime
+  userId: Int
+}
+
+type EventMinAggregate {
+  createdAt: DateTime
+  description: String
+  endTime: DateTime
+  id: Int
+  image: String
+  location: String
+  postId: Int
+  startTime: DateTime
+  title: String
+  updatedAt: DateTime
+  userId: Int
+}
+
+input EventNullableScalarRelationFilter {
+  is: EventWhereInput
+  isNot: EventWhereInput
+}
+
+input EventScalarRelationFilter {
+  is: EventWhereInput
+  isNot: EventWhereInput
+}
+
+type EventSumAggregate {
+  id: Int
+  postId: Int
+  userId: Int
+}
+
+input EventWhereInput {
+  AND: [EventWhereInput!]
+  NOT: [EventWhereInput!]
+  OR: [EventWhereInput!]
+  categories: CategoryListRelationFilter
+  comments: CommentListRelationFilter
+  createdAt: DateTimeFilter
+  description: StringFilter
+  endTime: DateTimeNullableFilter
+  id: IntFilter
+  image: StringNullableFilter
+  likes: LikeListRelationFilter
+  location: StringFilter
+  post: PostScalarRelationFilter
+  postId: IntFilter
+  rsvps: RSVPListRelationFilter
+  startTime: DateTimeFilter
+  title: StringFilter
+  updatedAt: DateTimeFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+input EventWhereUniqueInput {
+  AND: [EventWhereInput!]
+  NOT: [EventWhereInput!]
+  OR: [EventWhereInput!]
+  categories: CategoryListRelationFilter
+  comments: CommentListRelationFilter
+  createdAt: DateTimeFilter
+  description: StringFilter
+  endTime: DateTimeNullableFilter
+  id: Int
+  image: StringNullableFilter
+  likes: LikeListRelationFilter
+  location: StringFilter
+  post: PostScalarRelationFilter
+  postId: Int
+  rsvps: RSVPListRelationFilter
+  startTime: DateTimeFilter
+  title: StringFilter
+  updatedAt: DateTimeFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
 input IntFilter {
   equals: Int
   gt: Int
@@ -32,6 +824,195 @@ input IntFilter {
   lte: Int
   not: NestedIntFilter
   notIn: [Int!]
+}
+
+input IntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
+  notIn: [Int!]
+}
+
+type Like {
+  createdAt: DateTime!
+  event: Event
+  eventId: Int
+  id: ID!
+  post: Post
+  postId: Int
+  user: User!
+  userId: Int!
+}
+
+type LikeAvgAggregate {
+  eventId: Float
+  id: Float
+  postId: Float
+  userId: Float
+}
+
+type LikeCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  eventId: Int!
+  id: Int!
+  postId: Int!
+  userId: Int!
+}
+
+input LikeCreateManyEventInput {
+  createdAt: DateTime
+  id: Int
+  postId: Int
+  userId: Int!
+}
+
+input LikeCreateManyEventInputEnvelope {
+  data: [LikeCreateManyEventInput!]!
+}
+
+input LikeCreateManyPostInput {
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  userId: Int!
+}
+
+input LikeCreateManyPostInputEnvelope {
+  data: [LikeCreateManyPostInput!]!
+}
+
+input LikeCreateManyUserInput {
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  postId: Int
+}
+
+input LikeCreateManyUserInputEnvelope {
+  data: [LikeCreateManyUserInput!]!
+}
+
+input LikeCreateNestedManyWithoutEventInput {
+  connect: [LikeWhereUniqueInput!]
+  connectOrCreate: [LikeCreateOrConnectWithoutEventInput!]
+  create: [LikeCreateWithoutEventInput!]
+  createMany: LikeCreateManyEventInputEnvelope
+}
+
+input LikeCreateNestedManyWithoutPostInput {
+  connect: [LikeWhereUniqueInput!]
+  connectOrCreate: [LikeCreateOrConnectWithoutPostInput!]
+  create: [LikeCreateWithoutPostInput!]
+  createMany: LikeCreateManyPostInputEnvelope
+}
+
+input LikeCreateNestedManyWithoutUserInput {
+  connect: [LikeWhereUniqueInput!]
+  connectOrCreate: [LikeCreateOrConnectWithoutUserInput!]
+  create: [LikeCreateWithoutUserInput!]
+  createMany: LikeCreateManyUserInputEnvelope
+}
+
+input LikeCreateOrConnectWithoutEventInput {
+  create: LikeCreateWithoutEventInput!
+  where: LikeWhereUniqueInput!
+}
+
+input LikeCreateOrConnectWithoutPostInput {
+  create: LikeCreateWithoutPostInput!
+  where: LikeWhereUniqueInput!
+}
+
+input LikeCreateOrConnectWithoutUserInput {
+  create: LikeCreateWithoutUserInput!
+  where: LikeWhereUniqueInput!
+}
+
+input LikeCreateWithoutEventInput {
+  createdAt: DateTime
+  post: PostCreateNestedOneWithoutLikesInput
+  user: UserCreateNestedOneWithoutLikesInput!
+}
+
+input LikeCreateWithoutPostInput {
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutLikesInput
+  user: UserCreateNestedOneWithoutLikesInput!
+}
+
+input LikeCreateWithoutUserInput {
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutLikesInput
+  post: PostCreateNestedOneWithoutLikesInput
+}
+
+input LikeListRelationFilter {
+  every: LikeWhereInput
+  none: LikeWhereInput
+  some: LikeWhereInput
+}
+
+type LikeMaxAggregate {
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  postId: Int
+  userId: Int
+}
+
+type LikeMinAggregate {
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  postId: Int
+  userId: Int
+}
+
+type LikeSumAggregate {
+  eventId: Int
+  id: Int
+  postId: Int
+  userId: Int
+}
+
+input LikeUserIdPostIdEventIdCompoundUniqueInput {
+  eventId: Int!
+  postId: Int!
+  userId: Int!
+}
+
+input LikeWhereInput {
+  AND: [LikeWhereInput!]
+  NOT: [LikeWhereInput!]
+  OR: [LikeWhereInput!]
+  createdAt: DateTimeFilter
+  event: EventNullableScalarRelationFilter
+  eventId: IntNullableFilter
+  id: IntFilter
+  post: PostNullableScalarRelationFilter
+  postId: IntNullableFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+input LikeWhereUniqueInput {
+  AND: [LikeWhereInput!]
+  NOT: [LikeWhereInput!]
+  OR: [LikeWhereInput!]
+  createdAt: DateTimeFilter
+  event: EventNullableScalarRelationFilter
+  eventId: IntNullableFilter
+  id: Int
+  post: PostNullableScalarRelationFilter
+  postId: IntNullableFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+  userId_postId_eventId: LikeUserIdPostIdEventIdCompoundUniqueInput
 }
 
 input LoginDto {
@@ -55,6 +1036,11 @@ type Mutation {
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
+input NestedBoolFilter {
+  equals: Boolean
+  not: NestedBoolFilter
+}
+
 input NestedDateTimeFilter {
   equals: DateTime
   gt: DateTime
@@ -66,6 +1052,17 @@ input NestedDateTimeFilter {
   notIn: [DateTime!]
 }
 
+input NestedDateTimeNullableFilter {
+  equals: DateTime
+  gt: DateTime
+  gte: DateTime
+  in: [DateTime!]
+  lt: DateTime
+  lte: DateTime
+  not: NestedDateTimeNullableFilter
+  notIn: [DateTime!]
+}
+
 input NestedIntFilter {
   equals: Int
   gt: Int
@@ -74,6 +1071,17 @@ input NestedIntFilter {
   lt: Int
   lte: Int
   not: NestedIntFilter
+  notIn: [Int!]
+}
+
+input NestedIntNullableFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: NestedIntNullableFilter
   notIn: [Int!]
 }
 
@@ -105,10 +1113,138 @@ input NestedStringNullableFilter {
   startsWith: String
 }
 
-type Post {
+type Notification {
   content: String!
   createdAt: DateTime!
   id: ID!
+  isRead: Boolean!
+  referenceId: Int
+  type: String!
+  user: User!
+  userId: Int!
+}
+
+type NotificationAvgAggregate {
+  id: Float
+  referenceId: Float
+  userId: Float
+}
+
+type NotificationCountAggregate {
+  _all: Int!
+  content: Int!
+  createdAt: Int!
+  id: Int!
+  isRead: Int!
+  referenceId: Int!
+  type: Int!
+  userId: Int!
+}
+
+input NotificationCreateManyUserInput {
+  content: String!
+  createdAt: DateTime
+  id: Int
+  isRead: Boolean
+  referenceId: Int
+  type: String!
+}
+
+input NotificationCreateManyUserInputEnvelope {
+  data: [NotificationCreateManyUserInput!]!
+}
+
+input NotificationCreateNestedManyWithoutUserInput {
+  connect: [NotificationWhereUniqueInput!]
+  connectOrCreate: [NotificationCreateOrConnectWithoutUserInput!]
+  create: [NotificationCreateWithoutUserInput!]
+  createMany: NotificationCreateManyUserInputEnvelope
+}
+
+input NotificationCreateOrConnectWithoutUserInput {
+  create: NotificationCreateWithoutUserInput!
+  where: NotificationWhereUniqueInput!
+}
+
+input NotificationCreateWithoutUserInput {
+  content: String!
+  createdAt: DateTime
+  isRead: Boolean
+  referenceId: Int
+  type: String!
+}
+
+input NotificationListRelationFilter {
+  every: NotificationWhereInput
+  none: NotificationWhereInput
+  some: NotificationWhereInput
+}
+
+type NotificationMaxAggregate {
+  content: String
+  createdAt: DateTime
+  id: Int
+  isRead: Boolean
+  referenceId: Int
+  type: String
+  userId: Int
+}
+
+type NotificationMinAggregate {
+  content: String
+  createdAt: DateTime
+  id: Int
+  isRead: Boolean
+  referenceId: Int
+  type: String
+  userId: Int
+}
+
+type NotificationSumAggregate {
+  id: Int
+  referenceId: Int
+  userId: Int
+}
+
+input NotificationWhereInput {
+  AND: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  content: StringFilter
+  createdAt: DateTimeFilter
+  id: IntFilter
+  isRead: BoolFilter
+  referenceId: IntNullableFilter
+  type: StringFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+input NotificationWhereUniqueInput {
+  AND: [NotificationWhereInput!]
+  NOT: [NotificationWhereInput!]
+  OR: [NotificationWhereInput!]
+  content: StringFilter
+  createdAt: DateTimeFilter
+  id: Int
+  isRead: BoolFilter
+  referenceId: IntNullableFilter
+  type: StringFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+type Post {
+  _count: PostCount!
+  categories: [Category!]
+  comments: [Comment!]
+  content: String!
+  createdAt: DateTime!
+  event: Event
+  id: ID!
+  image: String
+  isEvent: Boolean!
+  likes: [Like!]
   updatedAt: DateTime!
   user: User!
   userId: Int!
@@ -119,18 +1255,32 @@ type PostAvgAggregate {
   userId: Float
 }
 
+type PostCount {
+  categories: Int!
+  comments: Int!
+  likes: Int!
+}
+
 type PostCountAggregate {
   _all: Int!
   content: Int!
   createdAt: Int!
   id: Int!
+  image: Int!
+  isEvent: Int!
   updatedAt: Int!
   userId: Int!
 }
 
 input PostCreateInput {
+  categories: CategoryCreateNestedManyWithoutPostsInput
+  comments: CommentCreateNestedManyWithoutPostInput
   content: String!
   createdAt: DateTime
+  event: EventCreateNestedOneWithoutPostInput
+  image: String
+  isEvent: Boolean
+  likes: LikeCreateNestedManyWithoutPostInput
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutPostsInput!
 }
@@ -139,11 +1289,19 @@ input PostCreateManyUserInput {
   content: String!
   createdAt: DateTime
   id: Int
+  image: String
+  isEvent: Boolean
   updatedAt: DateTime
 }
 
 input PostCreateManyUserInputEnvelope {
   data: [PostCreateManyUserInput!]!
+}
+
+input PostCreateNestedManyWithoutCategoriesInput {
+  connect: [PostWhereUniqueInput!]
+  connectOrCreate: [PostCreateOrConnectWithoutCategoriesInput!]
+  create: [PostCreateWithoutCategoriesInput!]
 }
 
 input PostCreateNestedManyWithoutUserInput {
@@ -153,14 +1311,106 @@ input PostCreateNestedManyWithoutUserInput {
   createMany: PostCreateManyUserInputEnvelope
 }
 
+input PostCreateNestedOneWithoutCommentsInput {
+  connect: PostWhereUniqueInput
+  connectOrCreate: PostCreateOrConnectWithoutCommentsInput
+  create: PostCreateWithoutCommentsInput
+}
+
+input PostCreateNestedOneWithoutEventInput {
+  connect: PostWhereUniqueInput
+  connectOrCreate: PostCreateOrConnectWithoutEventInput
+  create: PostCreateWithoutEventInput
+}
+
+input PostCreateNestedOneWithoutLikesInput {
+  connect: PostWhereUniqueInput
+  connectOrCreate: PostCreateOrConnectWithoutLikesInput
+  create: PostCreateWithoutLikesInput
+}
+
+input PostCreateOrConnectWithoutCategoriesInput {
+  create: PostCreateWithoutCategoriesInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostCreateOrConnectWithoutCommentsInput {
+  create: PostCreateWithoutCommentsInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostCreateOrConnectWithoutEventInput {
+  create: PostCreateWithoutEventInput!
+  where: PostWhereUniqueInput!
+}
+
+input PostCreateOrConnectWithoutLikesInput {
+  create: PostCreateWithoutLikesInput!
+  where: PostWhereUniqueInput!
+}
+
 input PostCreateOrConnectWithoutUserInput {
   create: PostCreateWithoutUserInput!
   where: PostWhereUniqueInput!
 }
 
-input PostCreateWithoutUserInput {
+input PostCreateWithoutCategoriesInput {
+  comments: CommentCreateNestedManyWithoutPostInput
   content: String!
   createdAt: DateTime
+  event: EventCreateNestedOneWithoutPostInput
+  image: String
+  isEvent: Boolean
+  likes: LikeCreateNestedManyWithoutPostInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutPostsInput!
+}
+
+input PostCreateWithoutCommentsInput {
+  categories: CategoryCreateNestedManyWithoutPostsInput
+  content: String!
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutPostInput
+  image: String
+  isEvent: Boolean
+  likes: LikeCreateNestedManyWithoutPostInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutPostsInput!
+}
+
+input PostCreateWithoutEventInput {
+  categories: CategoryCreateNestedManyWithoutPostsInput
+  comments: CommentCreateNestedManyWithoutPostInput
+  content: String!
+  createdAt: DateTime
+  image: String
+  isEvent: Boolean
+  likes: LikeCreateNestedManyWithoutPostInput
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutPostsInput!
+}
+
+input PostCreateWithoutLikesInput {
+  categories: CategoryCreateNestedManyWithoutPostsInput
+  comments: CommentCreateNestedManyWithoutPostInput
+  content: String!
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutPostInput
+  image: String
+  isEvent: Boolean
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutPostsInput!
+}
+
+input PostCreateWithoutUserInput {
+  categories: CategoryCreateNestedManyWithoutPostsInput
+  comments: CommentCreateNestedManyWithoutPostInput
+  content: String!
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutPostInput
+  image: String
+  isEvent: Boolean
+  likes: LikeCreateNestedManyWithoutPostInput
   updatedAt: DateTime
 }
 
@@ -174,6 +1424,8 @@ type PostMaxAggregate {
   content: String
   createdAt: DateTime
   id: Int
+  image: String
+  isEvent: Boolean
   updatedAt: DateTime
   userId: Int
 }
@@ -182,8 +1434,20 @@ type PostMinAggregate {
   content: String
   createdAt: DateTime
   id: Int
+  image: String
+  isEvent: Boolean
   updatedAt: DateTime
   userId: Int
+}
+
+input PostNullableScalarRelationFilter {
+  is: PostWhereInput
+  isNot: PostWhereInput
+}
+
+input PostScalarRelationFilter {
+  is: PostWhereInput
+  isNot: PostWhereInput
 }
 
 type PostSumAggregate {
@@ -195,9 +1459,15 @@ input PostWhereInput {
   AND: [PostWhereInput!]
   NOT: [PostWhereInput!]
   OR: [PostWhereInput!]
+  categories: CategoryListRelationFilter
+  comments: CommentListRelationFilter
   content: StringFilter
   createdAt: DateTimeFilter
+  event: EventNullableScalarRelationFilter
   id: IntFilter
+  image: StringNullableFilter
+  isEvent: BoolFilter
+  likes: LikeListRelationFilter
   updatedAt: DateTimeFilter
   user: UserScalarRelationFilter
   userId: IntFilter
@@ -207,9 +1477,15 @@ input PostWhereUniqueInput {
   AND: [PostWhereInput!]
   NOT: [PostWhereInput!]
   OR: [PostWhereInput!]
+  categories: CategoryListRelationFilter
+  comments: CommentListRelationFilter
   content: StringFilter
   createdAt: DateTimeFilter
+  event: EventNullableScalarRelationFilter
   id: Int
+  image: StringNullableFilter
+  isEvent: BoolFilter
+  likes: LikeListRelationFilter
   updatedAt: DateTimeFilter
   user: UserScalarRelationFilter
   userId: IntFilter
@@ -220,6 +1496,149 @@ type Query {
   posts: [Post!]!
   user(id: Int!): User!
   users: [User!]!
+}
+
+type RSVP {
+  createdAt: DateTime!
+  event: Event!
+  eventId: Int!
+  id: ID!
+  status: String!
+  user: User!
+  userId: Int!
+}
+
+type RSVPAvgAggregate {
+  eventId: Float
+  id: Float
+  userId: Float
+}
+
+type RSVPCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  eventId: Int!
+  id: Int!
+  status: Int!
+  userId: Int!
+}
+
+input RSVPCreateManyEventInput {
+  createdAt: DateTime
+  id: Int
+  status: String
+  userId: Int!
+}
+
+input RSVPCreateManyEventInputEnvelope {
+  data: [RSVPCreateManyEventInput!]!
+}
+
+input RSVPCreateManyUserInput {
+  createdAt: DateTime
+  eventId: Int!
+  id: Int
+  status: String
+}
+
+input RSVPCreateManyUserInputEnvelope {
+  data: [RSVPCreateManyUserInput!]!
+}
+
+input RSVPCreateNestedManyWithoutEventInput {
+  connect: [RSVPWhereUniqueInput!]
+  connectOrCreate: [RSVPCreateOrConnectWithoutEventInput!]
+  create: [RSVPCreateWithoutEventInput!]
+  createMany: RSVPCreateManyEventInputEnvelope
+}
+
+input RSVPCreateNestedManyWithoutUserInput {
+  connect: [RSVPWhereUniqueInput!]
+  connectOrCreate: [RSVPCreateOrConnectWithoutUserInput!]
+  create: [RSVPCreateWithoutUserInput!]
+  createMany: RSVPCreateManyUserInputEnvelope
+}
+
+input RSVPCreateOrConnectWithoutEventInput {
+  create: RSVPCreateWithoutEventInput!
+  where: RSVPWhereUniqueInput!
+}
+
+input RSVPCreateOrConnectWithoutUserInput {
+  create: RSVPCreateWithoutUserInput!
+  where: RSVPWhereUniqueInput!
+}
+
+input RSVPCreateWithoutEventInput {
+  createdAt: DateTime
+  status: String
+  user: UserCreateNestedOneWithoutRsvpsInput!
+}
+
+input RSVPCreateWithoutUserInput {
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutRsvpsInput!
+  status: String
+}
+
+input RSVPListRelationFilter {
+  every: RSVPWhereInput
+  none: RSVPWhereInput
+  some: RSVPWhereInput
+}
+
+type RSVPMaxAggregate {
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  status: String
+  userId: Int
+}
+
+type RSVPMinAggregate {
+  createdAt: DateTime
+  eventId: Int
+  id: Int
+  status: String
+  userId: Int
+}
+
+type RSVPSumAggregate {
+  eventId: Int
+  id: Int
+  userId: Int
+}
+
+input RSVPUserIdEventIdCompoundUniqueInput {
+  eventId: Int!
+  userId: Int!
+}
+
+input RSVPWhereInput {
+  AND: [RSVPWhereInput!]
+  NOT: [RSVPWhereInput!]
+  OR: [RSVPWhereInput!]
+  createdAt: DateTimeFilter
+  event: EventScalarRelationFilter
+  eventId: IntFilter
+  id: IntFilter
+  status: StringFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+input RSVPWhereUniqueInput {
+  AND: [RSVPWhereInput!]
+  NOT: [RSVPWhereInput!]
+  OR: [RSVPWhereInput!]
+  createdAt: DateTimeFilter
+  event: EventScalarRelationFilter
+  eventId: IntFilter
+  id: Int
+  status: StringFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+  userId_eventId: RSVPUserIdEventIdCompoundUniqueInput
 }
 
 input StringFilter {
@@ -256,20 +1675,33 @@ type TokenPair {
 }
 
 input UpdatePostInput {
+  categories: CategoryCreateNestedManyWithoutPostsInput
+  comments: CommentCreateNestedManyWithoutPostInput
   content: String
   createdAt: DateTime
+  event: EventCreateNestedOneWithoutPostInput
   id: Int!
+  image: String
+  isEvent: Boolean
+  likes: LikeCreateNestedManyWithoutPostInput
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutPostsInput
 }
 
 input UpdateUserInput {
   avatar: String
+  bio: String
+  comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String
+  events: EventCreateNestedManyWithoutUserInput
   id: Int!
+  likes: LikeCreateNestedManyWithoutUserInput
+  notifications: NotificationCreateNestedManyWithoutUserInput
   password: String
   posts: PostCreateNestedManyWithoutUserInput
+  role: String
+  rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String
 }
@@ -277,11 +1709,18 @@ input UpdateUserInput {
 type User {
   _count: UserCount!
   avatar: String
+  bio: String
+  comments: [Comment!]
   createdAt: DateTime!
   email: String!
+  events: [Event!]
   id: ID!
+  likes: [Like!]
+  notifications: [Notification!]
   password: String!
   posts: [Post!]
+  role: String
+  rsvps: [RSVP!]
   updatedAt: DateTime!
   username: String!
 }
@@ -291,28 +1730,60 @@ type UserAvgAggregate {
 }
 
 type UserCount {
+  comments: Int!
+  events: Int!
+  likes: Int!
+  notifications: Int!
   posts: Int!
+  rsvps: Int!
 }
 
 type UserCountAggregate {
   _all: Int!
   avatar: Int!
+  bio: Int!
   createdAt: Int!
   email: Int!
   id: Int!
   password: Int!
+  role: Int!
   updatedAt: Int!
   username: Int!
 }
 
 input UserCreateInput {
   avatar: String
+  bio: String
+  comments: CommentCreateNestedManyWithoutUserInput
   createdAt: DateTime
   email: String!
+  events: EventCreateNestedManyWithoutUserInput
+  likes: LikeCreateNestedManyWithoutUserInput
+  notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
+  role: String
+  rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
+}
+
+input UserCreateNestedOneWithoutCommentsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutCommentsInput
+  create: UserCreateWithoutCommentsInput
+}
+
+input UserCreateNestedOneWithoutEventsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutEventsInput
+  create: UserCreateWithoutEventsInput
+}
+
+input UserCreateNestedOneWithoutLikesInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutLikesInput
+  create: UserCreateWithoutLikesInput
 }
 
 input UserCreateNestedOneWithoutPostsInput {
@@ -321,36 +1792,137 @@ input UserCreateNestedOneWithoutPostsInput {
   create: UserCreateWithoutPostsInput
 }
 
+input UserCreateNestedOneWithoutRsvpsInput {
+  connect: UserWhereUniqueInput
+  connectOrCreate: UserCreateOrConnectWithoutRsvpsInput
+  create: UserCreateWithoutRsvpsInput
+}
+
+input UserCreateOrConnectWithoutCommentsInput {
+  create: UserCreateWithoutCommentsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateOrConnectWithoutEventsInput {
+  create: UserCreateWithoutEventsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateOrConnectWithoutLikesInput {
+  create: UserCreateWithoutLikesInput!
+  where: UserWhereUniqueInput!
+}
+
 input UserCreateOrConnectWithoutPostsInput {
   create: UserCreateWithoutPostsInput!
   where: UserWhereUniqueInput!
 }
 
-input UserCreateWithoutPostsInput {
+input UserCreateOrConnectWithoutRsvpsInput {
+  create: UserCreateWithoutRsvpsInput!
+  where: UserWhereUniqueInput!
+}
+
+input UserCreateWithoutCommentsInput {
   avatar: String
+  bio: String
   createdAt: DateTime
   email: String!
+  events: EventCreateNestedManyWithoutUserInput
+  likes: LikeCreateNestedManyWithoutUserInput
+  notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
+  posts: PostCreateNestedManyWithoutUserInput
+  role: String
+  rsvps: RSVPCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String!
+}
+
+input UserCreateWithoutEventsInput {
+  avatar: String
+  bio: String
+  comments: CommentCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  likes: LikeCreateNestedManyWithoutUserInput
+  notifications: NotificationCreateNestedManyWithoutUserInput
+  password: String!
+  posts: PostCreateNestedManyWithoutUserInput
+  role: String
+  rsvps: RSVPCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String!
+}
+
+input UserCreateWithoutLikesInput {
+  avatar: String
+  bio: String
+  comments: CommentCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  events: EventCreateNestedManyWithoutUserInput
+  notifications: NotificationCreateNestedManyWithoutUserInput
+  password: String!
+  posts: PostCreateNestedManyWithoutUserInput
+  role: String
+  rsvps: RSVPCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String!
+}
+
+input UserCreateWithoutPostsInput {
+  avatar: String
+  bio: String
+  comments: CommentCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  events: EventCreateNestedManyWithoutUserInput
+  likes: LikeCreateNestedManyWithoutUserInput
+  notifications: NotificationCreateNestedManyWithoutUserInput
+  password: String!
+  role: String
+  rsvps: RSVPCreateNestedManyWithoutUserInput
+  updatedAt: DateTime
+  username: String!
+}
+
+input UserCreateWithoutRsvpsInput {
+  avatar: String
+  bio: String
+  comments: CommentCreateNestedManyWithoutUserInput
+  createdAt: DateTime
+  email: String!
+  events: EventCreateNestedManyWithoutUserInput
+  likes: LikeCreateNestedManyWithoutUserInput
+  notifications: NotificationCreateNestedManyWithoutUserInput
+  password: String!
+  posts: PostCreateNestedManyWithoutUserInput
+  role: String
   updatedAt: DateTime
   username: String!
 }
 
 type UserMaxAggregate {
   avatar: String
+  bio: String
   createdAt: DateTime
   email: String
   id: Int
   password: String
+  role: String
   updatedAt: DateTime
   username: String
 }
 
 type UserMinAggregate {
   avatar: String
+  bio: String
   createdAt: DateTime
   email: String
   id: Int
   password: String
+  role: String
   updatedAt: DateTime
   username: String
 }
@@ -369,11 +1941,18 @@ input UserWhereInput {
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   avatar: StringNullableFilter
+  bio: StringNullableFilter
+  comments: CommentListRelationFilter
   createdAt: DateTimeFilter
   email: StringFilter
+  events: EventListRelationFilter
   id: IntFilter
+  likes: LikeListRelationFilter
+  notifications: NotificationListRelationFilter
   password: StringFilter
   posts: PostListRelationFilter
+  role: StringNullableFilter
+  rsvps: RSVPListRelationFilter
   updatedAt: DateTimeFilter
   username: StringFilter
 }
@@ -383,11 +1962,18 @@ input UserWhereUniqueInput {
   NOT: [UserWhereInput!]
   OR: [UserWhereInput!]
   avatar: StringNullableFilter
+  bio: StringNullableFilter
+  comments: CommentListRelationFilter
   createdAt: DateTimeFilter
   email: String
+  events: EventListRelationFilter
   id: Int
+  likes: LikeListRelationFilter
+  notifications: NotificationListRelationFilter
   password: StringFilter
   posts: PostListRelationFilter
+  role: StringNullableFilter
+  rsvps: RSVPListRelationFilter
   updatedAt: DateTimeFilter
   username: String
 }

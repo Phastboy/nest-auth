@@ -5,6 +5,11 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { PostUncheckedUpdateManyWithoutUserNestedInput } from '../post/post-unchecked-update-many-without-user-nested.input';
+import { EventUncheckedUpdateManyWithoutUserNestedInput } from '../event/event-unchecked-update-many-without-user-nested.input';
+import { CommentUncheckedUpdateManyWithoutUserNestedInput } from '../comment/comment-unchecked-update-many-without-user-nested.input';
+import { NotificationUncheckedUpdateManyWithoutUserNestedInput } from '../notification/notification-unchecked-update-many-without-user-nested.input';
+import { LikeUncheckedUpdateManyWithoutUserNestedInput } from '../like/like-unchecked-update-many-without-user-nested.input';
+import { RSVPUncheckedUpdateManyWithoutUserNestedInput } from '../rsvp/rsvp-unchecked-update-many-without-user-nested.input';
 
 @InputType()
 export class UserUncheckedUpdateInput {
@@ -23,6 +28,12 @@ export class UserUncheckedUpdateInput {
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   avatar?: NullableStringFieldUpdateOperationsInput;
 
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+  role?: NullableStringFieldUpdateOperationsInput;
+
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+  bio?: NullableStringFieldUpdateOperationsInput;
+
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;
 
@@ -33,4 +44,29 @@ export class UserUncheckedUpdateInput {
     nullable: true,
   })
   posts?: PostUncheckedUpdateManyWithoutUserNestedInput;
+
+  @Field(() => EventUncheckedUpdateManyWithoutUserNestedInput, {
+    nullable: true,
+  })
+  events?: EventUncheckedUpdateManyWithoutUserNestedInput;
+
+  @Field(() => CommentUncheckedUpdateManyWithoutUserNestedInput, {
+    nullable: true,
+  })
+  comments?: CommentUncheckedUpdateManyWithoutUserNestedInput;
+
+  @Field(() => NotificationUncheckedUpdateManyWithoutUserNestedInput, {
+    nullable: true,
+  })
+  notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput;
+
+  @Field(() => LikeUncheckedUpdateManyWithoutUserNestedInput, {
+    nullable: true,
+  })
+  likes?: LikeUncheckedUpdateManyWithoutUserNestedInput;
+
+  @Field(() => RSVPUncheckedUpdateManyWithoutUserNestedInput, {
+    nullable: true,
+  })
+  rsvps?: RSVPUncheckedUpdateManyWithoutUserNestedInput;
 }

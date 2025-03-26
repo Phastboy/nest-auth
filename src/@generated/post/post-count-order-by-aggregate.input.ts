@@ -11,6 +11,12 @@ export class PostCountOrderByAggregateInput {
   content?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
+  image?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  isEvent?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
   userId?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })

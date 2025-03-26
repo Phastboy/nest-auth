@@ -12,17 +12,98 @@ erDiagram
   String username UK
   String password
   String avatar "nullable"
+  String role "nullable"
+  String bio "nullable"
   DateTime createdAt
   DateTime updatedAt
+}
+"categories" {
+  String id PK
+  String name UK
+  String slug UK
+  String parentId FK "nullable"
+  DateTime createdAt
 }
 "posts" {
   Int id PK
   String content
+  String image "nullable"
+  Boolean isEvent
   Int userId FK
   DateTime createdAt
   DateTime updatedAt
 }
+"events" {
+  Int id PK
+  String title
+  String description
+  String location
+  DateTime startTime
+  DateTime endTime "nullable"
+  String image "nullable"
+  Int userId FK
+  Int postId FK
+  DateTime createdAt
+  DateTime updatedAt
+}
+"comments" {
+  Int id PK
+  String content
+  Int userId FK
+  Int postId FK "nullable"
+  Int eventId FK "nullable"
+  Int parentId FK "nullable"
+  DateTime createdAt
+}
+"likes" {
+  Int id PK
+  Int userId FK
+  Int postId FK "nullable"
+  Int eventId FK "nullable"
+  DateTime createdAt
+}
+"rsvps" {
+  Int id PK
+  Int userId FK
+  Int eventId FK
+  String status
+  DateTime createdAt
+}
+"notifications" {
+  Int id PK
+  Int userId FK
+  String type
+  String content
+  Boolean isRead
+  Int referenceId "nullable"
+  DateTime createdAt
+}
+"_CategoryToPost" {
+  String A FK
+  String B FK
+}
+"_CategoryToEvent" {
+  String A FK
+  String B FK
+}
+"categories" }o--o| "categories" : parent
 "posts" }o--|| "users" : user
+"events" }o--|| "users" : user
+"events" |o--|| "posts" : post
+"comments" }o--|| "users" : user
+"comments" }o--o| "posts" : post
+"comments" }o--o| "events" : event
+"comments" }o--o| "comments" : parent
+"likes" }o--|| "users" : user
+"likes" }o--o| "posts" : post
+"likes" }o--o| "events" : event
+"rsvps" }o--|| "users" : user
+"rsvps" }o--|| "events" : event
+"notifications" }o--|| "users" : user
+"_CategoryToPost" }o--|| "categories" : Category
+"_CategoryToPost" }o--|| "posts" : Post
+"_CategoryToEvent" }o--|| "categories" : Category
+"_CategoryToEvent" }o--|| "events" : Event
 ```
 
 ### `users`
@@ -33,14 +114,96 @@ erDiagram
   - `username`: 
   - `password`: 
   - `avatar`: 
+  - `role`: 
+  - `bio`: 
   - `createdAt`: 
   - `updatedAt`: 
+
+### `categories`
+
+**Properties**
+  - `id`: 
+  - `name`: 
+  - `slug`: 
+  - `parentId`: 
+  - `createdAt`: 
 
 ### `posts`
 
 **Properties**
   - `id`: 
   - `content`: 
+  - `image`: 
+  - `isEvent`: 
   - `userId`: 
   - `createdAt`: 
   - `updatedAt`: 
+
+### `events`
+
+**Properties**
+  - `id`: 
+  - `title`: 
+  - `description`: 
+  - `location`: 
+  - `startTime`: 
+  - `endTime`: 
+  - `image`: 
+  - `userId`: 
+  - `postId`: 
+  - `createdAt`: 
+  - `updatedAt`: 
+
+### `comments`
+
+**Properties**
+  - `id`: 
+  - `content`: 
+  - `userId`: 
+  - `postId`: 
+  - `eventId`: 
+  - `parentId`: 
+  - `createdAt`: 
+
+### `likes`
+
+**Properties**
+  - `id`: 
+  - `userId`: 
+  - `postId`: 
+  - `eventId`: 
+  - `createdAt`: 
+
+### `rsvps`
+
+**Properties**
+  - `id`: 
+  - `userId`: 
+  - `eventId`: 
+  - `status`: 
+  - `createdAt`: 
+
+### `notifications`
+
+**Properties**
+  - `id`: 
+  - `userId`: 
+  - `type`: 
+  - `content`: 
+  - `isRead`: 
+  - `referenceId`: 
+  - `createdAt`: 
+
+### `_CategoryToPost`
+Pair relationship table between [categories](#categories) and [posts](#posts)
+
+**Properties**
+  - `A`: 
+  - `B`: 
+
+### `_CategoryToEvent`
+Pair relationship table between [categories](#categories) and [events](#events)
+
+**Properties**
+  - `A`: 
+  - `B`: 

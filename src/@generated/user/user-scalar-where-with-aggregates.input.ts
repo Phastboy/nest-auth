@@ -31,6 +31,12 @@ export class UserScalarWhereWithAggregatesInput {
   @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
   avatar?: StringNullableWithAggregatesFilter;
 
+  @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
+  role?: StringNullableWithAggregatesFilter;
+
+  @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
+  bio?: StringNullableWithAggregatesFilter;
+
   @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
   createdAt?: DateTimeWithAggregatesFilter;
 
