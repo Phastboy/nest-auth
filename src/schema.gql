@@ -891,6 +891,13 @@ type LikeCountAggregate {
   userId: Int!
 }
 
+input LikeCreateInput {
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutLikesInput
+  post: PostCreateNestedOneWithoutLikesInput
+  user: UserCreateNestedOneWithoutLikesInput!
+}
+
 input LikeCreateManyEventInput {
   createdAt: DateTime
   id: Int
@@ -1051,6 +1058,7 @@ type Mutation {
   create(createPostInput: PostCreateInput!): Post!
   createComment(createCommentInput: CommentCreateInput!): Comment!
   createEvent(createEventInput: EventCreateInput!): Event!
+  createLike(createLikeInput: LikeCreateInput!): Like!
   createUser(createUserInput: UserCreateInput!): User!
   login(loginInput: LoginDto!): AuthResponse!
 
@@ -1062,10 +1070,12 @@ type Mutation {
   remove(id: Float!): Post!
   removeComment(id: Int!): Comment!
   removeEvent(id: Int!): Event!
+  removeLike(id: Int!): Like!
   removeUser(id: Int!): User!
   update(updatePostInput: UpdatePostInput!): Post!
   updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
+  updateLike(updateLikeInput: UpdateLikeInput!): Like!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
@@ -1529,6 +1539,8 @@ type Query {
   comments: [Comment!]!
   event(id: Int!): Event!
   events: [Event!]!
+  like(id: Int!): Like!
+  likes: [Like!]!
   post(id: Float!): Post!
   posts: [Post!]!
   user(id: Int!): User!
@@ -1738,6 +1750,14 @@ input UpdateEventInput {
   title: String
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutEventsInput
+}
+
+input UpdateLikeInput {
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutLikesInput
+  id: Int!
+  post: PostCreateNestedOneWithoutLikesInput
+  user: UserCreateNestedOneWithoutLikesInput
 }
 
 input UpdatePostInput {
