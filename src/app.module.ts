@@ -12,6 +12,7 @@ import { GraphqlModule } from './graphql/graphql.module';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 import { EventsModule } from './events/events.module';
+import { CommentsModule } from './comments/comments.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { EventsModule } from './events/events.module';
     UsersModule,
     PostsModule,
     EventsModule,
+    CommentsModule,
   ],
   controllers: [],
   providers: [

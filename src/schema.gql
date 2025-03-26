@@ -232,6 +232,16 @@ type CommentCountAggregate {
   userId: Int!
 }
 
+input CommentCreateInput {
+  content: String!
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutCommentsInput
+  parent: CommentCreateNestedOneWithoutRepliesInput
+  post: PostCreateNestedOneWithoutCommentsInput
+  replies: CommentCreateNestedManyWithoutParentInput
+  user: UserCreateNestedOneWithoutCommentsInput!
+}
+
 input CommentCreateManyEventInput {
   content: String!
   createdAt: DateTime
@@ -1039,6 +1049,7 @@ input LoginDto {
 
 type Mutation {
   create(createPostInput: PostCreateInput!): Post!
+  createComment(createCommentInput: CommentCreateInput!): Comment!
   createEvent(createEventInput: EventCreateInput!): Event!
   createUser(createUserInput: UserCreateInput!): User!
   login(loginInput: LoginDto!): AuthResponse!
@@ -1049,9 +1060,11 @@ type Mutation {
   """for creating a new user"""
   register(createUserInput: UserCreateInput!): User!
   remove(id: Float!): Post!
+  removeComment(id: Int!): Comment!
   removeEvent(id: Int!): Event!
   removeUser(id: Int!): User!
   update(updatePostInput: UpdatePostInput!): Post!
+  updateComment(updateCommentInput: UpdateCommentInput!): Comment!
   updateEvent(updateEventInput: UpdateEventInput!): Event!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
@@ -1512,6 +1525,8 @@ input PostWhereUniqueInput {
 }
 
 type Query {
+  comment(id: Int!): Comment!
+  comments: [Comment!]!
   event(id: Int!): Event!
   events: [Event!]!
   post(id: Float!): Post!
@@ -1694,6 +1709,17 @@ input StringNullableFilter {
 type TokenPair {
   accessToken: String!
   refreshToken: String!
+}
+
+input UpdateCommentInput {
+  content: String
+  createdAt: DateTime
+  event: EventCreateNestedOneWithoutCommentsInput
+  id: Int!
+  parent: CommentCreateNestedOneWithoutRepliesInput
+  post: PostCreateNestedOneWithoutCommentsInput
+  replies: CommentCreateNestedManyWithoutParentInput
+  user: UserCreateNestedOneWithoutCommentsInput
 }
 
 input UpdateEventInput {
