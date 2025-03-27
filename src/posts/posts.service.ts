@@ -1,74 +1,93 @@
 import {
+  ForbiddenException,
   Injectable,
   NotFoundException,
-  UnauthorizedException,
 } from '@nestjs/common';
-import { Post } from '@prisma/client';
-import { PrismaService } from 'nestjs-prisma';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
+import { PrismaService } from 'nestjs-prisma';
+import { Post } from 'src/@generated';
 
 @Injectable()
 export class PostsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(createPostDto: CreatePostInput): Promise<Post> {
-    return await this.prismaService.post.create({
-      data: {
-        ...createPostDto,
-      },
+  private readonly postRelations = {
+    include: {
+      categories: true,
+      comments: true,
+      likes: true,
+    },
+  };
+
+  async createPost(
+    userId: number,
+    newPostData: CreatePostInput,
+  ): Promise<Post> {
+    return this.prismaService.post.create({
+      data: { ...newPostData, userId },
+      ...this.postRelations,
     });
   }
 
-  async findAll(): Promise<Post[]> {
-    return await this.prismaService.post.findMany({
-      include: {
-        user: true,
-        comments: true,
-        likes: true,
-        event: true,
-      },
+  async getAllPosts(): Promise<Post[]> {
+    return this.prismaService.post.findMany({
+      ...this.postRelations,
     });
   }
 
-  async findOne(id: number): Promise<Post> {
+  async getPostById(postId: number): Promise<Post> {
     const post = await this.prismaService.post.findUnique({
-      where: { id },
+      where: { id: postId },
+      ...this.postRelations,
     });
+
     if (!post) {
-      throw new NotFoundException('Post not found');
+      throw new NotFoundException(`Post with ID ${postId} not found`);
     }
+
     return post;
   }
 
-  async update(
-    userId: number,
-    id: number,
-    updatePostDto: UpdatePostInput,
+  async updatePost(
+    requestingUserId: number,
+    postId: number,
+    updateData: UpdatePostInput,
   ): Promise<Post> {
-    const post = await this.prismaService.post.findUnique({ where: { id } });
-    if (!post) {
-      throw new NotFoundException('Post not found');
-    }
-    if (post.userId !== userId) {
-      throw new UnauthorizedException('You are not the author of this post');
-    }
-    return await this.prismaService.post.update({
-      where: { id },
-      data: {
-        content: updatePostDto.content,
-      },
+    await this.verifyPostOwnership(postId, requestingUserId);
+
+    return this.prismaService.post.update({
+      where: { id: postId },
+      data: updateData,
+      ...this.postRelations,
     });
   }
 
-  async remove(userId: number, id: number): Promise<Post> {
-    const post = await this.prismaService.post.findUnique({ where: { id } });
+  async deletePost(requestingUserId: number, postId: number): Promise<Post> {
+    await this.verifyPostOwnership(postId, requestingUserId);
+
+    return this.prismaService.post.delete({
+      where: { id: postId },
+      ...this.postRelations,
+    });
+  }
+
+  private async verifyPostOwnership(
+    postId: number,
+    userId: number,
+  ): Promise<void> {
+    const post = await this.prismaService.post.findUnique({
+      where: { id: postId },
+    });
+
     if (!post) {
-      throw new NotFoundException('Post not found');
+      throw new NotFoundException(`Post with ID ${postId} not found`);
     }
+
     if (post.userId !== userId) {
-      throw new UnauthorizedException('You are not the author of this post');
+      throw new ForbiddenException(
+        `User ${userId} is not the author of post ${postId}`,
+      );
     }
-    return await this.prismaService.post.delete({ where: { id } });
   }
 }

@@ -29,6 +29,7 @@ erDiagram
   String content
   String image "nullable"
   Boolean isEvent
+  Int eventId FK "nullable"
   Int userId FK
   DateTime createdAt
   DateTime updatedAt
@@ -42,7 +43,7 @@ erDiagram
   DateTime endTime "nullable"
   String image "nullable"
   Int userId FK
-  Int postId FK
+  Boolean shareAsPost
   DateTime createdAt
   DateTime updatedAt
 }
@@ -87,9 +88,9 @@ erDiagram
   String B FK
 }
 "categories" }o--o| "categories" : parent
+"posts" |o--o| "events" : event
 "posts" }o--|| "users" : user
 "events" }o--|| "users" : user
-"events" |o--|| "posts" : post
 "comments" }o--|| "users" : user
 "comments" }o--o| "posts" : post
 "comments" }o--o| "events" : event
@@ -135,6 +136,7 @@ erDiagram
   - `content`: 
   - `image`: 
   - `isEvent`: 
+  - `eventId`: 
   - `userId`: 
   - `createdAt`: 
   - `updatedAt`: 
@@ -150,7 +152,7 @@ erDiagram
   - `endTime`: 
   - `image`: 
   - `userId`: 
-  - `postId`: 
+  - `shareAsPost`: 
   - `createdAt`: 
   - `updatedAt`: 
 
