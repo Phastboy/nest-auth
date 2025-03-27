@@ -1,1 +1,7 @@
-export { CommentCreateInput as CreateCommentInput } from 'src/@generated';
+import { InputType, Field } from '@nestjs/graphql';
+
+@InputType()
+export class CreateCommentInput {
+  @Field(() => String, { nullable: false })
+  content!: string;
+}
