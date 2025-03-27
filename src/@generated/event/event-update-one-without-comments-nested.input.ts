@@ -11,33 +11,32 @@ import { EventUpdateToOneWithWhereWithoutCommentsInput } from './event-update-to
 
 @InputType()
 export class EventUpdateOneWithoutCommentsNestedInput {
-  @Field(() => EventCreateWithoutCommentsInput, { nullable: true })
-  @Type(() => EventCreateWithoutCommentsInput)
-  create?: EventCreateWithoutCommentsInput;
 
-  @Field(() => EventCreateOrConnectWithoutCommentsInput, { nullable: true })
-  @Type(() => EventCreateOrConnectWithoutCommentsInput)
-  connectOrCreate?: EventCreateOrConnectWithoutCommentsInput;
+    @Field(() => EventCreateWithoutCommentsInput, {nullable:true})
+    @Type(() => EventCreateWithoutCommentsInput)
+    create?: EventCreateWithoutCommentsInput;
 
-  @Field(() => EventUpsertWithoutCommentsInput, { nullable: true })
-  @Type(() => EventUpsertWithoutCommentsInput)
-  upsert?: EventUpsertWithoutCommentsInput;
+    @Field(() => EventCreateOrConnectWithoutCommentsInput, {nullable:true})
+    @Type(() => EventCreateOrConnectWithoutCommentsInput)
+    connectOrCreate?: EventCreateOrConnectWithoutCommentsInput;
 
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  disconnect?: EventWhereInput;
+    @Field(() => EventUpsertWithoutCommentsInput, {nullable:true})
+    @Type(() => EventUpsertWithoutCommentsInput)
+    upsert?: EventUpsertWithoutCommentsInput;
 
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  delete?: EventWhereInput;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    disconnect?: EventWhereInput;
 
-  @Field(() => EventWhereUniqueInput, { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    delete?: EventWhereInput;
 
-  @Field(() => EventUpdateToOneWithWhereWithoutCommentsInput, {
-    nullable: true,
-  })
-  @Type(() => EventUpdateToOneWithWhereWithoutCommentsInput)
-  update?: EventUpdateToOneWithWhereWithoutCommentsInput;
+    @Field(() => EventWhereUniqueInput, {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+
+    @Field(() => EventUpdateToOneWithWhereWithoutCommentsInput, {nullable:true})
+    @Type(() => EventUpdateToOneWithWhereWithoutCommentsInput)
+    update?: EventUpdateToOneWithWhereWithoutCommentsInput;
 }

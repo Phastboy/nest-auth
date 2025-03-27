@@ -6,10 +6,11 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class DeleteManyCategoryArgs {
-  @Field(() => CategoryWhereInput, { nullable: true })
-  @Type(() => CategoryWhereInput)
-  where?: CategoryWhereInput;
 
-  @Field(() => Int, { nullable: true })
-  limit?: number;
+    @Field(() => CategoryWhereInput, {nullable:true})
+    @Type(() => CategoryWhereInput)
+    where?: CategoryWhereInput;
+
+    @Field(() => Int, {nullable:true})
+    limit?: number;
 }

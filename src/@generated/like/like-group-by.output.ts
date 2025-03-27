@@ -9,33 +9,34 @@ import { LikeMaxAggregate } from './like-max-aggregate.output';
 
 @ObjectType()
 export class LikeGroupBy {
-  @Field(() => Int, { nullable: false })
-  id!: number;
 
-  @Field(() => Int, { nullable: false })
-  userId!: number;
+    @Field(() => Int, {nullable:false})
+    id!: number;
 
-  @Field(() => Int, { nullable: true })
-  postId?: number;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => Int, { nullable: true })
-  eventId?: number;
+    @Field(() => Int, {nullable:true})
+    postId?: number;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => Int, {nullable:true})
+    eventId?: number;
 
-  @Field(() => LikeCountAggregate, { nullable: true })
-  _count?: LikeCountAggregate;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => LikeAvgAggregate, { nullable: true })
-  _avg?: LikeAvgAggregate;
+    @Field(() => LikeCountAggregate, {nullable:true})
+    _count?: LikeCountAggregate;
 
-  @Field(() => LikeSumAggregate, { nullable: true })
-  _sum?: LikeSumAggregate;
+    @Field(() => LikeAvgAggregate, {nullable:true})
+    _avg?: LikeAvgAggregate;
 
-  @Field(() => LikeMinAggregate, { nullable: true })
-  _min?: LikeMinAggregate;
+    @Field(() => LikeSumAggregate, {nullable:true})
+    _sum?: LikeSumAggregate;
 
-  @Field(() => LikeMaxAggregate, { nullable: true })
-  _max?: LikeMaxAggregate;
+    @Field(() => LikeMinAggregate, {nullable:true})
+    _min?: LikeMinAggregate;
+
+    @Field(() => LikeMaxAggregate, {nullable:true})
+    _max?: LikeMaxAggregate;
 }

@@ -7,10 +7,6 @@ type AuthResponse {
   tokens: TokenPair!
 }
 
-input BoolFieldUpdateOperationsInput {
-  set: Boolean
-}
-
 input BoolFilter {
   equals: Boolean
   not: NestedBoolFilter
@@ -47,16 +43,6 @@ type CategoryCountAggregate {
   name: Int!
   parentId: Int!
   slug: Int!
-}
-
-input CategoryCreateInput {
-  children: CategoryCreateNestedManyWithoutParentInput
-  createdAt: DateTime
-  events: EventCreateNestedManyWithoutCategoriesInput
-  name: String!
-  parent: CategoryCreateNestedOneWithoutChildrenInput
-  posts: PostCreateNestedManyWithoutCategoriesInput
-  slug: String!
 }
 
 input CategoryCreateManyParentInput {
@@ -178,171 +164,9 @@ input CategoryNullableScalarRelationFilter {
   isNot: CategoryWhereInput
 }
 
-input CategoryScalarWhereInput {
-  AND: [CategoryScalarWhereInput!]
-  NOT: [CategoryScalarWhereInput!]
-  OR: [CategoryScalarWhereInput!]
-  createdAt: DateTimeFilter
-  id: IntFilter
-  name: StringFilter
-  parentId: IntNullableFilter
-  slug: StringFilter
-}
-
 type CategorySumAggregate {
   id: Int
   parentId: Int
-}
-
-input CategoryUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  slug: StringFieldUpdateOperationsInput
-}
-
-input CategoryUpdateManyWithWhereWithoutEventsInput {
-  data: CategoryUpdateManyMutationInput!
-  where: CategoryScalarWhereInput!
-}
-
-input CategoryUpdateManyWithWhereWithoutParentInput {
-  data: CategoryUpdateManyMutationInput!
-  where: CategoryScalarWhereInput!
-}
-
-input CategoryUpdateManyWithWhereWithoutPostsInput {
-  data: CategoryUpdateManyMutationInput!
-  where: CategoryScalarWhereInput!
-}
-
-input CategoryUpdateManyWithoutEventsNestedInput {
-  connect: [CategoryWhereUniqueInput!]
-  connectOrCreate: [CategoryCreateOrConnectWithoutEventsInput!]
-  create: [CategoryCreateWithoutEventsInput!]
-  delete: [CategoryWhereUniqueInput!]
-  deleteMany: [CategoryScalarWhereInput!]
-  disconnect: [CategoryWhereUniqueInput!]
-  set: [CategoryWhereUniqueInput!]
-  update: [CategoryUpdateWithWhereUniqueWithoutEventsInput!]
-  updateMany: [CategoryUpdateManyWithWhereWithoutEventsInput!]
-  upsert: [CategoryUpsertWithWhereUniqueWithoutEventsInput!]
-}
-
-input CategoryUpdateManyWithoutParentNestedInput {
-  connect: [CategoryWhereUniqueInput!]
-  connectOrCreate: [CategoryCreateOrConnectWithoutParentInput!]
-  create: [CategoryCreateWithoutParentInput!]
-  createMany: CategoryCreateManyParentInputEnvelope
-  delete: [CategoryWhereUniqueInput!]
-  deleteMany: [CategoryScalarWhereInput!]
-  disconnect: [CategoryWhereUniqueInput!]
-  set: [CategoryWhereUniqueInput!]
-  update: [CategoryUpdateWithWhereUniqueWithoutParentInput!]
-  updateMany: [CategoryUpdateManyWithWhereWithoutParentInput!]
-  upsert: [CategoryUpsertWithWhereUniqueWithoutParentInput!]
-}
-
-input CategoryUpdateManyWithoutPostsNestedInput {
-  connect: [CategoryWhereUniqueInput!]
-  connectOrCreate: [CategoryCreateOrConnectWithoutPostsInput!]
-  create: [CategoryCreateWithoutPostsInput!]
-  delete: [CategoryWhereUniqueInput!]
-  deleteMany: [CategoryScalarWhereInput!]
-  disconnect: [CategoryWhereUniqueInput!]
-  set: [CategoryWhereUniqueInput!]
-  update: [CategoryUpdateWithWhereUniqueWithoutPostsInput!]
-  updateMany: [CategoryUpdateManyWithWhereWithoutPostsInput!]
-  upsert: [CategoryUpsertWithWhereUniqueWithoutPostsInput!]
-}
-
-input CategoryUpdateOneWithoutChildrenNestedInput {
-  connect: CategoryWhereUniqueInput
-  connectOrCreate: CategoryCreateOrConnectWithoutChildrenInput
-  create: CategoryCreateWithoutChildrenInput
-  delete: CategoryWhereInput
-  disconnect: CategoryWhereInput
-  update: CategoryUpdateToOneWithWhereWithoutChildrenInput
-  upsert: CategoryUpsertWithoutChildrenInput
-}
-
-input CategoryUpdateToOneWithWhereWithoutChildrenInput {
-  data: CategoryUpdateWithoutChildrenInput!
-  where: CategoryWhereInput
-}
-
-input CategoryUpdateWithWhereUniqueWithoutEventsInput {
-  data: CategoryUpdateWithoutEventsInput!
-  where: CategoryWhereUniqueInput!
-}
-
-input CategoryUpdateWithWhereUniqueWithoutParentInput {
-  data: CategoryUpdateWithoutParentInput!
-  where: CategoryWhereUniqueInput!
-}
-
-input CategoryUpdateWithWhereUniqueWithoutPostsInput {
-  data: CategoryUpdateWithoutPostsInput!
-  where: CategoryWhereUniqueInput!
-}
-
-input CategoryUpdateWithoutChildrenInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  events: EventUpdateManyWithoutCategoriesNestedInput
-  name: StringFieldUpdateOperationsInput
-  parent: CategoryUpdateOneWithoutChildrenNestedInput
-  posts: PostUpdateManyWithoutCategoriesNestedInput
-  slug: StringFieldUpdateOperationsInput
-}
-
-input CategoryUpdateWithoutEventsInput {
-  children: CategoryUpdateManyWithoutParentNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  name: StringFieldUpdateOperationsInput
-  parent: CategoryUpdateOneWithoutChildrenNestedInput
-  posts: PostUpdateManyWithoutCategoriesNestedInput
-  slug: StringFieldUpdateOperationsInput
-}
-
-input CategoryUpdateWithoutParentInput {
-  children: CategoryUpdateManyWithoutParentNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  events: EventUpdateManyWithoutCategoriesNestedInput
-  name: StringFieldUpdateOperationsInput
-  posts: PostUpdateManyWithoutCategoriesNestedInput
-  slug: StringFieldUpdateOperationsInput
-}
-
-input CategoryUpdateWithoutPostsInput {
-  children: CategoryUpdateManyWithoutParentNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  events: EventUpdateManyWithoutCategoriesNestedInput
-  name: StringFieldUpdateOperationsInput
-  parent: CategoryUpdateOneWithoutChildrenNestedInput
-  slug: StringFieldUpdateOperationsInput
-}
-
-input CategoryUpsertWithWhereUniqueWithoutEventsInput {
-  create: CategoryCreateWithoutEventsInput!
-  update: CategoryUpdateWithoutEventsInput!
-  where: CategoryWhereUniqueInput!
-}
-
-input CategoryUpsertWithWhereUniqueWithoutParentInput {
-  create: CategoryCreateWithoutParentInput!
-  update: CategoryUpdateWithoutParentInput!
-  where: CategoryWhereUniqueInput!
-}
-
-input CategoryUpsertWithWhereUniqueWithoutPostsInput {
-  create: CategoryCreateWithoutPostsInput!
-  update: CategoryUpdateWithoutPostsInput!
-  where: CategoryWhereUniqueInput!
-}
-
-input CategoryUpsertWithoutChildrenInput {
-  create: CategoryCreateWithoutChildrenInput!
-  update: CategoryUpdateWithoutChildrenInput!
-  where: CategoryWhereInput
 }
 
 input CategoryWhereInput {
@@ -601,226 +425,12 @@ input CommentNullableScalarRelationFilter {
   isNot: CommentWhereInput
 }
 
-input CommentScalarWhereInput {
-  AND: [CommentScalarWhereInput!]
-  NOT: [CommentScalarWhereInput!]
-  OR: [CommentScalarWhereInput!]
-  content: StringFilter
-  createdAt: DateTimeFilter
-  eventId: IntNullableFilter
-  id: IntFilter
-  parentId: IntNullableFilter
-  postId: IntNullableFilter
-  userId: IntFilter
-}
-
 type CommentSumAggregate {
   eventId: Int
   id: Int
   parentId: Int
   postId: Int
   userId: Int
-}
-
-input CommentUpdateInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutCommentsNestedInput
-  parent: CommentUpdateOneWithoutRepliesNestedInput
-  post: PostUpdateOneWithoutCommentsNestedInput
-  replies: CommentUpdateManyWithoutParentNestedInput
-  user: UserUpdateOneRequiredWithoutCommentsNestedInput
-}
-
-input CommentUpdateManyMutationInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-}
-
-input CommentUpdateManyWithWhereWithoutEventInput {
-  data: CommentUpdateManyMutationInput!
-  where: CommentScalarWhereInput!
-}
-
-input CommentUpdateManyWithWhereWithoutParentInput {
-  data: CommentUpdateManyMutationInput!
-  where: CommentScalarWhereInput!
-}
-
-input CommentUpdateManyWithWhereWithoutPostInput {
-  data: CommentUpdateManyMutationInput!
-  where: CommentScalarWhereInput!
-}
-
-input CommentUpdateManyWithWhereWithoutUserInput {
-  data: CommentUpdateManyMutationInput!
-  where: CommentScalarWhereInput!
-}
-
-input CommentUpdateManyWithoutEventNestedInput {
-  connect: [CommentWhereUniqueInput!]
-  connectOrCreate: [CommentCreateOrConnectWithoutEventInput!]
-  create: [CommentCreateWithoutEventInput!]
-  createMany: CommentCreateManyEventInputEnvelope
-  delete: [CommentWhereUniqueInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutEventInput!]
-  updateMany: [CommentUpdateManyWithWhereWithoutEventInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutEventInput!]
-}
-
-input CommentUpdateManyWithoutParentNestedInput {
-  connect: [CommentWhereUniqueInput!]
-  connectOrCreate: [CommentCreateOrConnectWithoutParentInput!]
-  create: [CommentCreateWithoutParentInput!]
-  createMany: CommentCreateManyParentInputEnvelope
-  delete: [CommentWhereUniqueInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutParentInput!]
-  updateMany: [CommentUpdateManyWithWhereWithoutParentInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutParentInput!]
-}
-
-input CommentUpdateManyWithoutPostNestedInput {
-  connect: [CommentWhereUniqueInput!]
-  connectOrCreate: [CommentCreateOrConnectWithoutPostInput!]
-  create: [CommentCreateWithoutPostInput!]
-  createMany: CommentCreateManyPostInputEnvelope
-  delete: [CommentWhereUniqueInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutPostInput!]
-  updateMany: [CommentUpdateManyWithWhereWithoutPostInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutPostInput!]
-}
-
-input CommentUpdateManyWithoutUserNestedInput {
-  connect: [CommentWhereUniqueInput!]
-  connectOrCreate: [CommentCreateOrConnectWithoutUserInput!]
-  create: [CommentCreateWithoutUserInput!]
-  createMany: CommentCreateManyUserInputEnvelope
-  delete: [CommentWhereUniqueInput!]
-  deleteMany: [CommentScalarWhereInput!]
-  disconnect: [CommentWhereUniqueInput!]
-  set: [CommentWhereUniqueInput!]
-  update: [CommentUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [CommentUpdateManyWithWhereWithoutUserInput!]
-  upsert: [CommentUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input CommentUpdateOneWithoutRepliesNestedInput {
-  connect: CommentWhereUniqueInput
-  connectOrCreate: CommentCreateOrConnectWithoutRepliesInput
-  create: CommentCreateWithoutRepliesInput
-  delete: CommentWhereInput
-  disconnect: CommentWhereInput
-  update: CommentUpdateToOneWithWhereWithoutRepliesInput
-  upsert: CommentUpsertWithoutRepliesInput
-}
-
-input CommentUpdateToOneWithWhereWithoutRepliesInput {
-  data: CommentUpdateWithoutRepliesInput!
-  where: CommentWhereInput
-}
-
-input CommentUpdateWithWhereUniqueWithoutEventInput {
-  data: CommentUpdateWithoutEventInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpdateWithWhereUniqueWithoutParentInput {
-  data: CommentUpdateWithoutParentInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpdateWithWhereUniqueWithoutPostInput {
-  data: CommentUpdateWithoutPostInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpdateWithWhereUniqueWithoutUserInput {
-  data: CommentUpdateWithoutUserInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpdateWithoutEventInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  parent: CommentUpdateOneWithoutRepliesNestedInput
-  post: PostUpdateOneWithoutCommentsNestedInput
-  replies: CommentUpdateManyWithoutParentNestedInput
-  user: UserUpdateOneRequiredWithoutCommentsNestedInput
-}
-
-input CommentUpdateWithoutParentInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutCommentsNestedInput
-  post: PostUpdateOneWithoutCommentsNestedInput
-  replies: CommentUpdateManyWithoutParentNestedInput
-  user: UserUpdateOneRequiredWithoutCommentsNestedInput
-}
-
-input CommentUpdateWithoutPostInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutCommentsNestedInput
-  parent: CommentUpdateOneWithoutRepliesNestedInput
-  replies: CommentUpdateManyWithoutParentNestedInput
-  user: UserUpdateOneRequiredWithoutCommentsNestedInput
-}
-
-input CommentUpdateWithoutRepliesInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutCommentsNestedInput
-  parent: CommentUpdateOneWithoutRepliesNestedInput
-  post: PostUpdateOneWithoutCommentsNestedInput
-  user: UserUpdateOneRequiredWithoutCommentsNestedInput
-}
-
-input CommentUpdateWithoutUserInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutCommentsNestedInput
-  parent: CommentUpdateOneWithoutRepliesNestedInput
-  post: PostUpdateOneWithoutCommentsNestedInput
-  replies: CommentUpdateManyWithoutParentNestedInput
-}
-
-input CommentUpsertWithWhereUniqueWithoutEventInput {
-  create: CommentCreateWithoutEventInput!
-  update: CommentUpdateWithoutEventInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpsertWithWhereUniqueWithoutParentInput {
-  create: CommentCreateWithoutParentInput!
-  update: CommentUpdateWithoutParentInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpsertWithWhereUniqueWithoutPostInput {
-  create: CommentCreateWithoutPostInput!
-  update: CommentUpdateWithoutPostInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpsertWithWhereUniqueWithoutUserInput {
-  create: CommentCreateWithoutUserInput!
-  update: CommentUpdateWithoutUserInput!
-  where: CommentWhereUniqueInput!
-}
-
-input CommentUpsertWithoutRepliesInput {
-  create: CommentCreateWithoutRepliesInput!
-  update: CommentUpdateWithoutRepliesInput!
-  where: CommentWhereInput
 }
 
 input CommentWhereInput {
@@ -859,8 +469,28 @@ input CommentWhereUniqueInput {
   userId: IntFilter
 }
 
+input CreateCategoryInput {
+  name: String!
+  slug: String!
+}
+
 input CreateCommentInput {
   content: String!
+}
+
+input CreateEventInput {
+  description: String!
+  endTime: DateTime
+  image: String
+  location: String!
+
+  """Post details required if sharing as a post"""
+  post: CreatePostInput
+
+  """Whether to share this event as a post. Required if post is provided."""
+  shareAsPost: Boolean = false
+  startTime: DateTime!
+  title: String!
 }
 
 input CreateNotificationInput {
@@ -883,10 +513,6 @@ input CreateRsvpInput {
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
-
-input DateTimeFieldUpdateOperationsInput {
-  set: DateTime
-}
 
 input DateTimeFilter {
   equals: DateTime
@@ -921,9 +547,9 @@ type Event {
   image: String
   likes: [Like!]
   location: String!
-  post: Post!
-  postId: Int!
+  post: Post
   rsvps: [RSVP!]
+  shareAsPost: Boolean!
   startTime: DateTime!
   title: String!
   updatedAt: DateTime!
@@ -933,7 +559,6 @@ type Event {
 
 type EventAvgAggregate {
   id: Float
-  postId: Float
   userId: Float
 }
 
@@ -952,28 +577,11 @@ type EventCountAggregate {
   id: Int!
   image: Int!
   location: Int!
-  postId: Int!
+  shareAsPost: Int!
   startTime: Int!
   title: Int!
   updatedAt: Int!
   userId: Int!
-}
-
-input EventCreateInput {
-  categories: CategoryCreateNestedManyWithoutEventsInput
-  comments: CommentCreateNestedManyWithoutEventInput
-  createdAt: DateTime
-  description: String!
-  endTime: DateTime
-  image: String
-  likes: LikeCreateNestedManyWithoutEventInput
-  location: String!
-  post: PostCreateNestedOneWithoutEventInput!
-  rsvps: RSVPCreateNestedManyWithoutEventInput
-  startTime: DateTime!
-  title: String!
-  updatedAt: DateTime
-  user: UserCreateNestedOneWithoutEventsInput!
 }
 
 input EventCreateManyUserInput {
@@ -983,7 +591,7 @@ input EventCreateManyUserInput {
   id: Int
   image: String
   location: String!
-  postId: Int!
+  shareAsPost: Boolean
   startTime: DateTime!
   title: String!
   updatedAt: DateTime
@@ -1068,8 +676,9 @@ input EventCreateWithoutCategoriesInput {
   image: String
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
-  post: PostCreateNestedOneWithoutEventInput!
+  post: PostCreateNestedOneWithoutEventInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
+  shareAsPost: Boolean
   startTime: DateTime!
   title: String!
   updatedAt: DateTime
@@ -1084,8 +693,9 @@ input EventCreateWithoutCommentsInput {
   image: String
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
-  post: PostCreateNestedOneWithoutEventInput!
+  post: PostCreateNestedOneWithoutEventInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
+  shareAsPost: Boolean
   startTime: DateTime!
   title: String!
   updatedAt: DateTime
@@ -1100,8 +710,9 @@ input EventCreateWithoutLikesInput {
   endTime: DateTime
   image: String
   location: String!
-  post: PostCreateNestedOneWithoutEventInput!
+  post: PostCreateNestedOneWithoutEventInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
+  shareAsPost: Boolean
   startTime: DateTime!
   title: String!
   updatedAt: DateTime
@@ -1118,6 +729,7 @@ input EventCreateWithoutPostInput {
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
   rsvps: RSVPCreateNestedManyWithoutEventInput
+  shareAsPost: Boolean
   startTime: DateTime!
   title: String!
   updatedAt: DateTime
@@ -1133,7 +745,8 @@ input EventCreateWithoutRsvpsInput {
   image: String
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
-  post: PostCreateNestedOneWithoutEventInput!
+  post: PostCreateNestedOneWithoutEventInput
+  shareAsPost: Boolean
   startTime: DateTime!
   title: String!
   updatedAt: DateTime
@@ -1149,8 +762,9 @@ input EventCreateWithoutUserInput {
   image: String
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
-  post: PostCreateNestedOneWithoutEventInput!
+  post: PostCreateNestedOneWithoutEventInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
+  shareAsPost: Boolean
   startTime: DateTime!
   title: String!
   updatedAt: DateTime
@@ -1169,7 +783,7 @@ type EventMaxAggregate {
   id: Int
   image: String
   location: String
-  postId: Int
+  shareAsPost: Boolean
   startTime: DateTime
   title: String
   updatedAt: DateTime
@@ -1183,7 +797,7 @@ type EventMinAggregate {
   id: Int
   image: String
   location: String
-  postId: Int
+  shareAsPost: Boolean
   startTime: DateTime
   title: String
   updatedAt: DateTime
@@ -1200,275 +814,9 @@ input EventScalarRelationFilter {
   isNot: EventWhereInput
 }
 
-input EventScalarWhereInput {
-  AND: [EventScalarWhereInput!]
-  NOT: [EventScalarWhereInput!]
-  OR: [EventScalarWhereInput!]
-  createdAt: DateTimeFilter
-  description: StringFilter
-  endTime: DateTimeNullableFilter
-  id: IntFilter
-  image: StringNullableFilter
-  location: StringFilter
-  postId: IntFilter
-  startTime: DateTimeFilter
-  title: StringFilter
-  updatedAt: DateTimeFilter
-  userId: IntFilter
-}
-
 type EventSumAggregate {
   id: Int
-  postId: Int
   userId: Int
-}
-
-input EventUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  endTime: NullableDateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  location: StringFieldUpdateOperationsInput
-  startTime: DateTimeFieldUpdateOperationsInput
-  title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input EventUpdateManyWithWhereWithoutCategoriesInput {
-  data: EventUpdateManyMutationInput!
-  where: EventScalarWhereInput!
-}
-
-input EventUpdateManyWithWhereWithoutUserInput {
-  data: EventUpdateManyMutationInput!
-  where: EventScalarWhereInput!
-}
-
-input EventUpdateManyWithoutCategoriesNestedInput {
-  connect: [EventWhereUniqueInput!]
-  connectOrCreate: [EventCreateOrConnectWithoutCategoriesInput!]
-  create: [EventCreateWithoutCategoriesInput!]
-  delete: [EventWhereUniqueInput!]
-  deleteMany: [EventScalarWhereInput!]
-  disconnect: [EventWhereUniqueInput!]
-  set: [EventWhereUniqueInput!]
-  update: [EventUpdateWithWhereUniqueWithoutCategoriesInput!]
-  updateMany: [EventUpdateManyWithWhereWithoutCategoriesInput!]
-  upsert: [EventUpsertWithWhereUniqueWithoutCategoriesInput!]
-}
-
-input EventUpdateManyWithoutUserNestedInput {
-  connect: [EventWhereUniqueInput!]
-  connectOrCreate: [EventCreateOrConnectWithoutUserInput!]
-  create: [EventCreateWithoutUserInput!]
-  createMany: EventCreateManyUserInputEnvelope
-  delete: [EventWhereUniqueInput!]
-  deleteMany: [EventScalarWhereInput!]
-  disconnect: [EventWhereUniqueInput!]
-  set: [EventWhereUniqueInput!]
-  update: [EventUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [EventUpdateManyWithWhereWithoutUserInput!]
-  upsert: [EventUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input EventUpdateOneRequiredWithoutRsvpsNestedInput {
-  connect: EventWhereUniqueInput
-  connectOrCreate: EventCreateOrConnectWithoutRsvpsInput
-  create: EventCreateWithoutRsvpsInput
-  update: EventUpdateToOneWithWhereWithoutRsvpsInput
-  upsert: EventUpsertWithoutRsvpsInput
-}
-
-input EventUpdateOneWithoutCommentsNestedInput {
-  connect: EventWhereUniqueInput
-  connectOrCreate: EventCreateOrConnectWithoutCommentsInput
-  create: EventCreateWithoutCommentsInput
-  delete: EventWhereInput
-  disconnect: EventWhereInput
-  update: EventUpdateToOneWithWhereWithoutCommentsInput
-  upsert: EventUpsertWithoutCommentsInput
-}
-
-input EventUpdateOneWithoutLikesNestedInput {
-  connect: EventWhereUniqueInput
-  connectOrCreate: EventCreateOrConnectWithoutLikesInput
-  create: EventCreateWithoutLikesInput
-  delete: EventWhereInput
-  disconnect: EventWhereInput
-  update: EventUpdateToOneWithWhereWithoutLikesInput
-  upsert: EventUpsertWithoutLikesInput
-}
-
-input EventUpdateOneWithoutPostNestedInput {
-  connect: EventWhereUniqueInput
-  connectOrCreate: EventCreateOrConnectWithoutPostInput
-  create: EventCreateWithoutPostInput
-  delete: EventWhereInput
-  disconnect: EventWhereInput
-  update: EventUpdateToOneWithWhereWithoutPostInput
-  upsert: EventUpsertWithoutPostInput
-}
-
-input EventUpdateToOneWithWhereWithoutCommentsInput {
-  data: EventUpdateWithoutCommentsInput!
-  where: EventWhereInput
-}
-
-input EventUpdateToOneWithWhereWithoutLikesInput {
-  data: EventUpdateWithoutLikesInput!
-  where: EventWhereInput
-}
-
-input EventUpdateToOneWithWhereWithoutPostInput {
-  data: EventUpdateWithoutPostInput!
-  where: EventWhereInput
-}
-
-input EventUpdateToOneWithWhereWithoutRsvpsInput {
-  data: EventUpdateWithoutRsvpsInput!
-  where: EventWhereInput
-}
-
-input EventUpdateWithWhereUniqueWithoutCategoriesInput {
-  data: EventUpdateWithoutCategoriesInput!
-  where: EventWhereUniqueInput!
-}
-
-input EventUpdateWithWhereUniqueWithoutUserInput {
-  data: EventUpdateWithoutUserInput!
-  where: EventWhereUniqueInput!
-}
-
-input EventUpdateWithoutCategoriesInput {
-  comments: CommentUpdateManyWithoutEventNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  endTime: NullableDateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutEventNestedInput
-  location: StringFieldUpdateOperationsInput
-  post: PostUpdateOneRequiredWithoutEventNestedInput
-  rsvps: RSVPUpdateManyWithoutEventNestedInput
-  startTime: DateTimeFieldUpdateOperationsInput
-  title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutEventsNestedInput
-}
-
-input EventUpdateWithoutCommentsInput {
-  categories: CategoryUpdateManyWithoutEventsNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  endTime: NullableDateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutEventNestedInput
-  location: StringFieldUpdateOperationsInput
-  post: PostUpdateOneRequiredWithoutEventNestedInput
-  rsvps: RSVPUpdateManyWithoutEventNestedInput
-  startTime: DateTimeFieldUpdateOperationsInput
-  title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutEventsNestedInput
-}
-
-input EventUpdateWithoutLikesInput {
-  categories: CategoryUpdateManyWithoutEventsNestedInput
-  comments: CommentUpdateManyWithoutEventNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  endTime: NullableDateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  location: StringFieldUpdateOperationsInput
-  post: PostUpdateOneRequiredWithoutEventNestedInput
-  rsvps: RSVPUpdateManyWithoutEventNestedInput
-  startTime: DateTimeFieldUpdateOperationsInput
-  title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutEventsNestedInput
-}
-
-input EventUpdateWithoutPostInput {
-  categories: CategoryUpdateManyWithoutEventsNestedInput
-  comments: CommentUpdateManyWithoutEventNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  endTime: NullableDateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutEventNestedInput
-  location: StringFieldUpdateOperationsInput
-  rsvps: RSVPUpdateManyWithoutEventNestedInput
-  startTime: DateTimeFieldUpdateOperationsInput
-  title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutEventsNestedInput
-}
-
-input EventUpdateWithoutRsvpsInput {
-  categories: CategoryUpdateManyWithoutEventsNestedInput
-  comments: CommentUpdateManyWithoutEventNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  endTime: NullableDateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutEventNestedInput
-  location: StringFieldUpdateOperationsInput
-  post: PostUpdateOneRequiredWithoutEventNestedInput
-  startTime: DateTimeFieldUpdateOperationsInput
-  title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutEventsNestedInput
-}
-
-input EventUpdateWithoutUserInput {
-  categories: CategoryUpdateManyWithoutEventsNestedInput
-  comments: CommentUpdateManyWithoutEventNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  description: StringFieldUpdateOperationsInput
-  endTime: NullableDateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutEventNestedInput
-  location: StringFieldUpdateOperationsInput
-  post: PostUpdateOneRequiredWithoutEventNestedInput
-  rsvps: RSVPUpdateManyWithoutEventNestedInput
-  startTime: DateTimeFieldUpdateOperationsInput
-  title: StringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input EventUpsertWithWhereUniqueWithoutCategoriesInput {
-  create: EventCreateWithoutCategoriesInput!
-  update: EventUpdateWithoutCategoriesInput!
-  where: EventWhereUniqueInput!
-}
-
-input EventUpsertWithWhereUniqueWithoutUserInput {
-  create: EventCreateWithoutUserInput!
-  update: EventUpdateWithoutUserInput!
-  where: EventWhereUniqueInput!
-}
-
-input EventUpsertWithoutCommentsInput {
-  create: EventCreateWithoutCommentsInput!
-  update: EventUpdateWithoutCommentsInput!
-  where: EventWhereInput
-}
-
-input EventUpsertWithoutLikesInput {
-  create: EventCreateWithoutLikesInput!
-  update: EventUpdateWithoutLikesInput!
-  where: EventWhereInput
-}
-
-input EventUpsertWithoutPostInput {
-  create: EventCreateWithoutPostInput!
-  update: EventUpdateWithoutPostInput!
-  where: EventWhereInput
-}
-
-input EventUpsertWithoutRsvpsInput {
-  create: EventCreateWithoutRsvpsInput!
-  update: EventUpdateWithoutRsvpsInput!
-  where: EventWhereInput
 }
 
 input EventWhereInput {
@@ -1484,9 +832,9 @@ input EventWhereInput {
   image: StringNullableFilter
   likes: LikeListRelationFilter
   location: StringFilter
-  post: PostScalarRelationFilter
-  postId: IntFilter
+  post: PostNullableScalarRelationFilter
   rsvps: RSVPListRelationFilter
+  shareAsPost: BoolFilter
   startTime: DateTimeFilter
   title: StringFilter
   updatedAt: DateTimeFilter
@@ -1507,9 +855,9 @@ input EventWhereUniqueInput {
   image: StringNullableFilter
   likes: LikeListRelationFilter
   location: StringFilter
-  post: PostScalarRelationFilter
-  postId: Int
+  post: PostNullableScalarRelationFilter
   rsvps: RSVPListRelationFilter
+  shareAsPost: BoolFilter
   startTime: DateTimeFilter
   title: StringFilter
   updatedAt: DateTimeFilter
@@ -1682,134 +1030,11 @@ type LikeMinAggregate {
   userId: Int
 }
 
-input LikeScalarWhereInput {
-  AND: [LikeScalarWhereInput!]
-  NOT: [LikeScalarWhereInput!]
-  OR: [LikeScalarWhereInput!]
-  createdAt: DateTimeFilter
-  eventId: IntNullableFilter
-  id: IntFilter
-  postId: IntNullableFilter
-  userId: IntFilter
-}
-
 type LikeSumAggregate {
   eventId: Int
   id: Int
   postId: Int
   userId: Int
-}
-
-input LikeUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-}
-
-input LikeUpdateManyWithWhereWithoutEventInput {
-  data: LikeUpdateManyMutationInput!
-  where: LikeScalarWhereInput!
-}
-
-input LikeUpdateManyWithWhereWithoutPostInput {
-  data: LikeUpdateManyMutationInput!
-  where: LikeScalarWhereInput!
-}
-
-input LikeUpdateManyWithWhereWithoutUserInput {
-  data: LikeUpdateManyMutationInput!
-  where: LikeScalarWhereInput!
-}
-
-input LikeUpdateManyWithoutEventNestedInput {
-  connect: [LikeWhereUniqueInput!]
-  connectOrCreate: [LikeCreateOrConnectWithoutEventInput!]
-  create: [LikeCreateWithoutEventInput!]
-  createMany: LikeCreateManyEventInputEnvelope
-  delete: [LikeWhereUniqueInput!]
-  deleteMany: [LikeScalarWhereInput!]
-  disconnect: [LikeWhereUniqueInput!]
-  set: [LikeWhereUniqueInput!]
-  update: [LikeUpdateWithWhereUniqueWithoutEventInput!]
-  updateMany: [LikeUpdateManyWithWhereWithoutEventInput!]
-  upsert: [LikeUpsertWithWhereUniqueWithoutEventInput!]
-}
-
-input LikeUpdateManyWithoutPostNestedInput {
-  connect: [LikeWhereUniqueInput!]
-  connectOrCreate: [LikeCreateOrConnectWithoutPostInput!]
-  create: [LikeCreateWithoutPostInput!]
-  createMany: LikeCreateManyPostInputEnvelope
-  delete: [LikeWhereUniqueInput!]
-  deleteMany: [LikeScalarWhereInput!]
-  disconnect: [LikeWhereUniqueInput!]
-  set: [LikeWhereUniqueInput!]
-  update: [LikeUpdateWithWhereUniqueWithoutPostInput!]
-  updateMany: [LikeUpdateManyWithWhereWithoutPostInput!]
-  upsert: [LikeUpsertWithWhereUniqueWithoutPostInput!]
-}
-
-input LikeUpdateManyWithoutUserNestedInput {
-  connect: [LikeWhereUniqueInput!]
-  connectOrCreate: [LikeCreateOrConnectWithoutUserInput!]
-  create: [LikeCreateWithoutUserInput!]
-  createMany: LikeCreateManyUserInputEnvelope
-  delete: [LikeWhereUniqueInput!]
-  deleteMany: [LikeScalarWhereInput!]
-  disconnect: [LikeWhereUniqueInput!]
-  set: [LikeWhereUniqueInput!]
-  update: [LikeUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [LikeUpdateManyWithWhereWithoutUserInput!]
-  upsert: [LikeUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input LikeUpdateWithWhereUniqueWithoutEventInput {
-  data: LikeUpdateWithoutEventInput!
-  where: LikeWhereUniqueInput!
-}
-
-input LikeUpdateWithWhereUniqueWithoutPostInput {
-  data: LikeUpdateWithoutPostInput!
-  where: LikeWhereUniqueInput!
-}
-
-input LikeUpdateWithWhereUniqueWithoutUserInput {
-  data: LikeUpdateWithoutUserInput!
-  where: LikeWhereUniqueInput!
-}
-
-input LikeUpdateWithoutEventInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  post: PostUpdateOneWithoutLikesNestedInput
-  user: UserUpdateOneRequiredWithoutLikesNestedInput
-}
-
-input LikeUpdateWithoutPostInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutLikesNestedInput
-  user: UserUpdateOneRequiredWithoutLikesNestedInput
-}
-
-input LikeUpdateWithoutUserInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutLikesNestedInput
-  post: PostUpdateOneWithoutLikesNestedInput
-}
-
-input LikeUpsertWithWhereUniqueWithoutEventInput {
-  create: LikeCreateWithoutEventInput!
-  update: LikeUpdateWithoutEventInput!
-  where: LikeWhereUniqueInput!
-}
-
-input LikeUpsertWithWhereUniqueWithoutPostInput {
-  create: LikeCreateWithoutPostInput!
-  update: LikeUpdateWithoutPostInput!
-  where: LikeWhereUniqueInput!
-}
-
-input LikeUpsertWithWhereUniqueWithoutUserInput {
-  create: LikeCreateWithoutUserInput!
-  update: LikeUpdateWithoutUserInput!
-  where: LikeWhereUniqueInput!
 }
 
 input LikeUserIdPostIdEventIdCompoundUniqueInput {
@@ -1853,14 +1078,18 @@ input LoginDto {
 }
 
 type Mutation {
-  create(createPostInput: CreatePostInput!): Post!
-  createCategory(createCategoryInput: CategoryCreateInput!): Category!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
   createComment(createCommentInput: CreateCommentInput!): Comment!
-  createEvent(createEventInput: EventCreateInput!): Event!
+  createEvent(createEventInput: CreateEventInput!): Event!
   createLike(createLikeInput: LikeCreateInput!): Like!
   createNotification(createNotificationInput: CreateNotificationInput!): Notification!
+  createPost(createPostInput: CreatePostInput!): Post!
   createRsvp(createRsvpInput: CreateRsvpInput!): RSVP!
   createUser(createUserInput: UserCreateInput!): User!
+  deleteCategory(id: Int!): Category!
+  deleteComment(id: Int!): Comment!
+  deleteEvent(id: Int!): Event!
+  deletePost(id: Int!): Post!
   login(loginInput: LoginDto!): AuthResponse!
 
   """resfreshes access and refresh tokens"""
@@ -1868,20 +1097,16 @@ type Mutation {
 
   """for creating a new user"""
   register(createUserInput: UserCreateInput!): User!
-  remove(id: Float!): Post!
-  removeCategory(id: Int!): Category!
-  removeComment(id: Int!): Comment!
-  removeEvent(id: Int!): Event!
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
   removeRsvp(id: Int!): RSVP!
   removeUser(id: Int!): User!
-  update(updatePostInput: UpdatePostInput!): Post!
-  updateCategory(updateCategoryInput: UpdateCategoryInput!): Category!
-  updateComment(id: Int!, updateCommentInput: CommentUpdateInput!): Comment!
-  updateEvent(updateEventInput: UpdateEventInput!): Event!
+  updateCategory(id: Int!, updateCategoryInput: UpdateCategoryInput!): Category!
+  updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!
+  updateEvent(id: Int!, updateEventInput: UpdateEventInput!): Event!
   updateLike(updateLikeInput: UpdateLikeInput!): Like!
   updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
+  updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
   updateRsvp(updateRsvpInput: UpdateRsvpInput!): RSVP!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
@@ -2050,69 +1275,10 @@ type NotificationMinAggregate {
   userId: Int
 }
 
-input NotificationScalarWhereInput {
-  AND: [NotificationScalarWhereInput!]
-  NOT: [NotificationScalarWhereInput!]
-  OR: [NotificationScalarWhereInput!]
-  content: StringFilter
-  createdAt: DateTimeFilter
-  id: IntFilter
-  isRead: BoolFilter
-  referenceId: IntNullableFilter
-  type: StringFilter
-  userId: IntFilter
-}
-
 type NotificationSumAggregate {
   id: Int
   referenceId: Int
   userId: Int
-}
-
-input NotificationUpdateManyMutationInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  isRead: BoolFieldUpdateOperationsInput
-  referenceId: NullableIntFieldUpdateOperationsInput
-  type: StringFieldUpdateOperationsInput
-}
-
-input NotificationUpdateManyWithWhereWithoutUserInput {
-  data: NotificationUpdateManyMutationInput!
-  where: NotificationScalarWhereInput!
-}
-
-input NotificationUpdateManyWithoutUserNestedInput {
-  connect: [NotificationWhereUniqueInput!]
-  connectOrCreate: [NotificationCreateOrConnectWithoutUserInput!]
-  create: [NotificationCreateWithoutUserInput!]
-  createMany: NotificationCreateManyUserInputEnvelope
-  delete: [NotificationWhereUniqueInput!]
-  deleteMany: [NotificationScalarWhereInput!]
-  disconnect: [NotificationWhereUniqueInput!]
-  set: [NotificationWhereUniqueInput!]
-  update: [NotificationUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [NotificationUpdateManyWithWhereWithoutUserInput!]
-  upsert: [NotificationUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input NotificationUpdateWithWhereUniqueWithoutUserInput {
-  data: NotificationUpdateWithoutUserInput!
-  where: NotificationWhereUniqueInput!
-}
-
-input NotificationUpdateWithoutUserInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  isRead: BoolFieldUpdateOperationsInput
-  referenceId: NullableIntFieldUpdateOperationsInput
-  type: StringFieldUpdateOperationsInput
-}
-
-input NotificationUpsertWithWhereUniqueWithoutUserInput {
-  create: NotificationCreateWithoutUserInput!
-  update: NotificationUpdateWithoutUserInput!
-  where: NotificationWhereUniqueInput!
 }
 
 input NotificationWhereInput {
@@ -2143,22 +1309,6 @@ input NotificationWhereUniqueInput {
   userId: IntFilter
 }
 
-input NullableDateTimeFieldUpdateOperationsInput {
-  set: DateTime
-}
-
-input NullableIntFieldUpdateOperationsInput {
-  decrement: Int
-  divide: Int
-  increment: Int
-  multiply: Int
-  set: Int
-}
-
-input NullableStringFieldUpdateOperationsInput {
-  set: String
-}
-
 type Post {
   _count: PostCount!
   categories: [Category!]
@@ -2166,6 +1316,7 @@ type Post {
   content: String!
   createdAt: DateTime!
   event: Event
+  eventId: Int
   id: ID!
   image: String
   isEvent: Boolean!
@@ -2176,6 +1327,7 @@ type Post {
 }
 
 type PostAvgAggregate {
+  eventId: Float
   id: Float
   userId: Float
 }
@@ -2190,6 +1342,7 @@ type PostCountAggregate {
   _all: Int!
   content: Int!
   createdAt: Int!
+  eventId: Int!
   id: Int!
   image: Int!
   isEvent: Int!
@@ -2200,6 +1353,7 @@ type PostCountAggregate {
 input PostCreateManyUserInput {
   content: String!
   createdAt: DateTime
+  eventId: Int
   id: Int
   image: String
   isEvent: Boolean
@@ -2335,6 +1489,7 @@ input PostListRelationFilter {
 type PostMaxAggregate {
   content: String
   createdAt: DateTime
+  eventId: Int
   id: Int
   image: String
   isEvent: Boolean
@@ -2345,6 +1500,7 @@ type PostMaxAggregate {
 type PostMinAggregate {
   content: String
   createdAt: DateTime
+  eventId: Int
   id: Int
   image: String
   isEvent: Boolean
@@ -2357,215 +1513,10 @@ input PostNullableScalarRelationFilter {
   isNot: PostWhereInput
 }
 
-input PostScalarRelationFilter {
-  is: PostWhereInput
-  isNot: PostWhereInput
-}
-
-input PostScalarWhereInput {
-  AND: [PostScalarWhereInput!]
-  NOT: [PostScalarWhereInput!]
-  OR: [PostScalarWhereInput!]
-  content: StringFilter
-  createdAt: DateTimeFilter
-  id: IntFilter
-  image: StringNullableFilter
-  isEvent: BoolFilter
-  updatedAt: DateTimeFilter
-  userId: IntFilter
-}
-
 type PostSumAggregate {
+  eventId: Int
   id: Int
   userId: Int
-}
-
-input PostUpdateManyMutationInput {
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  isEvent: BoolFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input PostUpdateManyWithWhereWithoutCategoriesInput {
-  data: PostUpdateManyMutationInput!
-  where: PostScalarWhereInput!
-}
-
-input PostUpdateManyWithWhereWithoutUserInput {
-  data: PostUpdateManyMutationInput!
-  where: PostScalarWhereInput!
-}
-
-input PostUpdateManyWithoutCategoriesNestedInput {
-  connect: [PostWhereUniqueInput!]
-  connectOrCreate: [PostCreateOrConnectWithoutCategoriesInput!]
-  create: [PostCreateWithoutCategoriesInput!]
-  delete: [PostWhereUniqueInput!]
-  deleteMany: [PostScalarWhereInput!]
-  disconnect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutCategoriesInput!]
-  updateMany: [PostUpdateManyWithWhereWithoutCategoriesInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutCategoriesInput!]
-}
-
-input PostUpdateManyWithoutUserNestedInput {
-  connect: [PostWhereUniqueInput!]
-  connectOrCreate: [PostCreateOrConnectWithoutUserInput!]
-  create: [PostCreateWithoutUserInput!]
-  createMany: PostCreateManyUserInputEnvelope
-  delete: [PostWhereUniqueInput!]
-  deleteMany: [PostScalarWhereInput!]
-  disconnect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  update: [PostUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [PostUpdateManyWithWhereWithoutUserInput!]
-  upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input PostUpdateOneRequiredWithoutEventNestedInput {
-  connect: PostWhereUniqueInput
-  connectOrCreate: PostCreateOrConnectWithoutEventInput
-  create: PostCreateWithoutEventInput
-  update: PostUpdateToOneWithWhereWithoutEventInput
-  upsert: PostUpsertWithoutEventInput
-}
-
-input PostUpdateOneWithoutCommentsNestedInput {
-  connect: PostWhereUniqueInput
-  connectOrCreate: PostCreateOrConnectWithoutCommentsInput
-  create: PostCreateWithoutCommentsInput
-  delete: PostWhereInput
-  disconnect: PostWhereInput
-  update: PostUpdateToOneWithWhereWithoutCommentsInput
-  upsert: PostUpsertWithoutCommentsInput
-}
-
-input PostUpdateOneWithoutLikesNestedInput {
-  connect: PostWhereUniqueInput
-  connectOrCreate: PostCreateOrConnectWithoutLikesInput
-  create: PostCreateWithoutLikesInput
-  delete: PostWhereInput
-  disconnect: PostWhereInput
-  update: PostUpdateToOneWithWhereWithoutLikesInput
-  upsert: PostUpsertWithoutLikesInput
-}
-
-input PostUpdateToOneWithWhereWithoutCommentsInput {
-  data: PostUpdateWithoutCommentsInput!
-  where: PostWhereInput
-}
-
-input PostUpdateToOneWithWhereWithoutEventInput {
-  data: PostUpdateWithoutEventInput!
-  where: PostWhereInput
-}
-
-input PostUpdateToOneWithWhereWithoutLikesInput {
-  data: PostUpdateWithoutLikesInput!
-  where: PostWhereInput
-}
-
-input PostUpdateWithWhereUniqueWithoutCategoriesInput {
-  data: PostUpdateWithoutCategoriesInput!
-  where: PostWhereUniqueInput!
-}
-
-input PostUpdateWithWhereUniqueWithoutUserInput {
-  data: PostUpdateWithoutUserInput!
-  where: PostWhereUniqueInput!
-}
-
-input PostUpdateWithoutCategoriesInput {
-  comments: CommentUpdateManyWithoutPostNestedInput
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutPostNestedInput
-  image: NullableStringFieldUpdateOperationsInput
-  isEvent: BoolFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutPostNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutPostsNestedInput
-}
-
-input PostUpdateWithoutCommentsInput {
-  categories: CategoryUpdateManyWithoutPostsNestedInput
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutPostNestedInput
-  image: NullableStringFieldUpdateOperationsInput
-  isEvent: BoolFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutPostNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutPostsNestedInput
-}
-
-input PostUpdateWithoutEventInput {
-  categories: CategoryUpdateManyWithoutPostsNestedInput
-  comments: CommentUpdateManyWithoutPostNestedInput
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  image: NullableStringFieldUpdateOperationsInput
-  isEvent: BoolFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutPostNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutPostsNestedInput
-}
-
-input PostUpdateWithoutLikesInput {
-  categories: CategoryUpdateManyWithoutPostsNestedInput
-  comments: CommentUpdateManyWithoutPostNestedInput
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutPostNestedInput
-  image: NullableStringFieldUpdateOperationsInput
-  isEvent: BoolFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutPostsNestedInput
-}
-
-input PostUpdateWithoutUserInput {
-  categories: CategoryUpdateManyWithoutPostsNestedInput
-  comments: CommentUpdateManyWithoutPostNestedInput
-  content: StringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneWithoutPostNestedInput
-  image: NullableStringFieldUpdateOperationsInput
-  isEvent: BoolFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutPostNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-}
-
-input PostUpsertWithWhereUniqueWithoutCategoriesInput {
-  create: PostCreateWithoutCategoriesInput!
-  update: PostUpdateWithoutCategoriesInput!
-  where: PostWhereUniqueInput!
-}
-
-input PostUpsertWithWhereUniqueWithoutUserInput {
-  create: PostCreateWithoutUserInput!
-  update: PostUpdateWithoutUserInput!
-  where: PostWhereUniqueInput!
-}
-
-input PostUpsertWithoutCommentsInput {
-  create: PostCreateWithoutCommentsInput!
-  update: PostUpdateWithoutCommentsInput!
-  where: PostWhereInput
-}
-
-input PostUpsertWithoutEventInput {
-  create: PostCreateWithoutEventInput!
-  update: PostUpdateWithoutEventInput!
-  where: PostWhereInput
-}
-
-input PostUpsertWithoutLikesInput {
-  create: PostCreateWithoutLikesInput!
-  update: PostUpdateWithoutLikesInput!
-  where: PostWhereInput
 }
 
 input PostWhereInput {
@@ -2577,6 +1528,7 @@ input PostWhereInput {
   content: StringFilter
   createdAt: DateTimeFilter
   event: EventNullableScalarRelationFilter
+  eventId: IntNullableFilter
   id: IntFilter
   image: StringNullableFilter
   isEvent: BoolFilter
@@ -2595,6 +1547,7 @@ input PostWhereUniqueInput {
   content: StringFilter
   createdAt: DateTimeFilter
   event: EventNullableScalarRelationFilter
+  eventId: Int
   id: Int
   image: StringNullableFilter
   isEvent: BoolFilter
@@ -2615,7 +1568,7 @@ type Query {
   likes: [Like!]!
   notification(id: Int!): Notification!
   notifications: [Notification!]!
-  post(id: Float!): Post!
+  post(id: Int!): Post!
   posts: [Post!]!
   rsvp(id: Int!): RSVP!
   rsvps: [RSVP!]!
@@ -2728,98 +1681,10 @@ type RSVPMinAggregate {
   userId: Int
 }
 
-input RSVPScalarWhereInput {
-  AND: [RSVPScalarWhereInput!]
-  NOT: [RSVPScalarWhereInput!]
-  OR: [RSVPScalarWhereInput!]
-  createdAt: DateTimeFilter
-  eventId: IntFilter
-  id: IntFilter
-  status: StringFilter
-  userId: IntFilter
-}
-
 type RSVPSumAggregate {
   eventId: Int
   id: Int
   userId: Int
-}
-
-input RSVPUpdateManyMutationInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  status: StringFieldUpdateOperationsInput
-}
-
-input RSVPUpdateManyWithWhereWithoutEventInput {
-  data: RSVPUpdateManyMutationInput!
-  where: RSVPScalarWhereInput!
-}
-
-input RSVPUpdateManyWithWhereWithoutUserInput {
-  data: RSVPUpdateManyMutationInput!
-  where: RSVPScalarWhereInput!
-}
-
-input RSVPUpdateManyWithoutEventNestedInput {
-  connect: [RSVPWhereUniqueInput!]
-  connectOrCreate: [RSVPCreateOrConnectWithoutEventInput!]
-  create: [RSVPCreateWithoutEventInput!]
-  createMany: RSVPCreateManyEventInputEnvelope
-  delete: [RSVPWhereUniqueInput!]
-  deleteMany: [RSVPScalarWhereInput!]
-  disconnect: [RSVPWhereUniqueInput!]
-  set: [RSVPWhereUniqueInput!]
-  update: [RSVPUpdateWithWhereUniqueWithoutEventInput!]
-  updateMany: [RSVPUpdateManyWithWhereWithoutEventInput!]
-  upsert: [RSVPUpsertWithWhereUniqueWithoutEventInput!]
-}
-
-input RSVPUpdateManyWithoutUserNestedInput {
-  connect: [RSVPWhereUniqueInput!]
-  connectOrCreate: [RSVPCreateOrConnectWithoutUserInput!]
-  create: [RSVPCreateWithoutUserInput!]
-  createMany: RSVPCreateManyUserInputEnvelope
-  delete: [RSVPWhereUniqueInput!]
-  deleteMany: [RSVPScalarWhereInput!]
-  disconnect: [RSVPWhereUniqueInput!]
-  set: [RSVPWhereUniqueInput!]
-  update: [RSVPUpdateWithWhereUniqueWithoutUserInput!]
-  updateMany: [RSVPUpdateManyWithWhereWithoutUserInput!]
-  upsert: [RSVPUpsertWithWhereUniqueWithoutUserInput!]
-}
-
-input RSVPUpdateWithWhereUniqueWithoutEventInput {
-  data: RSVPUpdateWithoutEventInput!
-  where: RSVPWhereUniqueInput!
-}
-
-input RSVPUpdateWithWhereUniqueWithoutUserInput {
-  data: RSVPUpdateWithoutUserInput!
-  where: RSVPWhereUniqueInput!
-}
-
-input RSVPUpdateWithoutEventInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  status: StringFieldUpdateOperationsInput
-  user: UserUpdateOneRequiredWithoutRsvpsNestedInput
-}
-
-input RSVPUpdateWithoutUserInput {
-  createdAt: DateTimeFieldUpdateOperationsInput
-  event: EventUpdateOneRequiredWithoutRsvpsNestedInput
-  status: StringFieldUpdateOperationsInput
-}
-
-input RSVPUpsertWithWhereUniqueWithoutEventInput {
-  create: RSVPCreateWithoutEventInput!
-  update: RSVPUpdateWithoutEventInput!
-  where: RSVPWhereUniqueInput!
-}
-
-input RSVPUpsertWithWhereUniqueWithoutUserInput {
-  create: RSVPCreateWithoutUserInput!
-  update: RSVPUpdateWithoutUserInput!
-  where: RSVPWhereUniqueInput!
 }
 
 input RSVPUserIdEventIdCompoundUniqueInput {
@@ -2852,10 +1717,6 @@ input RSVPWhereUniqueInput {
   user: UserScalarRelationFilter
   userId: IntFilter
   userId_eventId: RSVPUserIdEventIdCompoundUniqueInput
-}
-
-input StringFieldUpdateOperationsInput {
-  set: String
 }
 
 input StringFilter {
@@ -2892,32 +1753,29 @@ type TokenPair {
 }
 
 input UpdateCategoryInput {
-  children: CategoryCreateNestedManyWithoutParentInput
-  createdAt: DateTime
-  events: EventCreateNestedManyWithoutCategoriesInput
   id: Int!
   name: String
-  parent: CategoryCreateNestedOneWithoutChildrenInput
-  posts: PostCreateNestedManyWithoutCategoriesInput
   slug: String
 }
 
+input UpdateCommentInput {
+  content: String
+}
+
 input UpdateEventInput {
-  categories: CategoryCreateNestedManyWithoutEventsInput
-  comments: CommentCreateNestedManyWithoutEventInput
-  createdAt: DateTime
   description: String
   endTime: DateTime
   id: Int!
   image: String
-  likes: LikeCreateNestedManyWithoutEventInput
   location: String
-  post: PostCreateNestedOneWithoutEventInput
-  rsvps: RSVPCreateNestedManyWithoutEventInput
+
+  """Post details required if sharing as a post"""
+  post: CreatePostInput
+
+  """Whether to share this event as a post. Required if post is provided."""
+  shareAsPost: Boolean = false
   startTime: DateTime
   title: String
-  updatedAt: DateTime
-  user: UserCreateNestedOneWithoutEventsInput
 }
 
 input UpdateLikeInput {
@@ -3193,181 +2051,6 @@ input UserScalarRelationFilter {
 
 type UserSumAggregate {
   id: Int
-}
-
-input UserUpdateOneRequiredWithoutCommentsNestedInput {
-  connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutCommentsInput
-  create: UserCreateWithoutCommentsInput
-  update: UserUpdateToOneWithWhereWithoutCommentsInput
-  upsert: UserUpsertWithoutCommentsInput
-}
-
-input UserUpdateOneRequiredWithoutEventsNestedInput {
-  connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutEventsInput
-  create: UserCreateWithoutEventsInput
-  update: UserUpdateToOneWithWhereWithoutEventsInput
-  upsert: UserUpsertWithoutEventsInput
-}
-
-input UserUpdateOneRequiredWithoutLikesNestedInput {
-  connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutLikesInput
-  create: UserCreateWithoutLikesInput
-  update: UserUpdateToOneWithWhereWithoutLikesInput
-  upsert: UserUpsertWithoutLikesInput
-}
-
-input UserUpdateOneRequiredWithoutPostsNestedInput {
-  connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutPostsInput
-  create: UserCreateWithoutPostsInput
-  update: UserUpdateToOneWithWhereWithoutPostsInput
-  upsert: UserUpsertWithoutPostsInput
-}
-
-input UserUpdateOneRequiredWithoutRsvpsNestedInput {
-  connect: UserWhereUniqueInput
-  connectOrCreate: UserCreateOrConnectWithoutRsvpsInput
-  create: UserCreateWithoutRsvpsInput
-  update: UserUpdateToOneWithWhereWithoutRsvpsInput
-  upsert: UserUpsertWithoutRsvpsInput
-}
-
-input UserUpdateToOneWithWhereWithoutCommentsInput {
-  data: UserUpdateWithoutCommentsInput!
-  where: UserWhereInput
-}
-
-input UserUpdateToOneWithWhereWithoutEventsInput {
-  data: UserUpdateWithoutEventsInput!
-  where: UserWhereInput
-}
-
-input UserUpdateToOneWithWhereWithoutLikesInput {
-  data: UserUpdateWithoutLikesInput!
-  where: UserWhereInput
-}
-
-input UserUpdateToOneWithWhereWithoutPostsInput {
-  data: UserUpdateWithoutPostsInput!
-  where: UserWhereInput
-}
-
-input UserUpdateToOneWithWhereWithoutRsvpsInput {
-  data: UserUpdateWithoutRsvpsInput!
-  where: UserWhereInput
-}
-
-input UserUpdateWithoutCommentsInput {
-  avatar: NullableStringFieldUpdateOperationsInput
-  bio: NullableStringFieldUpdateOperationsInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  events: EventUpdateManyWithoutUserNestedInput
-  likes: LikeUpdateManyWithoutUserNestedInput
-  notifications: NotificationUpdateManyWithoutUserNestedInput
-  password: StringFieldUpdateOperationsInput
-  posts: PostUpdateManyWithoutUserNestedInput
-  role: NullableStringFieldUpdateOperationsInput
-  rsvps: RSVPUpdateManyWithoutUserNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  username: StringFieldUpdateOperationsInput
-}
-
-input UserUpdateWithoutEventsInput {
-  avatar: NullableStringFieldUpdateOperationsInput
-  bio: NullableStringFieldUpdateOperationsInput
-  comments: CommentUpdateManyWithoutUserNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  likes: LikeUpdateManyWithoutUserNestedInput
-  notifications: NotificationUpdateManyWithoutUserNestedInput
-  password: StringFieldUpdateOperationsInput
-  posts: PostUpdateManyWithoutUserNestedInput
-  role: NullableStringFieldUpdateOperationsInput
-  rsvps: RSVPUpdateManyWithoutUserNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  username: StringFieldUpdateOperationsInput
-}
-
-input UserUpdateWithoutLikesInput {
-  avatar: NullableStringFieldUpdateOperationsInput
-  bio: NullableStringFieldUpdateOperationsInput
-  comments: CommentUpdateManyWithoutUserNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  events: EventUpdateManyWithoutUserNestedInput
-  notifications: NotificationUpdateManyWithoutUserNestedInput
-  password: StringFieldUpdateOperationsInput
-  posts: PostUpdateManyWithoutUserNestedInput
-  role: NullableStringFieldUpdateOperationsInput
-  rsvps: RSVPUpdateManyWithoutUserNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  username: StringFieldUpdateOperationsInput
-}
-
-input UserUpdateWithoutPostsInput {
-  avatar: NullableStringFieldUpdateOperationsInput
-  bio: NullableStringFieldUpdateOperationsInput
-  comments: CommentUpdateManyWithoutUserNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  events: EventUpdateManyWithoutUserNestedInput
-  likes: LikeUpdateManyWithoutUserNestedInput
-  notifications: NotificationUpdateManyWithoutUserNestedInput
-  password: StringFieldUpdateOperationsInput
-  role: NullableStringFieldUpdateOperationsInput
-  rsvps: RSVPUpdateManyWithoutUserNestedInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  username: StringFieldUpdateOperationsInput
-}
-
-input UserUpdateWithoutRsvpsInput {
-  avatar: NullableStringFieldUpdateOperationsInput
-  bio: NullableStringFieldUpdateOperationsInput
-  comments: CommentUpdateManyWithoutUserNestedInput
-  createdAt: DateTimeFieldUpdateOperationsInput
-  email: StringFieldUpdateOperationsInput
-  events: EventUpdateManyWithoutUserNestedInput
-  likes: LikeUpdateManyWithoutUserNestedInput
-  notifications: NotificationUpdateManyWithoutUserNestedInput
-  password: StringFieldUpdateOperationsInput
-  posts: PostUpdateManyWithoutUserNestedInput
-  role: NullableStringFieldUpdateOperationsInput
-  updatedAt: DateTimeFieldUpdateOperationsInput
-  username: StringFieldUpdateOperationsInput
-}
-
-input UserUpsertWithoutCommentsInput {
-  create: UserCreateWithoutCommentsInput!
-  update: UserUpdateWithoutCommentsInput!
-  where: UserWhereInput
-}
-
-input UserUpsertWithoutEventsInput {
-  create: UserCreateWithoutEventsInput!
-  update: UserUpdateWithoutEventsInput!
-  where: UserWhereInput
-}
-
-input UserUpsertWithoutLikesInput {
-  create: UserCreateWithoutLikesInput!
-  update: UserUpdateWithoutLikesInput!
-  where: UserWhereInput
-}
-
-input UserUpsertWithoutPostsInput {
-  create: UserCreateWithoutPostsInput!
-  update: UserUpdateWithoutPostsInput!
-  where: UserWhereInput
-}
-
-input UserUpsertWithoutRsvpsInput {
-  create: UserCreateWithoutRsvpsInput!
-  update: UserUpdateWithoutRsvpsInput!
-  where: UserWhereInput
 }
 
 input UserWhereInput {

@@ -38,11 +38,7 @@ export class EventsResolver {
     @Args('updateEventInput') updateEventInput: UpdateEventInput,
     @CurrentUser() user: AuthenticatedUser,
   ) {
-    return this.eventsService.updateEvent(
-      user.userId,
-      id,
-      updateEventInput,
-    );
+    return this.eventsService.updateEvent(user.userId, id, updateEventInput);
   }
 
   @UseGuards(JwtAuthGuard)

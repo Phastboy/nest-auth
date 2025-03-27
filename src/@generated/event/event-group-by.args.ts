@@ -14,37 +14,38 @@ import { EventMaxAggregateInput } from './event-max-aggregate.input';
 
 @ArgsType()
 export class EventGroupByArgs {
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  where?: EventWhereInput;
 
-  @Field(() => [EventOrderByWithAggregationInput], { nullable: true })
-  orderBy?: Array<EventOrderByWithAggregationInput>;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    where?: EventWhereInput;
 
-  @Field(() => [EventScalarFieldEnum], { nullable: false })
-  by!: Array<`${EventScalarFieldEnum}`>;
+    @Field(() => [EventOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<EventOrderByWithAggregationInput>;
 
-  @Field(() => EventScalarWhereWithAggregatesInput, { nullable: true })
-  having?: EventScalarWhereWithAggregatesInput;
+    @Field(() => [EventScalarFieldEnum], {nullable:false})
+    by!: Array<`${EventScalarFieldEnum}`>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => EventScalarWhereWithAggregatesInput, {nullable:true})
+    having?: EventScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => EventCountAggregateInput, { nullable: true })
-  _count?: EventCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => EventAvgAggregateInput, { nullable: true })
-  _avg?: EventAvgAggregateInput;
+    @Field(() => EventCountAggregateInput, {nullable:true})
+    _count?: EventCountAggregateInput;
 
-  @Field(() => EventSumAggregateInput, { nullable: true })
-  _sum?: EventSumAggregateInput;
+    @Field(() => EventAvgAggregateInput, {nullable:true})
+    _avg?: EventAvgAggregateInput;
 
-  @Field(() => EventMinAggregateInput, { nullable: true })
-  _min?: EventMinAggregateInput;
+    @Field(() => EventSumAggregateInput, {nullable:true})
+    _sum?: EventSumAggregateInput;
 
-  @Field(() => EventMaxAggregateInput, { nullable: true })
-  _max?: EventMaxAggregateInput;
+    @Field(() => EventMinAggregateInput, {nullable:true})
+    _min?: EventMinAggregateInput;
+
+    @Field(() => EventMaxAggregateInput, {nullable:true})
+    _max?: EventMaxAggregateInput;
 }

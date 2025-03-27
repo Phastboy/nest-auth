@@ -7,15 +7,16 @@ import { UserWhereInput } from './user-where.input';
 
 @InputType()
 export class UserUpsertWithoutLikesInput {
-  @Field(() => UserUpdateWithoutLikesInput, { nullable: false })
-  @Type(() => UserUpdateWithoutLikesInput)
-  update!: UserUpdateWithoutLikesInput;
 
-  @Field(() => UserCreateWithoutLikesInput, { nullable: false })
-  @Type(() => UserCreateWithoutLikesInput)
-  create!: UserCreateWithoutLikesInput;
+    @Field(() => UserUpdateWithoutLikesInput, {nullable:false})
+    @Type(() => UserUpdateWithoutLikesInput)
+    update!: UserUpdateWithoutLikesInput;
 
-  @Field(() => UserWhereInput, { nullable: true })
-  @Type(() => UserWhereInput)
-  where?: UserWhereInput;
+    @Field(() => UserCreateWithoutLikesInput, {nullable:false})
+    @Type(() => UserCreateWithoutLikesInput)
+    create!: UserCreateWithoutLikesInput;
+
+    @Field(() => UserWhereInput, {nullable:true})
+    @Type(() => UserWhereInput)
+    where?: UserWhereInput;
 }

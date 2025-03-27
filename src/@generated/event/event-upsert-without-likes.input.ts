@@ -7,15 +7,16 @@ import { EventWhereInput } from './event-where.input';
 
 @InputType()
 export class EventUpsertWithoutLikesInput {
-  @Field(() => EventUpdateWithoutLikesInput, { nullable: false })
-  @Type(() => EventUpdateWithoutLikesInput)
-  update!: EventUpdateWithoutLikesInput;
 
-  @Field(() => EventCreateWithoutLikesInput, { nullable: false })
-  @Type(() => EventCreateWithoutLikesInput)
-  create!: EventCreateWithoutLikesInput;
+    @Field(() => EventUpdateWithoutLikesInput, {nullable:false})
+    @Type(() => EventUpdateWithoutLikesInput)
+    update!: EventUpdateWithoutLikesInput;
 
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  where?: EventWhereInput;
+    @Field(() => EventCreateWithoutLikesInput, {nullable:false})
+    @Type(() => EventCreateWithoutLikesInput)
+    create!: EventCreateWithoutLikesInput;
+
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    where?: EventWhereInput;
 }

@@ -7,11 +7,12 @@ import { RSVPUpdateWithoutEventInput } from './rsvp-update-without-event.input';
 
 @InputType()
 export class RSVPUpdateWithWhereUniqueWithoutEventInput {
-  @Field(() => RSVPWhereUniqueInput, { nullable: false })
-  @Type(() => RSVPWhereUniqueInput)
-  where!: Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>;
 
-  @Field(() => RSVPUpdateWithoutEventInput, { nullable: false })
-  @Type(() => RSVPUpdateWithoutEventInput)
-  data!: RSVPUpdateWithoutEventInput;
+    @Field(() => RSVPWhereUniqueInput, {nullable:false})
+    @Type(() => RSVPWhereUniqueInput)
+    where!: Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>;
+
+    @Field(() => RSVPUpdateWithoutEventInput, {nullable:false})
+    @Type(() => RSVPUpdateWithoutEventInput)
+    data!: RSVPUpdateWithoutEventInput;
 }

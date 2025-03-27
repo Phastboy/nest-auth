@@ -8,15 +8,16 @@ import { CategoryCreateWithoutEventsInput } from './category-create-without-even
 
 @InputType()
 export class CategoryUpsertWithWhereUniqueWithoutEventsInput {
-  @Field(() => CategoryWhereUniqueInput, { nullable: false })
-  @Type(() => CategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryUpdateWithoutEventsInput, { nullable: false })
-  @Type(() => CategoryUpdateWithoutEventsInput)
-  update!: CategoryUpdateWithoutEventsInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:false})
+    @Type(() => CategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryCreateWithoutEventsInput, { nullable: false })
-  @Type(() => CategoryCreateWithoutEventsInput)
-  create!: CategoryCreateWithoutEventsInput;
+    @Field(() => CategoryUpdateWithoutEventsInput, {nullable:false})
+    @Type(() => CategoryUpdateWithoutEventsInput)
+    update!: CategoryUpdateWithoutEventsInput;
+
+    @Field(() => CategoryCreateWithoutEventsInput, {nullable:false})
+    @Type(() => CategoryCreateWithoutEventsInput)
+    create!: CategoryCreateWithoutEventsInput;
 }

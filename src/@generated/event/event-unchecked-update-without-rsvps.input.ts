@@ -5,57 +5,57 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
+import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
+import { PostUncheckedUpdateOneWithoutEventNestedInput } from '../post/post-unchecked-update-one-without-event-nested.input';
 import { CategoryUncheckedUpdateManyWithoutEventsNestedInput } from '../category/category-unchecked-update-many-without-events-nested.input';
 import { CommentUncheckedUpdateManyWithoutEventNestedInput } from '../comment/comment-unchecked-update-many-without-event-nested.input';
 import { LikeUncheckedUpdateManyWithoutEventNestedInput } from '../like/like-unchecked-update-many-without-event-nested.input';
 
 @InputType()
 export class EventUncheckedUpdateWithoutRsvpsInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  title?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  description?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    title?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  location?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    description?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  startTime?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    location?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  endTime?: NullableDateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    startTime?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  image?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableDateTimeFieldUpdateOperationsInput, {nullable:true})
+    endTime?: NullableDateTimeFieldUpdateOperationsInput;
 
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  userId?: IntFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    image?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  postId?: IntFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    userId?: IntFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    shareAsPost?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => CategoryUncheckedUpdateManyWithoutEventsNestedInput, {
-    nullable: true,
-  })
-  categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => CommentUncheckedUpdateManyWithoutEventNestedInput, {
-    nullable: true,
-  })
-  comments?: CommentUncheckedUpdateManyWithoutEventNestedInput;
+    @Field(() => PostUncheckedUpdateOneWithoutEventNestedInput, {nullable:true})
+    post?: PostUncheckedUpdateOneWithoutEventNestedInput;
 
-  @Field(() => LikeUncheckedUpdateManyWithoutEventNestedInput, {
-    nullable: true,
-  })
-  likes?: LikeUncheckedUpdateManyWithoutEventNestedInput;
+    @Field(() => CategoryUncheckedUpdateManyWithoutEventsNestedInput, {nullable:true})
+    categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput;
+
+    @Field(() => CommentUncheckedUpdateManyWithoutEventNestedInput, {nullable:true})
+    comments?: CommentUncheckedUpdateManyWithoutEventNestedInput;
+
+    @Field(() => LikeUncheckedUpdateManyWithoutEventNestedInput, {nullable:true})
+    likes?: LikeUncheckedUpdateManyWithoutEventNestedInput;
 }

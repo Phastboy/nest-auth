@@ -9,39 +9,40 @@ import { NotificationMaxAggregate } from './notification-max-aggregate.output';
 
 @ObjectType()
 export class NotificationGroupBy {
-  @Field(() => Int, { nullable: false })
-  id!: number;
 
-  @Field(() => Int, { nullable: false })
-  userId!: number;
+    @Field(() => Int, {nullable:false})
+    id!: number;
 
-  @Field(() => String, { nullable: false })
-  type!: string;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => String, { nullable: false })
-  content!: string;
+    @Field(() => String, {nullable:false})
+    type!: string;
 
-  @Field(() => Boolean, { nullable: false })
-  isRead!: boolean;
+    @Field(() => String, {nullable:false})
+    content!: string;
 
-  @Field(() => Int, { nullable: true })
-  referenceId?: number;
+    @Field(() => Boolean, {nullable:false})
+    isRead!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => Int, {nullable:true})
+    referenceId?: number;
 
-  @Field(() => NotificationCountAggregate, { nullable: true })
-  _count?: NotificationCountAggregate;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => NotificationAvgAggregate, { nullable: true })
-  _avg?: NotificationAvgAggregate;
+    @Field(() => NotificationCountAggregate, {nullable:true})
+    _count?: NotificationCountAggregate;
 
-  @Field(() => NotificationSumAggregate, { nullable: true })
-  _sum?: NotificationSumAggregate;
+    @Field(() => NotificationAvgAggregate, {nullable:true})
+    _avg?: NotificationAvgAggregate;
 
-  @Field(() => NotificationMinAggregate, { nullable: true })
-  _min?: NotificationMinAggregate;
+    @Field(() => NotificationSumAggregate, {nullable:true})
+    _sum?: NotificationSumAggregate;
 
-  @Field(() => NotificationMaxAggregate, { nullable: true })
-  _max?: NotificationMaxAggregate;
+    @Field(() => NotificationMinAggregate, {nullable:true})
+    _min?: NotificationMinAggregate;
+
+    @Field(() => NotificationMaxAggregate, {nullable:true})
+    _max?: NotificationMaxAggregate;
 }

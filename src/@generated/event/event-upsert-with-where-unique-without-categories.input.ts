@@ -8,15 +8,16 @@ import { EventCreateWithoutCategoriesInput } from './event-create-without-catego
 
 @InputType()
 export class EventUpsertWithWhereUniqueWithoutCategoriesInput {
-  @Field(() => EventWhereUniqueInput, { nullable: false })
-  @Type(() => EventWhereUniqueInput)
-  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
 
-  @Field(() => EventUpdateWithoutCategoriesInput, { nullable: false })
-  @Type(() => EventUpdateWithoutCategoriesInput)
-  update!: EventUpdateWithoutCategoriesInput;
+    @Field(() => EventWhereUniqueInput, {nullable:false})
+    @Type(() => EventWhereUniqueInput)
+    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-  @Field(() => EventCreateWithoutCategoriesInput, { nullable: false })
-  @Type(() => EventCreateWithoutCategoriesInput)
-  create!: EventCreateWithoutCategoriesInput;
+    @Field(() => EventUpdateWithoutCategoriesInput, {nullable:false})
+    @Type(() => EventUpdateWithoutCategoriesInput)
+    update!: EventUpdateWithoutCategoriesInput;
+
+    @Field(() => EventCreateWithoutCategoriesInput, {nullable:false})
+    @Type(() => EventCreateWithoutCategoriesInput)
+    create!: EventCreateWithoutCategoriesInput;
 }

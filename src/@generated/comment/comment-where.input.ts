@@ -12,48 +12,49 @@ import { CommentListRelationFilter } from './comment-list-relation-filter.input'
 
 @InputType()
 export class CommentWhereInput {
-  @Field(() => [CommentWhereInput], { nullable: true })
-  AND?: Array<CommentWhereInput>;
 
-  @Field(() => [CommentWhereInput], { nullable: true })
-  OR?: Array<CommentWhereInput>;
+    @Field(() => [CommentWhereInput], {nullable:true})
+    AND?: Array<CommentWhereInput>;
 
-  @Field(() => [CommentWhereInput], { nullable: true })
-  NOT?: Array<CommentWhereInput>;
+    @Field(() => [CommentWhereInput], {nullable:true})
+    OR?: Array<CommentWhereInput>;
 
-  @Field(() => IntFilter, { nullable: true })
-  id?: IntFilter;
+    @Field(() => [CommentWhereInput], {nullable:true})
+    NOT?: Array<CommentWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  content?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
-  @Field(() => IntFilter, { nullable: true })
-  userId?: IntFilter;
+    @Field(() => StringFilter, {nullable:true})
+    content?: StringFilter;
 
-  @Field(() => IntNullableFilter, { nullable: true })
-  postId?: IntNullableFilter;
+    @Field(() => IntFilter, {nullable:true})
+    userId?: IntFilter;
 
-  @Field(() => IntNullableFilter, { nullable: true })
-  eventId?: IntNullableFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    postId?: IntNullableFilter;
 
-  @Field(() => IntNullableFilter, { nullable: true })
-  parentId?: IntNullableFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    eventId?: IntNullableFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    parentId?: IntNullableFilter;
 
-  @Field(() => UserScalarRelationFilter, { nullable: true })
-  user?: UserScalarRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => PostNullableScalarRelationFilter, { nullable: true })
-  post?: PostNullableScalarRelationFilter;
+    @Field(() => UserScalarRelationFilter, {nullable:true})
+    user?: UserScalarRelationFilter;
 
-  @Field(() => EventNullableScalarRelationFilter, { nullable: true })
-  event?: EventNullableScalarRelationFilter;
+    @Field(() => PostNullableScalarRelationFilter, {nullable:true})
+    post?: PostNullableScalarRelationFilter;
 
-  @Field(() => CommentNullableScalarRelationFilter, { nullable: true })
-  parent?: CommentNullableScalarRelationFilter;
+    @Field(() => EventNullableScalarRelationFilter, {nullable:true})
+    event?: EventNullableScalarRelationFilter;
 
-  @Field(() => CommentListRelationFilter, { nullable: true })
-  replies?: CommentListRelationFilter;
+    @Field(() => CommentNullableScalarRelationFilter, {nullable:true})
+    parent?: CommentNullableScalarRelationFilter;
+
+    @Field(() => CommentListRelationFilter, {nullable:true})
+    replies?: CommentListRelationFilter;
 }

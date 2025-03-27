@@ -4,36 +4,37 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class EventMaxAggregate {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: true })
-  title?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => String, { nullable: true })
-  description?: string;
+    @Field(() => String, {nullable:true})
+    title?: string;
 
-  @Field(() => String, { nullable: true })
-  location?: string;
+    @Field(() => String, {nullable:true})
+    description?: string;
 
-  @Field(() => Date, { nullable: true })
-  startTime?: Date | string;
+    @Field(() => String, {nullable:true})
+    location?: string;
 
-  @Field(() => Date, { nullable: true })
-  endTime?: Date | string;
+    @Field(() => Date, {nullable:true})
+    startTime?: Date | string;
 
-  @Field(() => String, { nullable: true })
-  image?: string;
+    @Field(() => Date, {nullable:true})
+    endTime?: Date | string;
 
-  @Field(() => Int, { nullable: true })
-  userId?: number;
+    @Field(() => String, {nullable:true})
+    image?: string;
 
-  @Field(() => Int, { nullable: true })
-  postId?: number;
+    @Field(() => Int, {nullable:true})
+    userId?: number;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    shareAsPost?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

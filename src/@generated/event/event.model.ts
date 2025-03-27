@@ -12,57 +12,58 @@ import { EventCount } from './event-count.output';
 
 @ObjectType()
 export class Event {
-  @Field(() => ID, { nullable: false })
-  id!: number;
 
-  @Field(() => String, { nullable: false })
-  title!: string;
+    @Field(() => ID, {nullable:false})
+    id!: number;
 
-  @Field(() => String, { nullable: false })
-  description!: string;
+    @Field(() => String, {nullable:false})
+    title!: string;
 
-  @Field(() => String, { nullable: false })
-  location!: string;
+    @Field(() => String, {nullable:false})
+    description!: string;
 
-  @Field(() => Date, { nullable: false })
-  startTime!: Date;
+    @Field(() => String, {nullable:false})
+    location!: string;
 
-  @Field(() => Date, { nullable: true })
-  endTime!: Date | null;
+    @Field(() => Date, {nullable:false})
+    startTime!: Date;
 
-  @Field(() => String, { nullable: true })
-  image!: string | null;
+    @Field(() => Date, {nullable:true})
+    endTime!: Date | null;
 
-  @Field(() => Int, { nullable: false })
-  userId!: number;
+    @Field(() => String, {nullable:true})
+    image!: string | null;
 
-  @Field(() => Int, { nullable: false })
-  postId!: number;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => Boolean, {defaultValue:false,nullable:false})
+    shareAsPost!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => User, { nullable: false })
-  user?: User;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
 
-  @Field(() => Post, { nullable: false })
-  post?: Post;
+    @Field(() => User, {nullable:false})
+    user?: User;
 
-  @Field(() => [Category], { nullable: true })
-  categories?: Array<Category>;
+    @Field(() => Post, {nullable:true})
+    post?: Post | null;
 
-  @Field(() => [Comment], { nullable: true })
-  comments?: Array<Comment>;
+    @Field(() => [Category], {nullable:true})
+    categories?: Array<Category>;
 
-  @Field(() => [RSVP], { nullable: true })
-  rsvps?: Array<RSVP>;
+    @Field(() => [Comment], {nullable:true})
+    comments?: Array<Comment>;
 
-  @Field(() => [Like], { nullable: true })
-  likes?: Array<Like>;
+    @Field(() => [RSVP], {nullable:true})
+    rsvps?: Array<RSVP>;
 
-  @Field(() => EventCount, { nullable: false })
-  _count?: EventCount;
+    @Field(() => [Like], {nullable:true})
+    likes?: Array<Like>;
+
+    @Field(() => EventCount, {nullable:false})
+    _count?: EventCount;
 }

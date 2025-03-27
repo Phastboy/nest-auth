@@ -7,11 +7,12 @@ import { PostCreateWithoutUserInput } from './post-create-without-user.input';
 
 @InputType()
 export class PostCreateOrConnectWithoutUserInput {
-  @Field(() => PostWhereUniqueInput, { nullable: false })
-  @Type(() => PostWhereUniqueInput)
-  where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 
-  @Field(() => PostCreateWithoutUserInput, { nullable: false })
-  @Type(() => PostCreateWithoutUserInput)
-  create!: PostCreateWithoutUserInput;
+    @Field(() => PostWhereUniqueInput, {nullable:false})
+    @Type(() => PostWhereUniqueInput)
+    where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
+
+    @Field(() => PostCreateWithoutUserInput, {nullable:false})
+    @Type(() => PostCreateWithoutUserInput)
+    create!: PostCreateWithoutUserInput;
 }

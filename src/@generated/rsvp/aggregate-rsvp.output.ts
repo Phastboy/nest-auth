@@ -8,18 +8,19 @@ import { RSVPMaxAggregate } from './rsvp-max-aggregate.output';
 
 @ObjectType()
 export class AggregateRSVP {
-  @Field(() => RSVPCountAggregate, { nullable: true })
-  _count?: RSVPCountAggregate;
 
-  @Field(() => RSVPAvgAggregate, { nullable: true })
-  _avg?: RSVPAvgAggregate;
+    @Field(() => RSVPCountAggregate, {nullable:true})
+    _count?: RSVPCountAggregate;
 
-  @Field(() => RSVPSumAggregate, { nullable: true })
-  _sum?: RSVPSumAggregate;
+    @Field(() => RSVPAvgAggregate, {nullable:true})
+    _avg?: RSVPAvgAggregate;
 
-  @Field(() => RSVPMinAggregate, { nullable: true })
-  _min?: RSVPMinAggregate;
+    @Field(() => RSVPSumAggregate, {nullable:true})
+    _sum?: RSVPSumAggregate;
 
-  @Field(() => RSVPMaxAggregate, { nullable: true })
-  _max?: RSVPMaxAggregate;
+    @Field(() => RSVPMinAggregate, {nullable:true})
+    _min?: RSVPMinAggregate;
+
+    @Field(() => RSVPMaxAggregate, {nullable:true})
+    _max?: RSVPMaxAggregate;
 }

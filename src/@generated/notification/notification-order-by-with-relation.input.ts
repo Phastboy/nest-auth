@@ -6,27 +6,28 @@ import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relatio
 
 @InputType()
 export class NotificationOrderByWithRelationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  userId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  type?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    userId?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  content?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    type?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  isRead?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    content?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  referenceId?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    isRead?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    referenceId?: SortOrderInput;
 
-  @Field(() => UserOrderByWithRelationInput, { nullable: true })
-  user?: UserOrderByWithRelationInput;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
+
+    @Field(() => UserOrderByWithRelationInput, {nullable:true})
+    user?: UserOrderByWithRelationInput;
 }

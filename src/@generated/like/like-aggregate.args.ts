@@ -14,34 +14,35 @@ import { LikeMaxAggregateInput } from './like-max-aggregate.input';
 
 @ArgsType()
 export class LikeAggregateArgs {
-  @Field(() => LikeWhereInput, { nullable: true })
-  @Type(() => LikeWhereInput)
-  where?: LikeWhereInput;
 
-  @Field(() => [LikeOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<LikeOrderByWithRelationInput>;
+    @Field(() => LikeWhereInput, {nullable:true})
+    @Type(() => LikeWhereInput)
+    where?: LikeWhereInput;
 
-  @Field(() => LikeWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
+    @Field(() => [LikeOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<LikeOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => LikeWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => LikeCountAggregateInput, { nullable: true })
-  _count?: LikeCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => LikeAvgAggregateInput, { nullable: true })
-  _avg?: LikeAvgAggregateInput;
+    @Field(() => LikeCountAggregateInput, {nullable:true})
+    _count?: LikeCountAggregateInput;
 
-  @Field(() => LikeSumAggregateInput, { nullable: true })
-  _sum?: LikeSumAggregateInput;
+    @Field(() => LikeAvgAggregateInput, {nullable:true})
+    _avg?: LikeAvgAggregateInput;
 
-  @Field(() => LikeMinAggregateInput, { nullable: true })
-  _min?: LikeMinAggregateInput;
+    @Field(() => LikeSumAggregateInput, {nullable:true})
+    _sum?: LikeSumAggregateInput;
 
-  @Field(() => LikeMaxAggregateInput, { nullable: true })
-  _max?: LikeMaxAggregateInput;
+    @Field(() => LikeMinAggregateInput, {nullable:true})
+    _min?: LikeMinAggregateInput;
+
+    @Field(() => LikeMaxAggregateInput, {nullable:true})
+    _max?: LikeMaxAggregateInput;
 }

@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class LikeCreateManyPostInputEnvelope {
-  @Field(() => [LikeCreateManyPostInput], { nullable: false })
-  @Type(() => LikeCreateManyPostInput)
-  data!: Array<LikeCreateManyPostInput>;
+
+    @Field(() => [LikeCreateManyPostInput], {nullable:false})
+    @Type(() => LikeCreateManyPostInput)
+    data!: Array<LikeCreateManyPostInput>;
 }

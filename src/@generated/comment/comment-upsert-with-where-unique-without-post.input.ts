@@ -8,15 +8,16 @@ import { CommentCreateWithoutPostInput } from './comment-create-without-post.inp
 
 @InputType()
 export class CommentUpsertWithWhereUniqueWithoutPostInput {
-  @Field(() => CommentWhereUniqueInput, { nullable: false })
-  @Type(() => CommentWhereUniqueInput)
-  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-  @Field(() => CommentUpdateWithoutPostInput, { nullable: false })
-  @Type(() => CommentUpdateWithoutPostInput)
-  update!: CommentUpdateWithoutPostInput;
+    @Field(() => CommentWhereUniqueInput, {nullable:false})
+    @Type(() => CommentWhereUniqueInput)
+    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-  @Field(() => CommentCreateWithoutPostInput, { nullable: false })
-  @Type(() => CommentCreateWithoutPostInput)
-  create!: CommentCreateWithoutPostInput;
+    @Field(() => CommentUpdateWithoutPostInput, {nullable:false})
+    @Type(() => CommentUpdateWithoutPostInput)
+    update!: CommentUpdateWithoutPostInput;
+
+    @Field(() => CommentCreateWithoutPostInput, {nullable:false})
+    @Type(() => CommentCreateWithoutPostInput)
+    create!: CommentCreateWithoutPostInput;
 }

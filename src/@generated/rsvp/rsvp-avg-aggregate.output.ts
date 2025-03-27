@@ -4,12 +4,13 @@ import { Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class RSVPAvgAggregate {
-  @Field(() => Float, { nullable: true })
-  id?: number;
 
-  @Field(() => Float, { nullable: true })
-  userId?: number;
+    @Field(() => Float, {nullable:true})
+    id?: number;
 
-  @Field(() => Float, { nullable: true })
-  eventId?: number;
+    @Field(() => Float, {nullable:true})
+    userId?: number;
+
+    @Field(() => Float, {nullable:true})
+    eventId?: number;
 }

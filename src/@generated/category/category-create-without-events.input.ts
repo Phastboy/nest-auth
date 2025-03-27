@@ -6,21 +6,22 @@ import { PostCreateNestedManyWithoutCategoriesInput } from '../post/post-create-
 
 @InputType()
 export class CategoryCreateWithoutEventsInput {
-  @Field(() => String, { nullable: false })
-  name!: string;
 
-  @Field(() => String, { nullable: false })
-  slug!: string;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => String, {nullable:false})
+    slug!: string;
 
-  @Field(() => CategoryCreateNestedOneWithoutChildrenInput, { nullable: true })
-  parent?: CategoryCreateNestedOneWithoutChildrenInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => CategoryCreateNestedManyWithoutParentInput, { nullable: true })
-  children?: CategoryCreateNestedManyWithoutParentInput;
+    @Field(() => CategoryCreateNestedOneWithoutChildrenInput, {nullable:true})
+    parent?: CategoryCreateNestedOneWithoutChildrenInput;
 
-  @Field(() => PostCreateNestedManyWithoutCategoriesInput, { nullable: true })
-  posts?: PostCreateNestedManyWithoutCategoriesInput;
+    @Field(() => CategoryCreateNestedManyWithoutParentInput, {nullable:true})
+    children?: CategoryCreateNestedManyWithoutParentInput;
+
+    @Field(() => PostCreateNestedManyWithoutCategoriesInput, {nullable:true})
+    posts?: PostCreateNestedManyWithoutCategoriesInput;
 }

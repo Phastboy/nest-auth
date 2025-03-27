@@ -7,11 +7,12 @@ import { EventCreateWithoutCommentsInput } from './event-create-without-comments
 
 @InputType()
 export class EventCreateOrConnectWithoutCommentsInput {
-  @Field(() => EventWhereUniqueInput, { nullable: false })
-  @Type(() => EventWhereUniqueInput)
-  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
 
-  @Field(() => EventCreateWithoutCommentsInput, { nullable: false })
-  @Type(() => EventCreateWithoutCommentsInput)
-  create!: EventCreateWithoutCommentsInput;
+    @Field(() => EventWhereUniqueInput, {nullable:false})
+    @Type(() => EventWhereUniqueInput)
+    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+
+    @Field(() => EventCreateWithoutCommentsInput, {nullable:false})
+    @Type(() => EventCreateWithoutCommentsInput)
+    create!: EventCreateWithoutCommentsInput;
 }

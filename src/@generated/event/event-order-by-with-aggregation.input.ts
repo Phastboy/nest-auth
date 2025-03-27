@@ -10,51 +10,52 @@ import { EventSumOrderByAggregateInput } from './event-sum-order-by-aggregate.in
 
 @InputType()
 export class EventOrderByWithAggregationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  title?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  description?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    title?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  location?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    description?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  startTime?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    location?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  endTime?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    startTime?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  image?: SortOrderInput;
+    @Field(() => SortOrderInput, {nullable:true})
+    endTime?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  userId?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    image?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  postId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    userId?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    shareAsPost?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => EventCountOrderByAggregateInput, { nullable: true })
-  _count?: EventCountOrderByAggregateInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: `${SortOrder}`;
 
-  @Field(() => EventAvgOrderByAggregateInput, { nullable: true })
-  _avg?: EventAvgOrderByAggregateInput;
+    @Field(() => EventCountOrderByAggregateInput, {nullable:true})
+    _count?: EventCountOrderByAggregateInput;
 
-  @Field(() => EventMaxOrderByAggregateInput, { nullable: true })
-  _max?: EventMaxOrderByAggregateInput;
+    @Field(() => EventAvgOrderByAggregateInput, {nullable:true})
+    _avg?: EventAvgOrderByAggregateInput;
 
-  @Field(() => EventMinOrderByAggregateInput, { nullable: true })
-  _min?: EventMinOrderByAggregateInput;
+    @Field(() => EventMaxOrderByAggregateInput, {nullable:true})
+    _max?: EventMaxOrderByAggregateInput;
 
-  @Field(() => EventSumOrderByAggregateInput, { nullable: true })
-  _sum?: EventSumOrderByAggregateInput;
+    @Field(() => EventMinOrderByAggregateInput, {nullable:true})
+    _min?: EventMinOrderByAggregateInput;
+
+    @Field(() => EventSumOrderByAggregateInput, {nullable:true})
+    _sum?: EventSumOrderByAggregateInput;
 }

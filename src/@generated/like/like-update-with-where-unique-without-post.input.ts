@@ -7,11 +7,12 @@ import { LikeUpdateWithoutPostInput } from './like-update-without-post.input';
 
 @InputType()
 export class LikeUpdateWithWhereUniqueWithoutPostInput {
-  @Field(() => LikeWhereUniqueInput, { nullable: false })
-  @Type(() => LikeWhereUniqueInput)
-  where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
 
-  @Field(() => LikeUpdateWithoutPostInput, { nullable: false })
-  @Type(() => LikeUpdateWithoutPostInput)
-  data!: LikeUpdateWithoutPostInput;
+    @Field(() => LikeWhereUniqueInput, {nullable:false})
+    @Type(() => LikeWhereUniqueInput)
+    where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
+
+    @Field(() => LikeUpdateWithoutPostInput, {nullable:false})
+    @Type(() => LikeUpdateWithoutPostInput)
+    data!: LikeUpdateWithoutPostInput;
 }

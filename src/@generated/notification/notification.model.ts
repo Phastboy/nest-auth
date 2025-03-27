@@ -6,27 +6,28 @@ import { User } from '../user/user.model';
 
 @ObjectType()
 export class Notification {
-  @Field(() => ID, { nullable: false })
-  id!: number;
 
-  @Field(() => Int, { nullable: false })
-  userId!: number;
+    @Field(() => ID, {nullable:false})
+    id!: number;
 
-  @Field(() => String, { nullable: false })
-  type!: string;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => String, { nullable: false })
-  content!: string;
+    @Field(() => String, {nullable:false})
+    type!: string;
 
-  @Field(() => Boolean, { defaultValue: false, nullable: false })
-  isRead!: boolean;
+    @Field(() => String, {nullable:false})
+    content!: string;
 
-  @Field(() => Int, { nullable: true })
-  referenceId!: number | null;
+    @Field(() => Boolean, {defaultValue:false,nullable:false})
+    isRead!: boolean;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => Int, {nullable:true})
+    referenceId!: number | null;
 
-  @Field(() => User, { nullable: false })
-  user?: User;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
+
+    @Field(() => User, {nullable:false})
+    user?: User;
 }

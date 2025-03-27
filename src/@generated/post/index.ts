@@ -57,6 +57,7 @@ export { PostSumAggregate } from './post-sum-aggregate.output';
 export { PostSumOrderByAggregateInput } from './post-sum-order-by-aggregate.input';
 export { PostUncheckedCreateNestedManyWithoutCategoriesInput } from './post-unchecked-create-nested-many-without-categories.input';
 export { PostUncheckedCreateNestedManyWithoutUserInput } from './post-unchecked-create-nested-many-without-user.input';
+export { PostUncheckedCreateNestedOneWithoutEventInput } from './post-unchecked-create-nested-one-without-event.input';
 export { PostUncheckedCreateWithoutCategoriesInput } from './post-unchecked-create-without-categories.input';
 export { PostUncheckedCreateWithoutCommentsInput } from './post-unchecked-create-without-comments.input';
 export { PostUncheckedCreateWithoutEventInput } from './post-unchecked-create-without-event.input';
@@ -68,6 +69,7 @@ export { PostUncheckedUpdateManyWithoutCategoriesInput } from './post-unchecked-
 export { PostUncheckedUpdateManyWithoutUserNestedInput } from './post-unchecked-update-many-without-user-nested.input';
 export { PostUncheckedUpdateManyWithoutUserInput } from './post-unchecked-update-many-without-user.input';
 export { PostUncheckedUpdateManyInput } from './post-unchecked-update-many.input';
+export { PostUncheckedUpdateOneWithoutEventNestedInput } from './post-unchecked-update-one-without-event-nested.input';
 export { PostUncheckedUpdateWithoutCategoriesInput } from './post-unchecked-update-without-categories.input';
 export { PostUncheckedUpdateWithoutCommentsInput } from './post-unchecked-update-without-comments.input';
 export { PostUncheckedUpdateWithoutEventInput } from './post-unchecked-update-without-event.input';
@@ -81,6 +83,7 @@ export { PostUpdateManyWithoutCategoriesNestedInput } from './post-update-many-w
 export { PostUpdateManyWithoutUserNestedInput } from './post-update-many-without-user-nested.input';
 export { PostUpdateOneRequiredWithoutEventNestedInput } from './post-update-one-required-without-event-nested.input';
 export { PostUpdateOneWithoutCommentsNestedInput } from './post-update-one-without-comments-nested.input';
+export { PostUpdateOneWithoutEventNestedInput } from './post-update-one-without-event-nested.input';
 export { PostUpdateOneWithoutLikesNestedInput } from './post-update-one-without-likes-nested.input';
 export { PostUpdateToOneWithWhereWithoutCommentsInput } from './post-update-to-one-with-where-without-comments.input';
 export { PostUpdateToOneWithWhereWithoutEventInput } from './post-update-to-one-with-where-without-event.input';

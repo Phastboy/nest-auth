@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneEventArgs {
-  @Field(() => EventCreateInput, { nullable: false })
-  @Type(() => EventCreateInput)
-  data!: EventCreateInput;
+
+    @Field(() => EventCreateInput, {nullable:false})
+    @Type(() => EventCreateInput)
+    data!: EventCreateInput;
 }

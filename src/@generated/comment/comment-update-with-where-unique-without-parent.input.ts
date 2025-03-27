@@ -7,11 +7,12 @@ import { CommentUpdateWithoutParentInput } from './comment-update-without-parent
 
 @InputType()
 export class CommentUpdateWithWhereUniqueWithoutParentInput {
-  @Field(() => CommentWhereUniqueInput, { nullable: false })
-  @Type(() => CommentWhereUniqueInput)
-  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-  @Field(() => CommentUpdateWithoutParentInput, { nullable: false })
-  @Type(() => CommentUpdateWithoutParentInput)
-  data!: CommentUpdateWithoutParentInput;
+    @Field(() => CommentWhereUniqueInput, {nullable:false})
+    @Type(() => CommentWhereUniqueInput)
+    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
+
+    @Field(() => CommentUpdateWithoutParentInput, {nullable:false})
+    @Type(() => CommentUpdateWithoutParentInput)
+    data!: CommentUpdateWithoutParentInput;
 }

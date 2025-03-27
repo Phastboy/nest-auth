@@ -7,11 +7,12 @@ import { PostUpdateWithoutCategoriesInput } from './post-update-without-categori
 
 @InputType()
 export class PostUpdateWithWhereUniqueWithoutCategoriesInput {
-  @Field(() => PostWhereUniqueInput, { nullable: false })
-  @Type(() => PostWhereUniqueInput)
-  where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 
-  @Field(() => PostUpdateWithoutCategoriesInput, { nullable: false })
-  @Type(() => PostUpdateWithoutCategoriesInput)
-  data!: PostUpdateWithoutCategoriesInput;
+    @Field(() => PostWhereUniqueInput, {nullable:false})
+    @Type(() => PostWhereUniqueInput)
+    where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
+
+    @Field(() => PostUpdateWithoutCategoriesInput, {nullable:false})
+    @Type(() => PostUpdateWithoutCategoriesInput)
+    data!: PostUpdateWithoutCategoriesInput;
 }

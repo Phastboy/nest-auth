@@ -11,31 +11,32 @@ import { EventUpdateToOneWithWhereWithoutPostInput } from './event-update-to-one
 
 @InputType()
 export class EventUpdateOneWithoutPostNestedInput {
-  @Field(() => EventCreateWithoutPostInput, { nullable: true })
-  @Type(() => EventCreateWithoutPostInput)
-  create?: EventCreateWithoutPostInput;
 
-  @Field(() => EventCreateOrConnectWithoutPostInput, { nullable: true })
-  @Type(() => EventCreateOrConnectWithoutPostInput)
-  connectOrCreate?: EventCreateOrConnectWithoutPostInput;
+    @Field(() => EventCreateWithoutPostInput, {nullable:true})
+    @Type(() => EventCreateWithoutPostInput)
+    create?: EventCreateWithoutPostInput;
 
-  @Field(() => EventUpsertWithoutPostInput, { nullable: true })
-  @Type(() => EventUpsertWithoutPostInput)
-  upsert?: EventUpsertWithoutPostInput;
+    @Field(() => EventCreateOrConnectWithoutPostInput, {nullable:true})
+    @Type(() => EventCreateOrConnectWithoutPostInput)
+    connectOrCreate?: EventCreateOrConnectWithoutPostInput;
 
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  disconnect?: EventWhereInput;
+    @Field(() => EventUpsertWithoutPostInput, {nullable:true})
+    @Type(() => EventUpsertWithoutPostInput)
+    upsert?: EventUpsertWithoutPostInput;
 
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  delete?: EventWhereInput;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    disconnect?: EventWhereInput;
 
-  @Field(() => EventWhereUniqueInput, { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    delete?: EventWhereInput;
 
-  @Field(() => EventUpdateToOneWithWhereWithoutPostInput, { nullable: true })
-  @Type(() => EventUpdateToOneWithWhereWithoutPostInput)
-  update?: EventUpdateToOneWithWhereWithoutPostInput;
+    @Field(() => EventWhereUniqueInput, {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+
+    @Field(() => EventUpdateToOneWithWhereWithoutPostInput, {nullable:true})
+    @Type(() => EventUpdateToOneWithWhereWithoutPostInput)
+    update?: EventUpdateToOneWithWhereWithoutPostInput;
 }

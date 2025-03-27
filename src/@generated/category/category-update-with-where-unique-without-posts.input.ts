@@ -7,11 +7,12 @@ import { CategoryUpdateWithoutPostsInput } from './category-update-without-posts
 
 @InputType()
 export class CategoryUpdateWithWhereUniqueWithoutPostsInput {
-  @Field(() => CategoryWhereUniqueInput, { nullable: false })
-  @Type(() => CategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryUpdateWithoutPostsInput, { nullable: false })
-  @Type(() => CategoryUpdateWithoutPostsInput)
-  data!: CategoryUpdateWithoutPostsInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:false})
+    @Type(() => CategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+
+    @Field(() => CategoryUpdateWithoutPostsInput, {nullable:false})
+    @Type(() => CategoryUpdateWithoutPostsInput)
+    data!: CategoryUpdateWithoutPostsInput;
 }

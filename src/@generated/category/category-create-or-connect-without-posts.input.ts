@@ -7,11 +7,12 @@ import { CategoryCreateWithoutPostsInput } from './category-create-without-posts
 
 @InputType()
 export class CategoryCreateOrConnectWithoutPostsInput {
-  @Field(() => CategoryWhereUniqueInput, { nullable: false })
-  @Type(() => CategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryCreateWithoutPostsInput, { nullable: false })
-  @Type(() => CategoryCreateWithoutPostsInput)
-  create!: CategoryCreateWithoutPostsInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:false})
+    @Type(() => CategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+
+    @Field(() => CategoryCreateWithoutPostsInput, {nullable:false})
+    @Type(() => CategoryCreateWithoutPostsInput)
+    create!: CategoryCreateWithoutPostsInput;
 }

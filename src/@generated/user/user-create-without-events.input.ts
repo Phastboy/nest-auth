@@ -8,42 +8,43 @@ import { RSVPCreateNestedManyWithoutUserInput } from '../rsvp/rsvp-create-nested
 
 @InputType()
 export class UserCreateWithoutEventsInput {
-  @Field(() => String, { nullable: false })
-  email!: string;
 
-  @Field(() => String, { nullable: false })
-  username!: string;
+    @Field(() => String, {nullable:false})
+    email!: string;
 
-  @Field(() => String, { nullable: false })
-  password!: string;
+    @Field(() => String, {nullable:false})
+    username!: string;
 
-  @Field(() => String, { nullable: true })
-  avatar?: string;
+    @Field(() => String, {nullable:false})
+    password!: string;
 
-  @Field(() => String, { nullable: true })
-  role?: string;
+    @Field(() => String, {nullable:true})
+    avatar?: string;
 
-  @Field(() => String, { nullable: true })
-  bio?: string;
+    @Field(() => String, {nullable:true})
+    role?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => String, {nullable:true})
+    bio?: string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => PostCreateNestedManyWithoutUserInput, { nullable: true })
-  posts?: PostCreateNestedManyWithoutUserInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => CommentCreateNestedManyWithoutUserInput, { nullable: true })
-  comments?: CommentCreateNestedManyWithoutUserInput;
+    @Field(() => PostCreateNestedManyWithoutUserInput, {nullable:true})
+    posts?: PostCreateNestedManyWithoutUserInput;
 
-  @Field(() => NotificationCreateNestedManyWithoutUserInput, { nullable: true })
-  notifications?: NotificationCreateNestedManyWithoutUserInput;
+    @Field(() => CommentCreateNestedManyWithoutUserInput, {nullable:true})
+    comments?: CommentCreateNestedManyWithoutUserInput;
 
-  @Field(() => LikeCreateNestedManyWithoutUserInput, { nullable: true })
-  likes?: LikeCreateNestedManyWithoutUserInput;
+    @Field(() => NotificationCreateNestedManyWithoutUserInput, {nullable:true})
+    notifications?: NotificationCreateNestedManyWithoutUserInput;
 
-  @Field(() => RSVPCreateNestedManyWithoutUserInput, { nullable: true })
-  rsvps?: RSVPCreateNestedManyWithoutUserInput;
+    @Field(() => LikeCreateNestedManyWithoutUserInput, {nullable:true})
+    likes?: LikeCreateNestedManyWithoutUserInput;
+
+    @Field(() => RSVPCreateNestedManyWithoutUserInput, {nullable:true})
+    rsvps?: RSVPCreateNestedManyWithoutUserInput;
 }

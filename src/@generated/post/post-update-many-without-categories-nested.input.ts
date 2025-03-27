@@ -12,49 +12,44 @@ import { PostScalarWhereInput } from './post-scalar-where.input';
 
 @InputType()
 export class PostUpdateManyWithoutCategoriesNestedInput {
-  @Field(() => [PostCreateWithoutCategoriesInput], { nullable: true })
-  @Type(() => PostCreateWithoutCategoriesInput)
-  create?: Array<PostCreateWithoutCategoriesInput>;
 
-  @Field(() => [PostCreateOrConnectWithoutCategoriesInput], { nullable: true })
-  @Type(() => PostCreateOrConnectWithoutCategoriesInput)
-  connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput>;
+    @Field(() => [PostCreateWithoutCategoriesInput], {nullable:true})
+    @Type(() => PostCreateWithoutCategoriesInput)
+    create?: Array<PostCreateWithoutCategoriesInput>;
 
-  @Field(() => [PostUpsertWithWhereUniqueWithoutCategoriesInput], {
-    nullable: true,
-  })
-  @Type(() => PostUpsertWithWhereUniqueWithoutCategoriesInput)
-  upsert?: Array<PostUpsertWithWhereUniqueWithoutCategoriesInput>;
+    @Field(() => [PostCreateOrConnectWithoutCategoriesInput], {nullable:true})
+    @Type(() => PostCreateOrConnectWithoutCategoriesInput)
+    connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput>;
 
-  @Field(() => [PostWhereUniqueInput], { nullable: true })
-  @Type(() => PostWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id'>>;
+    @Field(() => [PostUpsertWithWhereUniqueWithoutCategoriesInput], {nullable:true})
+    @Type(() => PostUpsertWithWhereUniqueWithoutCategoriesInput)
+    upsert?: Array<PostUpsertWithWhereUniqueWithoutCategoriesInput>;
 
-  @Field(() => [PostWhereUniqueInput], { nullable: true })
-  @Type(() => PostWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id'>>;
+    @Field(() => [PostWhereUniqueInput], {nullable:true})
+    @Type(() => PostWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>>;
 
-  @Field(() => [PostWhereUniqueInput], { nullable: true })
-  @Type(() => PostWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id'>>;
+    @Field(() => [PostWhereUniqueInput], {nullable:true})
+    @Type(() => PostWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>>;
 
-  @Field(() => [PostWhereUniqueInput], { nullable: true })
-  @Type(() => PostWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id'>>;
+    @Field(() => [PostWhereUniqueInput], {nullable:true})
+    @Type(() => PostWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>>;
 
-  @Field(() => [PostUpdateWithWhereUniqueWithoutCategoriesInput], {
-    nullable: true,
-  })
-  @Type(() => PostUpdateWithWhereUniqueWithoutCategoriesInput)
-  update?: Array<PostUpdateWithWhereUniqueWithoutCategoriesInput>;
+    @Field(() => [PostWhereUniqueInput], {nullable:true})
+    @Type(() => PostWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>>;
 
-  @Field(() => [PostUpdateManyWithWhereWithoutCategoriesInput], {
-    nullable: true,
-  })
-  @Type(() => PostUpdateManyWithWhereWithoutCategoriesInput)
-  updateMany?: Array<PostUpdateManyWithWhereWithoutCategoriesInput>;
+    @Field(() => [PostUpdateWithWhereUniqueWithoutCategoriesInput], {nullable:true})
+    @Type(() => PostUpdateWithWhereUniqueWithoutCategoriesInput)
+    update?: Array<PostUpdateWithWhereUniqueWithoutCategoriesInput>;
 
-  @Field(() => [PostScalarWhereInput], { nullable: true })
-  @Type(() => PostScalarWhereInput)
-  deleteMany?: Array<PostScalarWhereInput>;
+    @Field(() => [PostUpdateManyWithWhereWithoutCategoriesInput], {nullable:true})
+    @Type(() => PostUpdateManyWithWhereWithoutCategoriesInput)
+    updateMany?: Array<PostUpdateManyWithWhereWithoutCategoriesInput>;
+
+    @Field(() => [PostScalarWhereInput], {nullable:true})
+    @Type(() => PostScalarWhereInput)
+    deleteMany?: Array<PostScalarWhereInput>;
 }

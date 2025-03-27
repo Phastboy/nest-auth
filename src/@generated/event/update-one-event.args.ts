@@ -7,11 +7,12 @@ import { EventWhereUniqueInput } from './event-where-unique.input';
 
 @ArgsType()
 export class UpdateOneEventArgs {
-  @Field(() => EventUpdateInput, { nullable: false })
-  @Type(() => EventUpdateInput)
-  data!: EventUpdateInput;
 
-  @Field(() => EventWhereUniqueInput, { nullable: false })
-  @Type(() => EventWhereUniqueInput)
-  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
+    @Field(() => EventUpdateInput, {nullable:false})
+    @Type(() => EventUpdateInput)
+    data!: EventUpdateInput;
+
+    @Field(() => EventWhereUniqueInput, {nullable:false})
+    @Type(() => EventWhereUniqueInput)
+    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 }

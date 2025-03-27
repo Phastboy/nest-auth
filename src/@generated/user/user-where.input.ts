@@ -13,57 +13,58 @@ import { RSVPListRelationFilter } from '../rsvp/rsvp-list-relation-filter.input'
 
 @InputType()
 export class UserWhereInput {
-  @Field(() => [UserWhereInput], { nullable: true })
-  AND?: Array<UserWhereInput>;
 
-  @Field(() => [UserWhereInput], { nullable: true })
-  OR?: Array<UserWhereInput>;
+    @Field(() => [UserWhereInput], {nullable:true})
+    AND?: Array<UserWhereInput>;
 
-  @Field(() => [UserWhereInput], { nullable: true })
-  NOT?: Array<UserWhereInput>;
+    @Field(() => [UserWhereInput], {nullable:true})
+    OR?: Array<UserWhereInput>;
 
-  @Field(() => IntFilter, { nullable: true })
-  id?: IntFilter;
+    @Field(() => [UserWhereInput], {nullable:true})
+    NOT?: Array<UserWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  email?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  username?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    email?: StringFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  password?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    username?: StringFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  avatar?: StringNullableFilter;
+    @Field(() => StringFilter, {nullable:true})
+    password?: StringFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  role?: StringNullableFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    avatar?: StringNullableFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  bio?: StringNullableFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    role?: StringNullableFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    bio?: StringNullableFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => PostListRelationFilter, { nullable: true })
-  posts?: PostListRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 
-  @Field(() => EventListRelationFilter, { nullable: true })
-  events?: EventListRelationFilter;
+    @Field(() => PostListRelationFilter, {nullable:true})
+    posts?: PostListRelationFilter;
 
-  @Field(() => CommentListRelationFilter, { nullable: true })
-  comments?: CommentListRelationFilter;
+    @Field(() => EventListRelationFilter, {nullable:true})
+    events?: EventListRelationFilter;
 
-  @Field(() => NotificationListRelationFilter, { nullable: true })
-  notifications?: NotificationListRelationFilter;
+    @Field(() => CommentListRelationFilter, {nullable:true})
+    comments?: CommentListRelationFilter;
 
-  @Field(() => LikeListRelationFilter, { nullable: true })
-  likes?: LikeListRelationFilter;
+    @Field(() => NotificationListRelationFilter, {nullable:true})
+    notifications?: NotificationListRelationFilter;
 
-  @Field(() => RSVPListRelationFilter, { nullable: true })
-  rsvps?: RSVPListRelationFilter;
+    @Field(() => LikeListRelationFilter, {nullable:true})
+    likes?: LikeListRelationFilter;
+
+    @Field(() => RSVPListRelationFilter, {nullable:true})
+    rsvps?: RSVPListRelationFilter;
 }

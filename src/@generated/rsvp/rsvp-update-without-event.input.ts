@@ -6,12 +6,13 @@ import { UserUpdateOneRequiredWithoutRsvpsNestedInput } from '../user/user-updat
 
 @InputType()
 export class RSVPUpdateWithoutEventInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  status?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    status?: StringFieldUpdateOperationsInput;
 
-  @Field(() => UserUpdateOneRequiredWithoutRsvpsNestedInput, { nullable: true })
-  user?: UserUpdateOneRequiredWithoutRsvpsNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UserUpdateOneRequiredWithoutRsvpsNestedInput, {nullable:true})
+    user?: UserUpdateOneRequiredWithoutRsvpsNestedInput;
 }

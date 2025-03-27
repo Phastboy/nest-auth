@@ -4,37 +4,42 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class PostScalarWhereInput {
-  @Field(() => [PostScalarWhereInput], { nullable: true })
-  AND?: Array<PostScalarWhereInput>;
 
-  @Field(() => [PostScalarWhereInput], { nullable: true })
-  OR?: Array<PostScalarWhereInput>;
+    @Field(() => [PostScalarWhereInput], {nullable:true})
+    AND?: Array<PostScalarWhereInput>;
 
-  @Field(() => [PostScalarWhereInput], { nullable: true })
-  NOT?: Array<PostScalarWhereInput>;
+    @Field(() => [PostScalarWhereInput], {nullable:true})
+    OR?: Array<PostScalarWhereInput>;
 
-  @Field(() => IntFilter, { nullable: true })
-  id?: IntFilter;
+    @Field(() => [PostScalarWhereInput], {nullable:true})
+    NOT?: Array<PostScalarWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  content?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  image?: StringNullableFilter;
+    @Field(() => StringFilter, {nullable:true})
+    content?: StringFilter;
 
-  @Field(() => BoolFilter, { nullable: true })
-  isEvent?: BoolFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    image?: StringNullableFilter;
 
-  @Field(() => IntFilter, { nullable: true })
-  userId?: IntFilter;
+    @Field(() => BoolFilter, {nullable:true})
+    isEvent?: BoolFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    eventId?: IntNullableFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => IntFilter, {nullable:true})
+    userId?: IntFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
+
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 }

@@ -9,19 +9,20 @@ import { CommentWhereUniqueInput } from './comment-where-unique.input';
 
 @InputType()
 export class CommentUncheckedCreateNestedManyWithoutPostInput {
-  @Field(() => [CommentCreateWithoutPostInput], { nullable: true })
-  @Type(() => CommentCreateWithoutPostInput)
-  create?: Array<CommentCreateWithoutPostInput>;
 
-  @Field(() => [CommentCreateOrConnectWithoutPostInput], { nullable: true })
-  @Type(() => CommentCreateOrConnectWithoutPostInput)
-  connectOrCreate?: Array<CommentCreateOrConnectWithoutPostInput>;
+    @Field(() => [CommentCreateWithoutPostInput], {nullable:true})
+    @Type(() => CommentCreateWithoutPostInput)
+    create?: Array<CommentCreateWithoutPostInput>;
 
-  @Field(() => CommentCreateManyPostInputEnvelope, { nullable: true })
-  @Type(() => CommentCreateManyPostInputEnvelope)
-  createMany?: CommentCreateManyPostInputEnvelope;
+    @Field(() => [CommentCreateOrConnectWithoutPostInput], {nullable:true})
+    @Type(() => CommentCreateOrConnectWithoutPostInput)
+    connectOrCreate?: Array<CommentCreateOrConnectWithoutPostInput>;
 
-  @Field(() => [CommentWhereUniqueInput], { nullable: true })
-  @Type(() => CommentWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
+    @Field(() => CommentCreateManyPostInputEnvelope, {nullable:true})
+    @Type(() => CommentCreateManyPostInputEnvelope)
+    createMany?: CommentCreateManyPostInputEnvelope;
+
+    @Field(() => [CommentWhereUniqueInput], {nullable:true})
+    @Type(() => CommentWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
 }

@@ -9,28 +9,25 @@ import { EventUncheckedUpdateManyWithoutCategoriesNestedInput } from '../event/e
 
 @InputType()
 export class CategoryUncheckedUpdateWithoutPostsInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  name?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  slug?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-  parentId?: NullableIntFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    slug?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    parentId?: NullableIntFieldUpdateOperationsInput;
 
-  @Field(() => CategoryUncheckedUpdateManyWithoutParentNestedInput, {
-    nullable: true,
-  })
-  children?: CategoryUncheckedUpdateManyWithoutParentNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => EventUncheckedUpdateManyWithoutCategoriesNestedInput, {
-    nullable: true,
-  })
-  events?: EventUncheckedUpdateManyWithoutCategoriesNestedInput;
+    @Field(() => CategoryUncheckedUpdateManyWithoutParentNestedInput, {nullable:true})
+    children?: CategoryUncheckedUpdateManyWithoutParentNestedInput;
+
+    @Field(() => EventUncheckedUpdateManyWithoutCategoriesNestedInput, {nullable:true})
+    events?: EventUncheckedUpdateManyWithoutCategoriesNestedInput;
 }

@@ -7,11 +7,12 @@ import { CategoryUpdateWithoutEventsInput } from './category-update-without-even
 
 @InputType()
 export class CategoryUpdateWithWhereUniqueWithoutEventsInput {
-  @Field(() => CategoryWhereUniqueInput, { nullable: false })
-  @Type(() => CategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryUpdateWithoutEventsInput, { nullable: false })
-  @Type(() => CategoryUpdateWithoutEventsInput)
-  data!: CategoryUpdateWithoutEventsInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:false})
+    @Type(() => CategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+
+    @Field(() => CategoryUpdateWithoutEventsInput, {nullable:false})
+    @Type(() => CategoryUpdateWithoutEventsInput)
+    data!: CategoryUpdateWithoutEventsInput;
 }

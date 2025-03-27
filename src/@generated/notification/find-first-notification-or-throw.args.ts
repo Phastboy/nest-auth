@@ -10,22 +10,23 @@ import { NotificationScalarFieldEnum } from './notification-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstNotificationOrThrowArgs {
-  @Field(() => NotificationWhereInput, { nullable: true })
-  @Type(() => NotificationWhereInput)
-  where?: NotificationWhereInput;
 
-  @Field(() => [NotificationOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<NotificationOrderByWithRelationInput>;
+    @Field(() => NotificationWhereInput, {nullable:true})
+    @Type(() => NotificationWhereInput)
+    where?: NotificationWhereInput;
 
-  @Field(() => NotificationWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
+    @Field(() => [NotificationOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<NotificationOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => NotificationWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => [NotificationScalarFieldEnum], { nullable: true })
-  distinct?: Array<`${NotificationScalarFieldEnum}`>;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+
+    @Field(() => [NotificationScalarFieldEnum], {nullable:true})
+    distinct?: Array<`${NotificationScalarFieldEnum}`>;
 }
