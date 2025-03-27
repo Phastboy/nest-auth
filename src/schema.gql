@@ -500,13 +500,15 @@ input CreateNotificationInput {
 
 input CreatePostInput {
   content: String!
+  eventId: Int
   image: String
   isEvent: Boolean
 }
 
 input CreateRsvpInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  createdAt: DateTime
+  eventId: Int!
+  status: String
 }
 
 """
@@ -1090,6 +1092,7 @@ type Mutation {
   deleteComment(id: Int!): Comment!
   deleteEvent(id: Int!): Event!
   deletePost(id: Int!): Post!
+  deleteRsvp(id: Int!): RSVP!
   login(loginInput: LoginDto!): AuthResponse!
 
   """resfreshes access and refresh tokens"""
@@ -1099,7 +1102,6 @@ type Mutation {
   register(createUserInput: UserCreateInput!): User!
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
-  removeRsvp(id: Int!): RSVP!
   removeUser(id: Int!): User!
   updateCategory(id: Int!, updateCategoryInput: UpdateCategoryInput!): Category!
   updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!
@@ -1107,7 +1109,7 @@ type Mutation {
   updateLike(updateLikeInput: UpdateLikeInput!): Like!
   updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
-  updateRsvp(updateRsvpInput: UpdateRsvpInput!): RSVP!
+  updateRsvp(id: Int!, updateRsvpInput: UpdateRsvpInput!): RSVP!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
@@ -1563,9 +1565,11 @@ type Query {
   comment(id: Int!): Comment!
   comments: [Comment!]!
   event(id: Int!): Event!
+  eventRsvps(eventId: Int!): [RSVP!]!
   events: [Event!]!
   like(id: Int!): Like!
   likes: [Like!]!
+  myRsvps: [RSVP!]!
   notification(id: Int!): Notification!
   notifications: [Notification!]!
   post(id: Int!): Post!
@@ -1794,15 +1798,17 @@ input UpdateNotificationInput {
 
 input UpdatePostInput {
   content: String
+  eventId: Int
   id: Int!
   image: String
   isEvent: Boolean
 }
 
 input UpdateRsvpInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  createdAt: DateTime
+  eventId: Int
   id: Int!
+  status: String
 }
 
 input UpdateUserInput {

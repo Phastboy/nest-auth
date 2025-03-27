@@ -1,4 +1,4 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, Int } from '@nestjs/graphql';
 
 @InputType()
 export class CreatePostInput {
@@ -10,4 +10,7 @@ export class CreatePostInput {
 
   @Field(() => Boolean, { nullable: true })
   isEvent?: boolean;
+
+  @Field(() => Int, { nullable: true })
+  eventId?: number;
 }
