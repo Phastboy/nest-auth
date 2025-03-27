@@ -8,15 +8,16 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 
 @InputType()
 export class PostUncheckedCreateNestedManyWithoutCategoriesInput {
-  @Field(() => [PostCreateWithoutCategoriesInput], { nullable: true })
-  @Type(() => PostCreateWithoutCategoriesInput)
-  create?: Array<PostCreateWithoutCategoriesInput>;
 
-  @Field(() => [PostCreateOrConnectWithoutCategoriesInput], { nullable: true })
-  @Type(() => PostCreateOrConnectWithoutCategoriesInput)
-  connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput>;
+    @Field(() => [PostCreateWithoutCategoriesInput], {nullable:true})
+    @Type(() => PostCreateWithoutCategoriesInput)
+    create?: Array<PostCreateWithoutCategoriesInput>;
 
-  @Field(() => [PostWhereUniqueInput], { nullable: true })
-  @Type(() => PostWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id'>>;
+    @Field(() => [PostCreateOrConnectWithoutCategoriesInput], {nullable:true})
+    @Type(() => PostCreateOrConnectWithoutCategoriesInput)
+    connectOrCreate?: Array<PostCreateOrConnectWithoutCategoriesInput>;
+
+    @Field(() => [PostWhereUniqueInput], {nullable:true})
+    @Type(() => PostWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>>;
 }

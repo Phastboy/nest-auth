@@ -12,55 +12,46 @@ import { LikeUncheckedUpdateManyWithoutUserNestedInput } from '../like/like-unch
 
 @InputType()
 export class UserUncheckedUpdateWithoutRsvpsInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  email?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  username?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    email?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  password?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    username?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  avatar?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  role?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    avatar?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  bio?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    role?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    bio?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => PostUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  posts?: PostUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => EventUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  events?: EventUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => PostUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    posts?: PostUncheckedUpdateManyWithoutUserNestedInput;
 
-  @Field(() => CommentUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  comments?: CommentUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => EventUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    events?: EventUncheckedUpdateManyWithoutUserNestedInput;
 
-  @Field(() => NotificationUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => CommentUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput;
 
-  @Field(() => LikeUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  likes?: LikeUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => NotificationUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput;
+
+    @Field(() => LikeUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput;
 }

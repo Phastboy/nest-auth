@@ -7,11 +7,12 @@ import { CommentCreateWithoutRepliesInput } from './comment-create-without-repli
 
 @InputType()
 export class CommentCreateOrConnectWithoutRepliesInput {
-  @Field(() => CommentWhereUniqueInput, { nullable: false })
-  @Type(() => CommentWhereUniqueInput)
-  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-  @Field(() => CommentCreateWithoutRepliesInput, { nullable: false })
-  @Type(() => CommentCreateWithoutRepliesInput)
-  create!: CommentCreateWithoutRepliesInput;
+    @Field(() => CommentWhereUniqueInput, {nullable:false})
+    @Type(() => CommentWhereUniqueInput)
+    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
+
+    @Field(() => CommentCreateWithoutRepliesInput, {nullable:false})
+    @Type(() => CommentCreateWithoutRepliesInput)
+    create!: CommentCreateWithoutRepliesInput;
 }

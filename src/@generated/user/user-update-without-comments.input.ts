@@ -11,42 +11,43 @@ import { RSVPUpdateManyWithoutUserNestedInput } from '../rsvp/rsvp-update-many-w
 
 @InputType()
 export class UserUpdateWithoutCommentsInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  email?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  username?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    email?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  password?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    username?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  avatar?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  role?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    avatar?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  bio?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    role?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    bio?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => PostUpdateManyWithoutUserNestedInput, { nullable: true })
-  posts?: PostUpdateManyWithoutUserNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => EventUpdateManyWithoutUserNestedInput, { nullable: true })
-  events?: EventUpdateManyWithoutUserNestedInput;
+    @Field(() => PostUpdateManyWithoutUserNestedInput, {nullable:true})
+    posts?: PostUpdateManyWithoutUserNestedInput;
 
-  @Field(() => NotificationUpdateManyWithoutUserNestedInput, { nullable: true })
-  notifications?: NotificationUpdateManyWithoutUserNestedInput;
+    @Field(() => EventUpdateManyWithoutUserNestedInput, {nullable:true})
+    events?: EventUpdateManyWithoutUserNestedInput;
 
-  @Field(() => LikeUpdateManyWithoutUserNestedInput, { nullable: true })
-  likes?: LikeUpdateManyWithoutUserNestedInput;
+    @Field(() => NotificationUpdateManyWithoutUserNestedInput, {nullable:true})
+    notifications?: NotificationUpdateManyWithoutUserNestedInput;
 
-  @Field(() => RSVPUpdateManyWithoutUserNestedInput, { nullable: true })
-  rsvps?: RSVPUpdateManyWithoutUserNestedInput;
+    @Field(() => LikeUpdateManyWithoutUserNestedInput, {nullable:true})
+    likes?: LikeUpdateManyWithoutUserNestedInput;
+
+    @Field(() => RSVPUpdateManyWithoutUserNestedInput, {nullable:true})
+    rsvps?: RSVPUpdateManyWithoutUserNestedInput;
 }

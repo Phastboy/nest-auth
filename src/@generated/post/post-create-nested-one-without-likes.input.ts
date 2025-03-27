@@ -8,15 +8,16 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 
 @InputType()
 export class PostCreateNestedOneWithoutLikesInput {
-  @Field(() => PostCreateWithoutLikesInput, { nullable: true })
-  @Type(() => PostCreateWithoutLikesInput)
-  create?: PostCreateWithoutLikesInput;
 
-  @Field(() => PostCreateOrConnectWithoutLikesInput, { nullable: true })
-  @Type(() => PostCreateOrConnectWithoutLikesInput)
-  connectOrCreate?: PostCreateOrConnectWithoutLikesInput;
+    @Field(() => PostCreateWithoutLikesInput, {nullable:true})
+    @Type(() => PostCreateWithoutLikesInput)
+    create?: PostCreateWithoutLikesInput;
 
-  @Field(() => PostWhereUniqueInput, { nullable: true })
-  @Type(() => PostWhereUniqueInput)
-  connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
+    @Field(() => PostCreateOrConnectWithoutLikesInput, {nullable:true})
+    @Type(() => PostCreateOrConnectWithoutLikesInput)
+    connectOrCreate?: PostCreateOrConnectWithoutLikesInput;
+
+    @Field(() => PostWhereUniqueInput, {nullable:true})
+    @Type(() => PostWhereUniqueInput)
+    connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
 }

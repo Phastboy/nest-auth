@@ -10,39 +10,43 @@ import { PostSumOrderByAggregateInput } from './post-sum-order-by-aggregate.inpu
 
 @InputType()
 export class PostOrderByWithAggregationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  content?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  image?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    content?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  isEvent?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    image?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  userId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    isEvent?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    eventId?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    userId?: `${SortOrder}`;
 
-  @Field(() => PostCountOrderByAggregateInput, { nullable: true })
-  _count?: PostCountOrderByAggregateInput;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => PostAvgOrderByAggregateInput, { nullable: true })
-  _avg?: PostAvgOrderByAggregateInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: `${SortOrder}`;
 
-  @Field(() => PostMaxOrderByAggregateInput, { nullable: true })
-  _max?: PostMaxOrderByAggregateInput;
+    @Field(() => PostCountOrderByAggregateInput, {nullable:true})
+    _count?: PostCountOrderByAggregateInput;
 
-  @Field(() => PostMinOrderByAggregateInput, { nullable: true })
-  _min?: PostMinOrderByAggregateInput;
+    @Field(() => PostAvgOrderByAggregateInput, {nullable:true})
+    _avg?: PostAvgOrderByAggregateInput;
 
-  @Field(() => PostSumOrderByAggregateInput, { nullable: true })
-  _sum?: PostSumOrderByAggregateInput;
+    @Field(() => PostMaxOrderByAggregateInput, {nullable:true})
+    _max?: PostMaxOrderByAggregateInput;
+
+    @Field(() => PostMinOrderByAggregateInput, {nullable:true})
+    _min?: PostMinOrderByAggregateInput;
+
+    @Field(() => PostSumOrderByAggregateInput, {nullable:true})
+    _sum?: PostSumOrderByAggregateInput;
 }

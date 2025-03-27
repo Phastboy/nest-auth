@@ -10,23 +10,24 @@ import { UserUpdateToOneWithWhereWithoutLikesInput } from './user-update-to-one-
 
 @InputType()
 export class UserUpdateOneRequiredWithoutLikesNestedInput {
-  @Field(() => UserCreateWithoutLikesInput, { nullable: true })
-  @Type(() => UserCreateWithoutLikesInput)
-  create?: UserCreateWithoutLikesInput;
 
-  @Field(() => UserCreateOrConnectWithoutLikesInput, { nullable: true })
-  @Type(() => UserCreateOrConnectWithoutLikesInput)
-  connectOrCreate?: UserCreateOrConnectWithoutLikesInput;
+    @Field(() => UserCreateWithoutLikesInput, {nullable:true})
+    @Type(() => UserCreateWithoutLikesInput)
+    create?: UserCreateWithoutLikesInput;
 
-  @Field(() => UserUpsertWithoutLikesInput, { nullable: true })
-  @Type(() => UserUpsertWithoutLikesInput)
-  upsert?: UserUpsertWithoutLikesInput;
+    @Field(() => UserCreateOrConnectWithoutLikesInput, {nullable:true})
+    @Type(() => UserCreateOrConnectWithoutLikesInput)
+    connectOrCreate?: UserCreateOrConnectWithoutLikesInput;
 
-  @Field(() => UserWhereUniqueInput, { nullable: true })
-  @Type(() => UserWhereUniqueInput)
-  connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
+    @Field(() => UserUpsertWithoutLikesInput, {nullable:true})
+    @Type(() => UserUpsertWithoutLikesInput)
+    upsert?: UserUpsertWithoutLikesInput;
 
-  @Field(() => UserUpdateToOneWithWhereWithoutLikesInput, { nullable: true })
-  @Type(() => UserUpdateToOneWithWhereWithoutLikesInput)
-  update?: UserUpdateToOneWithWhereWithoutLikesInput;
+    @Field(() => UserWhereUniqueInput, {nullable:true})
+    @Type(() => UserWhereUniqueInput)
+    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
+
+    @Field(() => UserUpdateToOneWithWhereWithoutLikesInput, {nullable:true})
+    @Type(() => UserUpdateToOneWithWhereWithoutLikesInput)
+    update?: UserUpdateToOneWithWhereWithoutLikesInput;
 }

@@ -9,19 +9,20 @@ import { PostWhereUniqueInput } from './post-where-unique.input';
 
 @InputType()
 export class PostCreateNestedManyWithoutUserInput {
-  @Field(() => [PostCreateWithoutUserInput], { nullable: true })
-  @Type(() => PostCreateWithoutUserInput)
-  create?: Array<PostCreateWithoutUserInput>;
 
-  @Field(() => [PostCreateOrConnectWithoutUserInput], { nullable: true })
-  @Type(() => PostCreateOrConnectWithoutUserInput)
-  connectOrCreate?: Array<PostCreateOrConnectWithoutUserInput>;
+    @Field(() => [PostCreateWithoutUserInput], {nullable:true})
+    @Type(() => PostCreateWithoutUserInput)
+    create?: Array<PostCreateWithoutUserInput>;
 
-  @Field(() => PostCreateManyUserInputEnvelope, { nullable: true })
-  @Type(() => PostCreateManyUserInputEnvelope)
-  createMany?: PostCreateManyUserInputEnvelope;
+    @Field(() => [PostCreateOrConnectWithoutUserInput], {nullable:true})
+    @Type(() => PostCreateOrConnectWithoutUserInput)
+    connectOrCreate?: Array<PostCreateOrConnectWithoutUserInput>;
 
-  @Field(() => [PostWhereUniqueInput], { nullable: true })
-  @Type(() => PostWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id'>>;
+    @Field(() => PostCreateManyUserInputEnvelope, {nullable:true})
+    @Type(() => PostCreateManyUserInputEnvelope)
+    createMany?: PostCreateManyUserInputEnvelope;
+
+    @Field(() => [PostWhereUniqueInput], {nullable:true})
+    @Type(() => PostWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>>;
 }

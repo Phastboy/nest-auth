@@ -4,37 +4,38 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
+import { EventUpdateOneWithoutPostNestedInput } from '../event/event-update-one-without-post-nested.input';
 import { UserUpdateOneRequiredWithoutPostsNestedInput } from '../user/user-update-one-required-without-posts-nested.input';
 import { CommentUpdateManyWithoutPostNestedInput } from '../comment/comment-update-many-without-post-nested.input';
 import { LikeUpdateManyWithoutPostNestedInput } from '../like/like-update-many-without-post-nested.input';
-import { EventUpdateOneWithoutPostNestedInput } from '../event/event-update-one-without-post-nested.input';
 
 @InputType()
 export class PostUpdateWithoutCategoriesInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  content?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  image?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    content?: StringFieldUpdateOperationsInput;
 
-  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
-  isEvent?: BoolFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    image?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    isEvent?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, { nullable: true })
-  user?: UserUpdateOneRequiredWithoutPostsNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => CommentUpdateManyWithoutPostNestedInput, { nullable: true })
-  comments?: CommentUpdateManyWithoutPostNestedInput;
+    @Field(() => EventUpdateOneWithoutPostNestedInput, {nullable:true})
+    event?: EventUpdateOneWithoutPostNestedInput;
 
-  @Field(() => LikeUpdateManyWithoutPostNestedInput, { nullable: true })
-  likes?: LikeUpdateManyWithoutPostNestedInput;
+    @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, {nullable:true})
+    user?: UserUpdateOneRequiredWithoutPostsNestedInput;
 
-  @Field(() => EventUpdateOneWithoutPostNestedInput, { nullable: true })
-  event?: EventUpdateOneWithoutPostNestedInput;
+    @Field(() => CommentUpdateManyWithoutPostNestedInput, {nullable:true})
+    comments?: CommentUpdateManyWithoutPostNestedInput;
+
+    @Field(() => LikeUpdateManyWithoutPostNestedInput, {nullable:true})
+    likes?: LikeUpdateManyWithoutPostNestedInput;
 }

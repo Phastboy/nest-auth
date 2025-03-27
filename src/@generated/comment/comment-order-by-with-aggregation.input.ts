@@ -10,39 +10,40 @@ import { CommentSumOrderByAggregateInput } from './comment-sum-order-by-aggregat
 
 @InputType()
 export class CommentOrderByWithAggregationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  content?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  userId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    content?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  postId?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    userId?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  eventId?: SortOrderInput;
+    @Field(() => SortOrderInput, {nullable:true})
+    postId?: SortOrderInput;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  parentId?: SortOrderInput;
+    @Field(() => SortOrderInput, {nullable:true})
+    eventId?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    parentId?: SortOrderInput;
 
-  @Field(() => CommentCountOrderByAggregateInput, { nullable: true })
-  _count?: CommentCountOrderByAggregateInput;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => CommentAvgOrderByAggregateInput, { nullable: true })
-  _avg?: CommentAvgOrderByAggregateInput;
+    @Field(() => CommentCountOrderByAggregateInput, {nullable:true})
+    _count?: CommentCountOrderByAggregateInput;
 
-  @Field(() => CommentMaxOrderByAggregateInput, { nullable: true })
-  _max?: CommentMaxOrderByAggregateInput;
+    @Field(() => CommentAvgOrderByAggregateInput, {nullable:true})
+    _avg?: CommentAvgOrderByAggregateInput;
 
-  @Field(() => CommentMinOrderByAggregateInput, { nullable: true })
-  _min?: CommentMinOrderByAggregateInput;
+    @Field(() => CommentMaxOrderByAggregateInput, {nullable:true})
+    _max?: CommentMaxOrderByAggregateInput;
 
-  @Field(() => CommentSumOrderByAggregateInput, { nullable: true })
-  _sum?: CommentSumOrderByAggregateInput;
+    @Field(() => CommentMinOrderByAggregateInput, {nullable:true})
+    _min?: CommentMinOrderByAggregateInput;
+
+    @Field(() => CommentSumOrderByAggregateInput, {nullable:true})
+    _sum?: CommentSumOrderByAggregateInput;
 }

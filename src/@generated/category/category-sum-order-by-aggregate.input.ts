@@ -4,9 +4,10 @@ import { SortOrder } from '../prisma/sort-order.enum';
 
 @InputType()
 export class CategorySumOrderByAggregateInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  parentId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
+
+    @Field(() => SortOrder, {nullable:true})
+    parentId?: `${SortOrder}`;
 }

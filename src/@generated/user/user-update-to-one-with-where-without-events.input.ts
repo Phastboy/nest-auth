@@ -6,11 +6,12 @@ import { UserUpdateWithoutEventsInput } from './user-update-without-events.input
 
 @InputType()
 export class UserUpdateToOneWithWhereWithoutEventsInput {
-  @Field(() => UserWhereInput, { nullable: true })
-  @Type(() => UserWhereInput)
-  where?: UserWhereInput;
 
-  @Field(() => UserUpdateWithoutEventsInput, { nullable: false })
-  @Type(() => UserUpdateWithoutEventsInput)
-  data!: UserUpdateWithoutEventsInput;
+    @Field(() => UserWhereInput, {nullable:true})
+    @Type(() => UserWhereInput)
+    where?: UserWhereInput;
+
+    @Field(() => UserUpdateWithoutEventsInput, {nullable:false})
+    @Type(() => UserUpdateWithoutEventsInput)
+    data!: UserUpdateWithoutEventsInput;
 }

@@ -11,51 +11,52 @@ import { UserCount } from './user-count.output';
 
 @ObjectType()
 export class User {
-  @Field(() => ID, { nullable: false })
-  id!: number;
 
-  @Field(() => String, { nullable: false })
-  email!: string;
+    @Field(() => ID, {nullable:false})
+    id!: number;
 
-  @Field(() => String, { nullable: false })
-  username!: string;
+    @Field(() => String, {nullable:false})
+    email!: string;
 
-  @Field(() => String, { nullable: false })
-  password!: string;
+    @Field(() => String, {nullable:false})
+    username!: string;
 
-  @Field(() => String, { defaultValue: '/default-avatar.png', nullable: true })
-  avatar!: string | null;
+    @Field(() => String, {nullable:false})
+    password!: string;
 
-  @Field(() => String, { defaultValue: 'student', nullable: true })
-  role!: string | null;
+    @Field(() => String, {defaultValue:'/default-avatar.png',nullable:true})
+    avatar!: string | null;
 
-  @Field(() => String, { nullable: true })
-  bio!: string | null;
+    @Field(() => String, {defaultValue:'student',nullable:true})
+    role!: string | null;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => String, {nullable:true})
+    bio!: string | null;
 
-  @Field(() => Date, { nullable: false })
-  updatedAt!: Date;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => [Post], { nullable: true })
-  posts?: Array<Post>;
+    @Field(() => Date, {nullable:false})
+    updatedAt!: Date;
 
-  @Field(() => [Event], { nullable: true })
-  events?: Array<Event>;
+    @Field(() => [Post], {nullable:true})
+    posts?: Array<Post>;
 
-  @Field(() => [Comment], { nullable: true })
-  comments?: Array<Comment>;
+    @Field(() => [Event], {nullable:true})
+    events?: Array<Event>;
 
-  @Field(() => [Notification], { nullable: true })
-  notifications?: Array<Notification>;
+    @Field(() => [Comment], {nullable:true})
+    comments?: Array<Comment>;
 
-  @Field(() => [Like], { nullable: true })
-  likes?: Array<Like>;
+    @Field(() => [Notification], {nullable:true})
+    notifications?: Array<Notification>;
 
-  @Field(() => [RSVP], { nullable: true })
-  rsvps?: Array<RSVP>;
+    @Field(() => [Like], {nullable:true})
+    likes?: Array<Like>;
 
-  @Field(() => UserCount, { nullable: false })
-  _count?: UserCount;
+    @Field(() => [RSVP], {nullable:true})
+    rsvps?: Array<RSVP>;
+
+    @Field(() => UserCount, {nullable:false})
+    _count?: UserCount;
 }

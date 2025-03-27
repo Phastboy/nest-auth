@@ -8,18 +8,19 @@ import { CommentMaxAggregate } from './comment-max-aggregate.output';
 
 @ObjectType()
 export class AggregateComment {
-  @Field(() => CommentCountAggregate, { nullable: true })
-  _count?: CommentCountAggregate;
 
-  @Field(() => CommentAvgAggregate, { nullable: true })
-  _avg?: CommentAvgAggregate;
+    @Field(() => CommentCountAggregate, {nullable:true})
+    _count?: CommentCountAggregate;
 
-  @Field(() => CommentSumAggregate, { nullable: true })
-  _sum?: CommentSumAggregate;
+    @Field(() => CommentAvgAggregate, {nullable:true})
+    _avg?: CommentAvgAggregate;
 
-  @Field(() => CommentMinAggregate, { nullable: true })
-  _min?: CommentMinAggregate;
+    @Field(() => CommentSumAggregate, {nullable:true})
+    _sum?: CommentSumAggregate;
 
-  @Field(() => CommentMaxAggregate, { nullable: true })
-  _max?: CommentMaxAggregate;
+    @Field(() => CommentMinAggregate, {nullable:true})
+    _min?: CommentMinAggregate;
+
+    @Field(() => CommentMaxAggregate, {nullable:true})
+    _max?: CommentMaxAggregate;
 }

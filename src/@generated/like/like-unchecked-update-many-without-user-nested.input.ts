@@ -13,55 +13,48 @@ import { LikeScalarWhereInput } from './like-scalar-where.input';
 
 @InputType()
 export class LikeUncheckedUpdateManyWithoutUserNestedInput {
-  @Field(() => [LikeCreateWithoutUserInput], { nullable: true })
-  @Type(() => LikeCreateWithoutUserInput)
-  create?: Array<LikeCreateWithoutUserInput>;
 
-  @Field(() => [LikeCreateOrConnectWithoutUserInput], { nullable: true })
-  @Type(() => LikeCreateOrConnectWithoutUserInput)
-  connectOrCreate?: Array<LikeCreateOrConnectWithoutUserInput>;
+    @Field(() => [LikeCreateWithoutUserInput], {nullable:true})
+    @Type(() => LikeCreateWithoutUserInput)
+    create?: Array<LikeCreateWithoutUserInput>;
 
-  @Field(() => [LikeUpsertWithWhereUniqueWithoutUserInput], { nullable: true })
-  @Type(() => LikeUpsertWithWhereUniqueWithoutUserInput)
-  upsert?: Array<LikeUpsertWithWhereUniqueWithoutUserInput>;
+    @Field(() => [LikeCreateOrConnectWithoutUserInput], {nullable:true})
+    @Type(() => LikeCreateOrConnectWithoutUserInput)
+    connectOrCreate?: Array<LikeCreateOrConnectWithoutUserInput>;
 
-  @Field(() => LikeCreateManyUserInputEnvelope, { nullable: true })
-  @Type(() => LikeCreateManyUserInputEnvelope)
-  createMany?: LikeCreateManyUserInputEnvelope;
+    @Field(() => [LikeUpsertWithWhereUniqueWithoutUserInput], {nullable:true})
+    @Type(() => LikeUpsertWithWhereUniqueWithoutUserInput)
+    upsert?: Array<LikeUpsertWithWhereUniqueWithoutUserInput>;
 
-  @Field(() => [LikeWhereUniqueInput], { nullable: true })
-  @Type(() => LikeWhereUniqueInput)
-  set?: Array<
-    Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>
-  >;
+    @Field(() => LikeCreateManyUserInputEnvelope, {nullable:true})
+    @Type(() => LikeCreateManyUserInputEnvelope)
+    createMany?: LikeCreateManyUserInputEnvelope;
 
-  @Field(() => [LikeWhereUniqueInput], { nullable: true })
-  @Type(() => LikeWhereUniqueInput)
-  disconnect?: Array<
-    Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>
-  >;
+    @Field(() => [LikeWhereUniqueInput], {nullable:true})
+    @Type(() => LikeWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>>;
 
-  @Field(() => [LikeWhereUniqueInput], { nullable: true })
-  @Type(() => LikeWhereUniqueInput)
-  delete?: Array<
-    Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>
-  >;
+    @Field(() => [LikeWhereUniqueInput], {nullable:true})
+    @Type(() => LikeWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>>;
 
-  @Field(() => [LikeWhereUniqueInput], { nullable: true })
-  @Type(() => LikeWhereUniqueInput)
-  connect?: Array<
-    Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>
-  >;
+    @Field(() => [LikeWhereUniqueInput], {nullable:true})
+    @Type(() => LikeWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>>;
 
-  @Field(() => [LikeUpdateWithWhereUniqueWithoutUserInput], { nullable: true })
-  @Type(() => LikeUpdateWithWhereUniqueWithoutUserInput)
-  update?: Array<LikeUpdateWithWhereUniqueWithoutUserInput>;
+    @Field(() => [LikeWhereUniqueInput], {nullable:true})
+    @Type(() => LikeWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>>;
 
-  @Field(() => [LikeUpdateManyWithWhereWithoutUserInput], { nullable: true })
-  @Type(() => LikeUpdateManyWithWhereWithoutUserInput)
-  updateMany?: Array<LikeUpdateManyWithWhereWithoutUserInput>;
+    @Field(() => [LikeUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
+    @Type(() => LikeUpdateWithWhereUniqueWithoutUserInput)
+    update?: Array<LikeUpdateWithWhereUniqueWithoutUserInput>;
 
-  @Field(() => [LikeScalarWhereInput], { nullable: true })
-  @Type(() => LikeScalarWhereInput)
-  deleteMany?: Array<LikeScalarWhereInput>;
+    @Field(() => [LikeUpdateManyWithWhereWithoutUserInput], {nullable:true})
+    @Type(() => LikeUpdateManyWithWhereWithoutUserInput)
+    updateMany?: Array<LikeUpdateManyWithWhereWithoutUserInput>;
+
+    @Field(() => [LikeScalarWhereInput], {nullable:true})
+    @Type(() => LikeScalarWhereInput)
+    deleteMany?: Array<LikeScalarWhereInput>;
 }

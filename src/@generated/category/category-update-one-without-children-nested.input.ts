@@ -11,33 +11,32 @@ import { CategoryUpdateToOneWithWhereWithoutChildrenInput } from './category-upd
 
 @InputType()
 export class CategoryUpdateOneWithoutChildrenNestedInput {
-  @Field(() => CategoryCreateWithoutChildrenInput, { nullable: true })
-  @Type(() => CategoryCreateWithoutChildrenInput)
-  create?: CategoryCreateWithoutChildrenInput;
 
-  @Field(() => CategoryCreateOrConnectWithoutChildrenInput, { nullable: true })
-  @Type(() => CategoryCreateOrConnectWithoutChildrenInput)
-  connectOrCreate?: CategoryCreateOrConnectWithoutChildrenInput;
+    @Field(() => CategoryCreateWithoutChildrenInput, {nullable:true})
+    @Type(() => CategoryCreateWithoutChildrenInput)
+    create?: CategoryCreateWithoutChildrenInput;
 
-  @Field(() => CategoryUpsertWithoutChildrenInput, { nullable: true })
-  @Type(() => CategoryUpsertWithoutChildrenInput)
-  upsert?: CategoryUpsertWithoutChildrenInput;
+    @Field(() => CategoryCreateOrConnectWithoutChildrenInput, {nullable:true})
+    @Type(() => CategoryCreateOrConnectWithoutChildrenInput)
+    connectOrCreate?: CategoryCreateOrConnectWithoutChildrenInput;
 
-  @Field(() => CategoryWhereInput, { nullable: true })
-  @Type(() => CategoryWhereInput)
-  disconnect?: CategoryWhereInput;
+    @Field(() => CategoryUpsertWithoutChildrenInput, {nullable:true})
+    @Type(() => CategoryUpsertWithoutChildrenInput)
+    upsert?: CategoryUpsertWithoutChildrenInput;
 
-  @Field(() => CategoryWhereInput, { nullable: true })
-  @Type(() => CategoryWhereInput)
-  delete?: CategoryWhereInput;
+    @Field(() => CategoryWhereInput, {nullable:true})
+    @Type(() => CategoryWhereInput)
+    disconnect?: CategoryWhereInput;
 
-  @Field(() => CategoryWhereUniqueInput, { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+    @Field(() => CategoryWhereInput, {nullable:true})
+    @Type(() => CategoryWhereInput)
+    delete?: CategoryWhereInput;
 
-  @Field(() => CategoryUpdateToOneWithWhereWithoutChildrenInput, {
-    nullable: true,
-  })
-  @Type(() => CategoryUpdateToOneWithWhereWithoutChildrenInput)
-  update?: CategoryUpdateToOneWithWhereWithoutChildrenInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+
+    @Field(() => CategoryUpdateToOneWithWhereWithoutChildrenInput, {nullable:true})
+    @Type(() => CategoryUpdateToOneWithWhereWithoutChildrenInput)
+    update?: CategoryUpdateToOneWithWhereWithoutChildrenInput;
 }

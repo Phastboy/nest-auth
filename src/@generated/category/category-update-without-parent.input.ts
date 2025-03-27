@@ -8,21 +8,22 @@ import { EventUpdateManyWithoutCategoriesNestedInput } from '../event/event-upda
 
 @InputType()
 export class CategoryUpdateWithoutParentInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  slug?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    slug?: StringFieldUpdateOperationsInput;
 
-  @Field(() => CategoryUpdateManyWithoutParentNestedInput, { nullable: true })
-  children?: CategoryUpdateManyWithoutParentNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => PostUpdateManyWithoutCategoriesNestedInput, { nullable: true })
-  posts?: PostUpdateManyWithoutCategoriesNestedInput;
+    @Field(() => CategoryUpdateManyWithoutParentNestedInput, {nullable:true})
+    children?: CategoryUpdateManyWithoutParentNestedInput;
 
-  @Field(() => EventUpdateManyWithoutCategoriesNestedInput, { nullable: true })
-  events?: EventUpdateManyWithoutCategoriesNestedInput;
+    @Field(() => PostUpdateManyWithoutCategoriesNestedInput, {nullable:true})
+    posts?: PostUpdateManyWithoutCategoriesNestedInput;
+
+    @Field(() => EventUpdateManyWithoutCategoriesNestedInput, {nullable:true})
+    events?: EventUpdateManyWithoutCategoriesNestedInput;
 }

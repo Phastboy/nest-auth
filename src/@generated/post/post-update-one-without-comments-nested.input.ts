@@ -11,31 +11,32 @@ import { PostUpdateToOneWithWhereWithoutCommentsInput } from './post-update-to-o
 
 @InputType()
 export class PostUpdateOneWithoutCommentsNestedInput {
-  @Field(() => PostCreateWithoutCommentsInput, { nullable: true })
-  @Type(() => PostCreateWithoutCommentsInput)
-  create?: PostCreateWithoutCommentsInput;
 
-  @Field(() => PostCreateOrConnectWithoutCommentsInput, { nullable: true })
-  @Type(() => PostCreateOrConnectWithoutCommentsInput)
-  connectOrCreate?: PostCreateOrConnectWithoutCommentsInput;
+    @Field(() => PostCreateWithoutCommentsInput, {nullable:true})
+    @Type(() => PostCreateWithoutCommentsInput)
+    create?: PostCreateWithoutCommentsInput;
 
-  @Field(() => PostUpsertWithoutCommentsInput, { nullable: true })
-  @Type(() => PostUpsertWithoutCommentsInput)
-  upsert?: PostUpsertWithoutCommentsInput;
+    @Field(() => PostCreateOrConnectWithoutCommentsInput, {nullable:true})
+    @Type(() => PostCreateOrConnectWithoutCommentsInput)
+    connectOrCreate?: PostCreateOrConnectWithoutCommentsInput;
 
-  @Field(() => PostWhereInput, { nullable: true })
-  @Type(() => PostWhereInput)
-  disconnect?: PostWhereInput;
+    @Field(() => PostUpsertWithoutCommentsInput, {nullable:true})
+    @Type(() => PostUpsertWithoutCommentsInput)
+    upsert?: PostUpsertWithoutCommentsInput;
 
-  @Field(() => PostWhereInput, { nullable: true })
-  @Type(() => PostWhereInput)
-  delete?: PostWhereInput;
+    @Field(() => PostWhereInput, {nullable:true})
+    @Type(() => PostWhereInput)
+    disconnect?: PostWhereInput;
 
-  @Field(() => PostWhereUniqueInput, { nullable: true })
-  @Type(() => PostWhereUniqueInput)
-  connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
+    @Field(() => PostWhereInput, {nullable:true})
+    @Type(() => PostWhereInput)
+    delete?: PostWhereInput;
 
-  @Field(() => PostUpdateToOneWithWhereWithoutCommentsInput, { nullable: true })
-  @Type(() => PostUpdateToOneWithWhereWithoutCommentsInput)
-  update?: PostUpdateToOneWithWhereWithoutCommentsInput;
+    @Field(() => PostWhereUniqueInput, {nullable:true})
+    @Type(() => PostWhereUniqueInput)
+    connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
+
+    @Field(() => PostUpdateToOneWithWhereWithoutCommentsInput, {nullable:true})
+    @Type(() => PostUpdateToOneWithWhereWithoutCommentsInput)
+    update?: PostUpdateToOneWithWhereWithoutCommentsInput;
 }

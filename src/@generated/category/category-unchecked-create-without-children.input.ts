@@ -6,28 +6,25 @@ import { EventUncheckedCreateNestedManyWithoutCategoriesInput } from '../event/e
 
 @InputType()
 export class CategoryUncheckedCreateWithoutChildrenInput {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: false })
-  name!: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => String, { nullable: false })
-  slug!: string;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => Int, { nullable: true })
-  parentId?: number;
+    @Field(() => String, {nullable:false})
+    slug!: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    parentId?: number;
 
-  @Field(() => PostUncheckedCreateNestedManyWithoutCategoriesInput, {
-    nullable: true,
-  })
-  posts?: PostUncheckedCreateNestedManyWithoutCategoriesInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => EventUncheckedCreateNestedManyWithoutCategoriesInput, {
-    nullable: true,
-  })
-  events?: EventUncheckedCreateNestedManyWithoutCategoriesInput;
+    @Field(() => PostUncheckedCreateNestedManyWithoutCategoriesInput, {nullable:true})
+    posts?: PostUncheckedCreateNestedManyWithoutCategoriesInput;
+
+    @Field(() => EventUncheckedCreateNestedManyWithoutCategoriesInput, {nullable:true})
+    events?: EventUncheckedCreateNestedManyWithoutCategoriesInput;
 }

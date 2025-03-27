@@ -11,36 +11,37 @@ import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.in
 
 @InputType()
 export class NotificationWhereUniqueInput {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => [NotificationWhereInput], { nullable: true })
-  AND?: Array<NotificationWhereInput>;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => [NotificationWhereInput], { nullable: true })
-  OR?: Array<NotificationWhereInput>;
+    @Field(() => [NotificationWhereInput], {nullable:true})
+    AND?: Array<NotificationWhereInput>;
 
-  @Field(() => [NotificationWhereInput], { nullable: true })
-  NOT?: Array<NotificationWhereInput>;
+    @Field(() => [NotificationWhereInput], {nullable:true})
+    OR?: Array<NotificationWhereInput>;
 
-  @Field(() => IntFilter, { nullable: true })
-  userId?: IntFilter;
+    @Field(() => [NotificationWhereInput], {nullable:true})
+    NOT?: Array<NotificationWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  type?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    userId?: IntFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  content?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    type?: StringFilter;
 
-  @Field(() => BoolFilter, { nullable: true })
-  isRead?: BoolFilter;
+    @Field(() => StringFilter, {nullable:true})
+    content?: StringFilter;
 
-  @Field(() => IntNullableFilter, { nullable: true })
-  referenceId?: IntNullableFilter;
+    @Field(() => BoolFilter, {nullable:true})
+    isRead?: BoolFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    referenceId?: IntNullableFilter;
 
-  @Field(() => UserScalarRelationFilter, { nullable: true })
-  user?: UserScalarRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
+
+    @Field(() => UserScalarRelationFilter, {nullable:true})
+    user?: UserScalarRelationFilter;
 }

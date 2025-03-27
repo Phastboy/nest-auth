@@ -7,11 +7,12 @@ import { UserCreateWithoutCommentsInput } from './user-create-without-comments.i
 
 @InputType()
 export class UserCreateOrConnectWithoutCommentsInput {
-  @Field(() => UserWhereUniqueInput, { nullable: false })
-  @Type(() => UserWhereUniqueInput)
-  where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
 
-  @Field(() => UserCreateWithoutCommentsInput, { nullable: false })
-  @Type(() => UserCreateWithoutCommentsInput)
-  create!: UserCreateWithoutCommentsInput;
+    @Field(() => UserWhereUniqueInput, {nullable:false})
+    @Type(() => UserWhereUniqueInput)
+    where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
+
+    @Field(() => UserCreateWithoutCommentsInput, {nullable:false})
+    @Type(() => UserCreateWithoutCommentsInput)
+    create!: UserCreateWithoutCommentsInput;
 }

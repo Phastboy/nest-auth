@@ -14,37 +14,38 @@ import { LikeMaxAggregateInput } from './like-max-aggregate.input';
 
 @ArgsType()
 export class LikeGroupByArgs {
-  @Field(() => LikeWhereInput, { nullable: true })
-  @Type(() => LikeWhereInput)
-  where?: LikeWhereInput;
 
-  @Field(() => [LikeOrderByWithAggregationInput], { nullable: true })
-  orderBy?: Array<LikeOrderByWithAggregationInput>;
+    @Field(() => LikeWhereInput, {nullable:true})
+    @Type(() => LikeWhereInput)
+    where?: LikeWhereInput;
 
-  @Field(() => [LikeScalarFieldEnum], { nullable: false })
-  by!: Array<`${LikeScalarFieldEnum}`>;
+    @Field(() => [LikeOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<LikeOrderByWithAggregationInput>;
 
-  @Field(() => LikeScalarWhereWithAggregatesInput, { nullable: true })
-  having?: LikeScalarWhereWithAggregatesInput;
+    @Field(() => [LikeScalarFieldEnum], {nullable:false})
+    by!: Array<`${LikeScalarFieldEnum}`>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => LikeScalarWhereWithAggregatesInput, {nullable:true})
+    having?: LikeScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => LikeCountAggregateInput, { nullable: true })
-  _count?: LikeCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => LikeAvgAggregateInput, { nullable: true })
-  _avg?: LikeAvgAggregateInput;
+    @Field(() => LikeCountAggregateInput, {nullable:true})
+    _count?: LikeCountAggregateInput;
 
-  @Field(() => LikeSumAggregateInput, { nullable: true })
-  _sum?: LikeSumAggregateInput;
+    @Field(() => LikeAvgAggregateInput, {nullable:true})
+    _avg?: LikeAvgAggregateInput;
 
-  @Field(() => LikeMinAggregateInput, { nullable: true })
-  _min?: LikeMinAggregateInput;
+    @Field(() => LikeSumAggregateInput, {nullable:true})
+    _sum?: LikeSumAggregateInput;
 
-  @Field(() => LikeMaxAggregateInput, { nullable: true })
-  _max?: LikeMaxAggregateInput;
+    @Field(() => LikeMinAggregateInput, {nullable:true})
+    _min?: LikeMinAggregateInput;
+
+    @Field(() => LikeMaxAggregateInput, {nullable:true})
+    _max?: LikeMaxAggregateInput;
 }

@@ -6,11 +6,12 @@ import { PostUpdateWithoutEventInput } from './post-update-without-event.input';
 
 @InputType()
 export class PostUpdateToOneWithWhereWithoutEventInput {
-  @Field(() => PostWhereInput, { nullable: true })
-  @Type(() => PostWhereInput)
-  where?: PostWhereInput;
 
-  @Field(() => PostUpdateWithoutEventInput, { nullable: false })
-  @Type(() => PostUpdateWithoutEventInput)
-  data!: PostUpdateWithoutEventInput;
+    @Field(() => PostWhereInput, {nullable:true})
+    @Type(() => PostWhereInput)
+    where?: PostWhereInput;
+
+    @Field(() => PostUpdateWithoutEventInput, {nullable:false})
+    @Type(() => PostUpdateWithoutEventInput)
+    data!: PostUpdateWithoutEventInput;
 }

@@ -8,27 +8,28 @@ import { Event } from '../event/event.model';
 
 @ObjectType()
 export class Like {
-  @Field(() => ID, { nullable: false })
-  id!: number;
 
-  @Field(() => Int, { nullable: false })
-  userId!: number;
+    @Field(() => ID, {nullable:false})
+    id!: number;
 
-  @Field(() => Int, { nullable: true })
-  postId!: number | null;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => Int, { nullable: true })
-  eventId!: number | null;
+    @Field(() => Int, {nullable:true})
+    postId!: number | null;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => Int, {nullable:true})
+    eventId!: number | null;
 
-  @Field(() => User, { nullable: false })
-  user?: User;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => Post, { nullable: true })
-  post?: Post | null;
+    @Field(() => User, {nullable:false})
+    user?: User;
 
-  @Field(() => Event, { nullable: true })
-  event?: Event | null;
+    @Field(() => Post, {nullable:true})
+    post?: Post | null;
+
+    @Field(() => Event, {nullable:true})
+    event?: Event | null;
 }

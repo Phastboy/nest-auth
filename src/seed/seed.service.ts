@@ -56,104 +56,59 @@ export class SeedService implements OnModuleInit {
   }
 
   private async seedCategories() {
-    const parentCategories = [
-      { name: 'Academics', slug: 'academics' },
-      { name: 'Computer Science', slug: 'cs' },
-      { name: 'Social', slug: 'social' },
+    const categories = [
+      { name: 'Technology', slug: 'tech' },
+      { name: 'Science', slug: 'science' },
+      { name: 'Arts', slug: 'arts' },
       { name: 'Sports', slug: 'sports' },
-      { name: 'Arts & Humanities', slug: 'arts-humanities' },
-      { name: 'Science & Technology', slug: 'science-tech' },
+      { name: 'Education', slug: 'education' },
+      { name: 'Business', slug: 'business' },
+      { name: 'Health', slug: 'health' },
+      { name: 'Entertainment', slug: 'entertainment' },
     ];
 
-    const createdParentCategories = await Promise.all(
-      parentCategories.map((category) =>
-        this.prisma.category.create({
-          data: category,
-        }),
-      ),
-    );
-    this.logger.log(
-      `Seeded ${createdParentCategories.length} parent categories`,
-    );
-
-    const childCategories = [
-      {
-        name: 'Mathematics',
-        slug: 'math',
-        parentId: createdParentCategories[0].id,
-      },
-      {
-        name: 'Physics',
-        slug: 'physics',
-        parentId: createdParentCategories[0].id,
-      },
-      {
-        name: 'Artificial Intelligence',
-        slug: 'ai',
-        parentId: createdParentCategories[1].id,
-      },
-      {
-        name: 'Cyber Security',
-        slug: 'cyber-security',
-        parentId: createdParentCategories[1].id,
-      },
-      {
-        name: 'Digital Marketing',
-        slug: 'digital-marketing',
-        parentId: createdParentCategories[2].id,
-      },
-      {
-        name: 'E-sports',
-        slug: 'esports',
-        parentId: createdParentCategories[3].id,
-      },
-      {
-        name: 'Philosophy',
-        slug: 'philosophy',
-        parentId: createdParentCategories[4].id,
-      },
-      {
-        name: 'Engineering',
-        slug: 'engineering',
-        parentId: createdParentCategories[5].id,
-      },
-    ];
-
-    await this.prisma.category.createMany({ data: childCategories });
-    this.logger.log(`Seeded ${childCategories.length} child categories`);
+    await this.prisma.category.createMany({ data: categories });
+    this.logger.log(`Seeded ${categories.length} categories`);
   }
 
   async seedUsers() {
+    const roles = ['STUDENT', 'MODERATOR', 'ADMIN'];
     const users = Array.from({ length: 50 }, async () => ({
       email: faker.internet.email(),
       username: faker.internet.username(),
       password: await argon.hash('$trongPa55word'),
       avatar: faker.image.avatar(),
-      role: faker.helpers.arrayElement(['student', 'moderator']),
+      role: faker.helpers.arrayElement(roles),
       bio: faker.lorem.sentence(),
     }));
-
     const resolvedUsers = await Promise.all(users);
 
     await this.prisma.user.createMany({ data: resolvedUsers });
+
     const dbUsers = await this.prisma.user.findMany({ select: { id: true } });
     this.logger.log(`Seeded ${dbUsers.length} users`);
     return dbUsers.map((u) => u.id);
   }
 
   private async seedPosts(userIds: number[], categoryIds: { id: number }[]) {
-    // Create posts one by one to handle relations
-    for (let i = 0; i < 500; i++) {
+    const posts = Array.from({ length: 200 }, () => {
       const userId = faker.helpers.arrayElement(userIds);
+      return {
+        content: faker.lorem.paragraphs(faker.number.int({ min: 1, max: 3 })),
+        userId,
+        image: faker.datatype.boolean() ? faker.image.url() : null,
+        createdAt: faker.date.recent({ days: 30 }),
+      };
+    });
+
+    for (const post of posts) {
       await this.prisma.post.create({
         data: {
-          content: faker.lorem.paragraph(),
-          userId: userId,
-          isEvent: faker.datatype.boolean(),
+          ...post,
           categories: {
             connect: faker.helpers.arrayElements(categoryIds, {
-              min: 2,
-              max: 5,
+              min: 1,
+              max: 3,
             }),
           },
         },
@@ -165,21 +120,81 @@ export class SeedService implements OnModuleInit {
   }
 
   private async seedEvents(userIds: number[], categoryIds: { id: number }[]) {
-    const posts = await this.prisma.post.findMany({
-      where: { isEvent: false },
-      take: 100,
+    // Seed public events with posts (shareAsPost: true)
+    for (let i = 0; i < 75; i++) {
+      const userId = faker.helpers.arrayElement(userIds);
+      const startTime = faker.date.soon({ days: 30 });
+      const endTime = faker.date.soon({
+        days: 30,
+        refDate: startTime,
+      });
+
+      await this.prisma.$transaction(async (tx) => {
+        const event = await tx.event.create({
+          data: {
+            title: faker.lorem.words(faker.number.int({ min: 2, max: 5 })),
+            description: faker.lorem.paragraphs(
+              faker.number.int({ min: 1, max: 3 }),
+            ),
+            location: `${faker.location.city()}, ${faker.location.country()}`,
+            startTime,
+            endTime,
+            image: faker.datatype.boolean() ? faker.image.url() : null,
+            userId,
+            shareAsPost: true,
+            categories: {
+              connect: faker.helpers.arrayElements(categoryIds, {
+                min: 1,
+                max: 3,
+              }),
+            },
+          },
+        });
+
+        await tx.post.create({
+          data: {
+            content: `Join us for ${event.title} at ${event.location}!`,
+            userId,
+            isEvent: true,
+            eventId: event.id,
+            image: event.image,
+            createdAt: faker.date.recent({ days: 7 }),
+            categories: {
+              connect: faker.helpers.arrayElements(categoryIds, {
+                min: 1,
+                max: 3,
+              }),
+            },
+          },
+        });
+      });
+    }
+
+    // Seed private events (shareAsPost: false)
+    const privateEvents = Array.from({ length: 25 }, () => {
+      const userId = faker.helpers.arrayElement(userIds);
+      const startTime = faker.date.soon({ days: 30 });
+      return {
+        title: faker.lorem.words(faker.number.int({ min: 2, max: 5 })),
+        description: faker.lorem.paragraphs(
+          faker.number.int({ min: 1, max: 3 }),
+        ),
+        location: `${faker.location.city()}, ${faker.location.country()}`,
+        startTime,
+        endTime: faker.date.soon({
+          days: 30,
+          refDate: startTime,
+        }),
+        userId,
+        shareAsPost: false,
+        image: faker.datatype.boolean() ? faker.image.url() : null,
+      };
     });
 
-    for (const post of posts) {
+    for (const event of privateEvents) {
       await this.prisma.event.create({
         data: {
-          title: faker.lorem.words(3),
-          description: faker.lorem.paragraph(),
-          location: `${faker.location.buildingNumber()} ${faker.location.street()}`,
-          startTime: faker.date.soon({ days: 30 }),
-          endTime: faker.date.soon({ days: 31 }),
-          userId: faker.helpers.arrayElement(userIds),
-          postId: post.id,
+          ...event,
           categories: {
             connect: faker.helpers.arrayElements(categoryIds, {
               min: 1,
@@ -187,11 +202,6 @@ export class SeedService implements OnModuleInit {
             }),
           },
         },
-      });
-
-      await this.prisma.post.update({
-        where: { id: post.id },
-        data: { isEvent: true },
       });
     }
 
@@ -201,23 +211,78 @@ export class SeedService implements OnModuleInit {
 
   private async seedComments() {
     const posts = await this.prisma.post.findMany({
-      where: { isEvent: false },
-      take: 100,
+      select: { id: true },
+    });
+    const events = await this.prisma.event.findMany({
+      select: { id: true },
     });
     const users = await this.prisma.user.findMany({
       select: { id: true },
     });
 
+    // Seed comments for posts
     for (const post of posts) {
-      const commentCount = faker.number.int({ min: 1, max: 10 });
+      const commentCount = faker.number.int({ min: 0, max: 15 });
       for (let i = 0; i < commentCount; i++) {
-        await this.prisma.comment.create({
+        const comment = await this.prisma.comment.create({
           data: {
-            content: faker.lorem.sentence(),
+            content: faker.lorem.sentences(
+              faker.number.int({ min: 1, max: 3 }),
+            ),
             userId: faker.helpers.arrayElement(users).id,
             postId: post.id,
+            createdAt: faker.date.recent({ days: 7 }),
           },
         });
+
+        // Create random replies to the comment
+        const replyCount = faker.number.int({ min: 0, max: 5 });
+        for (let j = 0; j < replyCount; j++) {
+          await this.prisma.comment.create({
+            data: {
+              content: faker.lorem.sentences(
+                faker.number.int({ min: 1, max: 3 }),
+              ),
+              userId: faker.helpers.arrayElement(users).id,
+              postId: post.id,
+              parentId: comment.id, // Link to the parent comment
+              createdAt: faker.date.recent({ days: 7 }),
+            },
+          });
+        }
+      }
+    }
+
+    // Seed comments for events
+    for (const event of events) {
+      const commentCount = faker.number.int({ min: 0, max: 15 });
+      for (let i = 0; i < commentCount; i++) {
+        const comment = await this.prisma.comment.create({
+          data: {
+            content: faker.lorem.sentences(
+              faker.number.int({ min: 1, max: 3 }),
+            ),
+            userId: faker.helpers.arrayElement(users).id,
+            eventId: event.id,
+            createdAt: faker.date.recent({ days: 7 }),
+          },
+        });
+
+        // Create random replies to the comment
+        const replyCount = faker.number.int({ min: 0, max: 5 });
+        for (let j = 0; j < replyCount; j++) {
+          await this.prisma.comment.create({
+            data: {
+              content: faker.lorem.sentences(
+                faker.number.int({ min: 1, max: 3 }),
+              ),
+              userId: faker.helpers.arrayElement(users).id,
+              eventId: event.id,
+              parentId: comment.id, // Link to the parent comment
+              createdAt: faker.date.recent({ days: 7 }),
+            },
+          });
+        }
       }
     }
 
@@ -227,24 +292,23 @@ export class SeedService implements OnModuleInit {
 
   private async seedLikes() {
     const posts = await this.prisma.post.findMany({
-      where: { isEvent: false },
-      take: 100,
+      select: { id: true },
     });
     const users = await this.prisma.user.findMany({
       select: { id: true },
     });
 
     for (const post of posts) {
-      const likeCount = faker.number.int({ min: 1, max: 20 });
+      const likeCount = faker.number.int({ min: 0, max: 30 });
       const selectedUsers = faker.helpers.arrayElements(users, likeCount);
-      for (const user of selectedUsers) {
-        await this.prisma.like.create({
-          data: {
-            userId: user.id,
-            postId: post.id,
-          },
-        });
-      }
+
+      await this.prisma.like.createMany({
+        data: selectedUsers.map((user) => ({
+          userId: user.id,
+          postId: post.id,
+          createdAt: faker.date.recent({ days: 7 }),
+        })),
+      });
     }
 
     const likeCount = await this.prisma.like.count();
@@ -253,28 +317,28 @@ export class SeedService implements OnModuleInit {
 
   private async seedRSVPs() {
     const events = await this.prisma.event.findMany({
-      take: 100,
+      select: { id: true },
     });
     const users = await this.prisma.user.findMany({
       select: { id: true },
     });
 
     for (const event of events) {
-      const rsvpCount = faker.number.int({ min: 1, max: 30 });
+      const rsvpCount = faker.number.int({ min: 0, max: 25 });
       const selectedUsers = faker.helpers.arrayElements(users, rsvpCount);
-      for (const user of selectedUsers) {
-        await this.prisma.rSVP.create({
-          data: {
-            userId: user.id,
-            eventId: event.id,
-            status: faker.helpers.arrayElement([
-              'going',
-              'interested',
-              'not_going',
-            ]),
-          },
-        });
-      }
+
+      await this.prisma.rSVP.createMany({
+        data: selectedUsers.map((user) => ({
+          userId: user.id,
+          eventId: event.id,
+          status: faker.helpers.arrayElement([
+            'GOING',
+            'INTERESTED',
+            'NOT_GOING',
+          ]),
+          createdAt: faker.date.recent({ days: 7 }),
+        })),
+      });
     }
 
     const rsvpCount = await this.prisma.rSVP.count();
@@ -282,20 +346,26 @@ export class SeedService implements OnModuleInit {
   }
 
   private async seedNotifications() {
-    const users = await this.prisma.user.findMany();
+    const users = await this.prisma.user.findMany({
+      select: { id: true },
+    });
 
     for (const user of users) {
       const notificationCount = faker.number.int({ min: 1, max: 10 });
-      for (let i = 0; i < notificationCount; i++) {
-        await this.prisma.notification.create({
-          data: {
-            content: faker.lorem.sentence(),
-            userId: user.id,
-            type: 'info',
-            isRead: faker.datatype.boolean(),
-          },
-        });
-      }
+      await this.prisma.notification.createMany({
+        data: Array.from({ length: notificationCount }, () => ({
+          userId: user.id,
+          content: faker.lorem.sentence(),
+          type: faker.helpers.arrayElement([
+            'LIKE',
+            'COMMENT',
+            'EVENT',
+            'SYSTEM',
+          ]),
+          isRead: faker.datatype.boolean(),
+          createdAt: faker.date.recent({ days: 7 }),
+        })),
+      });
     }
 
     const notificationCount = await this.prisma.notification.count();

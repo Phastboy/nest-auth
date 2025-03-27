@@ -6,11 +6,12 @@ import { UserUpdateWithoutNotificationsInput } from './user-update-without-notif
 
 @InputType()
 export class UserUpdateToOneWithWhereWithoutNotificationsInput {
-  @Field(() => UserWhereInput, { nullable: true })
-  @Type(() => UserWhereInput)
-  where?: UserWhereInput;
 
-  @Field(() => UserUpdateWithoutNotificationsInput, { nullable: false })
-  @Type(() => UserUpdateWithoutNotificationsInput)
-  data!: UserUpdateWithoutNotificationsInput;
+    @Field(() => UserWhereInput, {nullable:true})
+    @Type(() => UserWhereInput)
+    where?: UserWhereInput;
+
+    @Field(() => UserUpdateWithoutNotificationsInput, {nullable:false})
+    @Type(() => UserUpdateWithoutNotificationsInput)
+    data!: UserUpdateWithoutNotificationsInput;
 }

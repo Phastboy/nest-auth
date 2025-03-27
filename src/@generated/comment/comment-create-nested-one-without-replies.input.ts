@@ -8,15 +8,16 @@ import { CommentWhereUniqueInput } from './comment-where-unique.input';
 
 @InputType()
 export class CommentCreateNestedOneWithoutRepliesInput {
-  @Field(() => CommentCreateWithoutRepliesInput, { nullable: true })
-  @Type(() => CommentCreateWithoutRepliesInput)
-  create?: CommentCreateWithoutRepliesInput;
 
-  @Field(() => CommentCreateOrConnectWithoutRepliesInput, { nullable: true })
-  @Type(() => CommentCreateOrConnectWithoutRepliesInput)
-  connectOrCreate?: CommentCreateOrConnectWithoutRepliesInput;
+    @Field(() => CommentCreateWithoutRepliesInput, {nullable:true})
+    @Type(() => CommentCreateWithoutRepliesInput)
+    create?: CommentCreateWithoutRepliesInput;
 
-  @Field(() => CommentWhereUniqueInput, { nullable: true })
-  @Type(() => CommentWhereUniqueInput)
-  connect?: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
+    @Field(() => CommentCreateOrConnectWithoutRepliesInput, {nullable:true})
+    @Type(() => CommentCreateOrConnectWithoutRepliesInput)
+    connectOrCreate?: CommentCreateOrConnectWithoutRepliesInput;
+
+    @Field(() => CommentWhereUniqueInput, {nullable:true})
+    @Type(() => CommentWhereUniqueInput)
+    connect?: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 }

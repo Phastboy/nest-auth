@@ -21,11 +21,11 @@ export class CommentsService {
   };
 
   async createComment(
-    authorId: number,
+    userId: number,
     newCommentData: CreateCommentInput,
   ): Promise<Comment> {
     return this.prismaService.comment.create({
-      data: { ...newCommentData, userId: authorId },
+      data: { ...newCommentData, userId },
       ...this.commentRelations,
     });
   }

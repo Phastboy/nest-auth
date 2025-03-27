@@ -4,30 +4,31 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class UserMinAggregate {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: true })
-  email?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => String, { nullable: true })
-  username?: string;
+    @Field(() => String, {nullable:true})
+    email?: string;
 
-  @Field(() => String, { nullable: true })
-  password?: string;
+    @Field(() => String, {nullable:true})
+    username?: string;
 
-  @Field(() => String, { nullable: true })
-  avatar?: string;
+    @Field(() => String, {nullable:true})
+    password?: string;
 
-  @Field(() => String, { nullable: true })
-  role?: string;
+    @Field(() => String, {nullable:true})
+    avatar?: string;
 
-  @Field(() => String, { nullable: true })
-  bio?: string;
+    @Field(() => String, {nullable:true})
+    role?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => String, {nullable:true})
+    bio?: string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 }

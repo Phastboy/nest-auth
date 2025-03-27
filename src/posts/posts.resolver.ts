@@ -38,11 +38,7 @@ export class PostsResolver {
     @Args('updatePostInput') updatePostInput: UpdatePostInput,
     @CurrentUser() user: AuthenticatedUser,
   ) {
-    return this.postsService.updatePost(
-      user.userId,
-      id,
-      updatePostInput,
-    );
+    return this.postsService.updatePost(user.userId, id, updatePostInput);
   }
 
   @UseGuards(JwtAuthGuard)

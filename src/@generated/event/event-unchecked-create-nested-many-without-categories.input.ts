@@ -8,15 +8,16 @@ import { EventWhereUniqueInput } from './event-where-unique.input';
 
 @InputType()
 export class EventUncheckedCreateNestedManyWithoutCategoriesInput {
-  @Field(() => [EventCreateWithoutCategoriesInput], { nullable: true })
-  @Type(() => EventCreateWithoutCategoriesInput)
-  create?: Array<EventCreateWithoutCategoriesInput>;
 
-  @Field(() => [EventCreateOrConnectWithoutCategoriesInput], { nullable: true })
-  @Type(() => EventCreateOrConnectWithoutCategoriesInput)
-  connectOrCreate?: Array<EventCreateOrConnectWithoutCategoriesInput>;
+    @Field(() => [EventCreateWithoutCategoriesInput], {nullable:true})
+    @Type(() => EventCreateWithoutCategoriesInput)
+    create?: Array<EventCreateWithoutCategoriesInput>;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>>;
+    @Field(() => [EventCreateOrConnectWithoutCategoriesInput], {nullable:true})
+    @Type(() => EventCreateOrConnectWithoutCategoriesInput)
+    connectOrCreate?: Array<EventCreateOrConnectWithoutCategoriesInput>;
+
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 }

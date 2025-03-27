@@ -8,15 +8,16 @@ import { NotificationUpdateInput } from './notification-update.input';
 
 @ArgsType()
 export class UpsertOneNotificationArgs {
-  @Field(() => NotificationWhereUniqueInput, { nullable: false })
-  @Type(() => NotificationWhereUniqueInput)
-  where!: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
 
-  @Field(() => NotificationCreateInput, { nullable: false })
-  @Type(() => NotificationCreateInput)
-  create!: NotificationCreateInput;
+    @Field(() => NotificationWhereUniqueInput, {nullable:false})
+    @Type(() => NotificationWhereUniqueInput)
+    where!: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
 
-  @Field(() => NotificationUpdateInput, { nullable: false })
-  @Type(() => NotificationUpdateInput)
-  update!: NotificationUpdateInput;
+    @Field(() => NotificationCreateInput, {nullable:false})
+    @Type(() => NotificationCreateInput)
+    create!: NotificationCreateInput;
+
+    @Field(() => NotificationUpdateInput, {nullable:false})
+    @Type(() => NotificationUpdateInput)
+    update!: NotificationUpdateInput;
 }

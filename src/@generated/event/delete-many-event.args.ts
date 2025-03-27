@@ -6,10 +6,11 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class DeleteManyEventArgs {
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  where?: EventWhereInput;
 
-  @Field(() => Int, { nullable: true })
-  limit?: number;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    where?: EventWhereInput;
+
+    @Field(() => Int, {nullable:true})
+    limit?: number;
 }

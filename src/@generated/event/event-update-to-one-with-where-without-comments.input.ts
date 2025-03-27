@@ -6,11 +6,12 @@ import { EventUpdateWithoutCommentsInput } from './event-update-without-comments
 
 @InputType()
 export class EventUpdateToOneWithWhereWithoutCommentsInput {
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  where?: EventWhereInput;
 
-  @Field(() => EventUpdateWithoutCommentsInput, { nullable: false })
-  @Type(() => EventUpdateWithoutCommentsInput)
-  data!: EventUpdateWithoutCommentsInput;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    where?: EventWhereInput;
+
+    @Field(() => EventUpdateWithoutCommentsInput, {nullable:false})
+    @Type(() => EventUpdateWithoutCommentsInput)
+    data!: EventUpdateWithoutCommentsInput;
 }

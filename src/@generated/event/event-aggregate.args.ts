@@ -14,34 +14,35 @@ import { EventMaxAggregateInput } from './event-max-aggregate.input';
 
 @ArgsType()
 export class EventAggregateArgs {
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  where?: EventWhereInput;
 
-  @Field(() => [EventOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<EventOrderByWithRelationInput>;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    where?: EventWhereInput;
 
-  @Field(() => EventWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
+    @Field(() => [EventOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<EventOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => EventWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => EventCountAggregateInput, { nullable: true })
-  _count?: EventCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => EventAvgAggregateInput, { nullable: true })
-  _avg?: EventAvgAggregateInput;
+    @Field(() => EventCountAggregateInput, {nullable:true})
+    _count?: EventCountAggregateInput;
 
-  @Field(() => EventSumAggregateInput, { nullable: true })
-  _sum?: EventSumAggregateInput;
+    @Field(() => EventAvgAggregateInput, {nullable:true})
+    _avg?: EventAvgAggregateInput;
 
-  @Field(() => EventMinAggregateInput, { nullable: true })
-  _min?: EventMinAggregateInput;
+    @Field(() => EventSumAggregateInput, {nullable:true})
+    _sum?: EventSumAggregateInput;
 
-  @Field(() => EventMaxAggregateInput, { nullable: true })
-  _max?: EventMaxAggregateInput;
+    @Field(() => EventMinAggregateInput, {nullable:true})
+    _min?: EventMinAggregateInput;
+
+    @Field(() => EventMaxAggregateInput, {nullable:true})
+    _max?: EventMaxAggregateInput;
 }

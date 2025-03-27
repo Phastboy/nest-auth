@@ -4,45 +4,37 @@ import { Int } from '@nestjs/graphql';
 import { CategoryUncheckedCreateNestedManyWithoutPostsInput } from '../category/category-unchecked-create-nested-many-without-posts.input';
 import { CommentUncheckedCreateNestedManyWithoutPostInput } from '../comment/comment-unchecked-create-nested-many-without-post.input';
 import { LikeUncheckedCreateNestedManyWithoutPostInput } from '../like/like-unchecked-create-nested-many-without-post.input';
-import { EventUncheckedCreateNestedOneWithoutPostInput } from '../event/event-unchecked-create-nested-one-without-post.input';
 
 @InputType()
 export class PostUncheckedCreateWithoutUserInput {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: false })
-  content!: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => String, { nullable: true })
-  image?: string;
+    @Field(() => String, {nullable:false})
+    content!: string;
 
-  @Field(() => Boolean, { nullable: true })
-  isEvent?: boolean;
+    @Field(() => String, {nullable:true})
+    image?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    isEvent?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    eventId?: number;
 
-  @Field(() => CategoryUncheckedCreateNestedManyWithoutPostsInput, {
-    nullable: true,
-  })
-  categories?: CategoryUncheckedCreateNestedManyWithoutPostsInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => CommentUncheckedCreateNestedManyWithoutPostInput, {
-    nullable: true,
-  })
-  comments?: CommentUncheckedCreateNestedManyWithoutPostInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => LikeUncheckedCreateNestedManyWithoutPostInput, {
-    nullable: true,
-  })
-  likes?: LikeUncheckedCreateNestedManyWithoutPostInput;
+    @Field(() => CategoryUncheckedCreateNestedManyWithoutPostsInput, {nullable:true})
+    categories?: CategoryUncheckedCreateNestedManyWithoutPostsInput;
 
-  @Field(() => EventUncheckedCreateNestedOneWithoutPostInput, {
-    nullable: true,
-  })
-  event?: EventUncheckedCreateNestedOneWithoutPostInput;
+    @Field(() => CommentUncheckedCreateNestedManyWithoutPostInput, {nullable:true})
+    comments?: CommentUncheckedCreateNestedManyWithoutPostInput;
+
+    @Field(() => LikeUncheckedCreateNestedManyWithoutPostInput, {nullable:true})
+    likes?: LikeUncheckedCreateNestedManyWithoutPostInput;
 }

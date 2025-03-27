@@ -8,15 +8,16 @@ import { EventWhereUniqueInput } from './event-where-unique.input';
 
 @InputType()
 export class EventCreateNestedOneWithoutRsvpsInput {
-  @Field(() => EventCreateWithoutRsvpsInput, { nullable: true })
-  @Type(() => EventCreateWithoutRsvpsInput)
-  create?: EventCreateWithoutRsvpsInput;
 
-  @Field(() => EventCreateOrConnectWithoutRsvpsInput, { nullable: true })
-  @Type(() => EventCreateOrConnectWithoutRsvpsInput)
-  connectOrCreate?: EventCreateOrConnectWithoutRsvpsInput;
+    @Field(() => EventCreateWithoutRsvpsInput, {nullable:true})
+    @Type(() => EventCreateWithoutRsvpsInput)
+    create?: EventCreateWithoutRsvpsInput;
 
-  @Field(() => EventWhereUniqueInput, { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
+    @Field(() => EventCreateOrConnectWithoutRsvpsInput, {nullable:true})
+    @Type(() => EventCreateOrConnectWithoutRsvpsInput)
+    connectOrCreate?: EventCreateOrConnectWithoutRsvpsInput;
+
+    @Field(() => EventWhereUniqueInput, {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 }

@@ -8,17 +8,16 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 
 @InputType()
 export class CategoryUncheckedCreateNestedManyWithoutEventsInput {
-  @Field(() => [CategoryCreateWithoutEventsInput], { nullable: true })
-  @Type(() => CategoryCreateWithoutEventsInput)
-  create?: Array<CategoryCreateWithoutEventsInput>;
 
-  @Field(() => [CategoryCreateOrConnectWithoutEventsInput], { nullable: true })
-  @Type(() => CategoryCreateOrConnectWithoutEventsInput)
-  connectOrCreate?: Array<CategoryCreateOrConnectWithoutEventsInput>;
+    @Field(() => [CategoryCreateWithoutEventsInput], {nullable:true})
+    @Type(() => CategoryCreateWithoutEventsInput)
+    create?: Array<CategoryCreateWithoutEventsInput>;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  connect?: Array<
-    Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>
-  >;
+    @Field(() => [CategoryCreateOrConnectWithoutEventsInput], {nullable:true})
+    @Type(() => CategoryCreateOrConnectWithoutEventsInput)
+    connectOrCreate?: Array<CategoryCreateOrConnectWithoutEventsInput>;
+
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 }

@@ -7,11 +7,12 @@ import { CommentUpdateWithoutEventInput } from './comment-update-without-event.i
 
 @InputType()
 export class CommentUpdateWithWhereUniqueWithoutEventInput {
-  @Field(() => CommentWhereUniqueInput, { nullable: false })
-  @Type(() => CommentWhereUniqueInput)
-  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-  @Field(() => CommentUpdateWithoutEventInput, { nullable: false })
-  @Type(() => CommentUpdateWithoutEventInput)
-  data!: CommentUpdateWithoutEventInput;
+    @Field(() => CommentWhereUniqueInput, {nullable:false})
+    @Type(() => CommentWhereUniqueInput)
+    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
+
+    @Field(() => CommentUpdateWithoutEventInput, {nullable:false})
+    @Type(() => CommentUpdateWithoutEventInput)
+    data!: CommentUpdateWithoutEventInput;
 }

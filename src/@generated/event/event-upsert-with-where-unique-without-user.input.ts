@@ -8,15 +8,16 @@ import { EventCreateWithoutUserInput } from './event-create-without-user.input';
 
 @InputType()
 export class EventUpsertWithWhereUniqueWithoutUserInput {
-  @Field(() => EventWhereUniqueInput, { nullable: false })
-  @Type(() => EventWhereUniqueInput)
-  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
 
-  @Field(() => EventUpdateWithoutUserInput, { nullable: false })
-  @Type(() => EventUpdateWithoutUserInput)
-  update!: EventUpdateWithoutUserInput;
+    @Field(() => EventWhereUniqueInput, {nullable:false})
+    @Type(() => EventWhereUniqueInput)
+    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-  @Field(() => EventCreateWithoutUserInput, { nullable: false })
-  @Type(() => EventCreateWithoutUserInput)
-  create!: EventCreateWithoutUserInput;
+    @Field(() => EventUpdateWithoutUserInput, {nullable:false})
+    @Type(() => EventUpdateWithoutUserInput)
+    update!: EventUpdateWithoutUserInput;
+
+    @Field(() => EventCreateWithoutUserInput, {nullable:false})
+    @Type(() => EventCreateWithoutUserInput)
+    create!: EventCreateWithoutUserInput;
 }

@@ -8,15 +8,16 @@ import { PostCreateWithoutCategoriesInput } from './post-create-without-categori
 
 @InputType()
 export class PostUpsertWithWhereUniqueWithoutCategoriesInput {
-  @Field(() => PostWhereUniqueInput, { nullable: false })
-  @Type(() => PostWhereUniqueInput)
-  where!: Prisma.AtLeast<PostWhereUniqueInput, 'id'>;
 
-  @Field(() => PostUpdateWithoutCategoriesInput, { nullable: false })
-  @Type(() => PostUpdateWithoutCategoriesInput)
-  update!: PostUpdateWithoutCategoriesInput;
+    @Field(() => PostWhereUniqueInput, {nullable:false})
+    @Type(() => PostWhereUniqueInput)
+    where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
 
-  @Field(() => PostCreateWithoutCategoriesInput, { nullable: false })
-  @Type(() => PostCreateWithoutCategoriesInput)
-  create!: PostCreateWithoutCategoriesInput;
+    @Field(() => PostUpdateWithoutCategoriesInput, {nullable:false})
+    @Type(() => PostUpdateWithoutCategoriesInput)
+    update!: PostUpdateWithoutCategoriesInput;
+
+    @Field(() => PostCreateWithoutCategoriesInput, {nullable:false})
+    @Type(() => PostCreateWithoutCategoriesInput)
+    create!: PostCreateWithoutCategoriesInput;
 }

@@ -9,33 +9,34 @@ import { RSVPSumOrderByAggregateInput } from './rsvp-sum-order-by-aggregate.inpu
 
 @InputType()
 export class RSVPOrderByWithAggregationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  userId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  eventId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    userId?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  status?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    eventId?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    status?: `${SortOrder}`;
 
-  @Field(() => RSVPCountOrderByAggregateInput, { nullable: true })
-  _count?: RSVPCountOrderByAggregateInput;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => RSVPAvgOrderByAggregateInput, { nullable: true })
-  _avg?: RSVPAvgOrderByAggregateInput;
+    @Field(() => RSVPCountOrderByAggregateInput, {nullable:true})
+    _count?: RSVPCountOrderByAggregateInput;
 
-  @Field(() => RSVPMaxOrderByAggregateInput, { nullable: true })
-  _max?: RSVPMaxOrderByAggregateInput;
+    @Field(() => RSVPAvgOrderByAggregateInput, {nullable:true})
+    _avg?: RSVPAvgOrderByAggregateInput;
 
-  @Field(() => RSVPMinOrderByAggregateInput, { nullable: true })
-  _min?: RSVPMinOrderByAggregateInput;
+    @Field(() => RSVPMaxOrderByAggregateInput, {nullable:true})
+    _max?: RSVPMaxOrderByAggregateInput;
 
-  @Field(() => RSVPSumOrderByAggregateInput, { nullable: true })
-  _sum?: RSVPSumOrderByAggregateInput;
+    @Field(() => RSVPMinOrderByAggregateInput, {nullable:true})
+    _min?: RSVPMinOrderByAggregateInput;
+
+    @Field(() => RSVPSumOrderByAggregateInput, {nullable:true})
+    _sum?: RSVPSumOrderByAggregateInput;
 }

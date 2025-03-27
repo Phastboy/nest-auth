@@ -7,11 +7,12 @@ import { UserCreateWithoutRsvpsInput } from './user-create-without-rsvps.input';
 
 @InputType()
 export class UserCreateOrConnectWithoutRsvpsInput {
-  @Field(() => UserWhereUniqueInput, { nullable: false })
-  @Type(() => UserWhereUniqueInput)
-  where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
 
-  @Field(() => UserCreateWithoutRsvpsInput, { nullable: false })
-  @Type(() => UserCreateWithoutRsvpsInput)
-  create!: UserCreateWithoutRsvpsInput;
+    @Field(() => UserWhereUniqueInput, {nullable:false})
+    @Type(() => UserWhereUniqueInput)
+    where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
+
+    @Field(() => UserCreateWithoutRsvpsInput, {nullable:false})
+    @Type(() => UserCreateWithoutRsvpsInput)
+    create!: UserCreateWithoutRsvpsInput;
 }

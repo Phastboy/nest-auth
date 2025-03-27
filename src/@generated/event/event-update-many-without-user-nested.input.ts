@@ -13,47 +13,48 @@ import { EventScalarWhereInput } from './event-scalar-where.input';
 
 @InputType()
 export class EventUpdateManyWithoutUserNestedInput {
-  @Field(() => [EventCreateWithoutUserInput], { nullable: true })
-  @Type(() => EventCreateWithoutUserInput)
-  create?: Array<EventCreateWithoutUserInput>;
 
-  @Field(() => [EventCreateOrConnectWithoutUserInput], { nullable: true })
-  @Type(() => EventCreateOrConnectWithoutUserInput)
-  connectOrCreate?: Array<EventCreateOrConnectWithoutUserInput>;
+    @Field(() => [EventCreateWithoutUserInput], {nullable:true})
+    @Type(() => EventCreateWithoutUserInput)
+    create?: Array<EventCreateWithoutUserInput>;
 
-  @Field(() => [EventUpsertWithWhereUniqueWithoutUserInput], { nullable: true })
-  @Type(() => EventUpsertWithWhereUniqueWithoutUserInput)
-  upsert?: Array<EventUpsertWithWhereUniqueWithoutUserInput>;
+    @Field(() => [EventCreateOrConnectWithoutUserInput], {nullable:true})
+    @Type(() => EventCreateOrConnectWithoutUserInput)
+    connectOrCreate?: Array<EventCreateOrConnectWithoutUserInput>;
 
-  @Field(() => EventCreateManyUserInputEnvelope, { nullable: true })
-  @Type(() => EventCreateManyUserInputEnvelope)
-  createMany?: EventCreateManyUserInputEnvelope;
+    @Field(() => [EventUpsertWithWhereUniqueWithoutUserInput], {nullable:true})
+    @Type(() => EventUpsertWithWhereUniqueWithoutUserInput)
+    upsert?: Array<EventUpsertWithWhereUniqueWithoutUserInput>;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>>;
+    @Field(() => EventCreateManyUserInputEnvelope, {nullable:true})
+    @Type(() => EventCreateManyUserInputEnvelope)
+    createMany?: EventCreateManyUserInputEnvelope;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>>;
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>>;
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>>;
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-  @Field(() => [EventUpdateWithWhereUniqueWithoutUserInput], { nullable: true })
-  @Type(() => EventUpdateWithWhereUniqueWithoutUserInput)
-  update?: Array<EventUpdateWithWhereUniqueWithoutUserInput>;
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-  @Field(() => [EventUpdateManyWithWhereWithoutUserInput], { nullable: true })
-  @Type(() => EventUpdateManyWithWhereWithoutUserInput)
-  updateMany?: Array<EventUpdateManyWithWhereWithoutUserInput>;
+    @Field(() => [EventUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
+    @Type(() => EventUpdateWithWhereUniqueWithoutUserInput)
+    update?: Array<EventUpdateWithWhereUniqueWithoutUserInput>;
 
-  @Field(() => [EventScalarWhereInput], { nullable: true })
-  @Type(() => EventScalarWhereInput)
-  deleteMany?: Array<EventScalarWhereInput>;
+    @Field(() => [EventUpdateManyWithWhereWithoutUserInput], {nullable:true})
+    @Type(() => EventUpdateManyWithWhereWithoutUserInput)
+    updateMany?: Array<EventUpdateManyWithWhereWithoutUserInput>;
+
+    @Field(() => [EventScalarWhereInput], {nullable:true})
+    @Type(() => EventScalarWhereInput)
+    deleteMany?: Array<EventScalarWhereInput>;
 }

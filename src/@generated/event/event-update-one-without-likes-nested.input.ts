@@ -11,31 +11,32 @@ import { EventUpdateToOneWithWhereWithoutLikesInput } from './event-update-to-on
 
 @InputType()
 export class EventUpdateOneWithoutLikesNestedInput {
-  @Field(() => EventCreateWithoutLikesInput, { nullable: true })
-  @Type(() => EventCreateWithoutLikesInput)
-  create?: EventCreateWithoutLikesInput;
 
-  @Field(() => EventCreateOrConnectWithoutLikesInput, { nullable: true })
-  @Type(() => EventCreateOrConnectWithoutLikesInput)
-  connectOrCreate?: EventCreateOrConnectWithoutLikesInput;
+    @Field(() => EventCreateWithoutLikesInput, {nullable:true})
+    @Type(() => EventCreateWithoutLikesInput)
+    create?: EventCreateWithoutLikesInput;
 
-  @Field(() => EventUpsertWithoutLikesInput, { nullable: true })
-  @Type(() => EventUpsertWithoutLikesInput)
-  upsert?: EventUpsertWithoutLikesInput;
+    @Field(() => EventCreateOrConnectWithoutLikesInput, {nullable:true})
+    @Type(() => EventCreateOrConnectWithoutLikesInput)
+    connectOrCreate?: EventCreateOrConnectWithoutLikesInput;
 
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  disconnect?: EventWhereInput;
+    @Field(() => EventUpsertWithoutLikesInput, {nullable:true})
+    @Type(() => EventUpsertWithoutLikesInput)
+    upsert?: EventUpsertWithoutLikesInput;
 
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  delete?: EventWhereInput;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    disconnect?: EventWhereInput;
 
-  @Field(() => EventWhereUniqueInput, { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id' | 'postId'>;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    delete?: EventWhereInput;
 
-  @Field(() => EventUpdateToOneWithWhereWithoutLikesInput, { nullable: true })
-  @Type(() => EventUpdateToOneWithWhereWithoutLikesInput)
-  update?: EventUpdateToOneWithWhereWithoutLikesInput;
+    @Field(() => EventWhereUniqueInput, {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+
+    @Field(() => EventUpdateToOneWithWhereWithoutLikesInput, {nullable:true})
+    @Type(() => EventUpdateToOneWithWhereWithoutLikesInput)
+    update?: EventUpdateToOneWithWhereWithoutLikesInput;
 }

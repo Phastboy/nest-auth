@@ -8,15 +8,16 @@ import { CommentCreateWithoutEventInput } from './comment-create-without-event.i
 
 @InputType()
 export class CommentUpsertWithWhereUniqueWithoutEventInput {
-  @Field(() => CommentWhereUniqueInput, { nullable: false })
-  @Type(() => CommentWhereUniqueInput)
-  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-  @Field(() => CommentUpdateWithoutEventInput, { nullable: false })
-  @Type(() => CommentUpdateWithoutEventInput)
-  update!: CommentUpdateWithoutEventInput;
+    @Field(() => CommentWhereUniqueInput, {nullable:false})
+    @Type(() => CommentWhereUniqueInput)
+    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-  @Field(() => CommentCreateWithoutEventInput, { nullable: false })
-  @Type(() => CommentCreateWithoutEventInput)
-  create!: CommentCreateWithoutEventInput;
+    @Field(() => CommentUpdateWithoutEventInput, {nullable:false})
+    @Type(() => CommentUpdateWithoutEventInput)
+    update!: CommentUpdateWithoutEventInput;
+
+    @Field(() => CommentCreateWithoutEventInput, {nullable:false})
+    @Type(() => CommentCreateWithoutEventInput)
+    create!: CommentCreateWithoutEventInput;
 }
