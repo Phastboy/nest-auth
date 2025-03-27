@@ -1,50 +1,67 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { PrismaService } from 'nestjs-prisma';
+import { Category } from 'src/@generated';
 
 @Injectable()
 export class CategoriesService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
-  async create(createCategoryInput: CreateCategoryInput) {
-    return await this.prisma.category.create({
-      data: createCategoryInput,
+  private readonly categoryRelations = {
+    include: {
+      posts: true,
+      events: true,
+      parent: true,
+      children: true,
+    },
+  };
+
+  async createCategory(
+    newCategoryData: CreateCategoryInput,
+  ): Promise<Category> {
+    return this.prismaService.category.create({
+      data: {
+        ...newCategoryData,
+      },
+      ...this.categoryRelations,
     });
   }
 
-  async findAll() {
-    return await this.prisma.category.findMany({
-      include: {
-        parent: true,
-        children: true,
-        posts: true,
-      },
+  async getAllCategories(): Promise<Category[]> {
+    return this.prismaService.category.findMany({
+      ...this.categoryRelations,
     });
   }
 
-  async findOne(id: number) {
-    return await this.prisma.category.findUniqueOrThrow({
-      where: {
-        id,
-      },
-      include: {
-        parent: true,
-        children: true,
-        posts: true,
-      },
+  async getCategoryById(categoryId: number): Promise<Category> {
+    const category = await this.prismaService.category.findUnique({
+      where: { id: categoryId },
+      ...this.categoryRelations,
+    });
+
+    if (!category) {
+      throw new NotFoundException(`Category with ID ${categoryId} not found`);
+    }
+
+    return category;
+  }
+
+  async updateCategory(
+    categoryId: number,
+    updateData: UpdateCategoryInput,
+  ): Promise<Category> {
+    return this.prismaService.category.update({
+      where: { id: categoryId },
+      data: updateData,
+      ...this.categoryRelations,
     });
   }
 
-  async update(id: number, updateCategoryInput: UpdateCategoryInput) {
-    return `This action updates a #${id} category`;
-  }
-
-  async remove(id: number) {
-    return await this.prisma.category.delete({
-      where: {
-        id,
-      },
+  async deleteCategory(categoryId: number): Promise<Category> {
+    return this.prismaService.category.delete({
+      where: { id: categoryId },
+      ...this.categoryRelations,
     });
   }
 }
