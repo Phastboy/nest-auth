@@ -71,31 +71,32 @@ model Post {
   content     String
   image       String?
   isEvent     Boolean      @default(false)
+  event       Event?       @relation("PostedEvent", fields: [eventId], references: [id])
+  eventId     Int?         @unique
   user        User         @relation(fields: [userId], references: [id])
   userId      Int
   categories  Category[]
   comments    Comment[]
   likes       Like[]
-  event       Event?       @relation("PostEvent")
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 
-  @@index([userId, createdAt]) // Added indexes
+  @@index([userId, createdAt])
   @@map("posts")
 }
 
 model Event {
-  id           Int       @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   title        String
   description  String
   location     String
   startTime    DateTime
   endTime      DateTime?
   image        String?
-  user         User      @relation(fields: [userId], references: [id])
+  user         User       @relation(fields: [userId], references: [id])
   userId       Int
-  post         Post      @relation("PostEvent", fields: [postId], references: [id])
-  postId       Int       @unique // Added unique constraint for 1:1 relation
+  shareAsPost  Boolean    @default(false)
+  post         Post?      @relation("PostedEvent")
   categories   Category[]
   comments     Comment[]
   rsvps        RSVP[]
@@ -103,7 +104,7 @@ model Event {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
 
-  @@index([userId, startTime, postId]) // Added indexes
+  @@index([userId, startTime])
   @@map("events")
 }
 
