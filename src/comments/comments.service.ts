@@ -12,7 +12,7 @@ import { Comment } from 'src/@generated';
 export class CommentsService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  private readonly commentWithRelations = {
+  private readonly commentRelations = {
     include: {
       user: true,
       post: true,
@@ -22,24 +22,24 @@ export class CommentsService {
 
   async createComment(
     authorId: number,
-    newCommentData: CreateCommentInput
+    newCommentData: CreateCommentInput,
   ): Promise<Comment> {
     return this.prismaService.comment.create({
       data: { ...newCommentData, userId: authorId },
-      ...this.commentWithRelations,
+      ...this.commentRelations,
     });
   }
 
   async getAllComments(): Promise<Comment[]> {
     return this.prismaService.comment.findMany({
-      ...this.commentWithRelations,
+      ...this.commentRelations,
     });
   }
 
   async getCommentById(commentId: number): Promise<Comment> {
     const comment = await this.prismaService.comment.findUnique({
       where: { id: commentId },
-      ...this.commentWithRelations,
+      ...this.commentRelations,
     });
 
     if (!comment) {
@@ -52,32 +52,32 @@ export class CommentsService {
   async updateComment(
     requestingUserId: number,
     commentId: number,
-    updateData: UpdateCommentInput
+    updateData: UpdateCommentInput,
   ): Promise<Comment> {
     await this.verifyCommentOwnership(commentId, requestingUserId);
 
     return this.prismaService.comment.update({
       where: { id: commentId },
       data: updateData,
-      ...this.commentWithRelations,
+      ...this.commentRelations,
     });
   }
 
   async deleteComment(
     requestingUserId: number,
-    commentId: number
+    commentId: number,
   ): Promise<Comment> {
     await this.verifyCommentOwnership(commentId, requestingUserId);
 
     return this.prismaService.comment.delete({
       where: { id: commentId },
-      ...this.commentWithRelations,
+      ...this.commentRelations,
     });
   }
 
   private async verifyCommentOwnership(
     commentId: number,
-    userId: number
+    userId: number,
   ): Promise<void> {
     const comment = await this.prismaService.comment.findUnique({
       where: { id: commentId },
@@ -89,7 +89,7 @@ export class CommentsService {
 
     if (comment.userId !== userId) {
       throw new ForbiddenException(
-        `User ${userId} is not the owner of comment ${commentId}`
+        `User ${userId} is not the owner of comment ${commentId}`,
       );
     }
   }

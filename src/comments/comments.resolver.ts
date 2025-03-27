@@ -22,7 +22,7 @@ export class CommentsResolver {
   }
 
   @Query(() => [Comment], { name: 'comments' })
-  async getComments() {
+  async getAllComments() {
     return await this.commentsService.getAllComments();
   }
 
