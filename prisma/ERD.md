@@ -12,7 +12,7 @@ erDiagram
   String username UK
   String password
   String avatar "nullable"
-  String role "nullable"
+  Role role
   String bio "nullable"
   DateTime createdAt
   DateTime updatedAt
