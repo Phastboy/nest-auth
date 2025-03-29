@@ -538,6 +538,13 @@ input DateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
+input EnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleFilter
+  notIn: [Role!]
+}
+
 type Event {
   _count: EventCount!
   categories: [Category!]
@@ -1140,6 +1147,13 @@ input NestedDateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
+input NestedEnumRoleFilter {
+  equals: Role
+  in: [Role!]
+  not: NestedEnumRoleFilter
+  notIn: [Role!]
+}
+
 input NestedIntFilter {
   equals: Int
   gt: Int
@@ -1723,6 +1737,19 @@ input RSVPWhereUniqueInput {
   userId_eventId: RSVPUserIdEventIdCompoundUniqueInput
 }
 
+enum Role {
+  ADMIN
+  DEPARTMENT_HEAD
+  FACULTY_DEAN
+  FINANCE_STAFF
+  IT_STAFF
+  LECTURER
+  LIBRARIAN
+  REGISTRAR
+  STUDENT
+  SUPER_ADMIN
+}
+
 input StringFilter {
   contains: String
   endsWith: String
@@ -1823,7 +1850,7 @@ input UpdateUserInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String
   posts: PostCreateNestedManyWithoutUserInput
-  role: String
+  role: Role
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String
@@ -1842,7 +1869,7 @@ type User {
   notifications: [Notification!]
   password: String!
   posts: [Post!]
-  role: String
+  role: Role!
   rsvps: [RSVP!]
   updatedAt: DateTime!
   username: String!
@@ -1885,7 +1912,7 @@ input UserCreateInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: String
+  role: Role
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -1956,7 +1983,7 @@ input UserCreateWithoutCommentsInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: String
+  role: Role
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -1972,7 +1999,7 @@ input UserCreateWithoutEventsInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: String
+  role: Role
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -1988,7 +2015,7 @@ input UserCreateWithoutLikesInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: String
+  role: Role
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -2004,7 +2031,7 @@ input UserCreateWithoutPostsInput {
   likes: LikeCreateNestedManyWithoutUserInput
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
-  role: String
+  role: Role
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -2021,7 +2048,7 @@ input UserCreateWithoutRsvpsInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: String
+  role: Role
   updatedAt: DateTime
   username: String!
 }
@@ -2033,7 +2060,7 @@ type UserMaxAggregate {
   email: String
   id: Int
   password: String
-  role: String
+  role: Role
   updatedAt: DateTime
   username: String
 }
@@ -2045,7 +2072,7 @@ type UserMinAggregate {
   email: String
   id: Int
   password: String
-  role: String
+  role: Role
   updatedAt: DateTime
   username: String
 }
@@ -2074,7 +2101,7 @@ input UserWhereInput {
   notifications: NotificationListRelationFilter
   password: StringFilter
   posts: PostListRelationFilter
-  role: StringNullableFilter
+  role: EnumRoleFilter
   rsvps: RSVPListRelationFilter
   updatedAt: DateTimeFilter
   username: StringFilter
@@ -2095,7 +2122,7 @@ input UserWhereUniqueInput {
   notifications: NotificationListRelationFilter
   password: StringFilter
   posts: PostListRelationFilter
-  role: StringNullableFilter
+  role: EnumRoleFilter
   rsvps: RSVPListRelationFilter
   updatedAt: DateTimeFilter
   username: String
