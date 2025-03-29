@@ -7,12 +7,11 @@ import { EventCreateWithoutRsvpsInput } from './event-create-without-rsvps.input
 
 @InputType()
 export class EventCreateOrConnectWithoutRsvpsInput {
+  @Field(() => EventWhereUniqueInput, { nullable: false })
+  @Type(() => EventWhereUniqueInput)
+  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:false})
-    @Type(() => EventWhereUniqueInput)
-    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
-
-    @Field(() => EventCreateWithoutRsvpsInput, {nullable:false})
-    @Type(() => EventCreateWithoutRsvpsInput)
-    create!: EventCreateWithoutRsvpsInput;
+  @Field(() => EventCreateWithoutRsvpsInput, { nullable: false })
+  @Type(() => EventCreateWithoutRsvpsInput)
+  create!: EventCreateWithoutRsvpsInput;
 }

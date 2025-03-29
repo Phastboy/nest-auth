@@ -6,11 +6,10 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class DeleteManyRsvpArgs {
+  @Field(() => RSVPWhereInput, { nullable: true })
+  @Type(() => RSVPWhereInput)
+  where?: RSVPWhereInput;
 
-    @Field(() => RSVPWhereInput, {nullable:true})
-    @Type(() => RSVPWhereInput)
-    where?: RSVPWhereInput;
-
-    @Field(() => Int, {nullable:true})
-    limit?: number;
+  @Field(() => Int, { nullable: true })
+  limit?: number;
 }

@@ -9,40 +9,39 @@ import { CommentMaxAggregate } from './comment-max-aggregate.output';
 
 @ObjectType()
 export class CommentGroupBy {
+  @Field(() => Int, { nullable: false })
+  id!: number;
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+  @Field(() => String, { nullable: false })
+  content!: string;
 
-    @Field(() => String, {nullable:false})
-    content!: string;
+  @Field(() => Int, { nullable: false })
+  userId!: number;
 
-    @Field(() => Int, {nullable:false})
-    userId!: number;
+  @Field(() => Int, { nullable: true })
+  postId?: number;
 
-    @Field(() => Int, {nullable:true})
-    postId?: number;
+  @Field(() => Int, { nullable: true })
+  eventId?: number;
 
-    @Field(() => Int, {nullable:true})
-    eventId?: number;
+  @Field(() => Int, { nullable: true })
+  parentId?: number;
 
-    @Field(() => Int, {nullable:true})
-    parentId?: number;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
+  @Field(() => CommentCountAggregate, { nullable: true })
+  _count?: CommentCountAggregate;
 
-    @Field(() => CommentCountAggregate, {nullable:true})
-    _count?: CommentCountAggregate;
+  @Field(() => CommentAvgAggregate, { nullable: true })
+  _avg?: CommentAvgAggregate;
 
-    @Field(() => CommentAvgAggregate, {nullable:true})
-    _avg?: CommentAvgAggregate;
+  @Field(() => CommentSumAggregate, { nullable: true })
+  _sum?: CommentSumAggregate;
 
-    @Field(() => CommentSumAggregate, {nullable:true})
-    _sum?: CommentSumAggregate;
+  @Field(() => CommentMinAggregate, { nullable: true })
+  _min?: CommentMinAggregate;
 
-    @Field(() => CommentMinAggregate, {nullable:true})
-    _min?: CommentMinAggregate;
-
-    @Field(() => CommentMaxAggregate, {nullable:true})
-    _max?: CommentMaxAggregate;
+  @Field(() => CommentMaxAggregate, { nullable: true })
+  _max?: CommentMaxAggregate;
 }

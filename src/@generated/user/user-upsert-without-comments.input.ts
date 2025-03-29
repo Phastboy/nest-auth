@@ -7,16 +7,15 @@ import { UserWhereInput } from './user-where.input';
 
 @InputType()
 export class UserUpsertWithoutCommentsInput {
+  @Field(() => UserUpdateWithoutCommentsInput, { nullable: false })
+  @Type(() => UserUpdateWithoutCommentsInput)
+  update!: UserUpdateWithoutCommentsInput;
 
-    @Field(() => UserUpdateWithoutCommentsInput, {nullable:false})
-    @Type(() => UserUpdateWithoutCommentsInput)
-    update!: UserUpdateWithoutCommentsInput;
+  @Field(() => UserCreateWithoutCommentsInput, { nullable: false })
+  @Type(() => UserCreateWithoutCommentsInput)
+  create!: UserCreateWithoutCommentsInput;
 
-    @Field(() => UserCreateWithoutCommentsInput, {nullable:false})
-    @Type(() => UserCreateWithoutCommentsInput)
-    create!: UserCreateWithoutCommentsInput;
-
-    @Field(() => UserWhereInput, {nullable:true})
-    @Type(() => UserWhereInput)
-    where?: UserWhereInput;
+  @Field(() => UserWhereInput, { nullable: true })
+  @Type(() => UserWhereInput)
+  where?: UserWhereInput;
 }

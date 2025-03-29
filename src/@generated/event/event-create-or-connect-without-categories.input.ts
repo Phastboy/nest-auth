@@ -7,12 +7,11 @@ import { EventCreateWithoutCategoriesInput } from './event-create-without-catego
 
 @InputType()
 export class EventCreateOrConnectWithoutCategoriesInput {
+  @Field(() => EventWhereUniqueInput, { nullable: false })
+  @Type(() => EventWhereUniqueInput)
+  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:false})
-    @Type(() => EventWhereUniqueInput)
-    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
-
-    @Field(() => EventCreateWithoutCategoriesInput, {nullable:false})
-    @Type(() => EventCreateWithoutCategoriesInput)
-    create!: EventCreateWithoutCategoriesInput;
+  @Field(() => EventCreateWithoutCategoriesInput, { nullable: false })
+  @Type(() => EventCreateWithoutCategoriesInput)
+  create!: EventCreateWithoutCategoriesInput;
 }

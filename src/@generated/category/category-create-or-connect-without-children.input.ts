@@ -7,12 +7,11 @@ import { CategoryCreateWithoutChildrenInput } from './category-create-without-ch
 
 @InputType()
 export class CategoryCreateOrConnectWithoutChildrenInput {
+  @Field(() => CategoryWhereUniqueInput, { nullable: false })
+  @Type(() => CategoryWhereUniqueInput)
+  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-    @Field(() => CategoryWhereUniqueInput, {nullable:false})
-    @Type(() => CategoryWhereUniqueInput)
-    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
-
-    @Field(() => CategoryCreateWithoutChildrenInput, {nullable:false})
-    @Type(() => CategoryCreateWithoutChildrenInput)
-    create!: CategoryCreateWithoutChildrenInput;
+  @Field(() => CategoryCreateWithoutChildrenInput, { nullable: false })
+  @Type(() => CategoryCreateWithoutChildrenInput)
+  create!: CategoryCreateWithoutChildrenInput;
 }

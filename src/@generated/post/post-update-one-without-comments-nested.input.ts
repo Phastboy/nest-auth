@@ -11,32 +11,31 @@ import { PostUpdateToOneWithWhereWithoutCommentsInput } from './post-update-to-o
 
 @InputType()
 export class PostUpdateOneWithoutCommentsNestedInput {
+  @Field(() => PostCreateWithoutCommentsInput, { nullable: true })
+  @Type(() => PostCreateWithoutCommentsInput)
+  create?: PostCreateWithoutCommentsInput;
 
-    @Field(() => PostCreateWithoutCommentsInput, {nullable:true})
-    @Type(() => PostCreateWithoutCommentsInput)
-    create?: PostCreateWithoutCommentsInput;
+  @Field(() => PostCreateOrConnectWithoutCommentsInput, { nullable: true })
+  @Type(() => PostCreateOrConnectWithoutCommentsInput)
+  connectOrCreate?: PostCreateOrConnectWithoutCommentsInput;
 
-    @Field(() => PostCreateOrConnectWithoutCommentsInput, {nullable:true})
-    @Type(() => PostCreateOrConnectWithoutCommentsInput)
-    connectOrCreate?: PostCreateOrConnectWithoutCommentsInput;
+  @Field(() => PostUpsertWithoutCommentsInput, { nullable: true })
+  @Type(() => PostUpsertWithoutCommentsInput)
+  upsert?: PostUpsertWithoutCommentsInput;
 
-    @Field(() => PostUpsertWithoutCommentsInput, {nullable:true})
-    @Type(() => PostUpsertWithoutCommentsInput)
-    upsert?: PostUpsertWithoutCommentsInput;
+  @Field(() => PostWhereInput, { nullable: true })
+  @Type(() => PostWhereInput)
+  disconnect?: PostWhereInput;
 
-    @Field(() => PostWhereInput, {nullable:true})
-    @Type(() => PostWhereInput)
-    disconnect?: PostWhereInput;
+  @Field(() => PostWhereInput, { nullable: true })
+  @Type(() => PostWhereInput)
+  delete?: PostWhereInput;
 
-    @Field(() => PostWhereInput, {nullable:true})
-    @Type(() => PostWhereInput)
-    delete?: PostWhereInput;
+  @Field(() => PostWhereUniqueInput, { nullable: true })
+  @Type(() => PostWhereUniqueInput)
+  connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
 
-    @Field(() => PostWhereUniqueInput, {nullable:true})
-    @Type(() => PostWhereUniqueInput)
-    connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
-
-    @Field(() => PostUpdateToOneWithWhereWithoutCommentsInput, {nullable:true})
-    @Type(() => PostUpdateToOneWithWhereWithoutCommentsInput)
-    update?: PostUpdateToOneWithWhereWithoutCommentsInput;
+  @Field(() => PostUpdateToOneWithWhereWithoutCommentsInput, { nullable: true })
+  @Type(() => PostUpdateToOneWithWhereWithoutCommentsInput)
+  update?: PostUpdateToOneWithWhereWithoutCommentsInput;
 }

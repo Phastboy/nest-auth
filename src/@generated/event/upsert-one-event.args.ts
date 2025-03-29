@@ -8,16 +8,15 @@ import { EventUpdateInput } from './event-update.input';
 
 @ArgsType()
 export class UpsertOneEventArgs {
+  @Field(() => EventWhereUniqueInput, { nullable: false })
+  @Type(() => EventWhereUniqueInput)
+  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:false})
-    @Type(() => EventWhereUniqueInput)
-    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+  @Field(() => EventCreateInput, { nullable: false })
+  @Type(() => EventCreateInput)
+  create!: EventCreateInput;
 
-    @Field(() => EventCreateInput, {nullable:false})
-    @Type(() => EventCreateInput)
-    create!: EventCreateInput;
-
-    @Field(() => EventUpdateInput, {nullable:false})
-    @Type(() => EventUpdateInput)
-    update!: EventUpdateInput;
+  @Field(() => EventUpdateInput, { nullable: false })
+  @Type(() => EventUpdateInput)
+  update!: EventUpdateInput;
 }

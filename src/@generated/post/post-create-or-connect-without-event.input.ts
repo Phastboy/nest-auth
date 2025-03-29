@@ -7,12 +7,11 @@ import { PostCreateWithoutEventInput } from './post-create-without-event.input';
 
 @InputType()
 export class PostCreateOrConnectWithoutEventInput {
+  @Field(() => PostWhereUniqueInput, { nullable: false })
+  @Type(() => PostWhereUniqueInput)
+  where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
 
-    @Field(() => PostWhereUniqueInput, {nullable:false})
-    @Type(() => PostWhereUniqueInput)
-    where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
-
-    @Field(() => PostCreateWithoutEventInput, {nullable:false})
-    @Type(() => PostCreateWithoutEventInput)
-    create!: PostCreateWithoutEventInput;
+  @Field(() => PostCreateWithoutEventInput, { nullable: false })
+  @Type(() => PostCreateWithoutEventInput)
+  create!: PostCreateWithoutEventInput;
 }

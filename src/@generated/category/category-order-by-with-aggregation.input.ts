@@ -10,34 +10,33 @@ import { CategorySumOrderByAggregateInput } from './category-sum-order-by-aggreg
 
 @InputType()
 export class CategoryOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  name?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    name?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  slug?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    slug?: `${SortOrder}`;
+  @Field(() => SortOrderInput, { nullable: true })
+  parentId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    parentId?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: `${SortOrder}`;
+  @Field(() => CategoryCountOrderByAggregateInput, { nullable: true })
+  _count?: CategoryCountOrderByAggregateInput;
 
-    @Field(() => CategoryCountOrderByAggregateInput, {nullable:true})
-    _count?: CategoryCountOrderByAggregateInput;
+  @Field(() => CategoryAvgOrderByAggregateInput, { nullable: true })
+  _avg?: CategoryAvgOrderByAggregateInput;
 
-    @Field(() => CategoryAvgOrderByAggregateInput, {nullable:true})
-    _avg?: CategoryAvgOrderByAggregateInput;
+  @Field(() => CategoryMaxOrderByAggregateInput, { nullable: true })
+  _max?: CategoryMaxOrderByAggregateInput;
 
-    @Field(() => CategoryMaxOrderByAggregateInput, {nullable:true})
-    _max?: CategoryMaxOrderByAggregateInput;
+  @Field(() => CategoryMinOrderByAggregateInput, { nullable: true })
+  _min?: CategoryMinOrderByAggregateInput;
 
-    @Field(() => CategoryMinOrderByAggregateInput, {nullable:true})
-    _min?: CategoryMinOrderByAggregateInput;
-
-    @Field(() => CategorySumOrderByAggregateInput, {nullable:true})
-    _sum?: CategorySumOrderByAggregateInput;
+  @Field(() => CategorySumOrderByAggregateInput, { nullable: true })
+  _sum?: CategorySumOrderByAggregateInput;
 }

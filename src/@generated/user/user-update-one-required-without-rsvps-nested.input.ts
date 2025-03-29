@@ -10,24 +10,23 @@ import { UserUpdateToOneWithWhereWithoutRsvpsInput } from './user-update-to-one-
 
 @InputType()
 export class UserUpdateOneRequiredWithoutRsvpsNestedInput {
+  @Field(() => UserCreateWithoutRsvpsInput, { nullable: true })
+  @Type(() => UserCreateWithoutRsvpsInput)
+  create?: UserCreateWithoutRsvpsInput;
 
-    @Field(() => UserCreateWithoutRsvpsInput, {nullable:true})
-    @Type(() => UserCreateWithoutRsvpsInput)
-    create?: UserCreateWithoutRsvpsInput;
+  @Field(() => UserCreateOrConnectWithoutRsvpsInput, { nullable: true })
+  @Type(() => UserCreateOrConnectWithoutRsvpsInput)
+  connectOrCreate?: UserCreateOrConnectWithoutRsvpsInput;
 
-    @Field(() => UserCreateOrConnectWithoutRsvpsInput, {nullable:true})
-    @Type(() => UserCreateOrConnectWithoutRsvpsInput)
-    connectOrCreate?: UserCreateOrConnectWithoutRsvpsInput;
+  @Field(() => UserUpsertWithoutRsvpsInput, { nullable: true })
+  @Type(() => UserUpsertWithoutRsvpsInput)
+  upsert?: UserUpsertWithoutRsvpsInput;
 
-    @Field(() => UserUpsertWithoutRsvpsInput, {nullable:true})
-    @Type(() => UserUpsertWithoutRsvpsInput)
-    upsert?: UserUpsertWithoutRsvpsInput;
+  @Field(() => UserWhereUniqueInput, { nullable: true })
+  @Type(() => UserWhereUniqueInput)
+  connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
 
-    @Field(() => UserWhereUniqueInput, {nullable:true})
-    @Type(() => UserWhereUniqueInput)
-    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
-
-    @Field(() => UserUpdateToOneWithWhereWithoutRsvpsInput, {nullable:true})
-    @Type(() => UserUpdateToOneWithWhereWithoutRsvpsInput)
-    update?: UserUpdateToOneWithWhereWithoutRsvpsInput;
+  @Field(() => UserUpdateToOneWithWhereWithoutRsvpsInput, { nullable: true })
+  @Type(() => UserUpdateToOneWithWhereWithoutRsvpsInput)
+  update?: UserUpdateToOneWithWhereWithoutRsvpsInput;
 }

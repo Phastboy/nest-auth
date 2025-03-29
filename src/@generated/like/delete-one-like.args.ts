@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteOneLikeArgs {
-
-    @Field(() => LikeWhereUniqueInput, {nullable:false})
-    @Type(() => LikeWhereUniqueInput)
-    where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
+  @Field(() => LikeWhereUniqueInput, { nullable: false })
+  @Type(() => LikeWhereUniqueInput)
+  where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
 }

@@ -7,12 +7,11 @@ import { CommentUpdateWithoutPostInput } from './comment-update-without-post.inp
 
 @InputType()
 export class CommentUpdateWithWhereUniqueWithoutPostInput {
+  @Field(() => CommentWhereUniqueInput, { nullable: false })
+  @Type(() => CommentWhereUniqueInput)
+  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-    @Field(() => CommentWhereUniqueInput, {nullable:false})
-    @Type(() => CommentWhereUniqueInput)
-    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
-
-    @Field(() => CommentUpdateWithoutPostInput, {nullable:false})
-    @Type(() => CommentUpdateWithoutPostInput)
-    data!: CommentUpdateWithoutPostInput;
+  @Field(() => CommentUpdateWithoutPostInput, { nullable: false })
+  @Type(() => CommentUpdateWithoutPostInput)
+  data!: CommentUpdateWithoutPostInput;
 }

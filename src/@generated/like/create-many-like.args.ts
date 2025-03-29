@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyLikeArgs {
-
-    @Field(() => [LikeCreateManyInput], {nullable:false})
-    @Type(() => LikeCreateManyInput)
-    data!: Array<LikeCreateManyInput>;
+  @Field(() => [LikeCreateManyInput], { nullable: false })
+  @Type(() => LikeCreateManyInput)
+  data!: Array<LikeCreateManyInput>;
 }

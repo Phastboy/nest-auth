@@ -7,12 +7,11 @@ import { EventCreateWithoutLikesInput } from './event-create-without-likes.input
 
 @InputType()
 export class EventCreateOrConnectWithoutLikesInput {
+  @Field(() => EventWhereUniqueInput, { nullable: false })
+  @Type(() => EventWhereUniqueInput)
+  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:false})
-    @Type(() => EventWhereUniqueInput)
-    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
-
-    @Field(() => EventCreateWithoutLikesInput, {nullable:false})
-    @Type(() => EventCreateWithoutLikesInput)
-    create!: EventCreateWithoutLikesInput;
+  @Field(() => EventCreateWithoutLikesInput, { nullable: false })
+  @Type(() => EventCreateWithoutLikesInput)
+  create!: EventCreateWithoutLikesInput;
 }

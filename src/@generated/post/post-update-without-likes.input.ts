@@ -11,31 +11,30 @@ import { CommentUpdateManyWithoutPostNestedInput } from '../comment/comment-upda
 
 @InputType()
 export class PostUpdateWithoutLikesInput {
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  content?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    content?: StringFieldUpdateOperationsInput;
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+  image?: NullableStringFieldUpdateOperationsInput;
 
-    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
-    image?: NullableStringFieldUpdateOperationsInput;
+  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
+  isEvent?: BoolFieldUpdateOperationsInput;
 
-    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
-    isEvent?: BoolFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => EventUpdateOneWithoutPostNestedInput, { nullable: true })
+  event?: EventUpdateOneWithoutPostNestedInput;
 
-    @Field(() => EventUpdateOneWithoutPostNestedInput, {nullable:true})
-    event?: EventUpdateOneWithoutPostNestedInput;
+  @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, { nullable: true })
+  user?: UserUpdateOneRequiredWithoutPostsNestedInput;
 
-    @Field(() => UserUpdateOneRequiredWithoutPostsNestedInput, {nullable:true})
-    user?: UserUpdateOneRequiredWithoutPostsNestedInput;
+  @Field(() => CategoryUpdateManyWithoutPostsNestedInput, { nullable: true })
+  categories?: CategoryUpdateManyWithoutPostsNestedInput;
 
-    @Field(() => CategoryUpdateManyWithoutPostsNestedInput, {nullable:true})
-    categories?: CategoryUpdateManyWithoutPostsNestedInput;
-
-    @Field(() => CommentUpdateManyWithoutPostNestedInput, {nullable:true})
-    comments?: CommentUpdateManyWithoutPostNestedInput;
+  @Field(() => CommentUpdateManyWithoutPostNestedInput, { nullable: true })
+  comments?: CommentUpdateManyWithoutPostNestedInput;
 }

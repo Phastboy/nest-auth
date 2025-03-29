@@ -8,16 +8,15 @@ import { LikeUpdateInput } from './like-update.input';
 
 @ArgsType()
 export class UpsertOneLikeArgs {
+  @Field(() => LikeWhereUniqueInput, { nullable: false })
+  @Type(() => LikeWhereUniqueInput)
+  where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
 
-    @Field(() => LikeWhereUniqueInput, {nullable:false})
-    @Type(() => LikeWhereUniqueInput)
-    where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
+  @Field(() => LikeCreateInput, { nullable: false })
+  @Type(() => LikeCreateInput)
+  create!: LikeCreateInput;
 
-    @Field(() => LikeCreateInput, {nullable:false})
-    @Type(() => LikeCreateInput)
-    create!: LikeCreateInput;
-
-    @Field(() => LikeUpdateInput, {nullable:false})
-    @Type(() => LikeUpdateInput)
-    update!: LikeUpdateInput;
+  @Field(() => LikeUpdateInput, { nullable: false })
+  @Type(() => LikeUpdateInput)
+  update!: LikeUpdateInput;
 }

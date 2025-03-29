@@ -5,25 +5,26 @@ import { CommentUncheckedCreateNestedManyWithoutParentInput } from './comment-un
 
 @InputType()
 export class CommentUncheckedCreateWithoutUserInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => String, { nullable: false })
+  content!: string;
 
-    @Field(() => String, {nullable:false})
-    content!: string;
+  @Field(() => Int, { nullable: true })
+  postId?: number;
 
-    @Field(() => Int, {nullable:true})
-    postId?: number;
+  @Field(() => Int, { nullable: true })
+  eventId?: number;
 
-    @Field(() => Int, {nullable:true})
-    eventId?: number;
+  @Field(() => Int, { nullable: true })
+  parentId?: number;
 
-    @Field(() => Int, {nullable:true})
-    parentId?: number;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => CommentUncheckedCreateNestedManyWithoutParentInput, {nullable:true})
-    replies?: CommentUncheckedCreateNestedManyWithoutParentInput;
+  @Field(() => CommentUncheckedCreateNestedManyWithoutParentInput, {
+    nullable: true,
+  })
+  replies?: CommentUncheckedCreateNestedManyWithoutParentInput;
 }

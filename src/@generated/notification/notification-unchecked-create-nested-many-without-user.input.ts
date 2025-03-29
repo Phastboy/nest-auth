@@ -9,20 +9,21 @@ import { NotificationWhereUniqueInput } from './notification-where-unique.input'
 
 @InputType()
 export class NotificationUncheckedCreateNestedManyWithoutUserInput {
+  @Field(() => [NotificationCreateWithoutUserInput], { nullable: true })
+  @Type(() => NotificationCreateWithoutUserInput)
+  create?: Array<NotificationCreateWithoutUserInput>;
 
-    @Field(() => [NotificationCreateWithoutUserInput], {nullable:true})
-    @Type(() => NotificationCreateWithoutUserInput)
-    create?: Array<NotificationCreateWithoutUserInput>;
+  @Field(() => [NotificationCreateOrConnectWithoutUserInput], {
+    nullable: true,
+  })
+  @Type(() => NotificationCreateOrConnectWithoutUserInput)
+  connectOrCreate?: Array<NotificationCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [NotificationCreateOrConnectWithoutUserInput], {nullable:true})
-    @Type(() => NotificationCreateOrConnectWithoutUserInput)
-    connectOrCreate?: Array<NotificationCreateOrConnectWithoutUserInput>;
+  @Field(() => NotificationCreateManyUserInputEnvelope, { nullable: true })
+  @Type(() => NotificationCreateManyUserInputEnvelope)
+  createMany?: NotificationCreateManyUserInputEnvelope;
 
-    @Field(() => NotificationCreateManyUserInputEnvelope, {nullable:true})
-    @Type(() => NotificationCreateManyUserInputEnvelope)
-    createMany?: NotificationCreateManyUserInputEnvelope;
-
-    @Field(() => [NotificationWhereUniqueInput], {nullable:true})
-    @Type(() => NotificationWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+  @Field(() => [NotificationWhereUniqueInput], { nullable: true })
+  @Type(() => NotificationWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
 }
