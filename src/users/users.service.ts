@@ -15,6 +15,7 @@ import * as argon from 'argon2';
 import { Role } from '@prisma/client';
 import { User } from 'src/@generated';
 import { handleError, handleWarning } from 'src/common/utils/error-handler.util';
+import { th } from '@faker-js/faker/.';
 
 @Injectable()
 export class UsersService {
@@ -88,7 +89,7 @@ export class UsersService {
     }
   }
 
-  async findByEmail(email: string): Promise<User | null> {
+  async findByEmail(email: string): Promise<User> {
     try {
       const user = await this.prisma.user.findUnique({
         where: { email },
@@ -96,7 +97,11 @@ export class UsersService {
 
       if (!user) {
         handleWarning(`User with email ${email} not found`, 'UsersService.findByEmail');
-        return null;
+        throw new NotFoundException({
+          message: `User with email ${email} not found`,
+          code: 'USER_NOT_FOUND',
+          email,
+        });
       }
 
       return user;

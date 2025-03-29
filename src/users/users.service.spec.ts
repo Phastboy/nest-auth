@@ -99,12 +99,10 @@ describe('UsersService', () => {
       expect(result).toEqual(user);
     });
 
-    it('should return null if user not found', async () => {
+    it('should throw NotFoundException if user not found', async () => {
       (prisma.user.findUnique as jest.Mock).mockResolvedValue(null);
 
-      const result = await service.findByEmail('test@example.com');
-
-      expect(result).toBeNull();
+      await expect(service.findByEmail('test@example.com')).rejects.toThrow(NotFoundException);
     });
   });
 
