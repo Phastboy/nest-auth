@@ -8,16 +8,15 @@ import { CommentCreateWithoutParentInput } from './comment-create-without-parent
 
 @InputType()
 export class CommentUpsertWithWhereUniqueWithoutParentInput {
+  @Field(() => CommentWhereUniqueInput, { nullable: false })
+  @Type(() => CommentWhereUniqueInput)
+  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-    @Field(() => CommentWhereUniqueInput, {nullable:false})
-    @Type(() => CommentWhereUniqueInput)
-    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
+  @Field(() => CommentUpdateWithoutParentInput, { nullable: false })
+  @Type(() => CommentUpdateWithoutParentInput)
+  update!: CommentUpdateWithoutParentInput;
 
-    @Field(() => CommentUpdateWithoutParentInput, {nullable:false})
-    @Type(() => CommentUpdateWithoutParentInput)
-    update!: CommentUpdateWithoutParentInput;
-
-    @Field(() => CommentCreateWithoutParentInput, {nullable:false})
-    @Type(() => CommentCreateWithoutParentInput)
-    create!: CommentCreateWithoutParentInput;
+  @Field(() => CommentCreateWithoutParentInput, { nullable: false })
+  @Type(() => CommentCreateWithoutParentInput)
+  create!: CommentCreateWithoutParentInput;
 }

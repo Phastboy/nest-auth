@@ -9,40 +9,39 @@ import { CommentOrderByRelationAggregateInput } from './comment-order-by-relatio
 
 @InputType()
 export class CommentOrderByWithRelationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  content?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    content?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  userId?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    userId?: `${SortOrder}`;
+  @Field(() => SortOrderInput, { nullable: true })
+  postId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    postId?: SortOrderInput;
+  @Field(() => SortOrderInput, { nullable: true })
+  eventId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    eventId?: SortOrderInput;
+  @Field(() => SortOrderInput, { nullable: true })
+  parentId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    parentId?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: `${SortOrder}`;
+  @Field(() => UserOrderByWithRelationInput, { nullable: true })
+  user?: UserOrderByWithRelationInput;
 
-    @Field(() => UserOrderByWithRelationInput, {nullable:true})
-    user?: UserOrderByWithRelationInput;
+  @Field(() => PostOrderByWithRelationInput, { nullable: true })
+  post?: PostOrderByWithRelationInput;
 
-    @Field(() => PostOrderByWithRelationInput, {nullable:true})
-    post?: PostOrderByWithRelationInput;
+  @Field(() => EventOrderByWithRelationInput, { nullable: true })
+  event?: EventOrderByWithRelationInput;
 
-    @Field(() => EventOrderByWithRelationInput, {nullable:true})
-    event?: EventOrderByWithRelationInput;
+  @Field(() => CommentOrderByWithRelationInput, { nullable: true })
+  parent?: CommentOrderByWithRelationInput;
 
-    @Field(() => CommentOrderByWithRelationInput, {nullable:true})
-    parent?: CommentOrderByWithRelationInput;
-
-    @Field(() => CommentOrderByRelationAggregateInput, {nullable:true})
-    replies?: CommentOrderByRelationAggregateInput;
+  @Field(() => CommentOrderByRelationAggregateInput, { nullable: true })
+  replies?: CommentOrderByRelationAggregateInput;
 }

@@ -9,20 +9,19 @@ import { EventWhereUniqueInput } from './event-where-unique.input';
 
 @InputType()
 export class EventCreateNestedManyWithoutUserInput {
+  @Field(() => [EventCreateWithoutUserInput], { nullable: true })
+  @Type(() => EventCreateWithoutUserInput)
+  create?: Array<EventCreateWithoutUserInput>;
 
-    @Field(() => [EventCreateWithoutUserInput], {nullable:true})
-    @Type(() => EventCreateWithoutUserInput)
-    create?: Array<EventCreateWithoutUserInput>;
+  @Field(() => [EventCreateOrConnectWithoutUserInput], { nullable: true })
+  @Type(() => EventCreateOrConnectWithoutUserInput)
+  connectOrCreate?: Array<EventCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [EventCreateOrConnectWithoutUserInput], {nullable:true})
-    @Type(() => EventCreateOrConnectWithoutUserInput)
-    connectOrCreate?: Array<EventCreateOrConnectWithoutUserInput>;
+  @Field(() => EventCreateManyUserInputEnvelope, { nullable: true })
+  @Type(() => EventCreateManyUserInputEnvelope)
+  createMany?: EventCreateManyUserInputEnvelope;
 
-    @Field(() => EventCreateManyUserInputEnvelope, {nullable:true})
-    @Type(() => EventCreateManyUserInputEnvelope)
-    createMany?: EventCreateManyUserInputEnvelope;
-
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 }

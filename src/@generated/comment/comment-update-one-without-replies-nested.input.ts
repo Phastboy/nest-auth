@@ -11,32 +11,33 @@ import { CommentUpdateToOneWithWhereWithoutRepliesInput } from './comment-update
 
 @InputType()
 export class CommentUpdateOneWithoutRepliesNestedInput {
+  @Field(() => CommentCreateWithoutRepliesInput, { nullable: true })
+  @Type(() => CommentCreateWithoutRepliesInput)
+  create?: CommentCreateWithoutRepliesInput;
 
-    @Field(() => CommentCreateWithoutRepliesInput, {nullable:true})
-    @Type(() => CommentCreateWithoutRepliesInput)
-    create?: CommentCreateWithoutRepliesInput;
+  @Field(() => CommentCreateOrConnectWithoutRepliesInput, { nullable: true })
+  @Type(() => CommentCreateOrConnectWithoutRepliesInput)
+  connectOrCreate?: CommentCreateOrConnectWithoutRepliesInput;
 
-    @Field(() => CommentCreateOrConnectWithoutRepliesInput, {nullable:true})
-    @Type(() => CommentCreateOrConnectWithoutRepliesInput)
-    connectOrCreate?: CommentCreateOrConnectWithoutRepliesInput;
+  @Field(() => CommentUpsertWithoutRepliesInput, { nullable: true })
+  @Type(() => CommentUpsertWithoutRepliesInput)
+  upsert?: CommentUpsertWithoutRepliesInput;
 
-    @Field(() => CommentUpsertWithoutRepliesInput, {nullable:true})
-    @Type(() => CommentUpsertWithoutRepliesInput)
-    upsert?: CommentUpsertWithoutRepliesInput;
+  @Field(() => CommentWhereInput, { nullable: true })
+  @Type(() => CommentWhereInput)
+  disconnect?: CommentWhereInput;
 
-    @Field(() => CommentWhereInput, {nullable:true})
-    @Type(() => CommentWhereInput)
-    disconnect?: CommentWhereInput;
+  @Field(() => CommentWhereInput, { nullable: true })
+  @Type(() => CommentWhereInput)
+  delete?: CommentWhereInput;
 
-    @Field(() => CommentWhereInput, {nullable:true})
-    @Type(() => CommentWhereInput)
-    delete?: CommentWhereInput;
+  @Field(() => CommentWhereUniqueInput, { nullable: true })
+  @Type(() => CommentWhereUniqueInput)
+  connect?: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-    @Field(() => CommentWhereUniqueInput, {nullable:true})
-    @Type(() => CommentWhereUniqueInput)
-    connect?: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
-
-    @Field(() => CommentUpdateToOneWithWhereWithoutRepliesInput, {nullable:true})
-    @Type(() => CommentUpdateToOneWithWhereWithoutRepliesInput)
-    update?: CommentUpdateToOneWithWhereWithoutRepliesInput;
+  @Field(() => CommentUpdateToOneWithWhereWithoutRepliesInput, {
+    nullable: true,
+  })
+  @Type(() => CommentUpdateToOneWithWhereWithoutRepliesInput)
+  update?: CommentUpdateToOneWithWhereWithoutRepliesInput;
 }

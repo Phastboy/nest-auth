@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class CommentCreateManyUserInputEnvelope {
-
-    @Field(() => [CommentCreateManyUserInput], {nullable:false})
-    @Type(() => CommentCreateManyUserInput)
-    data!: Array<CommentCreateManyUserInput>;
+  @Field(() => [CommentCreateManyUserInput], { nullable: false })
+  @Type(() => CommentCreateManyUserInput)
+  data!: Array<CommentCreateManyUserInput>;
 }

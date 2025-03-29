@@ -6,34 +6,37 @@ import { LikeUncheckedCreateNestedManyWithoutPostInput } from '../like/like-unch
 
 @InputType()
 export class PostUncheckedCreateWithoutCommentsInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => String, { nullable: false })
+  content!: string;
 
-    @Field(() => String, {nullable:false})
-    content!: string;
+  @Field(() => String, { nullable: true })
+  image?: string;
 
-    @Field(() => String, {nullable:true})
-    image?: string;
+  @Field(() => Boolean, { nullable: true })
+  isEvent?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    isEvent?: boolean;
+  @Field(() => Int, { nullable: true })
+  eventId?: number;
 
-    @Field(() => Int, {nullable:true})
-    eventId?: number;
+  @Field(() => Int, { nullable: false })
+  userId!: number;
 
-    @Field(() => Int, {nullable:false})
-    userId!: number;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => CategoryUncheckedCreateNestedManyWithoutPostsInput, {
+    nullable: true,
+  })
+  categories?: CategoryUncheckedCreateNestedManyWithoutPostsInput;
 
-    @Field(() => CategoryUncheckedCreateNestedManyWithoutPostsInput, {nullable:true})
-    categories?: CategoryUncheckedCreateNestedManyWithoutPostsInput;
-
-    @Field(() => LikeUncheckedCreateNestedManyWithoutPostInput, {nullable:true})
-    likes?: LikeUncheckedCreateNestedManyWithoutPostInput;
+  @Field(() => LikeUncheckedCreateNestedManyWithoutPostInput, {
+    nullable: true,
+  })
+  likes?: LikeUncheckedCreateNestedManyWithoutPostInput;
 }

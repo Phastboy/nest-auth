@@ -6,28 +6,27 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class RSVPScalarWhereInput {
+  @Field(() => [RSVPScalarWhereInput], { nullable: true })
+  AND?: Array<RSVPScalarWhereInput>;
 
-    @Field(() => [RSVPScalarWhereInput], {nullable:true})
-    AND?: Array<RSVPScalarWhereInput>;
+  @Field(() => [RSVPScalarWhereInput], { nullable: true })
+  OR?: Array<RSVPScalarWhereInput>;
 
-    @Field(() => [RSVPScalarWhereInput], {nullable:true})
-    OR?: Array<RSVPScalarWhereInput>;
+  @Field(() => [RSVPScalarWhereInput], { nullable: true })
+  NOT?: Array<RSVPScalarWhereInput>;
 
-    @Field(() => [RSVPScalarWhereInput], {nullable:true})
-    NOT?: Array<RSVPScalarWhereInput>;
+  @Field(() => IntFilter, { nullable: true })
+  id?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    id?: IntFilter;
+  @Field(() => IntFilter, { nullable: true })
+  userId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    userId?: IntFilter;
+  @Field(() => IntFilter, { nullable: true })
+  eventId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    eventId?: IntFilter;
+  @Field(() => StringFilter, { nullable: true })
+  status?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    status?: StringFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 }

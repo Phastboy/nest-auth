@@ -6,12 +6,11 @@ import { NotificationUpdateManyMutationInput } from './notification-update-many-
 
 @InputType()
 export class NotificationUpdateManyWithWhereWithoutUserInput {
+  @Field(() => NotificationScalarWhereInput, { nullable: false })
+  @Type(() => NotificationScalarWhereInput)
+  where!: NotificationScalarWhereInput;
 
-    @Field(() => NotificationScalarWhereInput, {nullable:false})
-    @Type(() => NotificationScalarWhereInput)
-    where!: NotificationScalarWhereInput;
-
-    @Field(() => NotificationUpdateManyMutationInput, {nullable:false})
-    @Type(() => NotificationUpdateManyMutationInput)
-    data!: NotificationUpdateManyMutationInput;
+  @Field(() => NotificationUpdateManyMutationInput, { nullable: false })
+  @Type(() => NotificationUpdateManyMutationInput)
+  data!: NotificationUpdateManyMutationInput;
 }

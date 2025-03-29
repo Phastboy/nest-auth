@@ -30,13 +30,30 @@ generator markdown {
   title    = "authentication"
 }
 
+// ==============================================================
+// User Management
+// ==============================================================
+
+enum Role {
+  STUDENT
+  LECTURER
+  IT_STAFF
+  LIBRARIAN
+  FACULTY_DEAN
+  DEPARTMENT_HEAD
+  REGISTRAR
+  FINANCE_STAFF
+  ADMIN
+  SUPER_ADMIN
+}
+
 model User {
   id            Int            @id @default(autoincrement())
   email         String         @unique
   username      String         @unique
   password      String
   avatar        String?        @default("/default-avatar.png")
-  role          String?        @default("student")
+  role          Role           @default(STUDENT)
   bio           String?
   posts         Post[]
   events        Event[]

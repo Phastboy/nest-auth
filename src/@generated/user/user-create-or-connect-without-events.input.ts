@@ -7,12 +7,11 @@ import { UserCreateWithoutEventsInput } from './user-create-without-events.input
 
 @InputType()
 export class UserCreateOrConnectWithoutEventsInput {
+  @Field(() => UserWhereUniqueInput, { nullable: false })
+  @Type(() => UserWhereUniqueInput)
+  where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
 
-    @Field(() => UserWhereUniqueInput, {nullable:false})
-    @Type(() => UserWhereUniqueInput)
-    where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
-
-    @Field(() => UserCreateWithoutEventsInput, {nullable:false})
-    @Type(() => UserCreateWithoutEventsInput)
-    create!: UserCreateWithoutEventsInput;
+  @Field(() => UserCreateWithoutEventsInput, { nullable: false })
+  @Type(() => UserCreateWithoutEventsInput)
+  create!: UserCreateWithoutEventsInput;
 }

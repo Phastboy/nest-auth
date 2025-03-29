@@ -2,6 +2,7 @@ import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { faker } from '@faker-js/faker';
 import * as argon from 'argon2';
 import { PrismaService } from 'nestjs-prisma';
+import { Role } from '@prisma/client';
 
 @Injectable()
 export class SeedService implements OnModuleInit {
@@ -72,8 +73,16 @@ export class SeedService implements OnModuleInit {
   }
 
   async seedUsers() {
-    const roles = ['STUDENT', 'MODERATOR', 'ADMIN'];
-    const users = Array.from({ length: 50 }, async () => ({
+    const roles = [
+      Role.STUDENT,
+      Role.LECTURER,
+      Role.IT_STAFF,
+      Role.LIBRARIAN,
+      Role.DEPARTMENT_HEAD,
+      Role.FACULTY_DEAN,
+      Role.FINANCE_STAFF,
+    ];
+    const users = Array.from({ length: 100 }, async () => ({
       email: faker.internet.email(),
       username: faker.internet.username(),
       password: await argon.hash('$trongPa55word'),
@@ -91,7 +100,7 @@ export class SeedService implements OnModuleInit {
   }
 
   private async seedPosts(userIds: number[], categoryIds: { id: number }[]) {
-    const posts = Array.from({ length: 200 }, () => {
+    const posts = Array.from({ length: 300 }, () => {
       const userId = faker.helpers.arrayElement(userIds);
       return {
         content: faker.lorem.paragraphs(faker.number.int({ min: 1, max: 3 })),

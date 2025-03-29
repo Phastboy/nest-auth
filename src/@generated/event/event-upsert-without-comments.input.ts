@@ -7,16 +7,15 @@ import { EventWhereInput } from './event-where.input';
 
 @InputType()
 export class EventUpsertWithoutCommentsInput {
+  @Field(() => EventUpdateWithoutCommentsInput, { nullable: false })
+  @Type(() => EventUpdateWithoutCommentsInput)
+  update!: EventUpdateWithoutCommentsInput;
 
-    @Field(() => EventUpdateWithoutCommentsInput, {nullable:false})
-    @Type(() => EventUpdateWithoutCommentsInput)
-    update!: EventUpdateWithoutCommentsInput;
+  @Field(() => EventCreateWithoutCommentsInput, { nullable: false })
+  @Type(() => EventCreateWithoutCommentsInput)
+  create!: EventCreateWithoutCommentsInput;
 
-    @Field(() => EventCreateWithoutCommentsInput, {nullable:false})
-    @Type(() => EventCreateWithoutCommentsInput)
-    create!: EventCreateWithoutCommentsInput;
-
-    @Field(() => EventWhereInput, {nullable:true})
-    @Type(() => EventWhereInput)
-    where?: EventWhereInput;
+  @Field(() => EventWhereInput, { nullable: true })
+  @Type(() => EventWhereInput)
+  where?: EventWhereInput;
 }

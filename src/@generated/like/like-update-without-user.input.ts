@@ -6,13 +6,12 @@ import { EventUpdateOneWithoutLikesNestedInput } from '../event/event-update-one
 
 @InputType()
 export class LikeUpdateWithoutUserInput {
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => PostUpdateOneWithoutLikesNestedInput, { nullable: true })
+  post?: PostUpdateOneWithoutLikesNestedInput;
 
-    @Field(() => PostUpdateOneWithoutLikesNestedInput, {nullable:true})
-    post?: PostUpdateOneWithoutLikesNestedInput;
-
-    @Field(() => EventUpdateOneWithoutLikesNestedInput, {nullable:true})
-    event?: EventUpdateOneWithoutLikesNestedInput;
+  @Field(() => EventUpdateOneWithoutLikesNestedInput, { nullable: true })
+  event?: EventUpdateOneWithoutLikesNestedInput;
 }

@@ -6,12 +6,11 @@ import { UserUpdateWithoutLikesInput } from './user-update-without-likes.input';
 
 @InputType()
 export class UserUpdateToOneWithWhereWithoutLikesInput {
+  @Field(() => UserWhereInput, { nullable: true })
+  @Type(() => UserWhereInput)
+  where?: UserWhereInput;
 
-    @Field(() => UserWhereInput, {nullable:true})
-    @Type(() => UserWhereInput)
-    where?: UserWhereInput;
-
-    @Field(() => UserUpdateWithoutLikesInput, {nullable:false})
-    @Type(() => UserUpdateWithoutLikesInput)
-    data!: UserUpdateWithoutLikesInput;
+  @Field(() => UserUpdateWithoutLikesInput, { nullable: false })
+  @Type(() => UserUpdateWithoutLikesInput)
+  data!: UserUpdateWithoutLikesInput;
 }

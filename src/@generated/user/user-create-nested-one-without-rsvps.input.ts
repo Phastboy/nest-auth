@@ -8,16 +8,15 @@ import { UserWhereUniqueInput } from './user-where-unique.input';
 
 @InputType()
 export class UserCreateNestedOneWithoutRsvpsInput {
+  @Field(() => UserCreateWithoutRsvpsInput, { nullable: true })
+  @Type(() => UserCreateWithoutRsvpsInput)
+  create?: UserCreateWithoutRsvpsInput;
 
-    @Field(() => UserCreateWithoutRsvpsInput, {nullable:true})
-    @Type(() => UserCreateWithoutRsvpsInput)
-    create?: UserCreateWithoutRsvpsInput;
+  @Field(() => UserCreateOrConnectWithoutRsvpsInput, { nullable: true })
+  @Type(() => UserCreateOrConnectWithoutRsvpsInput)
+  connectOrCreate?: UserCreateOrConnectWithoutRsvpsInput;
 
-    @Field(() => UserCreateOrConnectWithoutRsvpsInput, {nullable:true})
-    @Type(() => UserCreateOrConnectWithoutRsvpsInput)
-    connectOrCreate?: UserCreateOrConnectWithoutRsvpsInput;
-
-    @Field(() => UserWhereUniqueInput, {nullable:true})
-    @Type(() => UserWhereUniqueInput)
-    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
+  @Field(() => UserWhereUniqueInput, { nullable: true })
+  @Type(() => UserWhereUniqueInput)
+  connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
 }

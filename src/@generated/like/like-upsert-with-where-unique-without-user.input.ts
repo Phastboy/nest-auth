@@ -8,16 +8,15 @@ import { LikeCreateWithoutUserInput } from './like-create-without-user.input';
 
 @InputType()
 export class LikeUpsertWithWhereUniqueWithoutUserInput {
+  @Field(() => LikeWhereUniqueInput, { nullable: false })
+  @Type(() => LikeWhereUniqueInput)
+  where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
 
-    @Field(() => LikeWhereUniqueInput, {nullable:false})
-    @Type(() => LikeWhereUniqueInput)
-    where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
+  @Field(() => LikeUpdateWithoutUserInput, { nullable: false })
+  @Type(() => LikeUpdateWithoutUserInput)
+  update!: LikeUpdateWithoutUserInput;
 
-    @Field(() => LikeUpdateWithoutUserInput, {nullable:false})
-    @Type(() => LikeUpdateWithoutUserInput)
-    update!: LikeUpdateWithoutUserInput;
-
-    @Field(() => LikeCreateWithoutUserInput, {nullable:false})
-    @Type(() => LikeCreateWithoutUserInput)
-    create!: LikeCreateWithoutUserInput;
+  @Field(() => LikeCreateWithoutUserInput, { nullable: false })
+  @Type(() => LikeCreateWithoutUserInput)
+  create!: LikeCreateWithoutUserInput;
 }

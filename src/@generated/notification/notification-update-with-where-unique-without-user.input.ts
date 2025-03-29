@@ -7,12 +7,11 @@ import { NotificationUpdateWithoutUserInput } from './notification-update-withou
 
 @InputType()
 export class NotificationUpdateWithWhereUniqueWithoutUserInput {
+  @Field(() => NotificationWhereUniqueInput, { nullable: false })
+  @Type(() => NotificationWhereUniqueInput)
+  where!: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
 
-    @Field(() => NotificationWhereUniqueInput, {nullable:false})
-    @Type(() => NotificationWhereUniqueInput)
-    where!: Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>;
-
-    @Field(() => NotificationUpdateWithoutUserInput, {nullable:false})
-    @Type(() => NotificationUpdateWithoutUserInput)
-    data!: NotificationUpdateWithoutUserInput;
+  @Field(() => NotificationUpdateWithoutUserInput, { nullable: false })
+  @Type(() => NotificationUpdateWithoutUserInput)
+  data!: NotificationUpdateWithoutUserInput;
 }
