@@ -4,12 +4,13 @@ import { User } from './entities/user.entity';
 import { CreateUserInput } from './dto/create-user.input';
 import { UpdateUserInput } from './dto/update-user.input';
 import { UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from '../auth/jwt/jwt.guard';
 import { Role } from '@prisma/client';
-import { CurrentUser } from '../auth/current-user/current-user.decorator';
-import { RolesGuard } from 'src/auth/roles/roles.guard';
-import { Roles } from 'src/auth/roles/roles.decorator';
-import { AuthenticatedUser } from 'src/interfaces/auth.types';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { UserWithoutPassword } from './users.types';
+import { AuthenticatedUser } from 'src/auth/types/auth.types';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 
 /**
  * GraphQL resolver for user-related operations.
@@ -26,7 +27,9 @@ export class UsersResolver {
    * @returns {Promise<User>} - The newly created user.
    */
   @Mutation(() => User)
-  async createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
+  async createUser(
+    @Args('createUserInput') createUserInput: CreateUserInput,
+  ): Promise<UserWithoutPassword> {
     return this.usersService.create(createUserInput);
   }
 
@@ -38,7 +41,7 @@ export class UsersResolver {
   @Query(() => [User], { name: 'users' })
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.FACULTY_DEAN, Role.SUPER_ADMIN)
-  findAll() {
+  findAll(): Promise<UserWithoutPassword[]> {
     return this.usersService.findAll();
   }
 
@@ -50,7 +53,9 @@ export class UsersResolver {
    */
   @Query(() => User, { name: 'user' })
   @UseGuards(JwtAuthGuard)
-  findOne(@Args('id', { type: () => Int }) id: number) {
+  findOne(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<UserWithoutPassword> {
     return this.usersService.findOne(id);
   }
 
@@ -66,7 +71,7 @@ export class UsersResolver {
   updateUser(
     @Args('updateUserInput') updateUserInput: UpdateUserInput,
     @CurrentUser() user: AuthenticatedUser,
-  ) {
+  ): Promise<UserWithoutPassword> {
     return this.usersService.update(
       updateUserInput.id,
       updateUserInput,
@@ -83,7 +88,9 @@ export class UsersResolver {
   @Mutation(() => User)
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(Role.ADMIN, Role.SUPER_ADMIN)
-  removeUser(@Args('id', { type: () => Int }) id: number) {
+  removeUser(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<UserWithoutPassword> {
     return this.usersService.remove(id);
   }
 }

@@ -14,16 +14,12 @@ import {
 import * as argon from 'argon2';
 import { Role } from '@prisma/client';
 import { User } from 'src/@generated';
-import { handleError } from 'src/common/utils/error-handler.util';
+import { handleError, handleWarning } from 'src/common/utils/error-handler.util';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly prisma: PrismaService) {}
 
-  /**
-   * List of privileged roles with special access
-   * @private
-   */
   private readonly privilegedRoles: PrivilegedRole[] = [
     Role.SUPER_ADMIN,
     Role.FACULTY_DEAN,
@@ -31,20 +27,17 @@ export class UsersService {
     Role.DEPARTMENT_HEAD,
   ];
 
-  /**
-   * Creates a new user in the system.
-   * @param {CreateUserInput} createUserDto - The user data to be created.
-   * @returns {Promise<UserResponse>} - The created user response object.
-   * @throws {ForbiddenException} - If the user doesn't have sufficient privileges to assign the specified role.
-   */
   async create(createUserDto: CreateUserInput): Promise<UserResponse> {
     try {
       const role: Role = createUserDto.role || Role.STUDENT;
 
       if (this.privilegedRoles.includes(role as PrivilegedRole)) {
-        throw new ForbiddenException(
-          `sorry you cannot register as the requested role: ${role}, please consider some other role`,
-        );
+        throw new ForbiddenException({
+          message: `Insufficient privileges to create user with role: ${role}`,
+          code: 'PRIVILEGED_ROLE_ATTEMPT',
+          attemptedRole: role,
+          allowedRoles: Object.values(Role).filter(r => !this.privilegedRoles.includes(r as PrivilegedRole))
+        });
       }
 
       const hashedPassword = await argon.hash(createUserDto.password);
@@ -58,72 +51,60 @@ export class UsersService {
         include: DEFAULT_USER_INCLUDES,
       });
     } catch (error) {
-      handleError(error, 'Failed to create user');
+      handleError(error, 'UsersService.create', {
+        input: { ...createUserDto, password: undefined }
+      });
     }
   }
 
-  /**
-   * Fetches all users from the database.
-   * @returns {Promise<UserResponse[]>} - A list of user response objects.
-   * @throws {InternalServerErrorException} - If there's an error fetching the users.
-   */
   async findAll(): Promise<UserResponse[]> {
     try {
       return await this.prisma.user.findMany({
         include: DEFAULT_USER_INCLUDES,
       });
     } catch (error) {
-      handleError(error, 'Failed to fetch users');
+      handleError(error, 'UsersService.findAll');
     }
   }
 
-  /**
-   * Fetches a single user by their ID.
-   * @param {number} id - The ID of the user to fetch.
-   * @returns {Promise<UserResponse | null>} - The user object if found, otherwise null.
-   * @throws {NotFoundException} - If the user with the given ID is not found.
-   */
   async findOne(id: number): Promise<UserResponse> {
     try {
-      const user = await this.prisma.user.findUniqueOrThrow({
+      const user = await this.prisma.user.findUnique({
         where: { id },
         include: DEFAULT_USER_INCLUDES,
       });
 
       if (!user) {
-        throw new NotFoundException(`User with ID ${id} not found`);
+        throw new NotFoundException({
+          message: `User with ID ${id} not found`,
+          code: 'USER_NOT_FOUND',
+          userId: id
+        });
       }
 
       return user;
     } catch (error) {
-      handleError(error, 'Failed to fetch user');
+      handleError(error, 'UsersService.findOne', { userId: id });
     }
   }
 
-  /**
-   * Finds a user by their email.
-   * @param {string} email - The email address to search for.
-   * @returns {Promise<User | null>} - The user if found, otherwise null.
-   * @throws {InternalServerErrorException} - If there's an error fetching the user by email.
-   */
   async findByEmail(email: string): Promise<User | null> {
     try {
-      return await this.prisma.user.findUnique({
+      const user = await this.prisma.user.findUnique({
         where: { email },
       });
+
+      if (!user) {
+        handleWarning(`User with email ${email} not found`, 'UsersService.findByEmail');
+        return null;
+      }
+
+      return user;
     } catch (error) {
-      handleError(error, 'Failed to find user by email');
+      handleError(error, 'UsersService.findByEmail', { email });
     }
   }
 
-  /**
-   * Updates an existing user's details, including their password if provided.
-   * @param {number} id - The ID of the user to update.
-   * @param {UpdateUserInput} updateUserDto - The data to update the user with.
-   * @param {Role} [currentUserRole] - The role of the current user making the request. This is optional.
-   * @returns {Promise<UserResponse>} - The updated user response object.
-   * @throws {ForbiddenException} - If the user doesn't have sufficient privileges to assign the specified role.
-   */
   async update(
     id: number,
     updateUserDto: UpdateUserInput,
@@ -132,9 +113,12 @@ export class UsersService {
     try {
       if (updateUserDto.role && currentUserRole) {
         if (!this.canAssignRole(currentUserRole, updateUserDto.role)) {
-          throw new ForbiddenException(
-            `Insufficient privileges to assign role: ${updateUserDto.role}`,
-          );
+          throw new ForbiddenException({
+            message: `Insufficient privileges to assign role: ${updateUserDto.role}`,
+            code: 'ROLE_ASSIGNMENT_FORBIDDEN',
+            currentUserRole,
+            attemptedRole: updateUserDto.role
+          });
         }
       }
 
@@ -150,33 +134,43 @@ export class UsersService {
         include: DEFAULT_USER_INCLUDES,
       });
     } catch (error) {
-      handleError(error, 'Failed to update user');
+      handleError(error, 'UsersService.update', {
+        userId: id,
+        input: { ...updateUserDto, password: undefined }
+      });
     }
   }
 
-  /**
-   * Deletes a user by their ID.
-   * @param {number} id - The ID of the user to delete.
-   * @returns {Promise<UserResponse>} - The deleted user response object.
-   * @throws {InternalServerErrorException} - If there's an error deleting the user.
-   */
   async remove(id: number): Promise<UserResponse> {
     try {
+      const user = await this.prisma.user.findUnique({ where: { id } });
+      
+      if (!user) {
+        throw new NotFoundException({
+          message: `User with ID ${id} not found`,
+          code: 'USER_NOT_FOUND',
+          userId: id
+        });
+      }
+
+      if (this.privilegedRoles.includes(user.role as PrivilegedRole)) {
+        throw new ForbiddenException({
+          message: `Cannot delete user with privileged role: ${user.role}`,
+          code: 'PRIVILEGED_USER_DELETION_ATTEMPT',
+          userId: id,
+          userRole: user.role
+        });
+      }
+
       return await this.prisma.user.delete({
         where: { id },
         include: DEFAULT_USER_INCLUDES,
       });
     } catch (error) {
-      handleError(error, 'Failed to delete user');
+      handleError(error, 'UsersService.remove', { userId: id });
     }
   }
 
-  /**
-   * Determines if a given role can be assigned to a target user based on the current user's role.
-   * @param {Role} assignerRole - The role of the user attempting to assign the target role.
-   * @param {Role} targetRole - The role to be assigned.
-   * @returns {boolean} - Whether the assigner has the necessary privileges to assign the target role.
-   */
   private canAssignRole(assignerRole: Role, targetRole: Role): boolean {
     const roleHierarchy: Record<Role, Role[]> = {
       [Role.SUPER_ADMIN]: Object.values(Role),
