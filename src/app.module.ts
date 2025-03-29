@@ -1,7 +1,5 @@
-import { HttpStatus, MiddlewareConsumer, Module } from '@nestjs/common';
+import { HttpStatus, Module } from '@nestjs/common';
 import { AuthModule } from './auth/auth.module';
-import { LoggerMiddleware } from './logger/logger.middleware';
-import { SwaggerModuleConfig } from './swagger/swagger.module';
 import {
   PrismaModule,
   providePrismaClientExceptionFilter,
@@ -24,7 +22,6 @@ import { CategoriesModule } from './categories/categories.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    SwaggerModuleConfig,
     PrismaModule.forRootAsync({
       isGlobal: true,
       useFactory: async (configService: ConfigService) => {
@@ -61,8 +58,4 @@ import { CategoriesModule } from './categories/categories.module';
     }),
   ],
 })
-export class AppModule {
-  configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes('*');
-  }
-}
+export class AppModule {}
