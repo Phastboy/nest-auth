@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
+import { Role } from '../prisma/role.enum';
 import { Post } from '../post/post.model';
 import { Event } from '../event/event.model';
 import { Comment } from '../comment/comment.model';
@@ -11,52 +12,51 @@ import { UserCount } from './user-count.output';
 
 @ObjectType()
 export class User {
+  @Field(() => ID, { nullable: false })
+  id!: number;
 
-    @Field(() => ID, {nullable:false})
-    id!: number;
+  @Field(() => String, { nullable: false })
+  email!: string;
 
-    @Field(() => String, {nullable:false})
-    email!: string;
+  @Field(() => String, { nullable: false })
+  username!: string;
 
-    @Field(() => String, {nullable:false})
-    username!: string;
+  @Field(() => String, { nullable: false })
+  password!: string;
 
-    @Field(() => String, {nullable:false})
-    password!: string;
+  @Field(() => String, { defaultValue: '/default-avatar.png', nullable: true })
+  avatar!: string | null;
 
-    @Field(() => String, {defaultValue:'/default-avatar.png',nullable:true})
-    avatar!: string | null;
+  @Field(() => Role, { defaultValue: 'STUDENT', nullable: false })
+  role!: `${Role}`;
 
-    @Field(() => String, {defaultValue:'student',nullable:true})
-    role!: string | null;
+  @Field(() => String, { nullable: true })
+  bio!: string | null;
 
-    @Field(() => String, {nullable:true})
-    bio!: string | null;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
+  @Field(() => Date, { nullable: false })
+  updatedAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date;
+  @Field(() => [Post], { nullable: true })
+  posts?: Array<Post>;
 
-    @Field(() => [Post], {nullable:true})
-    posts?: Array<Post>;
+  @Field(() => [Event], { nullable: true })
+  events?: Array<Event>;
 
-    @Field(() => [Event], {nullable:true})
-    events?: Array<Event>;
+  @Field(() => [Comment], { nullable: true })
+  comments?: Array<Comment>;
 
-    @Field(() => [Comment], {nullable:true})
-    comments?: Array<Comment>;
+  @Field(() => [Notification], { nullable: true })
+  notifications?: Array<Notification>;
 
-    @Field(() => [Notification], {nullable:true})
-    notifications?: Array<Notification>;
+  @Field(() => [Like], { nullable: true })
+  likes?: Array<Like>;
 
-    @Field(() => [Like], {nullable:true})
-    likes?: Array<Like>;
+  @Field(() => [RSVP], { nullable: true })
+  rsvps?: Array<RSVP>;
 
-    @Field(() => [RSVP], {nullable:true})
-    rsvps?: Array<RSVP>;
-
-    @Field(() => UserCount, {nullable:false})
-    _count?: UserCount;
+  @Field(() => UserCount, { nullable: false })
+  _count?: UserCount;
 }

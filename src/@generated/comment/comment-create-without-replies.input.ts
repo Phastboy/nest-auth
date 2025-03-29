@@ -7,22 +7,21 @@ import { CommentCreateNestedOneWithoutRepliesInput } from './comment-create-nest
 
 @InputType()
 export class CommentCreateWithoutRepliesInput {
+  @Field(() => String, { nullable: false })
+  content!: string;
 
-    @Field(() => String, {nullable:false})
-    content!: string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => UserCreateNestedOneWithoutCommentsInput, { nullable: false })
+  user!: UserCreateNestedOneWithoutCommentsInput;
 
-    @Field(() => UserCreateNestedOneWithoutCommentsInput, {nullable:false})
-    user!: UserCreateNestedOneWithoutCommentsInput;
+  @Field(() => PostCreateNestedOneWithoutCommentsInput, { nullable: true })
+  post?: PostCreateNestedOneWithoutCommentsInput;
 
-    @Field(() => PostCreateNestedOneWithoutCommentsInput, {nullable:true})
-    post?: PostCreateNestedOneWithoutCommentsInput;
+  @Field(() => EventCreateNestedOneWithoutCommentsInput, { nullable: true })
+  event?: EventCreateNestedOneWithoutCommentsInput;
 
-    @Field(() => EventCreateNestedOneWithoutCommentsInput, {nullable:true})
-    event?: EventCreateNestedOneWithoutCommentsInput;
-
-    @Field(() => CommentCreateNestedOneWithoutRepliesInput, {nullable:true})
-    parent?: CommentCreateNestedOneWithoutRepliesInput;
+  @Field(() => CommentCreateNestedOneWithoutRepliesInput, { nullable: true })
+  parent?: CommentCreateNestedOneWithoutRepliesInput;
 }

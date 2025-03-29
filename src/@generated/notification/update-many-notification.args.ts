@@ -7,15 +7,14 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class UpdateManyNotificationArgs {
+  @Field(() => NotificationUpdateManyMutationInput, { nullable: false })
+  @Type(() => NotificationUpdateManyMutationInput)
+  data!: NotificationUpdateManyMutationInput;
 
-    @Field(() => NotificationUpdateManyMutationInput, {nullable:false})
-    @Type(() => NotificationUpdateManyMutationInput)
-    data!: NotificationUpdateManyMutationInput;
+  @Field(() => NotificationWhereInput, { nullable: true })
+  @Type(() => NotificationWhereInput)
+  where?: NotificationWhereInput;
 
-    @Field(() => NotificationWhereInput, {nullable:true})
-    @Type(() => NotificationWhereInput)
-    where?: NotificationWhereInput;
-
-    @Field(() => Int, {nullable:true})
-    limit?: number;
+  @Field(() => Int, { nullable: true })
+  limit?: number;
 }

@@ -13,48 +13,51 @@ import { RSVPScalarWhereInput } from './rsvp-scalar-where.input';
 
 @InputType()
 export class RSVPUncheckedUpdateManyWithoutEventNestedInput {
+  @Field(() => [RSVPCreateWithoutEventInput], { nullable: true })
+  @Type(() => RSVPCreateWithoutEventInput)
+  create?: Array<RSVPCreateWithoutEventInput>;
 
-    @Field(() => [RSVPCreateWithoutEventInput], {nullable:true})
-    @Type(() => RSVPCreateWithoutEventInput)
-    create?: Array<RSVPCreateWithoutEventInput>;
+  @Field(() => [RSVPCreateOrConnectWithoutEventInput], { nullable: true })
+  @Type(() => RSVPCreateOrConnectWithoutEventInput)
+  connectOrCreate?: Array<RSVPCreateOrConnectWithoutEventInput>;
 
-    @Field(() => [RSVPCreateOrConnectWithoutEventInput], {nullable:true})
-    @Type(() => RSVPCreateOrConnectWithoutEventInput)
-    connectOrCreate?: Array<RSVPCreateOrConnectWithoutEventInput>;
+  @Field(() => [RSVPUpsertWithWhereUniqueWithoutEventInput], { nullable: true })
+  @Type(() => RSVPUpsertWithWhereUniqueWithoutEventInput)
+  upsert?: Array<RSVPUpsertWithWhereUniqueWithoutEventInput>;
 
-    @Field(() => [RSVPUpsertWithWhereUniqueWithoutEventInput], {nullable:true})
-    @Type(() => RSVPUpsertWithWhereUniqueWithoutEventInput)
-    upsert?: Array<RSVPUpsertWithWhereUniqueWithoutEventInput>;
+  @Field(() => RSVPCreateManyEventInputEnvelope, { nullable: true })
+  @Type(() => RSVPCreateManyEventInputEnvelope)
+  createMany?: RSVPCreateManyEventInputEnvelope;
 
-    @Field(() => RSVPCreateManyEventInputEnvelope, {nullable:true})
-    @Type(() => RSVPCreateManyEventInputEnvelope)
-    createMany?: RSVPCreateManyEventInputEnvelope;
+  @Field(() => [RSVPWhereUniqueInput], { nullable: true })
+  @Type(() => RSVPWhereUniqueInput)
+  set?: Array<Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>>;
 
-    @Field(() => [RSVPWhereUniqueInput], {nullable:true})
-    @Type(() => RSVPWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>>;
+  @Field(() => [RSVPWhereUniqueInput], { nullable: true })
+  @Type(() => RSVPWhereUniqueInput)
+  disconnect?: Array<
+    Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>
+  >;
 
-    @Field(() => [RSVPWhereUniqueInput], {nullable:true})
-    @Type(() => RSVPWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>>;
+  @Field(() => [RSVPWhereUniqueInput], { nullable: true })
+  @Type(() => RSVPWhereUniqueInput)
+  delete?: Array<Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>>;
 
-    @Field(() => [RSVPWhereUniqueInput], {nullable:true})
-    @Type(() => RSVPWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>>;
+  @Field(() => [RSVPWhereUniqueInput], { nullable: true })
+  @Type(() => RSVPWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>
+  >;
 
-    @Field(() => [RSVPWhereUniqueInput], {nullable:true})
-    @Type(() => RSVPWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>>;
+  @Field(() => [RSVPUpdateWithWhereUniqueWithoutEventInput], { nullable: true })
+  @Type(() => RSVPUpdateWithWhereUniqueWithoutEventInput)
+  update?: Array<RSVPUpdateWithWhereUniqueWithoutEventInput>;
 
-    @Field(() => [RSVPUpdateWithWhereUniqueWithoutEventInput], {nullable:true})
-    @Type(() => RSVPUpdateWithWhereUniqueWithoutEventInput)
-    update?: Array<RSVPUpdateWithWhereUniqueWithoutEventInput>;
+  @Field(() => [RSVPUpdateManyWithWhereWithoutEventInput], { nullable: true })
+  @Type(() => RSVPUpdateManyWithWhereWithoutEventInput)
+  updateMany?: Array<RSVPUpdateManyWithWhereWithoutEventInput>;
 
-    @Field(() => [RSVPUpdateManyWithWhereWithoutEventInput], {nullable:true})
-    @Type(() => RSVPUpdateManyWithWhereWithoutEventInput)
-    updateMany?: Array<RSVPUpdateManyWithWhereWithoutEventInput>;
-
-    @Field(() => [RSVPScalarWhereInput], {nullable:true})
-    @Type(() => RSVPScalarWhereInput)
-    deleteMany?: Array<RSVPScalarWhereInput>;
+  @Field(() => [RSVPScalarWhereInput], { nullable: true })
+  @Type(() => RSVPScalarWhereInput)
+  deleteMany?: Array<RSVPScalarWhereInput>;
 }

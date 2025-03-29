@@ -12,44 +12,49 @@ import { EventScalarWhereInput } from './event-scalar-where.input';
 
 @InputType()
 export class EventUpdateManyWithoutCategoriesNestedInput {
+  @Field(() => [EventCreateWithoutCategoriesInput], { nullable: true })
+  @Type(() => EventCreateWithoutCategoriesInput)
+  create?: Array<EventCreateWithoutCategoriesInput>;
 
-    @Field(() => [EventCreateWithoutCategoriesInput], {nullable:true})
-    @Type(() => EventCreateWithoutCategoriesInput)
-    create?: Array<EventCreateWithoutCategoriesInput>;
+  @Field(() => [EventCreateOrConnectWithoutCategoriesInput], { nullable: true })
+  @Type(() => EventCreateOrConnectWithoutCategoriesInput)
+  connectOrCreate?: Array<EventCreateOrConnectWithoutCategoriesInput>;
 
-    @Field(() => [EventCreateOrConnectWithoutCategoriesInput], {nullable:true})
-    @Type(() => EventCreateOrConnectWithoutCategoriesInput)
-    connectOrCreate?: Array<EventCreateOrConnectWithoutCategoriesInput>;
+  @Field(() => [EventUpsertWithWhereUniqueWithoutCategoriesInput], {
+    nullable: true,
+  })
+  @Type(() => EventUpsertWithWhereUniqueWithoutCategoriesInput)
+  upsert?: Array<EventUpsertWithWhereUniqueWithoutCategoriesInput>;
 
-    @Field(() => [EventUpsertWithWhereUniqueWithoutCategoriesInput], {nullable:true})
-    @Type(() => EventUpsertWithWhereUniqueWithoutCategoriesInput)
-    upsert?: Array<EventUpsertWithWhereUniqueWithoutCategoriesInput>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventUpdateWithWhereUniqueWithoutCategoriesInput], {
+    nullable: true,
+  })
+  @Type(() => EventUpdateWithWhereUniqueWithoutCategoriesInput)
+  update?: Array<EventUpdateWithWhereUniqueWithoutCategoriesInput>;
 
-    @Field(() => [EventUpdateWithWhereUniqueWithoutCategoriesInput], {nullable:true})
-    @Type(() => EventUpdateWithWhereUniqueWithoutCategoriesInput)
-    update?: Array<EventUpdateWithWhereUniqueWithoutCategoriesInput>;
+  @Field(() => [EventUpdateManyWithWhereWithoutCategoriesInput], {
+    nullable: true,
+  })
+  @Type(() => EventUpdateManyWithWhereWithoutCategoriesInput)
+  updateMany?: Array<EventUpdateManyWithWhereWithoutCategoriesInput>;
 
-    @Field(() => [EventUpdateManyWithWhereWithoutCategoriesInput], {nullable:true})
-    @Type(() => EventUpdateManyWithWhereWithoutCategoriesInput)
-    updateMany?: Array<EventUpdateManyWithWhereWithoutCategoriesInput>;
-
-    @Field(() => [EventScalarWhereInput], {nullable:true})
-    @Type(() => EventScalarWhereInput)
-    deleteMany?: Array<EventScalarWhereInput>;
+  @Field(() => [EventScalarWhereInput], { nullable: true })
+  @Type(() => EventScalarWhereInput)
+  deleteMany?: Array<EventScalarWhereInput>;
 }

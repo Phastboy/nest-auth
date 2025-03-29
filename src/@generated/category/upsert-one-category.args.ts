@@ -8,16 +8,15 @@ import { CategoryUpdateInput } from './category-update.input';
 
 @ArgsType()
 export class UpsertOneCategoryArgs {
+  @Field(() => CategoryWhereUniqueInput, { nullable: false })
+  @Type(() => CategoryWhereUniqueInput)
+  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-    @Field(() => CategoryWhereUniqueInput, {nullable:false})
-    @Type(() => CategoryWhereUniqueInput)
-    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+  @Field(() => CategoryCreateInput, { nullable: false })
+  @Type(() => CategoryCreateInput)
+  create!: CategoryCreateInput;
 
-    @Field(() => CategoryCreateInput, {nullable:false})
-    @Type(() => CategoryCreateInput)
-    create!: CategoryCreateInput;
-
-    @Field(() => CategoryUpdateInput, {nullable:false})
-    @Type(() => CategoryUpdateInput)
-    update!: CategoryUpdateInput;
+  @Field(() => CategoryUpdateInput, { nullable: false })
+  @Type(() => CategoryUpdateInput)
+  update!: CategoryUpdateInput;
 }

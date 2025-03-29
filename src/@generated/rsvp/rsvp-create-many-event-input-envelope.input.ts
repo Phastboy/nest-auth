@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class RSVPCreateManyEventInputEnvelope {
-
-    @Field(() => [RSVPCreateManyEventInput], {nullable:false})
-    @Type(() => RSVPCreateManyEventInput)
-    data!: Array<RSVPCreateManyEventInput>;
+  @Field(() => [RSVPCreateManyEventInput], { nullable: false })
+  @Type(() => RSVPCreateManyEventInput)
+  data!: Array<RSVPCreateManyEventInput>;
 }

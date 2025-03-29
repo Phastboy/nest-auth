@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueCommentOrThrowArgs {
-
-    @Field(() => CommentWhereUniqueInput, {nullable:false})
-    @Type(() => CommentWhereUniqueInput)
-    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
+  @Field(() => CommentWhereUniqueInput, { nullable: false })
+  @Type(() => CommentWhereUniqueInput)
+  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 }

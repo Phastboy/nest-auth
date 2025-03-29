@@ -8,19 +8,18 @@ import { NotificationMaxAggregate } from './notification-max-aggregate.output';
 
 @ObjectType()
 export class AggregateNotification {
+  @Field(() => NotificationCountAggregate, { nullable: true })
+  _count?: NotificationCountAggregate;
 
-    @Field(() => NotificationCountAggregate, {nullable:true})
-    _count?: NotificationCountAggregate;
+  @Field(() => NotificationAvgAggregate, { nullable: true })
+  _avg?: NotificationAvgAggregate;
 
-    @Field(() => NotificationAvgAggregate, {nullable:true})
-    _avg?: NotificationAvgAggregate;
+  @Field(() => NotificationSumAggregate, { nullable: true })
+  _sum?: NotificationSumAggregate;
 
-    @Field(() => NotificationSumAggregate, {nullable:true})
-    _sum?: NotificationSumAggregate;
+  @Field(() => NotificationMinAggregate, { nullable: true })
+  _min?: NotificationMinAggregate;
 
-    @Field(() => NotificationMinAggregate, {nullable:true})
-    _min?: NotificationMinAggregate;
-
-    @Field(() => NotificationMaxAggregate, {nullable:true})
-    _max?: NotificationMaxAggregate;
+  @Field(() => NotificationMaxAggregate, { nullable: true })
+  _max?: NotificationMaxAggregate;
 }

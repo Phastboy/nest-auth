@@ -7,22 +7,21 @@ import { CommentCreateNestedManyWithoutParentInput } from './comment-create-nest
 
 @InputType()
 export class CommentCreateWithoutEventInput {
+  @Field(() => String, { nullable: false })
+  content!: string;
 
-    @Field(() => String, {nullable:false})
-    content!: string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => UserCreateNestedOneWithoutCommentsInput, { nullable: false })
+  user!: UserCreateNestedOneWithoutCommentsInput;
 
-    @Field(() => UserCreateNestedOneWithoutCommentsInput, {nullable:false})
-    user!: UserCreateNestedOneWithoutCommentsInput;
+  @Field(() => PostCreateNestedOneWithoutCommentsInput, { nullable: true })
+  post?: PostCreateNestedOneWithoutCommentsInput;
 
-    @Field(() => PostCreateNestedOneWithoutCommentsInput, {nullable:true})
-    post?: PostCreateNestedOneWithoutCommentsInput;
+  @Field(() => CommentCreateNestedOneWithoutRepliesInput, { nullable: true })
+  parent?: CommentCreateNestedOneWithoutRepliesInput;
 
-    @Field(() => CommentCreateNestedOneWithoutRepliesInput, {nullable:true})
-    parent?: CommentCreateNestedOneWithoutRepliesInput;
-
-    @Field(() => CommentCreateNestedManyWithoutParentInput, {nullable:true})
-    replies?: CommentCreateNestedManyWithoutParentInput;
+  @Field(() => CommentCreateNestedManyWithoutParentInput, { nullable: true })
+  replies?: CommentCreateNestedManyWithoutParentInput;
 }

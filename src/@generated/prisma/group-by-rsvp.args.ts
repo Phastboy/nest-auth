@@ -9,23 +9,22 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class GroupByRsvpArgs {
+  @Field(() => RSVPWhereInput, { nullable: true })
+  @Type(() => RSVPWhereInput)
+  where?: RSVPWhereInput;
 
-    @Field(() => RSVPWhereInput, {nullable:true})
-    @Type(() => RSVPWhereInput)
-    where?: RSVPWhereInput;
+  @Field(() => [RSVPOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<RSVPOrderByWithAggregationInput>;
 
-    @Field(() => [RSVPOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<RSVPOrderByWithAggregationInput>;
+  @Field(() => [RSVPScalarFieldEnum], { nullable: false })
+  by!: Array<`${RSVPScalarFieldEnum}`>;
 
-    @Field(() => [RSVPScalarFieldEnum], {nullable:false})
-    by!: Array<`${RSVPScalarFieldEnum}`>;
+  @Field(() => RSVPScalarWhereWithAggregatesInput, { nullable: true })
+  having?: RSVPScalarWhereWithAggregatesInput;
 
-    @Field(() => RSVPScalarWhereWithAggregatesInput, {nullable:true})
-    having?: RSVPScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
-
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 }

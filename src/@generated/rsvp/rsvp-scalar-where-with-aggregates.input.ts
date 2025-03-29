@@ -6,28 +6,27 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class RSVPScalarWhereWithAggregatesInput {
+  @Field(() => [RSVPScalarWhereWithAggregatesInput], { nullable: true })
+  AND?: Array<RSVPScalarWhereWithAggregatesInput>;
 
-    @Field(() => [RSVPScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<RSVPScalarWhereWithAggregatesInput>;
+  @Field(() => [RSVPScalarWhereWithAggregatesInput], { nullable: true })
+  OR?: Array<RSVPScalarWhereWithAggregatesInput>;
 
-    @Field(() => [RSVPScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<RSVPScalarWhereWithAggregatesInput>;
+  @Field(() => [RSVPScalarWhereWithAggregatesInput], { nullable: true })
+  NOT?: Array<RSVPScalarWhereWithAggregatesInput>;
 
-    @Field(() => [RSVPScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<RSVPScalarWhereWithAggregatesInput>;
+  @Field(() => IntWithAggregatesFilter, { nullable: true })
+  id?: IntWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    id?: IntWithAggregatesFilter;
+  @Field(() => IntWithAggregatesFilter, { nullable: true })
+  userId?: IntWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    userId?: IntWithAggregatesFilter;
+  @Field(() => IntWithAggregatesFilter, { nullable: true })
+  eventId?: IntWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    eventId?: IntWithAggregatesFilter;
+  @Field(() => StringWithAggregatesFilter, { nullable: true })
+  status?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    status?: StringWithAggregatesFilter;
-
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    createdAt?: DateTimeWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  createdAt?: DateTimeWithAggregatesFilter;
 }

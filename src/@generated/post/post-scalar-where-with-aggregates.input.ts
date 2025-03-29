@@ -9,37 +9,36 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class PostScalarWhereWithAggregatesInput {
+  @Field(() => [PostScalarWhereWithAggregatesInput], { nullable: true })
+  AND?: Array<PostScalarWhereWithAggregatesInput>;
 
-    @Field(() => [PostScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<PostScalarWhereWithAggregatesInput>;
+  @Field(() => [PostScalarWhereWithAggregatesInput], { nullable: true })
+  OR?: Array<PostScalarWhereWithAggregatesInput>;
 
-    @Field(() => [PostScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<PostScalarWhereWithAggregatesInput>;
+  @Field(() => [PostScalarWhereWithAggregatesInput], { nullable: true })
+  NOT?: Array<PostScalarWhereWithAggregatesInput>;
 
-    @Field(() => [PostScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<PostScalarWhereWithAggregatesInput>;
+  @Field(() => IntWithAggregatesFilter, { nullable: true })
+  id?: IntWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    id?: IntWithAggregatesFilter;
+  @Field(() => StringWithAggregatesFilter, { nullable: true })
+  content?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    content?: StringWithAggregatesFilter;
+  @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
+  image?: StringNullableWithAggregatesFilter;
 
-    @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
-    image?: StringNullableWithAggregatesFilter;
+  @Field(() => BoolWithAggregatesFilter, { nullable: true })
+  isEvent?: BoolWithAggregatesFilter;
 
-    @Field(() => BoolWithAggregatesFilter, {nullable:true})
-    isEvent?: BoolWithAggregatesFilter;
+  @Field(() => IntNullableWithAggregatesFilter, { nullable: true })
+  eventId?: IntNullableWithAggregatesFilter;
 
-    @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
-    eventId?: IntNullableWithAggregatesFilter;
+  @Field(() => IntWithAggregatesFilter, { nullable: true })
+  userId?: IntWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    userId?: IntWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  createdAt?: DateTimeWithAggregatesFilter;
 
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    createdAt?: DateTimeWithAggregatesFilter;
-
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    updatedAt?: DateTimeWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  updatedAt?: DateTimeWithAggregatesFilter;
 }

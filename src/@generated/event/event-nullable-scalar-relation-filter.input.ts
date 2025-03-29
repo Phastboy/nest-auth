@@ -4,10 +4,9 @@ import { EventWhereInput } from './event-where.input';
 
 @InputType()
 export class EventNullableScalarRelationFilter {
+  @Field(() => EventWhereInput, { nullable: true })
+  is?: EventWhereInput;
 
-    @Field(() => EventWhereInput, {nullable:true})
-    is?: EventWhereInput;
-
-    @Field(() => EventWhereInput, {nullable:true})
-    isNot?: EventWhereInput;
+  @Field(() => EventWhereInput, { nullable: true })
+  isNot?: EventWhereInput;
 }

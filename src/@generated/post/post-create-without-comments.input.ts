@@ -7,31 +7,30 @@ import { LikeCreateNestedManyWithoutPostInput } from '../like/like-create-nested
 
 @InputType()
 export class PostCreateWithoutCommentsInput {
+  @Field(() => String, { nullable: false })
+  content!: string;
 
-    @Field(() => String, {nullable:false})
-    content!: string;
+  @Field(() => String, { nullable: true })
+  image?: string;
 
-    @Field(() => String, {nullable:true})
-    image?: string;
+  @Field(() => Boolean, { nullable: true })
+  isEvent?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    isEvent?: boolean;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => EventCreateNestedOneWithoutPostInput, { nullable: true })
+  event?: EventCreateNestedOneWithoutPostInput;
 
-    @Field(() => EventCreateNestedOneWithoutPostInput, {nullable:true})
-    event?: EventCreateNestedOneWithoutPostInput;
+  @Field(() => UserCreateNestedOneWithoutPostsInput, { nullable: false })
+  user!: UserCreateNestedOneWithoutPostsInput;
 
-    @Field(() => UserCreateNestedOneWithoutPostsInput, {nullable:false})
-    user!: UserCreateNestedOneWithoutPostsInput;
+  @Field(() => CategoryCreateNestedManyWithoutPostsInput, { nullable: true })
+  categories?: CategoryCreateNestedManyWithoutPostsInput;
 
-    @Field(() => CategoryCreateNestedManyWithoutPostsInput, {nullable:true})
-    categories?: CategoryCreateNestedManyWithoutPostsInput;
-
-    @Field(() => LikeCreateNestedManyWithoutPostInput, {nullable:true})
-    likes?: LikeCreateNestedManyWithoutPostInput;
+  @Field(() => LikeCreateNestedManyWithoutPostInput, { nullable: true })
+  likes?: LikeCreateNestedManyWithoutPostInput;
 }

@@ -9,20 +9,21 @@ import { RSVPWhereUniqueInput } from './rsvp-where-unique.input';
 
 @InputType()
 export class RSVPCreateNestedManyWithoutUserInput {
+  @Field(() => [RSVPCreateWithoutUserInput], { nullable: true })
+  @Type(() => RSVPCreateWithoutUserInput)
+  create?: Array<RSVPCreateWithoutUserInput>;
 
-    @Field(() => [RSVPCreateWithoutUserInput], {nullable:true})
-    @Type(() => RSVPCreateWithoutUserInput)
-    create?: Array<RSVPCreateWithoutUserInput>;
+  @Field(() => [RSVPCreateOrConnectWithoutUserInput], { nullable: true })
+  @Type(() => RSVPCreateOrConnectWithoutUserInput)
+  connectOrCreate?: Array<RSVPCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [RSVPCreateOrConnectWithoutUserInput], {nullable:true})
-    @Type(() => RSVPCreateOrConnectWithoutUserInput)
-    connectOrCreate?: Array<RSVPCreateOrConnectWithoutUserInput>;
+  @Field(() => RSVPCreateManyUserInputEnvelope, { nullable: true })
+  @Type(() => RSVPCreateManyUserInputEnvelope)
+  createMany?: RSVPCreateManyUserInputEnvelope;
 
-    @Field(() => RSVPCreateManyUserInputEnvelope, {nullable:true})
-    @Type(() => RSVPCreateManyUserInputEnvelope)
-    createMany?: RSVPCreateManyUserInputEnvelope;
-
-    @Field(() => [RSVPWhereUniqueInput], {nullable:true})
-    @Type(() => RSVPWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>>;
+  @Field(() => [RSVPWhereUniqueInput], { nullable: true })
+  @Type(() => RSVPWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>
+  >;
 }

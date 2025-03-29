@@ -8,19 +8,18 @@ import { EventMaxAggregate } from './event-max-aggregate.output';
 
 @ObjectType()
 export class AggregateEvent {
+  @Field(() => EventCountAggregate, { nullable: true })
+  _count?: EventCountAggregate;
 
-    @Field(() => EventCountAggregate, {nullable:true})
-    _count?: EventCountAggregate;
+  @Field(() => EventAvgAggregate, { nullable: true })
+  _avg?: EventAvgAggregate;
 
-    @Field(() => EventAvgAggregate, {nullable:true})
-    _avg?: EventAvgAggregate;
+  @Field(() => EventSumAggregate, { nullable: true })
+  _sum?: EventSumAggregate;
 
-    @Field(() => EventSumAggregate, {nullable:true})
-    _sum?: EventSumAggregate;
+  @Field(() => EventMinAggregate, { nullable: true })
+  _min?: EventMinAggregate;
 
-    @Field(() => EventMinAggregate, {nullable:true})
-    _min?: EventMinAggregate;
-
-    @Field(() => EventMaxAggregate, {nullable:true})
-    _max?: EventMaxAggregate;
+  @Field(() => EventMaxAggregate, { nullable: true })
+  _max?: EventMaxAggregate;
 }

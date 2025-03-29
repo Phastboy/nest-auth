@@ -14,52 +14,51 @@ import { LikeListRelationFilter } from '../like/like-list-relation-filter.input'
 
 @InputType()
 export class PostWhereInput {
+  @Field(() => [PostWhereInput], { nullable: true })
+  AND?: Array<PostWhereInput>;
 
-    @Field(() => [PostWhereInput], {nullable:true})
-    AND?: Array<PostWhereInput>;
+  @Field(() => [PostWhereInput], { nullable: true })
+  OR?: Array<PostWhereInput>;
 
-    @Field(() => [PostWhereInput], {nullable:true})
-    OR?: Array<PostWhereInput>;
+  @Field(() => [PostWhereInput], { nullable: true })
+  NOT?: Array<PostWhereInput>;
 
-    @Field(() => [PostWhereInput], {nullable:true})
-    NOT?: Array<PostWhereInput>;
+  @Field(() => IntFilter, { nullable: true })
+  id?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    id?: IntFilter;
+  @Field(() => StringFilter, { nullable: true })
+  content?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    content?: StringFilter;
+  @Field(() => StringNullableFilter, { nullable: true })
+  image?: StringNullableFilter;
 
-    @Field(() => StringNullableFilter, {nullable:true})
-    image?: StringNullableFilter;
+  @Field(() => BoolFilter, { nullable: true })
+  isEvent?: BoolFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    isEvent?: BoolFilter;
+  @Field(() => IntNullableFilter, { nullable: true })
+  eventId?: IntNullableFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    eventId?: IntNullableFilter;
+  @Field(() => IntFilter, { nullable: true })
+  userId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    userId?: IntFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  updatedAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    updatedAt?: DateTimeFilter;
+  @Field(() => EventNullableScalarRelationFilter, { nullable: true })
+  event?: EventNullableScalarRelationFilter;
 
-    @Field(() => EventNullableScalarRelationFilter, {nullable:true})
-    event?: EventNullableScalarRelationFilter;
+  @Field(() => UserScalarRelationFilter, { nullable: true })
+  user?: UserScalarRelationFilter;
 
-    @Field(() => UserScalarRelationFilter, {nullable:true})
-    user?: UserScalarRelationFilter;
+  @Field(() => CategoryListRelationFilter, { nullable: true })
+  categories?: CategoryListRelationFilter;
 
-    @Field(() => CategoryListRelationFilter, {nullable:true})
-    categories?: CategoryListRelationFilter;
+  @Field(() => CommentListRelationFilter, { nullable: true })
+  comments?: CommentListRelationFilter;
 
-    @Field(() => CommentListRelationFilter, {nullable:true})
-    comments?: CommentListRelationFilter;
-
-    @Field(() => LikeListRelationFilter, {nullable:true})
-    likes?: LikeListRelationFilter;
+  @Field(() => LikeListRelationFilter, { nullable: true })
+  likes?: LikeListRelationFilter;
 }

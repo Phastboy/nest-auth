@@ -12,6 +12,9 @@ export { DateTimeNullableWithAggregatesFilter } from './date-time-nullable-with-
 export { DateTimeWithAggregatesFilter } from './date-time-with-aggregates-filter.input';
 export { DeleteManyRsvpArgs } from './delete-many-rsvp.args';
 export { DeleteOneRsvpArgs } from './delete-one-rsvp.args';
+export { EnumRoleFieldUpdateOperationsInput } from './enum-role-field-update-operations.input';
+export { EnumRoleFilter } from './enum-role-filter.input';
+export { EnumRoleWithAggregatesFilter } from './enum-role-with-aggregates-filter.input';
 export { FindFirstRsvpOrThrowArgs } from './find-first-rsvp-or-throw.args';
 export { FindFirstRsvpArgs } from './find-first-rsvp.args';
 export { FindManyRsvpArgs } from './find-many-rsvp.args';
@@ -29,6 +32,8 @@ export { NestedDateTimeFilter } from './nested-date-time-filter.input';
 export { NestedDateTimeNullableFilter } from './nested-date-time-nullable-filter.input';
 export { NestedDateTimeNullableWithAggregatesFilter } from './nested-date-time-nullable-with-aggregates-filter.input';
 export { NestedDateTimeWithAggregatesFilter } from './nested-date-time-with-aggregates-filter.input';
+export { NestedEnumRoleFilter } from './nested-enum-role-filter.input';
+export { NestedEnumRoleWithAggregatesFilter } from './nested-enum-role-with-aggregates-filter.input';
 export { NestedFloatFilter } from './nested-float-filter.input';
 export { NestedFloatNullableFilter } from './nested-float-nullable-filter.input';
 export { NestedIntFilter } from './nested-int-filter.input';
@@ -43,6 +48,7 @@ export { NullableDateTimeFieldUpdateOperationsInput } from './nullable-date-time
 export { NullableIntFieldUpdateOperationsInput } from './nullable-int-field-update-operations.input';
 export { NullableStringFieldUpdateOperationsInput } from './nullable-string-field-update-operations.input';
 export { NullsOrder } from './nulls-order.enum';
+export { Role } from './role.enum';
 export { SortOrder } from './sort-order.enum';
 export { SortOrderInput } from './sort-order.input';
 export { StringFieldUpdateOperationsInput } from './string-field-update-operations.input';

@@ -8,20 +8,19 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class AggregateRsvpArgs {
+  @Field(() => RSVPWhereInput, { nullable: true })
+  @Type(() => RSVPWhereInput)
+  where?: RSVPWhereInput;
 
-    @Field(() => RSVPWhereInput, {nullable:true})
-    @Type(() => RSVPWhereInput)
-    where?: RSVPWhereInput;
+  @Field(() => [RSVPOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<RSVPOrderByWithRelationInput>;
 
-    @Field(() => [RSVPOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<RSVPOrderByWithRelationInput>;
+  @Field(() => RSVPWhereUniqueInput, { nullable: true })
+  cursor?: RSVPWhereUniqueInput;
 
-    @Field(() => RSVPWhereUniqueInput, {nullable:true})
-    cursor?: RSVPWhereUniqueInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
-
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 }

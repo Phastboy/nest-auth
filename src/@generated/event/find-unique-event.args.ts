@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueEventArgs {
-
-    @Field(() => EventWhereUniqueInput, {nullable:false})
-    @Type(() => EventWhereUniqueInput)
-    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+  @Field(() => EventWhereUniqueInput, { nullable: false })
+  @Type(() => EventWhereUniqueInput)
+  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 }
