@@ -1110,6 +1110,9 @@ type Mutation {
   updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
   updateRsvp(id: Int!, updateRsvpInput: UpdateRsvpInput!): RSVP!
+
+  """Updates a user by ID"""
+  updateUser(id: Int!, updateUserInput: UpdateUserInput!): User!
 }
 
 input NestedBoolFilter {
@@ -1824,6 +1827,15 @@ input UpdateRsvpInput {
   eventId: Int
   id: Int!
   status: String
+}
+
+input UpdateUserInput {
+  avatar: String
+  bio: String
+  email: String
+  password: String
+  role: Role
+  username: String
 }
 
 type User {

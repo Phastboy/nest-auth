@@ -34,4 +34,33 @@ export class UsersResolver {
   ): Promise<UserResponse> {
     return await this.usersService.findUserById(id);
   }
+
+  /**
+   * Updates a user's details.
+   * @param {number} id - The ID of the user to update.
+   * @param {UpdateUserInput} updateUserInput - The input data for updating the user.
+   * @returns {Promise<User>} - The updated user object.
+   */
+  @Mutation(() => User, {
+    name: 'updateUser',
+    description: 'Updates a user by ID',
+  })
+  async updateUser(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('updateUserInput') updateUserInput: UpdateUserInput,
+  ): Promise<UserResponse> {
+    this.logger.logDebug(`updating user ...`, {
+      metadata: {
+        id,
+        updateUserInput,
+      },
+    });
+    const user = await this.usersService.updateUser(id, updateUserInput);
+    this.logger.info(`user updated successfully`, {
+      metadata: {
+        user,
+      },
+    });
+    return user;
+  }
 }
