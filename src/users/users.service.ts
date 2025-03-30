@@ -44,7 +44,7 @@ export class UsersService {
    * @type {Role[]}
    * @description This list is derived from the Role enum, excluding privileged roles.
    */
-  private readonly nonPriviledgedRoles: Role[] = Object.values(Role).filter(
+  private readonly nonPrivilegedRoles: Role[] = Object.values(Role).filter(
     (r) => !this.privilegedRoles.includes(r as PrivilegedRole),
   );
 
