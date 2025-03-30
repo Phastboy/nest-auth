@@ -38,7 +38,7 @@ import { CategoriesModule } from './categories/categories.module';
       },
       inject: [ConfigService],
     }),
-    SeedModule,
+    // SeedModule,
     GraphqlModule,
     UsersModule,
     PostsModule,
