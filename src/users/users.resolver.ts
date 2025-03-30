@@ -39,7 +39,7 @@ export class UsersResolver {
    * Updates a user's details.
    * @param {number} id - The ID of the user to update.
    * @param {UpdateUserInput} updateUserInput - The input data for updating the user.
-   * @returns {Promise<User>} - The updated user object.
+   * @returns {Promise<UserResponse>} - The updated user object.
    */
   @Mutation(() => User, {
     name: 'updateUser',
