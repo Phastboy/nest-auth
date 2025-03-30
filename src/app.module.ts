@@ -15,6 +15,7 @@ import { LikesModule } from './likes/likes.module';
 import { NotificationsModule } from './notifications/notifications.module';
 import { RsvpsModule } from './rsvps/rsvps.module';
 import { CategoriesModule } from './categories/categories.module';
+import { ErrorHandlerModule } from './error-handler/error-handler.module';
 
 @Module({
   imports: [
@@ -48,6 +49,7 @@ import { CategoriesModule } from './categories/categories.module';
     NotificationsModule,
     RsvpsModule,
     CategoriesModule,
+    ErrorHandlerModule,
   ],
   controllers: [],
   providers: [

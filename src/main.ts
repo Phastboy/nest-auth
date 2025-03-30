@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConsoleLogger, ValidationPipe } from '@nestjs/common';
 import { AppLogger } from './app.logger';
-import { ErrorHandler } from './common/utils/error.util';
+import { ErrorHandler } from './error-handler/error.util';
 import { PortFinder } from './port';
 
 async function bootstrap() {
@@ -45,4 +45,3 @@ bootstrap().catch((error) => {
   logger.critical('Fatal error during bootstrap', { error });
   process.exit(1);
 });
-
