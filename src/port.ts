@@ -30,13 +30,13 @@ export class PortFinder {
     while (attempts <= this.config.maxPortAttempts) {
       if (await this.isPortAvailable(portToCheck)) {
         this.logger.info(`Found available port: ${portToCheck}`, {
-          metadata: { port: portToCheck }
+          metadata: { port: portToCheck },
         });
         return portToCheck;
       }
 
       this.logger.warning(`Port ${portToCheck} is in use`, {
-        metadata: { port: portToCheck }
+        metadata: { port: portToCheck },
       });
 
       portToCheck = this.getNextPort(portToCheck, attempts);
@@ -48,14 +48,14 @@ export class PortFinder {
 
   private async isPortAvailable(port: number): Promise<boolean> {
     await this.validatePort(port);
-    
+
     return new Promise((resolve) => {
       const server = net.createServer();
       server.unref();
-      
+
       server.on('error', () => {
         this.logger.debug(`Port ${port} is not available`, {
-          metadata: { port }
+          metadata: { port },
         });
         resolve(false);
       });
@@ -63,7 +63,7 @@ export class PortFinder {
       server.listen({ port, host: this.config.host }, () => {
         server.close(() => {
           this.logger.debug(`Port ${port} is available`, {
-            metadata: { port }
+            metadata: { port },
           });
           resolve(true);
         });
@@ -99,21 +99,23 @@ export class PortFinder {
   private async handleMaxAttemptsReached(): Promise<number> {
     this.logger.error(
       `Max attempts (${this.config.maxPortAttempts}) reached. ` +
-      `Waiting ${this.config.restartDelay}ms before final retry...`,
+        `Waiting ${this.config.restartDelay}ms before final retry...`,
       {
         metadata: {
           maxAttempts: this.config.maxPortAttempts,
-          restartDelay: this.config.restartDelay
-        }
-      }
+          restartDelay: this.config.restartDelay,
+        },
+      },
     );
 
-    await new Promise(resolve => setTimeout(resolve, this.config.restartDelay));
+    await new Promise((resolve) =>
+      setTimeout(resolve, this.config.restartDelay),
+    );
 
     const finalPort = this.config.defaultPort + this.config.maxPortAttempts + 1;
     if (await this.isPortAvailable(finalPort)) {
       this.logger.warning(`Found available port after retry: ${finalPort}`, {
-        metadata: { port: finalPort }
+        metadata: { port: finalPort },
       });
       return finalPort;
     }

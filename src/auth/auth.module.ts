@@ -6,6 +6,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { RefreshTokenStrategy } from './strategies/refresh.strategy';
+import { ErrorHandler } from 'src/error-handler/error.util';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { RefreshTokenStrategy } from './strategies/refresh.strategy';
     UsersService,
     JwtStrategy,
     RefreshTokenStrategy,
+    ErrorHandler,
   ],
 })
 export class AuthModule {}

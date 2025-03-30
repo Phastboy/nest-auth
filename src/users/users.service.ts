@@ -1,82 +1,125 @@
-import { Injectable } from '@nestjs/common';
-import { UserWithoutPassword } from '../interfaces/user.types';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import * as argon from 'argon2';
-import { User } from '@prisma/client';
+import { Role } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
 import { CreateUserInput } from './dto/create-user.input';
-import { UpdateUserInput } from './dto/update-user.input';
+import {
+  DEFAULT_USER_INCLUDES,
+  PrivilegedRole,
+  UserResponse,
+} from './users.types';
+import { AppLogger } from 'src/app.logger';
+import { ErrorHandler } from 'src/error-handler/error.util';
 
+/**
+ * Service for managing user-related operations.
+ */
 @Injectable()
 export class UsersService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly handler: ErrorHandler,
+  ) {}
+  private readonly logger = AppLogger.getInstance(UsersService.name);
 
-  async create(createUserDto: CreateUserInput): Promise<UserWithoutPassword> {
-    const hashedPassword = await argon.hash(createUserDto.password);
+  /**
+   * List of privileged roles with special access
+   * @private
+   */
+  private readonly privilegedRoles: PrivilegedRole[] = [
+    Role.SUPER_ADMIN,
+    Role.FACULTY_DEAN,
+    Role.REGISTRAR,
+    Role.DEPARTMENT_HEAD,
+  ];
 
-    return await this.prismaService.user.create({
-      data: {
-        ...createUserDto,
-        password: hashedPassword,
-      },
-      omit: {
-        password: true,
-      },
-    });
+  /**
+   * List of non-privileged roles that are allowed for registration.
+   */
+  private readonly allowedRoles = Object.values(Role).filter(
+    (r) => !this.privilegedRoles.includes(r as PrivilegedRole),
+  );
+
+  /**
+   * Creates a new user while ensuring that privileged roles cannot be assigned.
+   *
+   * @param {CreateUserInput} createUserInput - The user data for registration.
+   * @returns {Promise<UserResponse>} - The created user object.
+   * @throws {BadRequestException} - If the role assigned is a privileged role.
+   */
+  async createUser(createUserInput: CreateUserInput): Promise<UserResponse> {
+    try {
+      /**
+       * The role assigned to the new user.
+       * Defaults to `STUDENT` if not provided.
+       */
+      const role: Role = createUserInput.role || Role.STUDENT;
+
+      // Check if the assigned role is a privileged role
+      if (this.privilegedRoles.includes(role as PrivilegedRole)) {
+        throw new BadRequestException(
+          `Registration of users with the role '${role}' is restricted.`,
+          {
+            description: `The role '${role}' is considered a privileged role and cannot be assigned during user registration. Allowed roles: ${this.allowedRoles.join(', ')}.`,
+          },
+        );
+      }
+
+      // Hash password before storing
+      const hashedPassword = await argon.hash(createUserInput.password);
+
+      // Create user in the database
+      const user = await this.prismaService.user.create({
+        data: {
+          ...createUserInput,
+          password: hashedPassword,
+        },
+        include: DEFAULT_USER_INCLUDES,
+      });
+
+      // Log success
+      this.logger.info(`User created successfully`, {
+        metadata: { id: user.id, email: user.email, username: user.username },
+      });
+
+      return user;
+    } catch (error) {
+      // Handle errors via centralized error handler
+      return this.handler.handleError(error, {
+        operation: 'createUser',
+        service: 'UsersService',
+        metadata: {
+          email: createUserInput.email,
+          username: createUserInput.username,
+        },
+      });
+    }
   }
 
-  async findAll(): Promise<UserWithoutPassword[]> {
-    return await this.prismaService.user.findMany({
-      omit: {
-        password: true,
-      },
-      include: {
-        posts: true,
-        events: true,
-        likes: true,
-        comments: true,
-        notifications: true,
-        _count: true,
-      },
-    });
-  }
+  /**
+   * Determines if a given role can be assigned to a target user based on the current user's role.
+   * @param {Role} assignerRole - The role of the user attempting to assign the target role.
+   * @param {Role} targetRole - The role to be assigned.
+   * @returns {boolean} - Whether the assigner has the necessary privileges to assign the target role.
+   */
+  private canAssignRole(assignerRole: Role, targetRole: Role): boolean {
+    const roleHierarchy: Record<Role, Role[]> = {
+      [Role.SUPER_ADMIN]: Object.values(Role),
+      [Role.FACULTY_DEAN]: [Role.LECTURER, Role.DEPARTMENT_HEAD, Role.STUDENT],
+      [Role.DEPARTMENT_HEAD]: [Role.LECTURER, Role.STUDENT],
+      [Role.REGISTRAR]: [Role.ADMIN, Role.STUDENT],
+      [Role.ADMIN]: [],
+      [Role.IT_STAFF]: [],
+      [Role.LIBRARIAN]: [],
+      [Role.FINANCE_STAFF]: [],
+      [Role.LECTURER]: [],
+      [Role.STUDENT]: [],
+    };
 
-  async findOne(id: number): Promise<UserWithoutPassword | null> {
-    return await this.prismaService.user.findUnique({
-      where: { id },
-      omit: {
-        password: true,
-      },
-      include: {
-        posts: true,
-      },
-    });
-  }
-
-  async findByEmail(email: string): Promise<User | null> {
-    return await this.prismaService.user.findUnique({
-      where: { email },
-    });
-  }
-
-  async update(
-    id: number,
-    updateUserDto: UpdateUserInput,
-  ): Promise<UserWithoutPassword> {
-    return await this.prismaService.user.update({
-      where: { id },
-      data: updateUserDto,
-      omit: {
-        password: true,
-      },
-    });
-  }
-
-  async remove(id: number): Promise<UserWithoutPassword> {
-    return await this.prismaService.user.delete({
-      where: { id },
-      omit: {
-        password: true,
-      },
-    });
+    return (
+      assignerRole === targetRole ||
+      roleHierarchy[assignerRole]?.includes(targetRole) ||
+      false
+    );
   }
 }
