@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import * as argon from 'argon2';
 import { Role } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
@@ -10,9 +14,11 @@ import {
 } from './users.types';
 import { AppLogger } from 'src/app.logger';
 import { ErrorHandler } from 'src/error-handler/error.util';
+import { User } from '@prisma/client';
 
 /**
- * Service for managing user-related operations.
+ * @class UsersService
+ * @description Service for managing user-related operations.
  */
 @Injectable()
 export class UsersService {
@@ -34,11 +40,40 @@ export class UsersService {
   ];
 
   /**
-   * List of non-privileged roles that are allowed for registration.
+   * @private
+   * @type {Role[]}
+   * @description This list is derived from the Role enum, excluding privileged roles.
    */
-  private readonly allowedRoles = Object.values(Role).filter(
+  private readonly nonPriviledgedRoles: Role[] = Object.values(Role).filter(
     (r) => !this.privilegedRoles.includes(r as PrivilegedRole),
   );
+
+  /**
+   * Determines if a given role can be assigned to a target user based on the current user's role.
+   * @param {Role} assignerRole - The role of the user attempting to assign the target role.
+   * @param {Role} targetRole - The role to be assigned.
+   * @returns {boolean} - Whether the assigner has the necessary privileges to assign the target role.
+   */
+  private canAssignRole(assignerRole: Role, targetRole: Role): boolean {
+    const roleHierarchy: Record<Role, Role[]> = {
+      [Role.SUPER_ADMIN]: Object.values(Role),
+      [Role.FACULTY_DEAN]: [Role.LECTURER, Role.DEPARTMENT_HEAD, Role.STUDENT],
+      [Role.DEPARTMENT_HEAD]: [Role.LECTURER, Role.STUDENT],
+      [Role.REGISTRAR]: [Role.ADMIN, Role.STUDENT],
+      [Role.ADMIN]: [],
+      [Role.IT_STAFF]: [],
+      [Role.LIBRARIAN]: [],
+      [Role.FINANCE_STAFF]: [],
+      [Role.LECTURER]: [],
+      [Role.STUDENT]: [],
+    };
+
+    return (
+      assignerRole === targetRole ||
+      roleHierarchy[assignerRole]?.includes(targetRole) ||
+      false
+    );
+  }
 
   /**
    * Creates a new user while ensuring that privileged roles cannot be assigned.
@@ -60,7 +95,7 @@ export class UsersService {
         throw new BadRequestException(
           `Registration of users with the role '${role}' is restricted.`,
           {
-            description: `The role '${role}' is considered a privileged role and cannot be assigned during user registration. Allowed roles: ${this.allowedRoles.join(', ')}.`,
+            description: `The role '${role}' is considered a privileged role and cannot be assigned during user registration. Allowed roles: ${this.nonPriviledgedRoles.join(', ')}.`,
           },
         );
       }
@@ -97,29 +132,55 @@ export class UsersService {
   }
 
   /**
-   * Determines if a given role can be assigned to a target user based on the current user's role.
-   * @param {Role} assignerRole - The role of the user attempting to assign the target role.
-   * @param {Role} targetRole - The role to be assigned.
-   * @returns {boolean} - Whether the assigner has the necessary privileges to assign the target role.
+   * finds a user by their ID.
+   * @param {number} id - The ID of the user to find.
+   * @return {Promise<UserResponse>} - The found user object.
+   * @throws {Error} - If the user is not found.
    */
-  private canAssignRole(assignerRole: Role, targetRole: Role): boolean {
-    const roleHierarchy: Record<Role, Role[]> = {
-      [Role.SUPER_ADMIN]: Object.values(Role),
-      [Role.FACULTY_DEAN]: [Role.LECTURER, Role.DEPARTMENT_HEAD, Role.STUDENT],
-      [Role.DEPARTMENT_HEAD]: [Role.LECTURER, Role.STUDENT],
-      [Role.REGISTRAR]: [Role.ADMIN, Role.STUDENT],
-      [Role.ADMIN]: [],
-      [Role.IT_STAFF]: [],
-      [Role.LIBRARIAN]: [],
-      [Role.FINANCE_STAFF]: [],
-      [Role.LECTURER]: [],
-      [Role.STUDENT]: [],
-    };
+  async findUserById(id: number): Promise<UserResponse> {
+    try {
+      const user = await this.prismaService.user.findUnique({
+        where: { id },
+        include: DEFAULT_USER_INCLUDES,
+      });
 
-    return (
-      assignerRole === targetRole ||
-      roleHierarchy[assignerRole]?.includes(targetRole) ||
-      false
-    );
+      if (!user) {
+        throw new NotFoundException(`User with ID ${id} not found.`);
+      }
+
+      return user;
+    } catch (error) {
+      this.handler.handleError(error, {
+        operation: 'findUserById',
+        service: 'UsersService',
+        metadata: { id },
+      });
+    }
+  }
+
+  /**
+   * Finds a user by their email.
+   * @param {string} email - The email of the user to find.
+   * @return {Promise<User>} - The found user object.
+   * @throws {Error} - If the user is not found.
+   */
+  async findUserByEmail(email: string): Promise<User> {
+    try {
+      const user = await this.prismaService.user.findUnique({
+        where: { email },
+      });
+
+      if (!user) {
+        throw new Error(`User with email ${email} not found.`);
+      }
+
+      return user;
+    } catch (error) {
+      return this.handler.handleError(error, {
+        operation: 'findUserByEmail',
+        service: 'UsersService',
+        metadata: { email },
+      });
+    }
   }
 }

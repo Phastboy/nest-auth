@@ -2,11 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type AuthResponse {
-  message: String!
-  tokens: TokenPair!
-}
-
 input BoolFilter {
   equals: Boolean
   not: NestedBoolFilter
@@ -509,6 +504,15 @@ input CreateRsvpInput {
   createdAt: DateTime
   eventId: Int!
   status: String
+}
+
+input CreateUserInput {
+  avatar: String
+  bio: String
+  email: String!
+  password: String!
+  role: Role
+  username: String!
 }
 
 """
@@ -1081,11 +1085,6 @@ input LikeWhereUniqueInput {
   userId_postId_eventId: LikeUserIdPostIdEventIdCompoundUniqueInput
 }
 
-input LoginDto {
-  email: String!
-  password: String!
-}
-
 type Mutation {
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   createComment(createCommentInput: CreateCommentInput!): Comment!
@@ -1094,22 +1093,16 @@ type Mutation {
   createNotification(createNotificationInput: CreateNotificationInput!): Notification!
   createPost(createPostInput: CreatePostInput!): Post!
   createRsvp(createRsvpInput: CreateRsvpInput!): RSVP!
-  createUser(createUserInput: UserCreateInput!): User!
   deleteCategory(id: Int!): Category!
   deleteComment(id: Int!): Comment!
   deleteEvent(id: Int!): Event!
   deletePost(id: Int!): Post!
   deleteRsvp(id: Int!): RSVP!
-  login(loginInput: LoginDto!): AuthResponse!
-
-  """resfreshes access and refresh tokens"""
-  refreshTokens: AuthResponse!
 
   """for creating a new user"""
-  register(createUserInput: UserCreateInput!): User!
+  register(createUserInput: CreateUserInput!): User!
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
-  removeUser(id: Int!): User!
   updateCategory(id: Int!, updateCategoryInput: UpdateCategoryInput!): Category!
   updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!
   updateEvent(id: Int!, updateEventInput: UpdateEventInput!): Event!
@@ -1117,7 +1110,6 @@ type Mutation {
   updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
   updateRsvp(id: Int!, updateRsvpInput: UpdateRsvpInput!): RSVP!
-  updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 input NestedBoolFilter {
@@ -1581,6 +1573,9 @@ type Query {
   event(id: Int!): Event!
   eventRsvps(eventId: Int!): [RSVP!]!
   events: [Event!]!
+
+  """Finds a user by ID"""
+  findOneUser(id: Int!): User!
   like(id: Int!): Like!
   likes: [Like!]!
   myRsvps: [RSVP!]!
@@ -1590,8 +1585,6 @@ type Query {
   posts: [Post!]!
   rsvp(id: Int!): RSVP!
   rsvps: [RSVP!]!
-  user(id: Int!): User!
-  users: [User!]!
 }
 
 type RSVP {
@@ -1778,11 +1771,6 @@ input StringNullableFilter {
   startsWith: String
 }
 
-type TokenPair {
-  accessToken: String!
-  refreshToken: String!
-}
-
 input UpdateCategoryInput {
   id: Int!
   name: String
@@ -1838,24 +1826,6 @@ input UpdateRsvpInput {
   status: String
 }
 
-input UpdateUserInput {
-  avatar: String
-  bio: String
-  comments: CommentCreateNestedManyWithoutUserInput
-  createdAt: DateTime
-  email: String
-  events: EventCreateNestedManyWithoutUserInput
-  id: Int!
-  likes: LikeCreateNestedManyWithoutUserInput
-  notifications: NotificationCreateNestedManyWithoutUserInput
-  password: String
-  posts: PostCreateNestedManyWithoutUserInput
-  role: Role
-  rsvps: RSVPCreateNestedManyWithoutUserInput
-  updatedAt: DateTime
-  username: String
-}
-
 type User {
   _count: UserCount!
   avatar: String
@@ -1899,23 +1869,6 @@ type UserCountAggregate {
   role: Int!
   updatedAt: Int!
   username: Int!
-}
-
-input UserCreateInput {
-  avatar: String
-  bio: String
-  comments: CommentCreateNestedManyWithoutUserInput
-  createdAt: DateTime
-  email: String!
-  events: EventCreateNestedManyWithoutUserInput
-  likes: LikeCreateNestedManyWithoutUserInput
-  notifications: NotificationCreateNestedManyWithoutUserInput
-  password: String!
-  posts: PostCreateNestedManyWithoutUserInput
-  role: Role
-  rsvps: RSVPCreateNestedManyWithoutUserInput
-  updatedAt: DateTime
-  username: String!
 }
 
 input UserCreateNestedOneWithoutCommentsInput {

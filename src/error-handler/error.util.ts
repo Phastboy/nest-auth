@@ -65,7 +65,9 @@ export class ErrorHandler {
       error instanceof ConflictException ||
       error instanceof NotFoundException ||
       error instanceof BadRequestException ||
-      error instanceof ForbiddenException
+      error instanceof ForbiddenException ||
+      error instanceof ServiceUnavailableException ||
+      error instanceof InternalServerErrorException
     ) {
       throw error;
     }

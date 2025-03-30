@@ -7,6 +7,10 @@ import { AppLogger } from 'src/app.logger';
 import { UserResponse } from 'src/users/users.types';
 import { ErrorHandler } from 'src/error-handler/error.util';
 
+/**
+ * Resolver for handling authentication-related operations.
+ * @class AuthResolver
+ */
 @Resolver()
 export class AuthResolver {
   constructor(
@@ -17,6 +21,11 @@ export class AuthResolver {
 
   private readonly logger = AppLogger.getInstance(AuthResolver.name);
 
+  /**
+   * Registers a new user.
+   * @param {CreateUserInput} createUserInput - The input data for creating a new user.
+   * @returns {Promise<User>} - The created user object.
+   */
   @Mutation(() => User, {
     name: 'register',
     description: 'for creating a new user',
@@ -24,25 +33,17 @@ export class AuthResolver {
   async register(
     @Args('createUserInput') createUserInput: CreateUserInput,
   ): Promise<UserResponse> {
-    try {
-      this.logger.logDebug(`registering user ...`, {
-        metadata: {
-          createUserInput,
-        },
-      });
-      const user = await this.usersService.createUser(createUserInput);
-      this.logger.info(`user registered successfully`, {
-        metadata: {
-          user,
-        },
-      });
-      return user;
-    } catch (error) {
-      this.handler.handleError(error, {
-        operation: 'register',
-        service: 'AuthResolver',
-        metadata: { createUserInput },
-      });
-    }
+    this.logger.logDebug(`registering user ...`, {
+      metadata: {
+        createUserInput,
+      },
+    });
+    const user = await this.usersService.createUser(createUserInput);
+    this.logger.info(`user registered successfully`, {
+      metadata: {
+        user,
+      },
+    });
+    return user;
   }
 }
