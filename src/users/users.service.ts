@@ -15,6 +15,7 @@ import {
 import { AppLogger } from 'src/app.logger';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { User } from '@prisma/client';
+import { UpdateUserInput } from './dto/update-user.input';
 
 /**
  * @class UsersService
@@ -95,7 +96,7 @@ export class UsersService {
         throw new BadRequestException(
           `Registration of users with the role '${role}' is restricted.`,
           {
-            description: `The role '${role}' is considered a privileged role and cannot be assigned during user registration. Allowed roles: ${this.nonPriviledgedRoles.join(', ')}.`,
+            description: `The role '${role}' is considered a privileged role and cannot be assigned during user registration. Allowed roles: ${this.nonPrivilegedRoles.join(', ')}.`,
           },
         );
       }
@@ -108,6 +109,9 @@ export class UsersService {
         data: {
           ...createUserInput,
           password: hashedPassword,
+        },
+        omit: {
+          password: true,
         },
         include: DEFAULT_USER_INCLUDES,
       });
@@ -135,12 +139,15 @@ export class UsersService {
    * finds a user by their ID.
    * @param {number} id - The ID of the user to find.
    * @return {Promise<UserResponse>} - The found user object.
-   * @throws {Error} - If the user is not found.
+   * @throws {NotFoundException} - If the user is not found.
    */
   async findUserById(id: number): Promise<UserResponse> {
     try {
       const user = await this.prismaService.user.findUnique({
         where: { id },
+        omit: {
+          password: true,
+        },
         include: DEFAULT_USER_INCLUDES,
       });
 
@@ -162,7 +169,7 @@ export class UsersService {
    * Finds a user by their email.
    * @param {string} email - The email of the user to find.
    * @return {Promise<User>} - The found user object.
-   * @throws {Error} - If the user is not found.
+   * @throws {NotFoundException} - If the user is not found.
    */
   async findUserByEmail(email: string): Promise<User> {
     try {
@@ -171,7 +178,7 @@ export class UsersService {
       });
 
       if (!user) {
-        throw new Error(`User with email ${email} not found.`);
+        throw new NotFoundException(`User with email ${email} not found.`);
       }
 
       return user;
@@ -180,6 +187,41 @@ export class UsersService {
         operation: 'findUserByEmail',
         service: 'UsersService',
         metadata: { email },
+      });
+    }
+  }
+
+  /**
+   * Updates a user's details.
+   * @param {number} id - The ID of the user to update.
+   * @param {Partial<UpdateUserInput>} updateUserInput - The new user data.
+   * @return {Promise<UserResponse>} - The updated user object.
+   * @throws {NotFoundException} - If the user is not found or if the update fails.
+   */
+  async updateUser(
+    id: number,
+    updateUserInput: UpdateUserInput,
+  ): Promise<UserResponse> {
+    try {
+      const user = await this.prismaService.user.update({
+        where: { id },
+        data: updateUserInput,
+        omit: {
+          password: true,
+        },
+        include: DEFAULT_USER_INCLUDES,
+      });
+
+      if (!user) {
+        throw new NotFoundException(`User with ID ${id} not found.`);
+      }
+
+      return user;
+    } catch (error) {
+      return this.handler.handleError(error, {
+        operation: 'updateUser',
+        service: 'UsersService',
+        metadata: { id, updateUserInput },
       });
     }
   }
