@@ -95,7 +95,7 @@ export class UsersService {
         throw new BadRequestException(
           `Registration of users with the role '${role}' is restricted.`,
           {
-            description: `The role '${role}' is considered a privileged role and cannot be assigned during user registration. Allowed roles: ${this.nonPriviledgedRoles.join(', ')}.`,
+            description: `The role '${role}' is considered a privileged role and cannot be assigned during user registration. Allowed roles: ${this.nonPrivilegedRoles.join(', ')}.`,
           },
         );
       }
