@@ -4,9 +4,9 @@ import { Category } from 'src/@generated';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { CurrentUser } from 'src/auth/current-user/current-user.decorator';
-import { AuthenticatedUser } from 'src/interfaces/auth.types';
+import { AuthenticatedUser } from 'src/auth/types/auth.types';
 
 @Resolver(() => Category)
 export class CategoriesResolver {

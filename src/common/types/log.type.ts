@@ -1,5 +1,10 @@
-// src/common/types/log.types.ts
-export type LogLevel = 'critical' | 'error' | 'warning' | 'debug' | 'info' | 'verbose';
+export type LogLevel =
+  | 'critical'
+  | 'error'
+  | 'warning'
+  | 'debug'
+  | 'info'
+  | 'verbose';
 
 export interface StackTraceInfo {
   errorMessage: string;
@@ -24,7 +29,7 @@ export interface LogInfo {
   level: LogLevel;
   message: string;
   context?: string | Record<string, any>;
-  stack?: unknown,
+  stack?: unknown;
   metadata?: Record<string, unknown>;
   traceId?: string;
   error?: unknown;

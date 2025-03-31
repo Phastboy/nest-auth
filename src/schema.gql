@@ -511,6 +511,15 @@ input CreateRsvpInput {
   status: String
 }
 
+input CreateUserInput {
+  avatar: String
+  bio: String
+  email: String!
+  password: String!
+  role: Role
+  username: String!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
@@ -1081,7 +1090,7 @@ input LikeWhereUniqueInput {
   userId_postId_eventId: LikeUserIdPostIdEventIdCompoundUniqueInput
 }
 
-input LoginDto {
+input LoginInput {
   email: String!
   password: String!
 }
@@ -1094,22 +1103,25 @@ type Mutation {
   createNotification(createNotificationInput: CreateNotificationInput!): Notification!
   createPost(createPostInput: CreatePostInput!): Post!
   createRsvp(createRsvpInput: CreateRsvpInput!): RSVP!
-  createUser(createUserInput: UserCreateInput!): User!
   deleteCategory(id: Int!): Category!
   deleteComment(id: Int!): Comment!
   deleteEvent(id: Int!): Event!
   deletePost(id: Int!): Post!
   deleteRsvp(id: Int!): RSVP!
-  login(loginInput: LoginDto!): AuthResponse!
 
-  """resfreshes access and refresh tokens"""
+  """Deletes a user by ID"""
+  deleteUser(id: Int!): User!
+
+  """for logging in a user"""
+  login(loginInput: LoginInput!): AuthResponse!
+
+  """for refreshing access token and refresh token"""
   refreshTokens: AuthResponse!
 
   """for creating a new user"""
-  register(createUserInput: UserCreateInput!): User!
+  register(createUserInput: CreateUserInput!): User!
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
-  removeUser(id: Int!): User!
   updateCategory(id: Int!, updateCategoryInput: UpdateCategoryInput!): Category!
   updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!
   updateEvent(id: Int!, updateEventInput: UpdateEventInput!): Event!
@@ -1117,7 +1129,9 @@ type Mutation {
   updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
   updateRsvp(id: Int!, updateRsvpInput: UpdateRsvpInput!): RSVP!
-  updateUser(updateUserInput: UpdateUserInput!): User!
+
+  """Updates a user by ID"""
+  updateUser(id: Int!, updateUserInput: UpdateUserInput!): User!
 }
 
 input NestedBoolFilter {
@@ -1581,6 +1595,12 @@ type Query {
   event(id: Int!): Event!
   eventRsvps(eventId: Int!): [RSVP!]!
   events: [Event!]!
+
+  """Finds all users"""
+  findAllUsers: [User!]!
+
+  """Finds a user by ID"""
+  findOneUser(id: Int!): User!
   like(id: Int!): Like!
   likes: [Like!]!
   myRsvps: [RSVP!]!
@@ -1590,8 +1610,6 @@ type Query {
   posts: [Post!]!
   rsvp(id: Int!): RSVP!
   rsvps: [RSVP!]!
-  user(id: Int!): User!
-  users: [User!]!
 }
 
 type RSVP {
@@ -1841,18 +1859,9 @@ input UpdateRsvpInput {
 input UpdateUserInput {
   avatar: String
   bio: String
-  comments: CommentCreateNestedManyWithoutUserInput
-  createdAt: DateTime
   email: String
-  events: EventCreateNestedManyWithoutUserInput
-  id: Int!
-  likes: LikeCreateNestedManyWithoutUserInput
-  notifications: NotificationCreateNestedManyWithoutUserInput
   password: String
-  posts: PostCreateNestedManyWithoutUserInput
   role: Role
-  rsvps: RSVPCreateNestedManyWithoutUserInput
-  updatedAt: DateTime
   username: String
 }
 
@@ -1899,23 +1908,6 @@ type UserCountAggregate {
   role: Int!
   updatedAt: Int!
   username: Int!
-}
-
-input UserCreateInput {
-  avatar: String
-  bio: String
-  comments: CommentCreateNestedManyWithoutUserInput
-  createdAt: DateTime
-  email: String!
-  events: EventCreateNestedManyWithoutUserInput
-  likes: LikeCreateNestedManyWithoutUserInput
-  notifications: NotificationCreateNestedManyWithoutUserInput
-  password: String!
-  posts: PostCreateNestedManyWithoutUserInput
-  role: Role
-  rsvps: RSVPCreateNestedManyWithoutUserInput
-  updatedAt: DateTime
-  username: String!
 }
 
 input UserCreateNestedOneWithoutCommentsInput {

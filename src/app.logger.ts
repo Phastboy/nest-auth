@@ -158,4 +158,3 @@ export class AppLogger extends Logger {
     this.logMessage({ level: 'info', message, ...meta });
   }
 }
-

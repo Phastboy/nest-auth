@@ -1,7 +1,11 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Role } from 'src/@generated';
 
+/**
+ * types used for authentication
+ */
 @ObjectType()
-export class Tokens {
+export class TokenPair {
   @Field(() => String, {
     nullable: false,
   })
@@ -24,6 +28,11 @@ export class JwtPayload {
     nullable: false,
   })
   sub: number;
+
+  @Field(() => Role, {
+    nullable: false,
+  })
+  role: `${Role}`;
 }
 
 @ObjectType()
@@ -38,8 +47,21 @@ export class AuthenticatedUser {
   })
   email: string;
 
-  @Field(() => String, {
-    nullable: true,
+  @Field(() => Role, {
+    nullable: false,
   })
-  refreshToken: string;
+  role: `${Role}`;
+}
+
+@ObjectType()
+export class AuthResponse {
+  @Field(() => String, {
+    nullable: false,
+  })
+  message: string;
+
+  @Field(() => TokenPair, {
+    nullable: false,
+  })
+  tokens: TokenPair;
 }

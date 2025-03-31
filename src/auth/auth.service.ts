@@ -1,10 +1,11 @@
 import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { JwtPayload, Tokens } from 'src/interfaces/auth.types';
-import { UserWithoutPassword } from 'src/interfaces/user.types';
+import { JwtPayload, TokenPair } from 'src/auth/types/auth.types';
+import { UserWithoutPassword } from 'src/users/users.types';
 import { UsersService } from 'src/users/users.service';
 import * as argon from 'argon2';
-import { LoginDto } from './dto/login.input';
+import { LoginInput } from './types/login.input';
+import { ErrorHandler } from 'src/error-handler/error.util';
 
 @Injectable()
 export class AuthService {
@@ -13,83 +14,77 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService,
+    private readonly handler: ErrorHandler,
   ) {}
 
-  async validateUser(loginDto: LoginDto): Promise<UserWithoutPassword> {
-    try {
-      const user = await this.usersService.findByEmail(loginDto.email);
-
-      // User doesn't exist
-      if (!user) {
-        this.logger.warn(
-          `Login attempt with non-existent email: ${loginDto.email}`,
-        );
-        throw new UnauthorizedException('User with this email does not exist');
-      }
-
-      // check password validity
-      const isPasswordValid = await argon.verify(
-        user.password,
-        loginDto.password,
-      );
-      if (!isPasswordValid) {
-        this.logger.warn(
-          `Incorrect password attempt for email: ${loginDto.email}`,
-        );
-        throw new UnauthorizedException('Incorrect password');
-      }
-
-      // Remove password before returning the user
-      const userWithoutPassword: UserWithoutPassword = {
-        ...user,
-      };
-      return userWithoutPassword;
-    } catch (error: any) {
-      if (error instanceof Error)
-        this.logger.error(
-          `Error during user validation for email: ${loginDto.email}`,
-          error.stack,
-        );
-      throw error;
+  /**
+   * validates the user credentials
+   * @param {LoginInput} loginInput
+   * @returns {Promise<UserWithoutPassword>}
+   * @throws {UnauthorizedException} if the credentials are invalid
+   */
+  async validateUser(loginInput: LoginInput): Promise<UserWithoutPassword> {
+    const { email, password } = loginInput;
+    this.logger.debug(`validating user with email: ${email}`);
+    const user = await this.usersService.findUserByEmail(email);
+    if (!user) {
+      throw new UnauthorizedException('Invalid credentials');
     }
+    const isPasswordValid = await argon.verify(user.password, password);
+    if (!isPasswordValid) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+    const { password: _, ...userWithoutPassword } = user;
+    return userWithoutPassword;
   }
 
-  generateTokens(user: UserWithoutPassword): Tokens {
+  /**
+   * generates JWT tokens
+   * @param {UserWithoutPassword} user
+   * @returns {Promise<TokenPair>}
+   */
+  async generateTokens(user: UserWithoutPassword): Promise<TokenPair> {
     const payload: JwtPayload = {
-      email: user.email,
       sub: user.id,
+      email: user.email,
+      role: user.role,
     };
-
-    return {
-      accessToken: this.jwtService.sign(payload, {
-        expiresIn: '1h',
-      }),
-      refreshToken: this.jwtService.sign(payload, {
-        expiresIn: '7d',
-      }),
-    };
+    const accessToken = await this.jwtService.signAsync(payload, {
+      expiresIn: '15m',
+      secret: process.env.JWT_ACCESS_SECRET || 'defaultAccessSecret',
+    });
+    const refreshToken = await this.jwtService.signAsync(payload, {
+      expiresIn: '7d',
+      secret: process.env.JWT_REFRESH_SECRET || 'defaultRefreshSecret',
+    });
+    return { accessToken, refreshToken };
   }
 
-  async refreshTokens(userId: number, refreshToken: string): Promise<Tokens> {
+  /**
+   * refreshes the JWT tokens
+   * @param {string} refreshToken
+   * @returns {Promise<TokenPair>}
+   * @throws {UnauthorizedException} if the refresh token is invalid
+   */
+  async refreshTokens(refreshToken: string): Promise<TokenPair> {
     try {
-      // Remove quotes if present
-      const cleanToken = refreshToken.replace(/^"(.*)"$/, '$1');
-
-      const payload = this.jwtService.verify(cleanToken);
-
-      if (payload.sub !== userId) {
-        throw new UnauthorizedException('Invalid user for refresh token');
+      const payload = await this.jwtService.verifyAsync(refreshToken, {
+        secret: process.env.JWT_REFRESH_SECRET || 'defaultRefreshSecret',
+      });
+      if (!payload) {
+        throw new UnauthorizedException('Invalid refresh token');
       }
-
-      const user = await this.usersService.findOne(payload.sub);
+      const user = await this.usersService.findUserById(payload.sub);
       if (!user) {
-        throw new UnauthorizedException('User not found');
+        throw new UnauthorizedException('Invalid refresh token');
       }
-
       return this.generateTokens(user);
     } catch (error) {
-      this.logger.error('Refresh token validation failed', error.message);
-      throw new UnauthorizedException('Invalid refresh token');
+      this.handler.handleError(error, {
+        operation: 'refreshTokens',
+        service: 'AuthService',
+        metadata: { refreshToken },
+      });
     }
   }
 }

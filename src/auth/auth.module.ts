@@ -6,12 +6,12 @@ import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { RefreshTokenStrategy } from './strategies/refresh.strategy';
+import { ErrorHandler } from 'src/error-handler/error.util';
 
 @Module({
   imports: [
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET || 'JWT_SECRET',
     }),
     PassportModule,
   ],
@@ -21,6 +21,7 @@ import { RefreshTokenStrategy } from './strategies/refresh.strategy';
     UsersService,
     JwtStrategy,
     RefreshTokenStrategy,
+    ErrorHandler,
   ],
 })
 export class AuthModule {}
