@@ -63,4 +63,30 @@ export class UsersResolver {
     });
     return user;
   }
+
+  /**
+   * Deletes a user by ID.
+   * @param {number} id - The ID of the user to delete.
+   * @returns {Promise<UserResponse>} - The deleted user object.
+   */
+  @Mutation(() => User, {
+    name: 'deleteUser',
+    description: 'Deletes a user by ID',
+  })
+  async deleteUser(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<UserResponse> {
+    this.logger.logDebug(`removing user ...`, {
+      metadata: {
+        id,
+      },
+    });
+    const user = await this.usersService.deleteUser(id);
+    this.logger.info(`user removed successfully`, {
+      metadata: {
+        user,
+      },
+    });
+    return user;
+  }
 }

@@ -1099,6 +1099,9 @@ type Mutation {
   deletePost(id: Int!): Post!
   deleteRsvp(id: Int!): RSVP!
 
+  """Deletes a user by ID"""
+  deleteUser(id: Int!): User!
+
   """for creating a new user"""
   register(createUserInput: CreateUserInput!): User!
   removeLike(id: Int!): Like!

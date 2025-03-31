@@ -225,4 +225,34 @@ export class UsersService {
       });
     }
   }
+
+  /**
+   * Deletes a user by their ID.
+   * @param {number} id - The ID of the user to delete.
+   * @return {Promise<UserResponse>} - The deleted user object.
+   * @throws {NotFoundException} - If the user is not found.
+   */
+  async deleteUser(id: number): Promise<UserResponse> {
+    try {
+      const user = await this.prismaService.user.delete({
+        where: { id },
+        omit: {
+          password: true,
+        },
+        include: DEFAULT_USER_INCLUDES,
+      });
+
+      if (!user) {
+        throw new NotFoundException(`User with ID ${id} not found.`);
+      }
+
+      return user;
+    } catch (error) {
+      this.handler.handleError(error, {
+        operation: 'deleteUser',
+        service: 'UsersService',
+        metadata: { id },
+      });
+    }
+  }
 }
