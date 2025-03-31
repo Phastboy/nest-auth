@@ -2,6 +2,11 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthResponse {
+  message: String!
+  tokens: TokenPair!
+}
+
 input BoolFilter {
   equals: Boolean
   not: NestedBoolFilter
@@ -1085,6 +1090,11 @@ input LikeWhereUniqueInput {
   userId_postId_eventId: LikeUserIdPostIdEventIdCompoundUniqueInput
 }
 
+input LoginInput {
+  email: String!
+  password: String!
+}
+
 type Mutation {
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   createComment(createCommentInput: CreateCommentInput!): Comment!
@@ -1101,6 +1111,12 @@ type Mutation {
 
   """Deletes a user by ID"""
   deleteUser(id: Int!): User!
+
+  """for logging in a user"""
+  login(loginInput: LoginInput!): AuthResponse!
+
+  """for refreshing access token and refresh token"""
+  refreshTokens: AuthResponse!
 
   """for creating a new user"""
   register(createUserInput: CreateUserInput!): User!
@@ -1580,6 +1596,9 @@ type Query {
   eventRsvps(eventId: Int!): [RSVP!]!
   events: [Event!]!
 
+  """Finds all users"""
+  findAllUsers: [User!]!
+
   """Finds a user by ID"""
   findOneUser(id: Int!): User!
   like(id: Int!): Like!
@@ -1775,6 +1794,11 @@ input StringNullableFilter {
   not: NestedStringNullableFilter
   notIn: [String!]
   startsWith: String
+}
+
+type TokenPair {
+  accessToken: String!
+  refreshToken: String!
 }
 
 input UpdateCategoryInput {
