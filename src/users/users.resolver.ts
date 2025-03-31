@@ -20,6 +20,24 @@ export class UsersResolver {
   private readonly logger = AppLogger.getInstance(UsersResolver.name);
 
   /**
+   * find all users
+   */
+  @Query(() => [User], {
+    name: 'findAllUsers',
+    description: 'Finds all users',
+  })
+  async findAllUsers(): Promise<UserResponse[]> {
+    this.logger.logDebug('Fetching all users...');
+    const users = await this.usersService.findAllUsers();
+    this.logger.info('All users fetched successfully', {
+      metadata: {
+        usersCount: users.length,
+      },
+    });
+    return users;
+  }
+
+  /**
    * find user by id
    * @param {number} id - The ID of the user to find.
    * @returns {Promise<User>} - The found user object.

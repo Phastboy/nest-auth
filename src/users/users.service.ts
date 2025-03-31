@@ -136,6 +136,28 @@ export class UsersService {
   }
 
   /**
+   * Retrieves all users from the database.
+   * @return {Promise<UserResponse[]>} - A list of all users.
+   */
+  async findAllUsers(): Promise<UserResponse[]> {
+    try {
+      const users = await this.prismaService.user.findMany({
+        omit: {
+          password: true,
+        },
+        include: DEFAULT_USER_INCLUDES,
+      });
+
+      return users;
+    } catch (error) {
+      return this.handler.handleError(error, {
+        operation: 'findAllUsers',
+        service: 'UsersService',
+      });
+    }
+  }
+
+  /**
    * finds a user by their ID.
    * @param {number} id - The ID of the user to find.
    * @return {Promise<UserResponse>} - The found user object.

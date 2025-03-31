@@ -1,4 +1,4 @@
-import { Resolver, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { User } from 'src/@generated';
 import { CreateUserInput } from 'src/users/dto/create-user.input';
@@ -6,7 +6,8 @@ import { UsersService } from 'src/users/users.service';
 import { AppLogger } from 'src/app.logger';
 import { UserResponse } from 'src/users/users.types';
 import { ErrorHandler } from 'src/error-handler/error.util';
-
+import { AuthResponse } from './types/auth.types';
+import { LoginInput } from './types/login.input';
 /**
  * Resolver for handling authentication-related operations.
  * @class AuthResolver
@@ -45,5 +46,36 @@ export class AuthResolver {
       },
     });
     return user;
+  }
+
+  /**
+   * Logs in a user and returns a token pair.
+   * @param {LoginInput} loginInput - The input data for logging in.
+   * @returns {Promise<AuthResponse>} - The authentication response containing the token pair and message.
+   */
+  @Mutation(() => AuthResponse, {
+    name: 'login',
+    description: 'for logging in a user',
+  })
+  async login(
+    @Args('loginInput') loginInput: LoginInput,
+  ): Promise<AuthResponse> {
+    this.logger.logDebug(`logging in user ...`, {
+      metadata: {
+        loginInput,
+      },
+    });
+    const user = await this.authService.validateUser(loginInput);
+    const tokens = await this.authService.generateTokens(user);
+    this.logger.info(`user logged in successfully`, {
+      metadata: {
+        user,
+        tokens,
+      },
+    });
+    return {
+      message: 'Login successful',
+      tokens,
+    };
   }
 }

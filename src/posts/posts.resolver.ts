@@ -4,9 +4,9 @@ import { Post } from 'src/@generated';
 import { CreatePostInput } from './dto/create-post.input';
 import { UpdatePostInput } from './dto/update-post.input';
 import { UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/jwt/jwt.guard';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { CurrentUser } from 'src/auth/current-user/current-user.decorator';
-import { AuthenticatedUser } from 'src/interfaces/auth.types';
+import { AuthenticatedUser } from 'src/auth/types/auth.types';
 
 @Resolver(() => Post)
 export class PostsResolver {
