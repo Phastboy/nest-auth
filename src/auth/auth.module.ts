@@ -12,7 +12,6 @@ import { ErrorHandler } from 'src/error-handler/error.util';
   imports: [
     JwtModule.register({
       global: true,
-      secret: process.env.JWT_SECRET || 'JWT_SECRET',
     }),
     PassportModule,
   ],
