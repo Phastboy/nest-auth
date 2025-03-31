@@ -67,7 +67,7 @@ export class UsersResolver {
   /**
    * Deletes a user by ID.
    * @param {number} id - The ID of the user to delete.
-   * @returns {Promise<User>} - The deleted user object.
+   * @returns {Promise<UserResponse>} - The deleted user object.
    */
   @Mutation(() => User, {
     name: 'deleteUser',
