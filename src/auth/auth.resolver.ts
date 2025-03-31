@@ -8,6 +8,8 @@ import { UserResponse } from 'src/users/users.types';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { AuthResponse } from './types/auth.types';
 import { LoginInput } from './types/login.input';
+import { RefreshToken } from './decorators/refresh-token.decorator';
+
 /**
  * Resolver for handling authentication-related operations.
  * @class AuthResolver
@@ -75,6 +77,35 @@ export class AuthResolver {
     });
     return {
       message: 'Login successful',
+      tokens,
+    };
+  }
+
+  /**
+   * refreshes the access token using the refresh token.
+   * @param {string} refreshToken - The refresh token used to obtain a new access token.
+   * @returns {Promise<AuthResponse>} - The authentication response containing the new token pair and message.
+   */
+  @Mutation(() => AuthResponse, {
+    name: 'refreshTokens',
+    description: 'for refreshing access token and refresh token',
+  })
+  async refreshTokens(
+    @RefreshToken() refreshToken: string,
+  ): Promise<AuthResponse> {
+    this.logger.logDebug(`refreshing tokens ...`, {
+      metadata: {
+        refreshToken,
+      },
+    });
+    const tokens = await this.authService.refreshTokens(refreshToken);
+    this.logger.info(`token refreshed successfully`, {
+      metadata: {
+        tokens,
+      },
+    });
+    return {
+      message: 'Tokens refreshed successfully',
       tokens,
     };
   }

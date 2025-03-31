@@ -2,9 +2,14 @@ import { Injectable, Logger } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-jwt';
 import { Request } from 'express';
-import { JwtPayload } from 'src/interfaces/auth.types';
+import { AuthenticatedUser, JwtPayload } from 'src/auth/types/auth.types';
 import { JwtService } from '@nestjs/jwt';
 
+/**
+ * Strategy for validating refresh tokens.
+ * This strategy extracts the refresh token from the request headers
+ * and verifies it using the JWT service.
+ */
 @Injectable()
 export class RefreshTokenStrategy extends PassportStrategy(
   Strategy,
@@ -31,12 +36,15 @@ export class RefreshTokenStrategy extends PassportStrategy(
         return refreshToken;
       },
       ignoreExpiration: false,
-      secretOrKey: process.env.JWT_SECRET || 'JWT_SECRET',
+      secretOrKey: process.env.JWT_REFRESH_SECRET || 'defaultRefreshSecret',
       passReqToCallback: true,
     });
   }
 
-  async validate(req: Request, payload: JwtPayload) {
+  async validate(
+    req: Request,
+    payload: JwtPayload,
+  ): Promise<AuthenticatedUser> {
     this.logger.debug(`Starting validation for user ${payload.sub}`);
 
     const token = req.headers['x-refresh-token'];
@@ -64,7 +72,7 @@ export class RefreshTokenStrategy extends PassportStrategy(
       return {
         userId: decoded.sub,
         email: decoded.email,
-        refreshToken,
+        role: decoded.role,
       };
     } catch (error) {
       this.logger.error('Token verification failed:', error.message);

@@ -5,10 +5,15 @@ import {
   InternalServerErrorException,
   NotFoundException,
   ServiceUnavailableException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import {
+  JsonWebTokenError,
+  TokenExpiredError,
+  NotBeforeError,
+} from 'jsonwebtoken';
 import { AppLogger } from '../app.logger';
-import { HttpStatus } from '@nestjs/common';
 
 type ErrorContext = {
   operation?: string;
@@ -53,6 +58,7 @@ export class ErrorHandler {
       },
     );
 
+    // Handle Prisma Errors
     if (error instanceof Prisma.PrismaClientKnownRequestError) {
       this.handlePrismaError(error, context);
     }
@@ -61,17 +67,33 @@ export class ErrorHandler {
       throw new BadRequestException('Database validation failed');
     }
 
+    // ✅ Handle JWT Errors
+    if (error instanceof JsonWebTokenError) {
+      throw new UnauthorizedException('Invalid token');
+    }
+
+    if (error instanceof TokenExpiredError) {
+      throw new UnauthorizedException('Token has expired');
+    }
+
+    if (error instanceof NotBeforeError) {
+      throw new UnauthorizedException('Token is not yet valid');
+    }
+
+    // Handle NestJS Exceptions
     if (
       error instanceof ConflictException ||
       error instanceof NotFoundException ||
       error instanceof BadRequestException ||
       error instanceof ForbiddenException ||
       error instanceof ServiceUnavailableException ||
-      error instanceof InternalServerErrorException
+      error instanceof InternalServerErrorException ||
+      error instanceof UnauthorizedException
     ) {
       throw error;
     }
 
+    // Default Internal Server Error
     throw new InternalServerErrorException(
       defaultMessage || 'An unexpected error occurred',
       {
