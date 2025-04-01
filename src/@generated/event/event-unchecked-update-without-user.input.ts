@@ -14,49 +14,58 @@ import { LikeUncheckedUpdateManyWithoutEventNestedInput } from '../like/like-unc
 
 @InputType()
 export class EventUncheckedUpdateWithoutUserInput {
+  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
+  id?: IntFieldUpdateOperationsInput;
 
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    id?: IntFieldUpdateOperationsInput;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  title?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    title?: StringFieldUpdateOperationsInput;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  description?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    description?: StringFieldUpdateOperationsInput;
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  location?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    location?: StringFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  startTime?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    startTime?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+  endTime?: NullableDateTimeFieldUpdateOperationsInput;
 
-    @Field(() => NullableDateTimeFieldUpdateOperationsInput, {nullable:true})
-    endTime?: NullableDateTimeFieldUpdateOperationsInput;
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+  image?: NullableStringFieldUpdateOperationsInput;
 
-    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
-    image?: NullableStringFieldUpdateOperationsInput;
+  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
+  shareAsPost?: BoolFieldUpdateOperationsInput;
 
-    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
-    shareAsPost?: BoolFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    updatedAt?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => PostUncheckedUpdateOneWithoutEventNestedInput, {
+    nullable: true,
+  })
+  post?: PostUncheckedUpdateOneWithoutEventNestedInput;
 
-    @Field(() => PostUncheckedUpdateOneWithoutEventNestedInput, {nullable:true})
-    post?: PostUncheckedUpdateOneWithoutEventNestedInput;
+  @Field(() => CategoryUncheckedUpdateManyWithoutEventsNestedInput, {
+    nullable: true,
+  })
+  categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput;
 
-    @Field(() => CategoryUncheckedUpdateManyWithoutEventsNestedInput, {nullable:true})
-    categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput;
+  @Field(() => CommentUncheckedUpdateManyWithoutEventNestedInput, {
+    nullable: true,
+  })
+  comments?: CommentUncheckedUpdateManyWithoutEventNestedInput;
 
-    @Field(() => CommentUncheckedUpdateManyWithoutEventNestedInput, {nullable:true})
-    comments?: CommentUncheckedUpdateManyWithoutEventNestedInput;
+  @Field(() => RSVPUncheckedUpdateManyWithoutEventNestedInput, {
+    nullable: true,
+  })
+  rsvps?: RSVPUncheckedUpdateManyWithoutEventNestedInput;
 
-    @Field(() => RSVPUncheckedUpdateManyWithoutEventNestedInput, {nullable:true})
-    rsvps?: RSVPUncheckedUpdateManyWithoutEventNestedInput;
-
-    @Field(() => LikeUncheckedUpdateManyWithoutEventNestedInput, {nullable:true})
-    likes?: LikeUncheckedUpdateManyWithoutEventNestedInput;
+  @Field(() => LikeUncheckedUpdateManyWithoutEventNestedInput, {
+    nullable: true,
+  })
+  likes?: LikeUncheckedUpdateManyWithoutEventNestedInput;
 }

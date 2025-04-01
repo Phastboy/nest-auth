@@ -7,16 +7,15 @@ import { EventWhereInput } from './event-where.input';
 
 @InputType()
 export class EventUpsertWithoutPostInput {
+  @Field(() => EventUpdateWithoutPostInput, { nullable: false })
+  @Type(() => EventUpdateWithoutPostInput)
+  update!: EventUpdateWithoutPostInput;
 
-    @Field(() => EventUpdateWithoutPostInput, {nullable:false})
-    @Type(() => EventUpdateWithoutPostInput)
-    update!: EventUpdateWithoutPostInput;
+  @Field(() => EventCreateWithoutPostInput, { nullable: false })
+  @Type(() => EventCreateWithoutPostInput)
+  create!: EventCreateWithoutPostInput;
 
-    @Field(() => EventCreateWithoutPostInput, {nullable:false})
-    @Type(() => EventCreateWithoutPostInput)
-    create!: EventCreateWithoutPostInput;
-
-    @Field(() => EventWhereInput, {nullable:true})
-    @Type(() => EventWhereInput)
-    where?: EventWhereInput;
+  @Field(() => EventWhereInput, { nullable: true })
+  @Type(() => EventWhereInput)
+  where?: EventWhereInput;
 }

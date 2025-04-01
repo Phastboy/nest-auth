@@ -14,35 +14,34 @@ import { CommentMaxAggregateInput } from './comment-max-aggregate.input';
 
 @ArgsType()
 export class CommentAggregateArgs {
+  @Field(() => CommentWhereInput, { nullable: true })
+  @Type(() => CommentWhereInput)
+  where?: CommentWhereInput;
 
-    @Field(() => CommentWhereInput, {nullable:true})
-    @Type(() => CommentWhereInput)
-    where?: CommentWhereInput;
+  @Field(() => [CommentOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<CommentOrderByWithRelationInput>;
 
-    @Field(() => [CommentOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<CommentOrderByWithRelationInput>;
+  @Field(() => CommentWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-    @Field(() => CommentWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => CommentCountAggregateInput, { nullable: true })
+  _count?: CommentCountAggregateInput;
 
-    @Field(() => CommentCountAggregateInput, {nullable:true})
-    _count?: CommentCountAggregateInput;
+  @Field(() => CommentAvgAggregateInput, { nullable: true })
+  _avg?: CommentAvgAggregateInput;
 
-    @Field(() => CommentAvgAggregateInput, {nullable:true})
-    _avg?: CommentAvgAggregateInput;
+  @Field(() => CommentSumAggregateInput, { nullable: true })
+  _sum?: CommentSumAggregateInput;
 
-    @Field(() => CommentSumAggregateInput, {nullable:true})
-    _sum?: CommentSumAggregateInput;
+  @Field(() => CommentMinAggregateInput, { nullable: true })
+  _min?: CommentMinAggregateInput;
 
-    @Field(() => CommentMinAggregateInput, {nullable:true})
-    _min?: CommentMinAggregateInput;
-
-    @Field(() => CommentMaxAggregateInput, {nullable:true})
-    _max?: CommentMaxAggregateInput;
+  @Field(() => CommentMaxAggregateInput, { nullable: true })
+  _max?: CommentMaxAggregateInput;
 }

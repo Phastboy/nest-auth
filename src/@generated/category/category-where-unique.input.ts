@@ -11,40 +11,39 @@ import { EventListRelationFilter } from '../event/event-list-relation-filter.inp
 
 @InputType()
 export class CategoryWhereUniqueInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => String, { nullable: true })
+  name?: string;
 
-    @Field(() => String, {nullable:true})
-    name?: string;
+  @Field(() => String, { nullable: true })
+  slug?: string;
 
-    @Field(() => String, {nullable:true})
-    slug?: string;
+  @Field(() => [CategoryWhereInput], { nullable: true })
+  AND?: Array<CategoryWhereInput>;
 
-    @Field(() => [CategoryWhereInput], {nullable:true})
-    AND?: Array<CategoryWhereInput>;
+  @Field(() => [CategoryWhereInput], { nullable: true })
+  OR?: Array<CategoryWhereInput>;
 
-    @Field(() => [CategoryWhereInput], {nullable:true})
-    OR?: Array<CategoryWhereInput>;
+  @Field(() => [CategoryWhereInput], { nullable: true })
+  NOT?: Array<CategoryWhereInput>;
 
-    @Field(() => [CategoryWhereInput], {nullable:true})
-    NOT?: Array<CategoryWhereInput>;
+  @Field(() => IntNullableFilter, { nullable: true })
+  parentId?: IntNullableFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    parentId?: IntNullableFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => CategoryNullableScalarRelationFilter, { nullable: true })
+  parent?: CategoryNullableScalarRelationFilter;
 
-    @Field(() => CategoryNullableScalarRelationFilter, {nullable:true})
-    parent?: CategoryNullableScalarRelationFilter;
+  @Field(() => CategoryListRelationFilter, { nullable: true })
+  children?: CategoryListRelationFilter;
 
-    @Field(() => CategoryListRelationFilter, {nullable:true})
-    children?: CategoryListRelationFilter;
+  @Field(() => PostListRelationFilter, { nullable: true })
+  posts?: PostListRelationFilter;
 
-    @Field(() => PostListRelationFilter, {nullable:true})
-    posts?: PostListRelationFilter;
-
-    @Field(() => EventListRelationFilter, {nullable:true})
-    events?: EventListRelationFilter;
+  @Field(() => EventListRelationFilter, { nullable: true })
+  events?: EventListRelationFilter;
 }

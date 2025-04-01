@@ -51,7 +51,7 @@ export class RolesResolver {
   @Mutation(() => Role)
   async updateRole(
     @Args('roleId', { type: () => Int }) roleId: number,
-    @Args('updateRoleInput') updateRoleInput: UpdateRoleInput
+    @Args('updateRoleInput') updateRoleInput: UpdateRoleInput,
   ): Promise<Role> {
     return await this.rolesService.updateRole(roleId, updateRoleInput);
   }
@@ -75,7 +75,7 @@ export class RolesResolver {
   @Mutation(() => Role)
   async assignRoleToUser(
     @Args('userId', { type: () => Int }) userId: number,
-    @Args('roleName') roleName: string
+    @Args('roleName') roleName: string,
   ) {
     return await this.rolesService.assignRoleToUser(userId, roleName);
   }
@@ -89,7 +89,7 @@ export class RolesResolver {
   @Mutation(() => UserRole)
   async removeRoleFromUser(
     @Args('userId', { type: () => Int }) userId: number,
-    @Args('roleName') roleName: string
+    @Args('roleName') roleName: string,
   ): Promise<UserRole> {
     return await this.rolesService.removeRoleFromUser(userId, roleName);
   }
@@ -100,7 +100,9 @@ export class RolesResolver {
    * @returns {Promise<Role[]>} A list of roles assigned to the user.
    */
   @Query(() => [Role], { name: 'userRoles' })
-  async getUserRoles(@Args('userId', { type: () => Int }) userId: number): Promise<Role[]> {
+  async getUserRoles(
+    @Args('userId', { type: () => Int }) userId: number,
+  ): Promise<Role[]> {
     if (!userId) {
       throw new Error('User ID is required');
     }

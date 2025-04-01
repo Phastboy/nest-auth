@@ -14,4 +14,5 @@ export const ROLES_KEY = 'roles';
  * @Roles('role1', 'role2')
  * someProtectedMethod() { ... }
  */
-export const Roles = (...roles: string[]): Function => SetMetadata(ROLES_KEY, roles);
+export const Roles = (...roles: string[]): Function =>
+  SetMetadata(ROLES_KEY, roles);

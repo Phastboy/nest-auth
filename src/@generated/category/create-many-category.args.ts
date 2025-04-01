@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyCategoryArgs {
-
-    @Field(() => [CategoryCreateManyInput], {nullable:false})
-    @Type(() => CategoryCreateManyInput)
-    data!: Array<CategoryCreateManyInput>;
+  @Field(() => [CategoryCreateManyInput], { nullable: false })
+  @Type(() => CategoryCreateManyInput)
+  data!: Array<CategoryCreateManyInput>;
 }

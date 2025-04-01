@@ -10,23 +10,22 @@ import { RoleScalarFieldEnum } from './role-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstRoleArgs {
+  @Field(() => RoleWhereInput, { nullable: true })
+  @Type(() => RoleWhereInput)
+  where?: RoleWhereInput;
 
-    @Field(() => RoleWhereInput, {nullable:true})
-    @Type(() => RoleWhereInput)
-    where?: RoleWhereInput;
+  @Field(() => [RoleOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<RoleOrderByWithRelationInput>;
 
-    @Field(() => [RoleOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<RoleOrderByWithRelationInput>;
+  @Field(() => RoleWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<RoleWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => RoleWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<RoleWhereUniqueInput, 'id' | 'name'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [RoleScalarFieldEnum], {nullable:true})
-    distinct?: Array<`${RoleScalarFieldEnum}`>;
+  @Field(() => [RoleScalarFieldEnum], { nullable: true })
+  distinct?: Array<`${RoleScalarFieldEnum}`>;
 }

@@ -10,40 +10,39 @@ import { NotificationSumOrderByAggregateInput } from './notification-sum-order-b
 
 @InputType()
 export class NotificationOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  userId?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    userId?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  type?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    type?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  content?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    content?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  isRead?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    isRead?: `${SortOrder}`;
+  @Field(() => SortOrderInput, { nullable: true })
+  referenceId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    referenceId?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: `${SortOrder}`;
+  @Field(() => NotificationCountOrderByAggregateInput, { nullable: true })
+  _count?: NotificationCountOrderByAggregateInput;
 
-    @Field(() => NotificationCountOrderByAggregateInput, {nullable:true})
-    _count?: NotificationCountOrderByAggregateInput;
+  @Field(() => NotificationAvgOrderByAggregateInput, { nullable: true })
+  _avg?: NotificationAvgOrderByAggregateInput;
 
-    @Field(() => NotificationAvgOrderByAggregateInput, {nullable:true})
-    _avg?: NotificationAvgOrderByAggregateInput;
+  @Field(() => NotificationMaxOrderByAggregateInput, { nullable: true })
+  _max?: NotificationMaxOrderByAggregateInput;
 
-    @Field(() => NotificationMaxOrderByAggregateInput, {nullable:true})
-    _max?: NotificationMaxOrderByAggregateInput;
+  @Field(() => NotificationMinOrderByAggregateInput, { nullable: true })
+  _min?: NotificationMinOrderByAggregateInput;
 
-    @Field(() => NotificationMinOrderByAggregateInput, {nullable:true})
-    _min?: NotificationMinOrderByAggregateInput;
-
-    @Field(() => NotificationSumOrderByAggregateInput, {nullable:true})
-    _sum?: NotificationSumOrderByAggregateInput;
+  @Field(() => NotificationSumOrderByAggregateInput, { nullable: true })
+  _sum?: NotificationSumOrderByAggregateInput;
 }

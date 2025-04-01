@@ -27,13 +27,13 @@ export class CategoriesResolver {
    */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('admin', 'superadmin')
-  @Mutation(() => Category,{
+  @Mutation(() => Category, {
     name: 'createCategory',
     description: 'Create a new category',
   })
   async createCategory(
     @Args('data') newCategoryData: CreateCategoryInput,
-    @Args('include', { nullable: true }) include?: CategoryIncludeInput
+    @Args('include', { nullable: true }) include?: CategoryIncludeInput,
   ): Promise<Category> {
     return this.categoriesService.createCategory(newCategoryData, include);
   }
@@ -48,7 +48,7 @@ export class CategoriesResolver {
     description: 'Get all categories',
   })
   async getAllCategories(
-    @Args('include', { nullable: true }) include?: CategoryIncludeInput
+    @Args('include', { nullable: true }) include?: CategoryIncludeInput,
   ): Promise<Category[]> {
     return this.categoriesService.getAllCategories(include);
   }
@@ -61,11 +61,11 @@ export class CategoriesResolver {
    */
   @Query(() => Category, {
     name: 'category',
-    description: 'Get a category by ID'
+    description: 'Get a category by ID',
   })
   async getCategory(
     @Args('categoryId', { type: () => Int }) categoryId: number,
-    @Args('include', { nullable: true }) include?: CategoryIncludeInput
+    @Args('include', { nullable: true }) include?: CategoryIncludeInput,
   ): Promise<Category> {
     return this.categoriesService.getCategory(categoryId, include);
   }
@@ -83,12 +83,16 @@ export class CategoriesResolver {
   async updateCategory(
     @Args('categoryId', { type: () => Int }) categoryId: number,
     @Args('data') updateData: UpdateCategoryInput,
-    @Args('include', { nullable: true }) include?: CategoryIncludeInput
+    @Args('include', { nullable: true }) include?: CategoryIncludeInput,
   ): Promise<Category> {
-    return this.categoriesService.updateCategory(categoryId, updateData, include);
+    return this.categoriesService.updateCategory(
+      categoryId,
+      updateData,
+      include,
+    );
   }
 
-  /** 
+  /**
    * @description Delete a category by ID
    * @param {number} categoryId - The ID of the category to delete
    * @return The deleted category
@@ -98,7 +102,7 @@ export class CategoriesResolver {
   @Mutation(() => Category)
   async deleteCategory(
     @Args('categoryId', { type: () => Int }) categoryId: number,
-    @Args('include', { nullable: true }) include?: CategoryIncludeInput
+    @Args('include', { nullable: true }) include?: CategoryIncludeInput,
   ): Promise<Category> {
     return this.categoriesService.deleteCategory(categoryId, include);
   }

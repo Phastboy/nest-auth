@@ -5,18 +5,24 @@ import { UpdateCategoryInput } from './dto/update-category.input';
 import { Prisma } from '@prisma/client';
 import { CategoryIncludeInput } from './types/category-include.input';
 import { ErrorHandler } from 'src/error-handler/error.util';
-import { CategoryWithDefaultRelations, DEFAULT_CATEGORY_TO_BE_INCLUDED } from './types/categories.types';
+import {
+  CategoryWithDefaultRelations,
+  DEFAULT_CATEGORY_TO_BE_INCLUDED,
+} from './types/categories.types';
 
 @Injectable()
 export class CategoriesService {
   constructor(
     private readonly prismaService: PrismaService,
-  private readonly handler: ErrorHandler) {}
+    private readonly handler: ErrorHandler,
+  ) {}
 
   /**
    * Helper function to merge default includes with optional ones
    */
-  private buildIncludeObject(includeInput?: CategoryIncludeInput): Prisma.CategoryInclude {
+  private buildIncludeObject(
+    includeInput?: CategoryIncludeInput,
+  ): Prisma.CategoryInclude {
     return {
       ...DEFAULT_CATEGORY_TO_BE_INCLUDED,
       ...(includeInput && {
@@ -38,7 +44,7 @@ export class CategoriesService {
    */
   async createCategory(
     newCategoryData: CreateCategoryInput,
-    includeInput?: CategoryIncludeInput
+    includeInput?: CategoryIncludeInput,
   ): Promise<CategoryWithDefaultRelations> {
     try {
       return await this.prismaService.category.create({
@@ -46,7 +52,7 @@ export class CategoriesService {
         include: this.buildIncludeObject(includeInput),
       });
     } catch (error) {
-      this.handler.handleError(error,{
+      this.handler.handleError(error, {
         operation: 'createCategory',
         service: 'CategoriesService',
         metadata: {
@@ -62,13 +68,15 @@ export class CategoriesService {
    * @returns {Promise<CategoryWithDefaultRelations[]>} The list of categories with default relations
    * @throws any errors that occur during the retrieval process
    */
-  async getAllCategories(includeInput?: CategoryIncludeInput): Promise<CategoryWithDefaultRelations[]> {
+  async getAllCategories(
+    includeInput?: CategoryIncludeInput,
+  ): Promise<CategoryWithDefaultRelations[]> {
     try {
       return await this.prismaService.category.findMany({
         include: this.buildIncludeObject(includeInput),
       });
     } catch (error) {
-      this.handler.handleError(error,{
+      this.handler.handleError(error, {
         operation: 'getAllCategories',
         service: 'CategoriesService',
       });
@@ -82,9 +90,12 @@ export class CategoriesService {
    * @returns {Promise<CategoryWithDefaultRelations>} The category with default relations
    * @throws {NotFoundException} if the category is not found
    */
-  async getCategory(categoryId: number, includeInput?: CategoryIncludeInput): Promise<CategoryWithDefaultRelations> {
+  async getCategory(
+    categoryId: number,
+    includeInput?: CategoryIncludeInput,
+  ): Promise<CategoryWithDefaultRelations> {
     try {
-      const category= await this.prismaService.category.findUnique({
+      const category = await this.prismaService.category.findUnique({
         where: { id: categoryId },
         include: this.buildIncludeObject(includeInput),
       });
@@ -94,7 +105,7 @@ export class CategoriesService {
       }
       return category;
     } catch (error) {
-      this.handler.handleError(error,{
+      this.handler.handleError(error, {
         operation: 'getCategory',
         service: 'CategoriesService',
         metadata: {
@@ -115,7 +126,7 @@ export class CategoriesService {
   async updateCategory(
     categoryId: number,
     updateData: UpdateCategoryInput,
-    includeInput?: CategoryIncludeInput
+    includeInput?: CategoryIncludeInput,
   ): Promise<CategoryWithDefaultRelations> {
     try {
       return await this.prismaService.category.update({
@@ -124,7 +135,7 @@ export class CategoriesService {
         include: this.buildIncludeObject(includeInput),
       });
     } catch (error) {
-      this.handler.handleError(error,{
+      this.handler.handleError(error, {
         operation: 'updateCategory',
         service: 'CategoriesService',
         metadata: {
@@ -144,10 +155,10 @@ export class CategoriesService {
    */
   async deleteCategory(
     categoryId: number,
-    includeInput?: CategoryIncludeInput
+    includeInput?: CategoryIncludeInput,
   ): Promise<CategoryWithDefaultRelations> {
     try {
-      const category= await this.prismaService.category.delete({
+      const category = await this.prismaService.category.delete({
         where: { id: categoryId },
         include: this.buildIncludeObject(includeInput),
       });
@@ -157,7 +168,7 @@ export class CategoriesService {
       }
       return category;
     } catch (error) {
-      this.handler.handleError(error,{
+      this.handler.handleError(error, {
         operation: 'deleteCategory',
         service: 'CategoriesService',
         metadata: {

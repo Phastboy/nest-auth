@@ -7,12 +7,11 @@ import { LikeWhereUniqueInput } from './like-where-unique.input';
 
 @ArgsType()
 export class UpdateOneLikeArgs {
+  @Field(() => LikeUpdateInput, { nullable: false })
+  @Type(() => LikeUpdateInput)
+  data!: LikeUpdateInput;
 
-    @Field(() => LikeUpdateInput, {nullable:false})
-    @Type(() => LikeUpdateInput)
-    data!: LikeUpdateInput;
-
-    @Field(() => LikeWhereUniqueInput, {nullable:false})
-    @Type(() => LikeWhereUniqueInput)
-    where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
+  @Field(() => LikeWhereUniqueInput, { nullable: false })
+  @Type(() => LikeWhereUniqueInput)
+  where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
 }

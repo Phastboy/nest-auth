@@ -6,25 +6,24 @@ import { RoleCount } from './role-count.output';
 
 @ObjectType()
 export class Role {
+  @Field(() => ID, { nullable: false })
+  id!: number;
 
-    @Field(() => ID, {nullable:false})
-    id!: number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: true })
+  description!: string | null;
 
-    @Field(() => String, {nullable:true})
-    description!: string | null;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
+  @Field(() => Date, { nullable: false })
+  updatedAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date;
+  @Field(() => [UserRole], { nullable: true })
+  users?: Array<UserRole>;
 
-    @Field(() => [UserRole], {nullable:true})
-    users?: Array<UserRole>;
-
-    @Field(() => RoleCount, {nullable:false})
-    _count?: RoleCount;
+  @Field(() => RoleCount, { nullable: false })
+  _count?: RoleCount;
 }

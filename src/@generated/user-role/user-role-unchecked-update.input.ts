@@ -5,13 +5,12 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 
 @InputType()
 export class UserRoleUncheckedUpdateInput {
+  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
+  userId?: IntFieldUpdateOperationsInput;
 
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    userId?: IntFieldUpdateOperationsInput;
+  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
+  roleId?: IntFieldUpdateOperationsInput;
 
-    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
-    roleId?: IntFieldUpdateOperationsInput;
-
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  createdAt?: DateTimeFieldUpdateOperationsInput;
 }

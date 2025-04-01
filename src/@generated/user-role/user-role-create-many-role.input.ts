@@ -4,10 +4,9 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class UserRoleCreateManyRoleInput {
+  @Field(() => Int, { nullable: false })
+  userId!: number;
 
-    @Field(() => Int, {nullable:false})
-    userId!: number;
-
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 }

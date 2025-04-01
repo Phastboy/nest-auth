@@ -7,12 +7,11 @@ import { PostCreateWithoutCategoriesInput } from './post-create-without-categori
 
 @InputType()
 export class PostCreateOrConnectWithoutCategoriesInput {
+  @Field(() => PostWhereUniqueInput, { nullable: false })
+  @Type(() => PostWhereUniqueInput)
+  where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
 
-    @Field(() => PostWhereUniqueInput, {nullable:false})
-    @Type(() => PostWhereUniqueInput)
-    where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
-
-    @Field(() => PostCreateWithoutCategoriesInput, {nullable:false})
-    @Type(() => PostCreateWithoutCategoriesInput)
-    create!: PostCreateWithoutCategoriesInput;
+  @Field(() => PostCreateWithoutCategoriesInput, { nullable: false })
+  @Type(() => PostCreateWithoutCategoriesInput)
+  create!: PostCreateWithoutCategoriesInput;
 }

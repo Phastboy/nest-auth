@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueUserRoleArgs {
-
-    @Field(() => UserRoleWhereUniqueInput, {nullable:false})
-    @Type(() => UserRoleWhereUniqueInput)
-    where!: Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>;
+  @Field(() => UserRoleWhereUniqueInput, { nullable: false })
+  @Type(() => UserRoleWhereUniqueInput)
+  where!: Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>;
 }

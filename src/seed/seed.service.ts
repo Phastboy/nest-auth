@@ -8,7 +8,7 @@ import { AppLogger } from 'src/app.logger';
 @Injectable()
 export class SeedService implements OnModuleInit {
   constructor(private readonly prisma: PrismaService) {}
-  private readonly logger = AppLogger.getInstance(SeedService.name)
+  private readonly logger = AppLogger.getInstance(SeedService.name);
 
   async onModuleInit() {
     if (process.env.NODE_ENV === 'production') {
@@ -75,8 +75,6 @@ export class SeedService implements OnModuleInit {
   }
 
   private async clearDatabase() {
-    this.logger.info(
-      `all data deleted successfully.`
-    )
+    this.logger.info(`all data deleted successfully.`);
   }
 }

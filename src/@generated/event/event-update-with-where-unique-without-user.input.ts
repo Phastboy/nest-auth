@@ -7,12 +7,11 @@ import { EventUpdateWithoutUserInput } from './event-update-without-user.input';
 
 @InputType()
 export class EventUpdateWithWhereUniqueWithoutUserInput {
+  @Field(() => EventWhereUniqueInput, { nullable: false })
+  @Type(() => EventWhereUniqueInput)
+  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:false})
-    @Type(() => EventWhereUniqueInput)
-    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
-
-    @Field(() => EventUpdateWithoutUserInput, {nullable:false})
-    @Type(() => EventUpdateWithoutUserInput)
-    data!: EventUpdateWithoutUserInput;
+  @Field(() => EventUpdateWithoutUserInput, { nullable: false })
+  @Type(() => EventUpdateWithoutUserInput)
+  data!: EventUpdateWithoutUserInput;
 }

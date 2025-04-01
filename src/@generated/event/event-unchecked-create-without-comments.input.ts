@@ -8,49 +8,56 @@ import { LikeUncheckedCreateNestedManyWithoutEventInput } from '../like/like-unc
 
 @InputType()
 export class EventUncheckedCreateWithoutCommentsInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => String, { nullable: false })
+  title!: string;
 
-    @Field(() => String, {nullable:false})
-    title!: string;
+  @Field(() => String, { nullable: false })
+  description!: string;
 
-    @Field(() => String, {nullable:false})
-    description!: string;
+  @Field(() => String, { nullable: false })
+  location!: string;
 
-    @Field(() => String, {nullable:false})
-    location!: string;
+  @Field(() => Date, { nullable: false })
+  startTime!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    startTime!: Date | string;
+  @Field(() => Date, { nullable: true })
+  endTime?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    endTime?: Date | string;
+  @Field(() => String, { nullable: true })
+  image?: string;
 
-    @Field(() => String, {nullable:true})
-    image?: string;
+  @Field(() => Int, { nullable: false })
+  userId!: number;
 
-    @Field(() => Int, {nullable:false})
-    userId!: number;
+  @Field(() => Boolean, { nullable: true })
+  shareAsPost?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    shareAsPost?: boolean;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => PostUncheckedCreateNestedOneWithoutEventInput, {
+    nullable: true,
+  })
+  post?: PostUncheckedCreateNestedOneWithoutEventInput;
 
-    @Field(() => PostUncheckedCreateNestedOneWithoutEventInput, {nullable:true})
-    post?: PostUncheckedCreateNestedOneWithoutEventInput;
+  @Field(() => CategoryUncheckedCreateNestedManyWithoutEventsInput, {
+    nullable: true,
+  })
+  categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput;
 
-    @Field(() => CategoryUncheckedCreateNestedManyWithoutEventsInput, {nullable:true})
-    categories?: CategoryUncheckedCreateNestedManyWithoutEventsInput;
+  @Field(() => RSVPUncheckedCreateNestedManyWithoutEventInput, {
+    nullable: true,
+  })
+  rsvps?: RSVPUncheckedCreateNestedManyWithoutEventInput;
 
-    @Field(() => RSVPUncheckedCreateNestedManyWithoutEventInput, {nullable:true})
-    rsvps?: RSVPUncheckedCreateNestedManyWithoutEventInput;
-
-    @Field(() => LikeUncheckedCreateNestedManyWithoutEventInput, {nullable:true})
-    likes?: LikeUncheckedCreateNestedManyWithoutEventInput;
+  @Field(() => LikeUncheckedCreateNestedManyWithoutEventInput, {
+    nullable: true,
+  })
+  likes?: LikeUncheckedCreateNestedManyWithoutEventInput;
 }

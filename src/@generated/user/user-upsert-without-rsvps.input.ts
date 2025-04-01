@@ -7,16 +7,15 @@ import { UserWhereInput } from './user-where.input';
 
 @InputType()
 export class UserUpsertWithoutRsvpsInput {
+  @Field(() => UserUpdateWithoutRsvpsInput, { nullable: false })
+  @Type(() => UserUpdateWithoutRsvpsInput)
+  update!: UserUpdateWithoutRsvpsInput;
 
-    @Field(() => UserUpdateWithoutRsvpsInput, {nullable:false})
-    @Type(() => UserUpdateWithoutRsvpsInput)
-    update!: UserUpdateWithoutRsvpsInput;
+  @Field(() => UserCreateWithoutRsvpsInput, { nullable: false })
+  @Type(() => UserCreateWithoutRsvpsInput)
+  create!: UserCreateWithoutRsvpsInput;
 
-    @Field(() => UserCreateWithoutRsvpsInput, {nullable:false})
-    @Type(() => UserCreateWithoutRsvpsInput)
-    create!: UserCreateWithoutRsvpsInput;
-
-    @Field(() => UserWhereInput, {nullable:true})
-    @Type(() => UserWhereInput)
-    where?: UserWhereInput;
+  @Field(() => UserWhereInput, { nullable: true })
+  @Type(() => UserWhereInput)
+  where?: UserWhereInput;
 }

@@ -7,16 +7,15 @@ import { EventWhereInput } from './event-where.input';
 
 @InputType()
 export class EventUpsertWithoutRsvpsInput {
+  @Field(() => EventUpdateWithoutRsvpsInput, { nullable: false })
+  @Type(() => EventUpdateWithoutRsvpsInput)
+  update!: EventUpdateWithoutRsvpsInput;
 
-    @Field(() => EventUpdateWithoutRsvpsInput, {nullable:false})
-    @Type(() => EventUpdateWithoutRsvpsInput)
-    update!: EventUpdateWithoutRsvpsInput;
+  @Field(() => EventCreateWithoutRsvpsInput, { nullable: false })
+  @Type(() => EventCreateWithoutRsvpsInput)
+  create!: EventCreateWithoutRsvpsInput;
 
-    @Field(() => EventCreateWithoutRsvpsInput, {nullable:false})
-    @Type(() => EventCreateWithoutRsvpsInput)
-    create!: EventCreateWithoutRsvpsInput;
-
-    @Field(() => EventWhereInput, {nullable:true})
-    @Type(() => EventWhereInput)
-    where?: EventWhereInput;
+  @Field(() => EventWhereInput, { nullable: true })
+  @Type(() => EventWhereInput)
+  where?: EventWhereInput;
 }

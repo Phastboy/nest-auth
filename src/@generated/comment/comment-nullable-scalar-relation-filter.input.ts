@@ -4,10 +4,9 @@ import { CommentWhereInput } from './comment-where.input';
 
 @InputType()
 export class CommentNullableScalarRelationFilter {
+  @Field(() => CommentWhereInput, { nullable: true })
+  is?: CommentWhereInput;
 
-    @Field(() => CommentWhereInput, {nullable:true})
-    is?: CommentWhereInput;
-
-    @Field(() => CommentWhereInput, {nullable:true})
-    isNot?: CommentWhereInput;
+  @Field(() => CommentWhereInput, { nullable: true })
+  isNot?: CommentWhereInput;
 }

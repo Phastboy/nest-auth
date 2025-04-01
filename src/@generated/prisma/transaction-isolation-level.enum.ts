@@ -1,8 +1,10 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 export enum TransactionIsolationLevel {
-    Serializable = "Serializable"
+  Serializable = 'Serializable',
 }
 
-
-registerEnumType(TransactionIsolationLevel, { name: 'TransactionIsolationLevel', description: undefined })
+registerEnumType(TransactionIsolationLevel, {
+  name: 'TransactionIsolationLevel',
+  description: undefined,
+});
