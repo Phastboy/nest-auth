@@ -30,53 +30,6 @@ export class UsersService {
   private readonly logger = AppLogger.getInstance(UsersService.name);
 
   /**
-   * List of privileged roles with special access
-   * @private
-   */
-  private readonly privilegedRoles: PrivilegedRole[] = [
-    Role.SUPER_ADMIN,
-    Role.FACULTY_DEAN,
-    Role.REGISTRAR,
-    Role.DEPARTMENT_HEAD,
-  ];
-
-  /**
-   * @private
-   * @type {Role[]}
-   * @description This list is derived from the Role enum, excluding privileged roles.
-   */
-  private readonly nonPrivilegedRoles: Role[] = Object.values(Role).filter(
-    (r) => !this.privilegedRoles.includes(r as PrivilegedRole),
-  );
-
-  /**
-   * Determines if a given role can be assigned to a target user based on the current user's role.
-   * @param {Role} assignerRole - The role of the user attempting to assign the target role.
-   * @param {Role} targetRole - The role to be assigned.
-   * @returns {boolean} - Whether the assigner has the necessary privileges to assign the target role.
-   */
-  private canAssignRole(assignerRole: Role, targetRole: Role): boolean {
-    const roleHierarchy: Record<Role, Role[]> = {
-      [Role.SUPER_ADMIN]: Object.values(Role),
-      [Role.FACULTY_DEAN]: [Role.LECTURER, Role.DEPARTMENT_HEAD, Role.STUDENT],
-      [Role.DEPARTMENT_HEAD]: [Role.LECTURER, Role.STUDENT],
-      [Role.REGISTRAR]: [Role.ADMIN, Role.STUDENT],
-      [Role.ADMIN]: [],
-      [Role.IT_STAFF]: [],
-      [Role.LIBRARIAN]: [],
-      [Role.FINANCE_STAFF]: [],
-      [Role.LECTURER]: [],
-      [Role.STUDENT]: [],
-    };
-
-    return (
-      assignerRole === targetRole ||
-      roleHierarchy[assignerRole]?.includes(targetRole) ||
-      false
-    );
-  }
-
-  /**
    * Creates a new user while ensuring that privileged roles cannot be assigned.
    *
    * @param {CreateUserInput} createUserInput - The user data for registration.
@@ -85,21 +38,6 @@ export class UsersService {
    */
   async createUser(createUserInput: CreateUserInput): Promise<UserResponse> {
     try {
-      /**
-       * The role assigned to the new user.
-       * Defaults to `STUDENT` if not provided.
-       */
-      const role: Role = createUserInput.role || Role.STUDENT;
-
-      // Check if the assigned role is a privileged role
-      if (this.privilegedRoles.includes(role as PrivilegedRole)) {
-        throw new BadRequestException(
-          `Registration of users with the role '${role}' is restricted.`,
-          {
-            description: `The role '${role}' is considered a privileged role and cannot be assigned during user registration. Allowed roles: ${this.nonPrivilegedRoles.join(', ')}.`,
-          },
-        );
-      }
 
       // Hash password before storing
       const hashedPassword = await argon.hash(createUserInput.password);

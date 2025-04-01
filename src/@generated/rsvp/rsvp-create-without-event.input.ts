@@ -4,12 +4,13 @@ import { UserCreateNestedOneWithoutRsvpsInput } from '../user/user-create-nested
 
 @InputType()
 export class RSVPCreateWithoutEventInput {
-  @Field(() => String, { nullable: true })
-  status?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => String, {nullable:true})
+    status?: string;
 
-  @Field(() => UserCreateNestedOneWithoutRsvpsInput, { nullable: false })
-  user!: UserCreateNestedOneWithoutRsvpsInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => UserCreateNestedOneWithoutRsvpsInput, {nullable:false})
+    user!: UserCreateNestedOneWithoutRsvpsInput;
 }

@@ -4,24 +4,25 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class NotificationCreateManyInput {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => Int, { nullable: false })
-  userId!: number;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => String, { nullable: false })
-  type!: string;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => String, { nullable: false })
-  content!: string;
+    @Field(() => String, {nullable:false})
+    type!: string;
 
-  @Field(() => Boolean, { nullable: true })
-  isRead?: boolean;
+    @Field(() => String, {nullable:false})
+    content!: string;
 
-  @Field(() => Int, { nullable: true })
-  referenceId?: number;
+    @Field(() => Boolean, {nullable:true})
+    isRead?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    referenceId?: number;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 }

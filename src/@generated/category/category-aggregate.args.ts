@@ -14,34 +14,35 @@ import { CategoryMaxAggregateInput } from './category-max-aggregate.input';
 
 @ArgsType()
 export class CategoryAggregateArgs {
-  @Field(() => CategoryWhereInput, { nullable: true })
-  @Type(() => CategoryWhereInput)
-  where?: CategoryWhereInput;
 
-  @Field(() => [CategoryOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<CategoryOrderByWithRelationInput>;
+    @Field(() => CategoryWhereInput, {nullable:true})
+    @Type(() => CategoryWhereInput)
+    where?: CategoryWhereInput;
 
-  @Field(() => CategoryWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+    @Field(() => [CategoryOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<CategoryOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => CategoryWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => CategoryCountAggregateInput, { nullable: true })
-  _count?: CategoryCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => CategoryAvgAggregateInput, { nullable: true })
-  _avg?: CategoryAvgAggregateInput;
+    @Field(() => CategoryCountAggregateInput, {nullable:true})
+    _count?: CategoryCountAggregateInput;
 
-  @Field(() => CategorySumAggregateInput, { nullable: true })
-  _sum?: CategorySumAggregateInput;
+    @Field(() => CategoryAvgAggregateInput, {nullable:true})
+    _avg?: CategoryAvgAggregateInput;
 
-  @Field(() => CategoryMinAggregateInput, { nullable: true })
-  _min?: CategoryMinAggregateInput;
+    @Field(() => CategorySumAggregateInput, {nullable:true})
+    _sum?: CategorySumAggregateInput;
 
-  @Field(() => CategoryMaxAggregateInput, { nullable: true })
-  _max?: CategoryMaxAggregateInput;
+    @Field(() => CategoryMinAggregateInput, {nullable:true})
+    _min?: CategoryMinAggregateInput;
+
+    @Field(() => CategoryMaxAggregateInput, {nullable:true})
+    _max?: CategoryMaxAggregateInput;
 }

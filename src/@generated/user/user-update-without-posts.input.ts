@@ -2,52 +2,53 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { EnumRoleFieldUpdateOperationsInput } from '../prisma/enum-role-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { EventUpdateManyWithoutUserNestedInput } from '../event/event-update-many-without-user-nested.input';
 import { CommentUpdateManyWithoutUserNestedInput } from '../comment/comment-update-many-without-user-nested.input';
 import { NotificationUpdateManyWithoutUserNestedInput } from '../notification/notification-update-many-without-user-nested.input';
 import { LikeUpdateManyWithoutUserNestedInput } from '../like/like-update-many-without-user-nested.input';
 import { RSVPUpdateManyWithoutUserNestedInput } from '../rsvp/rsvp-update-many-without-user-nested.input';
+import { UserRoleUpdateManyWithoutUserNestedInput } from '../user-role/user-role-update-many-without-user-nested.input';
 
 @InputType()
 export class UserUpdateWithoutPostsInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  email?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  username?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    email?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  password?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    username?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  avatar?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: StringFieldUpdateOperationsInput;
 
-  @Field(() => EnumRoleFieldUpdateOperationsInput, { nullable: true })
-  role?: EnumRoleFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    avatar?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  bio?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    bio?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => EventUpdateManyWithoutUserNestedInput, { nullable: true })
-  events?: EventUpdateManyWithoutUserNestedInput;
+    @Field(() => EventUpdateManyWithoutUserNestedInput, {nullable:true})
+    events?: EventUpdateManyWithoutUserNestedInput;
 
-  @Field(() => CommentUpdateManyWithoutUserNestedInput, { nullable: true })
-  comments?: CommentUpdateManyWithoutUserNestedInput;
+    @Field(() => CommentUpdateManyWithoutUserNestedInput, {nullable:true})
+    comments?: CommentUpdateManyWithoutUserNestedInput;
 
-  @Field(() => NotificationUpdateManyWithoutUserNestedInput, { nullable: true })
-  notifications?: NotificationUpdateManyWithoutUserNestedInput;
+    @Field(() => NotificationUpdateManyWithoutUserNestedInput, {nullable:true})
+    notifications?: NotificationUpdateManyWithoutUserNestedInput;
 
-  @Field(() => LikeUpdateManyWithoutUserNestedInput, { nullable: true })
-  likes?: LikeUpdateManyWithoutUserNestedInput;
+    @Field(() => LikeUpdateManyWithoutUserNestedInput, {nullable:true})
+    likes?: LikeUpdateManyWithoutUserNestedInput;
 
-  @Field(() => RSVPUpdateManyWithoutUserNestedInput, { nullable: true })
-  rsvps?: RSVPUpdateManyWithoutUserNestedInput;
+    @Field(() => RSVPUpdateManyWithoutUserNestedInput, {nullable:true})
+    rsvps?: RSVPUpdateManyWithoutUserNestedInput;
+
+    @Field(() => UserRoleUpdateManyWithoutUserNestedInput, {nullable:true})
+    roles?: UserRoleUpdateManyWithoutUserNestedInput;
 }

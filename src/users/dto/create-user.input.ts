@@ -31,11 +31,6 @@ export class CreateUserInput {
   @IsString()
   avatar?: string;
 
-  @Field(() => Role, { nullable: true })
-  @IsOptional()
-  @IsEnum(Role)
-  role?: `${Role}`;
-
   @Field(() => String, { nullable: true })
   @IsOptional()
   @IsString()

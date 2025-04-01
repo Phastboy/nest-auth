@@ -7,11 +7,12 @@ import { RSVPCreateWithoutUserInput } from './rsvp-create-without-user.input';
 
 @InputType()
 export class RSVPCreateOrConnectWithoutUserInput {
-  @Field(() => RSVPWhereUniqueInput, { nullable: false })
-  @Type(() => RSVPWhereUniqueInput)
-  where!: Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>;
 
-  @Field(() => RSVPCreateWithoutUserInput, { nullable: false })
-  @Type(() => RSVPCreateWithoutUserInput)
-  create!: RSVPCreateWithoutUserInput;
+    @Field(() => RSVPWhereUniqueInput, {nullable:false})
+    @Type(() => RSVPWhereUniqueInput)
+    where!: Prisma.AtLeast<RSVPWhereUniqueInput, 'id' | 'userId_eventId'>;
+
+    @Field(() => RSVPCreateWithoutUserInput, {nullable:false})
+    @Type(() => RSVPCreateWithoutUserInput)
+    create!: RSVPCreateWithoutUserInput;
 }

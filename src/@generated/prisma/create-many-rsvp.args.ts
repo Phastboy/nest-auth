@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyRsvpArgs {
-  @Field(() => [RSVPCreateManyInput], { nullable: false })
-  @Type(() => RSVPCreateManyInput)
-  data!: Array<RSVPCreateManyInput>;
+
+    @Field(() => [RSVPCreateManyInput], {nullable:false})
+    @Type(() => RSVPCreateManyInput)
+    data!: Array<RSVPCreateManyInput>;
 }

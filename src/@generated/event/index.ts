@@ -55,7 +55,6 @@ export { EventSumAggregate } from './event-sum-aggregate.output';
 export { EventSumOrderByAggregateInput } from './event-sum-order-by-aggregate.input';
 export { EventUncheckedCreateNestedManyWithoutCategoriesInput } from './event-unchecked-create-nested-many-without-categories.input';
 export { EventUncheckedCreateNestedManyWithoutUserInput } from './event-unchecked-create-nested-many-without-user.input';
-export { EventUncheckedCreateNestedOneWithoutPostInput } from './event-unchecked-create-nested-one-without-post.input';
 export { EventUncheckedCreateWithoutCategoriesInput } from './event-unchecked-create-without-categories.input';
 export { EventUncheckedCreateWithoutCommentsInput } from './event-unchecked-create-without-comments.input';
 export { EventUncheckedCreateWithoutLikesInput } from './event-unchecked-create-without-likes.input';
@@ -68,7 +67,6 @@ export { EventUncheckedUpdateManyWithoutCategoriesInput } from './event-unchecke
 export { EventUncheckedUpdateManyWithoutUserNestedInput } from './event-unchecked-update-many-without-user-nested.input';
 export { EventUncheckedUpdateManyWithoutUserInput } from './event-unchecked-update-many-without-user.input';
 export { EventUncheckedUpdateManyInput } from './event-unchecked-update-many.input';
-export { EventUncheckedUpdateOneWithoutPostNestedInput } from './event-unchecked-update-one-without-post-nested.input';
 export { EventUncheckedUpdateWithoutCategoriesInput } from './event-unchecked-update-without-categories.input';
 export { EventUncheckedUpdateWithoutCommentsInput } from './event-unchecked-update-without-comments.input';
 export { EventUncheckedUpdateWithoutLikesInput } from './event-unchecked-update-without-likes.input';

@@ -16,6 +16,7 @@ import { NotificationsModule } from './notifications/notifications.module';
 import { RsvpsModule } from './rsvps/rsvps.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ErrorHandlerModule } from './error-handler/error-handler.module';
+import { RolesModule } from './roles/roles.module';
 
 @Module({
   imports: [
@@ -50,6 +51,7 @@ import { ErrorHandlerModule } from './error-handler/error-handler.module';
     RsvpsModule,
     CategoriesModule,
     ErrorHandlerModule,
+    RolesModule,
   ],
   controllers: [],
   providers: [

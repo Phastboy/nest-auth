@@ -7,14 +7,15 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class UpdateManyEventArgs {
-  @Field(() => EventUpdateManyMutationInput, { nullable: false })
-  @Type(() => EventUpdateManyMutationInput)
-  data!: EventUpdateManyMutationInput;
 
-  @Field(() => EventWhereInput, { nullable: true })
-  @Type(() => EventWhereInput)
-  where?: EventWhereInput;
+    @Field(() => EventUpdateManyMutationInput, {nullable:false})
+    @Type(() => EventUpdateManyMutationInput)
+    data!: EventUpdateManyMutationInput;
 
-  @Field(() => Int, { nullable: true })
-  limit?: number;
+    @Field(() => EventWhereInput, {nullable:true})
+    @Type(() => EventWhereInput)
+    where?: EventWhereInput;
+
+    @Field(() => Int, {nullable:true})
+    limit?: number;
 }

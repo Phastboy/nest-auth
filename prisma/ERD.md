@@ -12,10 +12,21 @@ erDiagram
   String username UK
   String password
   String avatar "nullable"
-  Role role
   String bio "nullable"
   DateTime createdAt
   DateTime updatedAt
+}
+"roles" {
+  Int id PK
+  String name UK
+  String description "nullable"
+  DateTime createdAt
+  DateTime updatedAt
+}
+"user_roles" {
+  Int userId FK
+  Int roleId FK
+  DateTime createdAt
 }
 "categories" {
   Int id PK
@@ -87,6 +98,8 @@ erDiagram
   String A FK
   String B FK
 }
+"user_roles" }o--|| "users" : user
+"user_roles" }o--|| "roles" : role
 "categories" }o--o| "categories" : parent
 "posts" |o--o| "events" : event
 "posts" }o--|| "users" : user
@@ -115,10 +128,25 @@ erDiagram
   - `username`: 
   - `password`: 
   - `avatar`: 
-  - `role`: 
   - `bio`: 
   - `createdAt`: 
   - `updatedAt`: 
+
+### `roles`
+
+**Properties**
+  - `id`: 
+  - `name`: 
+  - `description`: 
+  - `createdAt`: 
+  - `updatedAt`: 
+
+### `user_roles`
+
+**Properties**
+  - `userId`: 
+  - `roleId`: 
+  - `createdAt`: 
 
 ### `categories`
 

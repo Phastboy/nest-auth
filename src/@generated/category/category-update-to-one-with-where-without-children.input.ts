@@ -6,11 +6,12 @@ import { CategoryUpdateWithoutChildrenInput } from './category-update-without-ch
 
 @InputType()
 export class CategoryUpdateToOneWithWhereWithoutChildrenInput {
-  @Field(() => CategoryWhereInput, { nullable: true })
-  @Type(() => CategoryWhereInput)
-  where?: CategoryWhereInput;
 
-  @Field(() => CategoryUpdateWithoutChildrenInput, { nullable: false })
-  @Type(() => CategoryUpdateWithoutChildrenInput)
-  data!: CategoryUpdateWithoutChildrenInput;
+    @Field(() => CategoryWhereInput, {nullable:true})
+    @Type(() => CategoryWhereInput)
+    where?: CategoryWhereInput;
+
+    @Field(() => CategoryUpdateWithoutChildrenInput, {nullable:false})
+    @Type(() => CategoryUpdateWithoutChildrenInput)
+    data!: CategoryUpdateWithoutChildrenInput;
 }

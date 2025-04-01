@@ -8,15 +8,16 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 
 @InputType()
 export class CategoryCreateNestedOneWithoutChildrenInput {
-  @Field(() => CategoryCreateWithoutChildrenInput, { nullable: true })
-  @Type(() => CategoryCreateWithoutChildrenInput)
-  create?: CategoryCreateWithoutChildrenInput;
 
-  @Field(() => CategoryCreateOrConnectWithoutChildrenInput, { nullable: true })
-  @Type(() => CategoryCreateOrConnectWithoutChildrenInput)
-  connectOrCreate?: CategoryCreateOrConnectWithoutChildrenInput;
+    @Field(() => CategoryCreateWithoutChildrenInput, {nullable:true})
+    @Type(() => CategoryCreateWithoutChildrenInput)
+    create?: CategoryCreateWithoutChildrenInput;
 
-  @Field(() => CategoryWhereUniqueInput, { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+    @Field(() => CategoryCreateOrConnectWithoutChildrenInput, {nullable:true})
+    @Type(() => CategoryCreateOrConnectWithoutChildrenInput)
+    connectOrCreate?: CategoryCreateOrConnectWithoutChildrenInput;
+
+    @Field(() => CategoryWhereUniqueInput, {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    connect?: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 }
