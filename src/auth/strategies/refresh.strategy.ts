@@ -72,7 +72,6 @@ export class RefreshTokenStrategy extends PassportStrategy(
       return {
         userId: decoded.sub,
         email: decoded.email,
-        role: decoded.role,
       };
     } catch (error) {
       this.logger.error('Token verification failed:', error.message);
