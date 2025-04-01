@@ -7,11 +7,12 @@ import { CommentCreateWithoutPostInput } from './comment-create-without-post.inp
 
 @InputType()
 export class CommentCreateOrConnectWithoutPostInput {
-  @Field(() => CommentWhereUniqueInput, { nullable: false })
-  @Type(() => CommentWhereUniqueInput)
-  where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
 
-  @Field(() => CommentCreateWithoutPostInput, { nullable: false })
-  @Type(() => CommentCreateWithoutPostInput)
-  create!: CommentCreateWithoutPostInput;
+    @Field(() => CommentWhereUniqueInput, {nullable:false})
+    @Type(() => CommentWhereUniqueInput)
+    where!: Prisma.AtLeast<CommentWhereUniqueInput, 'id'>;
+
+    @Field(() => CommentCreateWithoutPostInput, {nullable:false})
+    @Type(() => CommentCreateWithoutPostInput)
+    create!: CommentCreateWithoutPostInput;
 }

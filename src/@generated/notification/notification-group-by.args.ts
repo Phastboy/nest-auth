@@ -14,37 +14,38 @@ import { NotificationMaxAggregateInput } from './notification-max-aggregate.inpu
 
 @ArgsType()
 export class NotificationGroupByArgs {
-  @Field(() => NotificationWhereInput, { nullable: true })
-  @Type(() => NotificationWhereInput)
-  where?: NotificationWhereInput;
 
-  @Field(() => [NotificationOrderByWithAggregationInput], { nullable: true })
-  orderBy?: Array<NotificationOrderByWithAggregationInput>;
+    @Field(() => NotificationWhereInput, {nullable:true})
+    @Type(() => NotificationWhereInput)
+    where?: NotificationWhereInput;
 
-  @Field(() => [NotificationScalarFieldEnum], { nullable: false })
-  by!: Array<`${NotificationScalarFieldEnum}`>;
+    @Field(() => [NotificationOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<NotificationOrderByWithAggregationInput>;
 
-  @Field(() => NotificationScalarWhereWithAggregatesInput, { nullable: true })
-  having?: NotificationScalarWhereWithAggregatesInput;
+    @Field(() => [NotificationScalarFieldEnum], {nullable:false})
+    by!: Array<`${NotificationScalarFieldEnum}`>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => NotificationScalarWhereWithAggregatesInput, {nullable:true})
+    having?: NotificationScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => NotificationCountAggregateInput, { nullable: true })
-  _count?: NotificationCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => NotificationAvgAggregateInput, { nullable: true })
-  _avg?: NotificationAvgAggregateInput;
+    @Field(() => NotificationCountAggregateInput, {nullable:true})
+    _count?: NotificationCountAggregateInput;
 
-  @Field(() => NotificationSumAggregateInput, { nullable: true })
-  _sum?: NotificationSumAggregateInput;
+    @Field(() => NotificationAvgAggregateInput, {nullable:true})
+    _avg?: NotificationAvgAggregateInput;
 
-  @Field(() => NotificationMinAggregateInput, { nullable: true })
-  _min?: NotificationMinAggregateInput;
+    @Field(() => NotificationSumAggregateInput, {nullable:true})
+    _sum?: NotificationSumAggregateInput;
 
-  @Field(() => NotificationMaxAggregateInput, { nullable: true })
-  _max?: NotificationMaxAggregateInput;
+    @Field(() => NotificationMinAggregateInput, {nullable:true})
+    _min?: NotificationMinAggregateInput;
+
+    @Field(() => NotificationMaxAggregateInput, {nullable:true})
+    _max?: NotificationMaxAggregateInput;
 }

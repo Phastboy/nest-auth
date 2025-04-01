@@ -13,47 +13,46 @@ import { LikeUpdateManyWithoutEventNestedInput } from '../like/like-update-many-
 
 @InputType()
 export class EventUpdateWithoutCommentsInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  title?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  description?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    title?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  location?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    description?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  startTime?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    location?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  endTime?: NullableDateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    startTime?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  image?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableDateTimeFieldUpdateOperationsInput, {nullable:true})
+    endTime?: NullableDateTimeFieldUpdateOperationsInput;
 
-  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
-  shareAsPost?: BoolFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    image?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    shareAsPost?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => UserUpdateOneRequiredWithoutEventsNestedInput, {
-    nullable: true,
-  })
-  user?: UserUpdateOneRequiredWithoutEventsNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => PostUpdateOneWithoutEventNestedInput, { nullable: true })
-  post?: PostUpdateOneWithoutEventNestedInput;
+    @Field(() => UserUpdateOneRequiredWithoutEventsNestedInput, {nullable:true})
+    user?: UserUpdateOneRequiredWithoutEventsNestedInput;
 
-  @Field(() => CategoryUpdateManyWithoutEventsNestedInput, { nullable: true })
-  categories?: CategoryUpdateManyWithoutEventsNestedInput;
+    @Field(() => PostUpdateOneWithoutEventNestedInput, {nullable:true})
+    post?: PostUpdateOneWithoutEventNestedInput;
 
-  @Field(() => RSVPUpdateManyWithoutEventNestedInput, { nullable: true })
-  rsvps?: RSVPUpdateManyWithoutEventNestedInput;
+    @Field(() => CategoryUpdateManyWithoutEventsNestedInput, {nullable:true})
+    categories?: CategoryUpdateManyWithoutEventsNestedInput;
 
-  @Field(() => LikeUpdateManyWithoutEventNestedInput, { nullable: true })
-  likes?: LikeUpdateManyWithoutEventNestedInput;
+    @Field(() => RSVPUpdateManyWithoutEventNestedInput, {nullable:true})
+    rsvps?: RSVPUpdateManyWithoutEventNestedInput;
+
+    @Field(() => LikeUpdateManyWithoutEventNestedInput, {nullable:true})
+    likes?: LikeUpdateManyWithoutEventNestedInput;
 }

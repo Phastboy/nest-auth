@@ -8,45 +8,46 @@ import { LikeCreateNestedManyWithoutEventInput } from '../like/like-create-neste
 
 @InputType()
 export class EventCreateWithoutPostInput {
-  @Field(() => String, { nullable: false })
-  title!: string;
 
-  @Field(() => String, { nullable: false })
-  description!: string;
+    @Field(() => String, {nullable:false})
+    title!: string;
 
-  @Field(() => String, { nullable: false })
-  location!: string;
+    @Field(() => String, {nullable:false})
+    description!: string;
 
-  @Field(() => Date, { nullable: false })
-  startTime!: Date | string;
+    @Field(() => String, {nullable:false})
+    location!: string;
 
-  @Field(() => Date, { nullable: true })
-  endTime?: Date | string;
+    @Field(() => Date, {nullable:false})
+    startTime!: Date | string;
 
-  @Field(() => String, { nullable: true })
-  image?: string;
+    @Field(() => Date, {nullable:true})
+    endTime?: Date | string;
 
-  @Field(() => Boolean, { nullable: true })
-  shareAsPost?: boolean;
+    @Field(() => String, {nullable:true})
+    image?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    shareAsPost?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => UserCreateNestedOneWithoutEventsInput, { nullable: false })
-  user!: UserCreateNestedOneWithoutEventsInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => CategoryCreateNestedManyWithoutEventsInput, { nullable: true })
-  categories?: CategoryCreateNestedManyWithoutEventsInput;
+    @Field(() => UserCreateNestedOneWithoutEventsInput, {nullable:false})
+    user!: UserCreateNestedOneWithoutEventsInput;
 
-  @Field(() => CommentCreateNestedManyWithoutEventInput, { nullable: true })
-  comments?: CommentCreateNestedManyWithoutEventInput;
+    @Field(() => CategoryCreateNestedManyWithoutEventsInput, {nullable:true})
+    categories?: CategoryCreateNestedManyWithoutEventsInput;
 
-  @Field(() => RSVPCreateNestedManyWithoutEventInput, { nullable: true })
-  rsvps?: RSVPCreateNestedManyWithoutEventInput;
+    @Field(() => CommentCreateNestedManyWithoutEventInput, {nullable:true})
+    comments?: CommentCreateNestedManyWithoutEventInput;
 
-  @Field(() => LikeCreateNestedManyWithoutEventInput, { nullable: true })
-  likes?: LikeCreateNestedManyWithoutEventInput;
+    @Field(() => RSVPCreateNestedManyWithoutEventInput, {nullable:true})
+    rsvps?: RSVPCreateNestedManyWithoutEventInput;
+
+    @Field(() => LikeCreateNestedManyWithoutEventInput, {nullable:true})
+    likes?: LikeCreateNestedManyWithoutEventInput;
 }

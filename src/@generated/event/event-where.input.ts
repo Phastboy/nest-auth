@@ -15,63 +15,64 @@ import { LikeListRelationFilter } from '../like/like-list-relation-filter.input'
 
 @InputType()
 export class EventWhereInput {
-  @Field(() => [EventWhereInput], { nullable: true })
-  AND?: Array<EventWhereInput>;
 
-  @Field(() => [EventWhereInput], { nullable: true })
-  OR?: Array<EventWhereInput>;
+    @Field(() => [EventWhereInput], {nullable:true})
+    AND?: Array<EventWhereInput>;
 
-  @Field(() => [EventWhereInput], { nullable: true })
-  NOT?: Array<EventWhereInput>;
+    @Field(() => [EventWhereInput], {nullable:true})
+    OR?: Array<EventWhereInput>;
 
-  @Field(() => IntFilter, { nullable: true })
-  id?: IntFilter;
+    @Field(() => [EventWhereInput], {nullable:true})
+    NOT?: Array<EventWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  title?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  description?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    title?: StringFilter;
 
-  @Field(() => StringFilter, { nullable: true })
-  location?: StringFilter;
+    @Field(() => StringFilter, {nullable:true})
+    description?: StringFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  startTime?: DateTimeFilter;
+    @Field(() => StringFilter, {nullable:true})
+    location?: StringFilter;
 
-  @Field(() => DateTimeNullableFilter, { nullable: true })
-  endTime?: DateTimeNullableFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    startTime?: DateTimeFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  image?: StringNullableFilter;
+    @Field(() => DateTimeNullableFilter, {nullable:true})
+    endTime?: DateTimeNullableFilter;
 
-  @Field(() => IntFilter, { nullable: true })
-  userId?: IntFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    image?: StringNullableFilter;
 
-  @Field(() => BoolFilter, { nullable: true })
-  shareAsPost?: BoolFilter;
+    @Field(() => IntFilter, {nullable:true})
+    userId?: IntFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => BoolFilter, {nullable:true})
+    shareAsPost?: BoolFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => UserScalarRelationFilter, { nullable: true })
-  user?: UserScalarRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
 
-  @Field(() => PostNullableScalarRelationFilter, { nullable: true })
-  post?: PostNullableScalarRelationFilter;
+    @Field(() => UserScalarRelationFilter, {nullable:true})
+    user?: UserScalarRelationFilter;
 
-  @Field(() => CategoryListRelationFilter, { nullable: true })
-  categories?: CategoryListRelationFilter;
+    @Field(() => PostNullableScalarRelationFilter, {nullable:true})
+    post?: PostNullableScalarRelationFilter;
 
-  @Field(() => CommentListRelationFilter, { nullable: true })
-  comments?: CommentListRelationFilter;
+    @Field(() => CategoryListRelationFilter, {nullable:true})
+    categories?: CategoryListRelationFilter;
 
-  @Field(() => RSVPListRelationFilter, { nullable: true })
-  rsvps?: RSVPListRelationFilter;
+    @Field(() => CommentListRelationFilter, {nullable:true})
+    comments?: CommentListRelationFilter;
 
-  @Field(() => LikeListRelationFilter, { nullable: true })
-  likes?: LikeListRelationFilter;
+    @Field(() => RSVPListRelationFilter, {nullable:true})
+    rsvps?: RSVPListRelationFilter;
+
+    @Field(() => LikeListRelationFilter, {nullable:true})
+    likes?: LikeListRelationFilter;
 }

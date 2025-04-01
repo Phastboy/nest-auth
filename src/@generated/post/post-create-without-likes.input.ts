@@ -7,30 +7,31 @@ import { CommentCreateNestedManyWithoutPostInput } from '../comment/comment-crea
 
 @InputType()
 export class PostCreateWithoutLikesInput {
-  @Field(() => String, { nullable: false })
-  content!: string;
 
-  @Field(() => String, { nullable: true })
-  image?: string;
+    @Field(() => String, {nullable:false})
+    content!: string;
 
-  @Field(() => Boolean, { nullable: true })
-  isEvent?: boolean;
+    @Field(() => String, {nullable:true})
+    image?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    isEvent?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => EventCreateNestedOneWithoutPostInput, { nullable: true })
-  event?: EventCreateNestedOneWithoutPostInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => UserCreateNestedOneWithoutPostsInput, { nullable: false })
-  user!: UserCreateNestedOneWithoutPostsInput;
+    @Field(() => EventCreateNestedOneWithoutPostInput, {nullable:true})
+    event?: EventCreateNestedOneWithoutPostInput;
 
-  @Field(() => CategoryCreateNestedManyWithoutPostsInput, { nullable: true })
-  categories?: CategoryCreateNestedManyWithoutPostsInput;
+    @Field(() => UserCreateNestedOneWithoutPostsInput, {nullable:false})
+    user!: UserCreateNestedOneWithoutPostsInput;
 
-  @Field(() => CommentCreateNestedManyWithoutPostInput, { nullable: true })
-  comments?: CommentCreateNestedManyWithoutPostInput;
+    @Field(() => CategoryCreateNestedManyWithoutPostsInput, {nullable:true})
+    categories?: CategoryCreateNestedManyWithoutPostsInput;
+
+    @Field(() => CommentCreateNestedManyWithoutPostInput, {nullable:true})
+    comments?: CommentCreateNestedManyWithoutPostInput;
 }

@@ -49,7 +49,6 @@ export { PostOrderByRelationAggregateInput } from './post-order-by-relation-aggr
 export { PostOrderByWithAggregationInput } from './post-order-by-with-aggregation.input';
 export { PostOrderByWithRelationInput } from './post-order-by-with-relation.input';
 export { PostScalarFieldEnum } from './post-scalar-field.enum';
-export { PostScalarRelationFilter } from './post-scalar-relation-filter.input';
 export { PostScalarWhereWithAggregatesInput } from './post-scalar-where-with-aggregates.input';
 export { PostScalarWhereInput } from './post-scalar-where.input';
 export { PostSumAggregateInput } from './post-sum-aggregate.input';
@@ -81,7 +80,6 @@ export { PostUpdateManyWithWhereWithoutCategoriesInput } from './post-update-man
 export { PostUpdateManyWithWhereWithoutUserInput } from './post-update-many-with-where-without-user.input';
 export { PostUpdateManyWithoutCategoriesNestedInput } from './post-update-many-without-categories-nested.input';
 export { PostUpdateManyWithoutUserNestedInput } from './post-update-many-without-user-nested.input';
-export { PostUpdateOneRequiredWithoutEventNestedInput } from './post-update-one-required-without-event-nested.input';
 export { PostUpdateOneWithoutCommentsNestedInput } from './post-update-one-without-comments-nested.input';
 export { PostUpdateOneWithoutEventNestedInput } from './post-update-one-without-event-nested.input';
 export { PostUpdateOneWithoutLikesNestedInput } from './post-update-one-without-likes-nested.input';

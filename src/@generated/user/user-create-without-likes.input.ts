@@ -1,50 +1,51 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { Role } from '../prisma/role.enum';
 import { PostCreateNestedManyWithoutUserInput } from '../post/post-create-nested-many-without-user.input';
 import { EventCreateNestedManyWithoutUserInput } from '../event/event-create-nested-many-without-user.input';
 import { CommentCreateNestedManyWithoutUserInput } from '../comment/comment-create-nested-many-without-user.input';
 import { NotificationCreateNestedManyWithoutUserInput } from '../notification/notification-create-nested-many-without-user.input';
 import { RSVPCreateNestedManyWithoutUserInput } from '../rsvp/rsvp-create-nested-many-without-user.input';
+import { UserRoleCreateNestedManyWithoutUserInput } from '../user-role/user-role-create-nested-many-without-user.input';
 
 @InputType()
 export class UserCreateWithoutLikesInput {
-  @Field(() => String, { nullable: false })
-  email!: string;
 
-  @Field(() => String, { nullable: false })
-  username!: string;
+    @Field(() => String, {nullable:false})
+    email!: string;
 
-  @Field(() => String, { nullable: false })
-  password!: string;
+    @Field(() => String, {nullable:false})
+    username!: string;
 
-  @Field(() => String, { nullable: true })
-  avatar?: string;
+    @Field(() => String, {nullable:false})
+    password!: string;
 
-  @Field(() => Role, { nullable: true })
-  role?: `${Role}`;
+    @Field(() => String, {nullable:true})
+    avatar?: string;
 
-  @Field(() => String, { nullable: true })
-  bio?: string;
+    @Field(() => String, {nullable:true})
+    bio?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => PostCreateNestedManyWithoutUserInput, { nullable: true })
-  posts?: PostCreateNestedManyWithoutUserInput;
+    @Field(() => PostCreateNestedManyWithoutUserInput, {nullable:true})
+    posts?: PostCreateNestedManyWithoutUserInput;
 
-  @Field(() => EventCreateNestedManyWithoutUserInput, { nullable: true })
-  events?: EventCreateNestedManyWithoutUserInput;
+    @Field(() => EventCreateNestedManyWithoutUserInput, {nullable:true})
+    events?: EventCreateNestedManyWithoutUserInput;
 
-  @Field(() => CommentCreateNestedManyWithoutUserInput, { nullable: true })
-  comments?: CommentCreateNestedManyWithoutUserInput;
+    @Field(() => CommentCreateNestedManyWithoutUserInput, {nullable:true})
+    comments?: CommentCreateNestedManyWithoutUserInput;
 
-  @Field(() => NotificationCreateNestedManyWithoutUserInput, { nullable: true })
-  notifications?: NotificationCreateNestedManyWithoutUserInput;
+    @Field(() => NotificationCreateNestedManyWithoutUserInput, {nullable:true})
+    notifications?: NotificationCreateNestedManyWithoutUserInput;
 
-  @Field(() => RSVPCreateNestedManyWithoutUserInput, { nullable: true })
-  rsvps?: RSVPCreateNestedManyWithoutUserInput;
+    @Field(() => RSVPCreateNestedManyWithoutUserInput, {nullable:true})
+    rsvps?: RSVPCreateNestedManyWithoutUserInput;
+
+    @Field(() => UserRoleCreateNestedManyWithoutUserInput, {nullable:true})
+    roles?: UserRoleCreateNestedManyWithoutUserInput;
 }

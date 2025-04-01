@@ -34,26 +34,12 @@ generator markdown {
 // User Management
 // ==============================================================
 
-enum Role {
-  STUDENT
-  LECTURER
-  IT_STAFF
-  LIBRARIAN
-  FACULTY_DEAN
-  DEPARTMENT_HEAD
-  REGISTRAR
-  FINANCE_STAFF
-  ADMIN
-  SUPER_ADMIN
-}
-
 model User {
   id            Int            @id @default(autoincrement())
   email         String         @unique
   username      String         @unique
   password      String
   avatar        String?        @default("/default-avatar.png")
-  role          Role           @default(STUDENT)
   bio           String?
   posts         Post[]
   events        Event[]
@@ -61,11 +47,34 @@ model User {
   notifications Notification[]
   likes         Like[]
   rsvps         RSVP[]
+  roles     UserRole[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
   @@index([email, username])
   @@map("users")
+}
+
+model Role {
+  id          Int       @id @default(autoincrement())
+  name        String    @unique
+  description String?
+  users       UserRole[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@map("roles")
+}
+
+model UserRole {
+  userId    Int
+  roleId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  role      Role     @relation(fields: [roleId], references: [id])
+  createdAt DateTime @default(now())
+
+  @@id([userId, roleId])
+  @@map("user_roles")
 }
 
 model Category {

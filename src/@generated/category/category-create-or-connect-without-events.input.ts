@@ -7,11 +7,12 @@ import { CategoryCreateWithoutEventsInput } from './category-create-without-even
 
 @InputType()
 export class CategoryCreateOrConnectWithoutEventsInput {
-  @Field(() => CategoryWhereUniqueInput, { nullable: false })
-  @Type(() => CategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryCreateWithoutEventsInput, { nullable: false })
-  @Type(() => CategoryCreateWithoutEventsInput)
-  create!: CategoryCreateWithoutEventsInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:false})
+    @Type(() => CategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+
+    @Field(() => CategoryCreateWithoutEventsInput, {nullable:false})
+    @Type(() => CategoryCreateWithoutEventsInput)
+    create!: CategoryCreateWithoutEventsInput;
 }

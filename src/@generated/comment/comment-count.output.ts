@@ -4,6 +4,7 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class CommentCount {
-  @Field(() => Int, { nullable: false })
-  replies?: number;
+
+    @Field(() => Int, {nullable:false})
+    replies?: number;
 }

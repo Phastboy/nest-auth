@@ -10,22 +10,23 @@ import { LikeScalarFieldEnum } from './like-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstLikeArgs {
-  @Field(() => LikeWhereInput, { nullable: true })
-  @Type(() => LikeWhereInput)
-  where?: LikeWhereInput;
 
-  @Field(() => [LikeOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<LikeOrderByWithRelationInput>;
+    @Field(() => LikeWhereInput, {nullable:true})
+    @Type(() => LikeWhereInput)
+    where?: LikeWhereInput;
 
-  @Field(() => LikeWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
+    @Field(() => [LikeOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<LikeOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => LikeWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => [LikeScalarFieldEnum], { nullable: true })
-  distinct?: Array<`${LikeScalarFieldEnum}`>;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+
+    @Field(() => [LikeScalarFieldEnum], {nullable:true})
+    distinct?: Array<`${LikeScalarFieldEnum}`>;
 }
