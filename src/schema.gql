@@ -505,6 +505,11 @@ input CreatePostInput {
   isEvent: Boolean
 }
 
+input CreateRoleInput {
+  description: String
+  name: String!
+}
+
 input CreateRsvpInput {
   createdAt: DateTime
   eventId: Int!
@@ -516,7 +521,6 @@ input CreateUserInput {
   bio: String
   email: String!
   password: String!
-  role: Role
   username: String!
 }
 
@@ -545,13 +549,6 @@ input DateTimeNullableFilter {
   lte: DateTime
   not: NestedDateTimeNullableFilter
   notIn: [DateTime!]
-}
-
-input EnumRoleFilter {
-  equals: Role
-  in: [Role!]
-  not: NestedEnumRoleFilter
-  notIn: [Role!]
 }
 
 type Event {
@@ -1102,6 +1099,7 @@ type Mutation {
   createLike(createLikeInput: LikeCreateInput!): Like!
   createNotification(createNotificationInput: CreateNotificationInput!): Notification!
   createPost(createPostInput: CreatePostInput!): Post!
+  createRole(createRoleInput: CreateRoleInput!): Role!
   createRsvp(createRsvpInput: CreateRsvpInput!): RSVP!
   deleteCategory(id: Int!): Category!
   deleteComment(id: Int!): Comment!
@@ -1122,12 +1120,14 @@ type Mutation {
   register(createUserInput: CreateUserInput!): User!
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
+  removeRole(roleId: Int!): Role!
   updateCategory(id: Int!, updateCategoryInput: UpdateCategoryInput!): Category!
   updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!
   updateEvent(id: Int!, updateEventInput: UpdateEventInput!): Event!
   updateLike(updateLikeInput: UpdateLikeInput!): Like!
   updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
+  updateRole(roleId: Int!, updateRoleInput: UpdateRoleInput!): Role!
   updateRsvp(id: Int!, updateRsvpInput: UpdateRsvpInput!): RSVP!
 
   """Updates a user by ID"""
@@ -1159,13 +1159,6 @@ input NestedDateTimeNullableFilter {
   lte: DateTime
   not: NestedDateTimeNullableFilter
   notIn: [DateTime!]
-}
-
-input NestedEnumRoleFilter {
-  equals: Role
-  in: [Role!]
-  not: NestedEnumRoleFilter
-  notIn: [Role!]
 }
 
 input NestedIntFilter {
@@ -1608,6 +1601,8 @@ type Query {
   notifications: [Notification!]!
   post(id: Int!): Post!
   posts: [Post!]!
+  role(roleId: Int!): Role!
+  roles: [Role!]!
   rsvp(id: Int!): RSVP!
   rsvps: [RSVP!]!
 }
@@ -1755,17 +1750,98 @@ input RSVPWhereUniqueInput {
   userId_eventId: RSVPUserIdEventIdCompoundUniqueInput
 }
 
-enum Role {
-  ADMIN
-  DEPARTMENT_HEAD
-  FACULTY_DEAN
-  FINANCE_STAFF
-  IT_STAFF
-  LECTURER
-  LIBRARIAN
-  REGISTRAR
-  STUDENT
-  SUPER_ADMIN
+type Role {
+  _count: RoleCount!
+  createdAt: DateTime!
+  description: String
+  id: ID!
+  name: String!
+  updatedAt: DateTime!
+  users: [UserRole!]
+}
+
+type RoleAvgAggregate {
+  id: Float
+}
+
+type RoleCount {
+  users: Int!
+}
+
+type RoleCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  description: Int!
+  id: Int!
+  name: Int!
+  updatedAt: Int!
+}
+
+input RoleCreateNestedOneWithoutUsersInput {
+  connect: RoleWhereUniqueInput
+  connectOrCreate: RoleCreateOrConnectWithoutUsersInput
+  create: RoleCreateWithoutUsersInput
+}
+
+input RoleCreateOrConnectWithoutUsersInput {
+  create: RoleCreateWithoutUsersInput!
+  where: RoleWhereUniqueInput!
+}
+
+input RoleCreateWithoutUsersInput {
+  createdAt: DateTime
+  description: String
+  name: String!
+  updatedAt: DateTime
+}
+
+type RoleMaxAggregate {
+  createdAt: DateTime
+  description: String
+  id: Int
+  name: String
+  updatedAt: DateTime
+}
+
+type RoleMinAggregate {
+  createdAt: DateTime
+  description: String
+  id: Int
+  name: String
+  updatedAt: DateTime
+}
+
+input RoleScalarRelationFilter {
+  is: RoleWhereInput
+  isNot: RoleWhereInput
+}
+
+type RoleSumAggregate {
+  id: Int
+}
+
+input RoleWhereInput {
+  AND: [RoleWhereInput!]
+  NOT: [RoleWhereInput!]
+  OR: [RoleWhereInput!]
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  id: IntFilter
+  name: StringFilter
+  updatedAt: DateTimeFilter
+  users: UserRoleListRelationFilter
+}
+
+input RoleWhereUniqueInput {
+  AND: [RoleWhereInput!]
+  NOT: [RoleWhereInput!]
+  OR: [RoleWhereInput!]
+  createdAt: DateTimeFilter
+  description: StringNullableFilter
+  id: Int
+  name: String
+  updatedAt: DateTimeFilter
+  users: UserRoleListRelationFilter
 }
 
 input StringFilter {
@@ -1849,6 +1925,11 @@ input UpdatePostInput {
   isEvent: Boolean
 }
 
+input UpdateRoleInput {
+  description: String
+  name: String
+}
+
 input UpdateRsvpInput {
   createdAt: DateTime
   eventId: Int
@@ -1861,7 +1942,6 @@ input UpdateUserInput {
   bio: String
   email: String
   password: String
-  role: Role
   username: String
 }
 
@@ -1878,7 +1958,7 @@ type User {
   notifications: [Notification!]
   password: String!
   posts: [Post!]
-  role: Role!
+  roles: [UserRole!]
   rsvps: [RSVP!]
   updatedAt: DateTime!
   username: String!
@@ -1894,6 +1974,7 @@ type UserCount {
   likes: Int!
   notifications: Int!
   posts: Int!
+  roles: Int!
   rsvps: Int!
 }
 
@@ -1905,7 +1986,6 @@ type UserCountAggregate {
   email: Int!
   id: Int!
   password: Int!
-  role: Int!
   updatedAt: Int!
   username: Int!
 }
@@ -1975,7 +2055,7 @@ input UserCreateWithoutCommentsInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: Role
+  roles: UserRoleCreateNestedManyWithoutUserInput
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -1991,7 +2071,7 @@ input UserCreateWithoutEventsInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: Role
+  roles: UserRoleCreateNestedManyWithoutUserInput
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -2007,7 +2087,7 @@ input UserCreateWithoutLikesInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: Role
+  roles: UserRoleCreateNestedManyWithoutUserInput
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -2023,7 +2103,7 @@ input UserCreateWithoutPostsInput {
   likes: LikeCreateNestedManyWithoutUserInput
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
-  role: Role
+  roles: UserRoleCreateNestedManyWithoutUserInput
   rsvps: RSVPCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
@@ -2040,7 +2120,7 @@ input UserCreateWithoutRsvpsInput {
   notifications: NotificationCreateNestedManyWithoutUserInput
   password: String!
   posts: PostCreateNestedManyWithoutUserInput
-  role: Role
+  roles: UserRoleCreateNestedManyWithoutUserInput
   updatedAt: DateTime
   username: String!
 }
@@ -2052,7 +2132,6 @@ type UserMaxAggregate {
   email: String
   id: Int
   password: String
-  role: Role
   updatedAt: DateTime
   username: String
 }
@@ -2064,9 +2143,105 @@ type UserMinAggregate {
   email: String
   id: Int
   password: String
-  role: Role
   updatedAt: DateTime
   username: String
+}
+
+type UserRole {
+  createdAt: DateTime!
+  role: Role!
+  roleId: Int!
+  user: User!
+  userId: Int!
+}
+
+type UserRoleAvgAggregate {
+  roleId: Float
+  userId: Float
+}
+
+type UserRoleCountAggregate {
+  _all: Int!
+  createdAt: Int!
+  roleId: Int!
+  userId: Int!
+}
+
+input UserRoleCreateManyUserInput {
+  createdAt: DateTime
+  roleId: Int!
+}
+
+input UserRoleCreateManyUserInputEnvelope {
+  data: [UserRoleCreateManyUserInput!]!
+}
+
+input UserRoleCreateNestedManyWithoutUserInput {
+  connect: [UserRoleWhereUniqueInput!]
+  connectOrCreate: [UserRoleCreateOrConnectWithoutUserInput!]
+  create: [UserRoleCreateWithoutUserInput!]
+  createMany: UserRoleCreateManyUserInputEnvelope
+}
+
+input UserRoleCreateOrConnectWithoutUserInput {
+  create: UserRoleCreateWithoutUserInput!
+  where: UserRoleWhereUniqueInput!
+}
+
+input UserRoleCreateWithoutUserInput {
+  createdAt: DateTime
+  role: RoleCreateNestedOneWithoutUsersInput!
+}
+
+input UserRoleListRelationFilter {
+  every: UserRoleWhereInput
+  none: UserRoleWhereInput
+  some: UserRoleWhereInput
+}
+
+type UserRoleMaxAggregate {
+  createdAt: DateTime
+  roleId: Int
+  userId: Int
+}
+
+type UserRoleMinAggregate {
+  createdAt: DateTime
+  roleId: Int
+  userId: Int
+}
+
+type UserRoleSumAggregate {
+  roleId: Int
+  userId: Int
+}
+
+input UserRoleUserIdRoleIdCompoundUniqueInput {
+  roleId: Int!
+  userId: Int!
+}
+
+input UserRoleWhereInput {
+  AND: [UserRoleWhereInput!]
+  NOT: [UserRoleWhereInput!]
+  OR: [UserRoleWhereInput!]
+  createdAt: DateTimeFilter
+  role: RoleScalarRelationFilter
+  roleId: IntFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+}
+
+input UserRoleWhereUniqueInput {
+  AND: [UserRoleWhereInput!]
+  NOT: [UserRoleWhereInput!]
+  OR: [UserRoleWhereInput!]
+  createdAt: DateTimeFilter
+  role: RoleScalarRelationFilter
+  roleId: IntFilter
+  user: UserScalarRelationFilter
+  userId: IntFilter
+  userId_roleId: UserRoleUserIdRoleIdCompoundUniqueInput
 }
 
 input UserScalarRelationFilter {
@@ -2093,7 +2268,7 @@ input UserWhereInput {
   notifications: NotificationListRelationFilter
   password: StringFilter
   posts: PostListRelationFilter
-  role: EnumRoleFilter
+  roles: UserRoleListRelationFilter
   rsvps: RSVPListRelationFilter
   updatedAt: DateTimeFilter
   username: StringFilter
@@ -2114,7 +2289,7 @@ input UserWhereUniqueInput {
   notifications: NotificationListRelationFilter
   password: StringFilter
   posts: PostListRelationFilter
-  role: EnumRoleFilter
+  roles: UserRoleListRelationFilter
   rsvps: RSVPListRelationFilter
   updatedAt: DateTimeFilter
   username: String
