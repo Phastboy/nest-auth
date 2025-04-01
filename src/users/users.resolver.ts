@@ -5,6 +5,9 @@ import { UpdateUserInput } from './types/update-user.input';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { AppLogger } from 'src/app.logger';
 import { UserResponse } from './types/users.types';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { AuthenticatedUser } from 'src/auth/types/auth.types';
+import { ForbiddenException } from '@nestjs/common';
 
 /**
  * @class UsersResolver
@@ -92,19 +95,39 @@ export class UsersResolver {
     description: 'Deletes a user by ID',
   })
   async deleteUser(
-    @Args('id', { type: () => Int }) id: number,
+    @Args('userId', { type: () => Int }) userId: number,
+    @CurrentUser() currentUser: AuthenticatedUser,
   ): Promise<UserResponse> {
+    try{
+    if (currentUser.userId !== userId) {
+      throw new ForbiddenException(
+        'You are not allowed to delete this user',
+        {
+          description: 'User is trying to delete another user, you can only delete your own account',
+        }
+      );
+    }
     this.logger.logDebug(`removing user ...`, {
       metadata: {
-        id,
+        userId,
       },
     });
-    const user = await this.usersService.deleteUser(id);
+    const user = await this.usersService.deleteUser(userId);
     this.logger.info(`user removed successfully`, {
       metadata: {
         user,
       },
     });
     return user;
+  }catch (error) {
+    this.handler.handleError(error, {
+      operation: 'deleteUser',
+      service: 'UsersService',
+      metadata: {
+        userId,
+        currentUser,
+      },
+    });
   }
+}
 }
