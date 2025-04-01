@@ -6,16 +6,16 @@ import {
 import * as argon from 'argon2';
 import { Role } from '@prisma/client';
 import { PrismaService } from 'nestjs-prisma';
-import { CreateUserInput } from './dto/create-user.input';
+import { CreateUserInput } from './types/create-user.input';
 import {
   DEFAULT_USER_INCLUDES,
   PrivilegedRole,
   UserResponse,
-} from './users.types';
+} from './types/users.types';
 import { AppLogger } from 'src/app.logger';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { User } from '@prisma/client';
-import { UpdateUserInput } from './dto/update-user.input';
+import { UpdateUserInput } from './types/update-user.input';
 
 /**
  * @class UsersService

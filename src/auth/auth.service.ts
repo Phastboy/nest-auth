@@ -1,7 +1,7 @@
 import { Injectable, UnauthorizedException, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload, TokenPair } from 'src/auth/types/auth.types';
-import { UserWithoutPassword } from 'src/users/users.types';
+import { UserWithoutPassword } from 'src/users/types/users.types';
 import { UsersService } from 'src/users/users.service';
 import * as argon from 'argon2';
 import { LoginInput } from './types/login.input';

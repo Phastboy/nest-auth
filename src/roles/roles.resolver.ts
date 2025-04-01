@@ -3,6 +3,7 @@ import { RolesService } from './roles.service';
 import { Role } from './entities/role.entity';
 import { CreateRoleInput } from './types/create-role.input';
 import { UpdateRoleInput } from './types/update-role.input';
+import { UserRole } from 'src/@generated';
 
 /**
  * @class RolesResolver
@@ -37,8 +38,8 @@ export class RolesResolver {
    * @returns {Promise<Role>} The role with the specified ID.
    */
   @Query(() => Role, { name: 'role' })
-  async findOneRole(@Args('roleId', { type: () => Int }) roleId: number) {
-    return this.rolesService.findOneRole(roleId);
+  async findOneRole(@Args('roleName', { type: () => Int }) roleName: string) {
+    return this.rolesService.findOneRole(roleName);
   }
 
   /**
@@ -61,7 +62,48 @@ export class RolesResolver {
    * @returns {Promise<Role>} The removed role.
    */
   @Mutation(() => Role)
-  async removeRole(@Args('roleId', { type: () => Int }) roleId: number) {
-    return await this.rolesService.removeRole(roleId);
+  async removeRole(@Args('roleName', { type: () => Int }) roleName: string) {
+    return await this.rolesService.removeRole(roleName);
+  }
+
+  /**
+   * Assigns a role to a user.
+   * @param {number} userId - The ID of the user.
+   * @param {string} roleName - The name of the role to assign.
+   * @returns {Promise<UserRole>} The assigned role.
+   */
+  @Mutation(() => Role)
+  async assignRoleToUser(
+    @Args('userId', { type: () => Int }) userId: number,
+    @Args('roleName') roleName: string
+  ) {
+    return await this.rolesService.assignRoleToUser(userId, roleName);
+  }
+
+  /**
+   * Removes a role from a user.
+   * @param {number} userId - The ID of the user.
+   * @param {string} roleName - The name of the role to remove.
+   * @returns {Promise<UserRole>} The removed role.
+   */
+  @Mutation(() => UserRole)
+  async removeRoleFromUser(
+    @Args('userId', { type: () => Int }) userId: number,
+    @Args('roleName') roleName: string
+  ): Promise<UserRole> {
+    return await this.rolesService.removeRoleFromUser(userId, roleName);
+  }
+
+  /**
+   * Retrieves all roles assigned to a user.
+   * @param {number} userId - The ID of the user.
+   * @returns {Promise<Role[]>} A list of roles assigned to the user.
+   */
+  @Query(() => [Role], { name: 'userRoles' })
+  async getUserRoles(@Args('userId', { type: () => Int }) userId: number): Promise<Role[]> {
+    if (!userId) {
+      throw new Error('User ID is required');
+    }
+    return await this.rolesService.getUserRoles(userId);
   }
 }
