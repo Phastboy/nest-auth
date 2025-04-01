@@ -28,11 +28,6 @@ export class JwtPayload {
     nullable: false,
   })
   sub: number;
-
-  @Field(() => Role, {
-    nullable: false,
-  })
-  role: `${Role}`;
 }
 
 @ObjectType()
@@ -46,11 +41,6 @@ export class AuthenticatedUser {
     nullable: false,
   })
   email: string;
-
-  @Field(() => Role, {
-    nullable: false,
-  })
-  role: `${Role}`;
 }
 
 @ObjectType()
