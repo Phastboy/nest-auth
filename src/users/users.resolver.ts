@@ -98,36 +98,37 @@ export class UsersResolver {
     @Args('userId', { type: () => Int }) userId: number,
     @CurrentUser() currentUser: AuthenticatedUser,
   ): Promise<UserResponse> {
-    try{
-    if (currentUser.userId !== userId) {
-      throw new ForbiddenException(
-        'You are not allowed to delete this user',
-        {
-          description: 'User is trying to delete another user, you can only delete your own account',
-        }
-      );
+    try {
+      if (currentUser.userId !== userId) {
+        throw new ForbiddenException(
+          'You are not allowed to delete this user',
+          {
+            description:
+              'User is trying to delete another user, you can only delete your own account',
+          },
+        );
+      }
+      this.logger.logDebug(`removing user ...`, {
+        metadata: {
+          userId,
+        },
+      });
+      const user = await this.usersService.deleteUser(userId);
+      this.logger.info(`user removed successfully`, {
+        metadata: {
+          user,
+        },
+      });
+      return user;
+    } catch (error) {
+      this.handler.handleError(error, {
+        operation: 'deleteUser',
+        service: 'UsersService',
+        metadata: {
+          userId,
+          currentUser,
+        },
+      });
     }
-    this.logger.logDebug(`removing user ...`, {
-      metadata: {
-        userId,
-      },
-    });
-    const user = await this.usersService.deleteUser(userId);
-    this.logger.info(`user removed successfully`, {
-      metadata: {
-        user,
-      },
-    });
-    return user;
-  }catch (error) {
-    this.handler.handleError(error, {
-      operation: 'deleteUser',
-      service: 'UsersService',
-      metadata: {
-        userId,
-        currentUser,
-      },
-    });
   }
-}
 }

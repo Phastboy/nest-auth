@@ -14,35 +14,34 @@ import { EventMaxAggregateInput } from './event-max-aggregate.input';
 
 @ArgsType()
 export class EventAggregateArgs {
+  @Field(() => EventWhereInput, { nullable: true })
+  @Type(() => EventWhereInput)
+  where?: EventWhereInput;
 
-    @Field(() => EventWhereInput, {nullable:true})
-    @Type(() => EventWhereInput)
-    where?: EventWhereInput;
+  @Field(() => [EventOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<EventOrderByWithRelationInput>;
 
-    @Field(() => [EventOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<EventOrderByWithRelationInput>;
+  @Field(() => EventWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => EventCountAggregateInput, { nullable: true })
+  _count?: EventCountAggregateInput;
 
-    @Field(() => EventCountAggregateInput, {nullable:true})
-    _count?: EventCountAggregateInput;
+  @Field(() => EventAvgAggregateInput, { nullable: true })
+  _avg?: EventAvgAggregateInput;
 
-    @Field(() => EventAvgAggregateInput, {nullable:true})
-    _avg?: EventAvgAggregateInput;
+  @Field(() => EventSumAggregateInput, { nullable: true })
+  _sum?: EventSumAggregateInput;
 
-    @Field(() => EventSumAggregateInput, {nullable:true})
-    _sum?: EventSumAggregateInput;
+  @Field(() => EventMinAggregateInput, { nullable: true })
+  _min?: EventMinAggregateInput;
 
-    @Field(() => EventMinAggregateInput, {nullable:true})
-    _min?: EventMinAggregateInput;
-
-    @Field(() => EventMaxAggregateInput, {nullable:true})
-    _max?: EventMaxAggregateInput;
+  @Field(() => EventMaxAggregateInput, { nullable: true })
+  _max?: EventMaxAggregateInput;
 }

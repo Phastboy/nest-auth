@@ -38,7 +38,6 @@ export class UsersService {
    */
   async createUser(createUserInput: CreateUserInput): Promise<UserResponse> {
     try {
-
       // Hash password before storing
       const hashedPassword = await argon.hash(createUserInput.password);
 

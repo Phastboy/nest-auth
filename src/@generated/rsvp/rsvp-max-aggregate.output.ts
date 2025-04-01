@@ -4,19 +4,18 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class RSVPMaxAggregate {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => Int, { nullable: true })
+  userId?: number;
 
-    @Field(() => Int, {nullable:true})
-    userId?: number;
+  @Field(() => Int, { nullable: true })
+  eventId?: number;
 
-    @Field(() => Int, {nullable:true})
-    eventId?: number;
+  @Field(() => String, { nullable: true })
+  status?: string;
 
-    @Field(() => String, {nullable:true})
-    status?: string;
-
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 }

@@ -6,11 +6,10 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class DeleteManyLikeArgs {
+  @Field(() => LikeWhereInput, { nullable: true })
+  @Type(() => LikeWhereInput)
+  where?: LikeWhereInput;
 
-    @Field(() => LikeWhereInput, {nullable:true})
-    @Type(() => LikeWhereInput)
-    where?: LikeWhereInput;
-
-    @Field(() => Int, {nullable:true})
-    limit?: number;
+  @Field(() => Int, { nullable: true })
+  limit?: number;
 }

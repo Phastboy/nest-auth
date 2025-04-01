@@ -6,12 +6,11 @@ import { PostUpdateWithoutLikesInput } from './post-update-without-likes.input';
 
 @InputType()
 export class PostUpdateToOneWithWhereWithoutLikesInput {
+  @Field(() => PostWhereInput, { nullable: true })
+  @Type(() => PostWhereInput)
+  where?: PostWhereInput;
 
-    @Field(() => PostWhereInput, {nullable:true})
-    @Type(() => PostWhereInput)
-    where?: PostWhereInput;
-
-    @Field(() => PostUpdateWithoutLikesInput, {nullable:false})
-    @Type(() => PostUpdateWithoutLikesInput)
-    data!: PostUpdateWithoutLikesInput;
+  @Field(() => PostUpdateWithoutLikesInput, { nullable: false })
+  @Type(() => PostUpdateWithoutLikesInput)
+  data!: PostUpdateWithoutLikesInput;
 }

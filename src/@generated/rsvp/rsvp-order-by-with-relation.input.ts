@@ -6,25 +6,24 @@ import { EventOrderByWithRelationInput } from '../event/event-order-by-with-rela
 
 @InputType()
 export class RSVPOrderByWithRelationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  userId?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    userId?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  eventId?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    eventId?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  status?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    status?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: `${SortOrder}`;
+  @Field(() => UserOrderByWithRelationInput, { nullable: true })
+  user?: UserOrderByWithRelationInput;
 
-    @Field(() => UserOrderByWithRelationInput, {nullable:true})
-    user?: UserOrderByWithRelationInput;
-
-    @Field(() => EventOrderByWithRelationInput, {nullable:true})
-    event?: EventOrderByWithRelationInput;
+  @Field(() => EventOrderByWithRelationInput, { nullable: true })
+  event?: EventOrderByWithRelationInput;
 }

@@ -8,34 +8,33 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class NotificationScalarWhereInput {
+  @Field(() => [NotificationScalarWhereInput], { nullable: true })
+  AND?: Array<NotificationScalarWhereInput>;
 
-    @Field(() => [NotificationScalarWhereInput], {nullable:true})
-    AND?: Array<NotificationScalarWhereInput>;
+  @Field(() => [NotificationScalarWhereInput], { nullable: true })
+  OR?: Array<NotificationScalarWhereInput>;
 
-    @Field(() => [NotificationScalarWhereInput], {nullable:true})
-    OR?: Array<NotificationScalarWhereInput>;
+  @Field(() => [NotificationScalarWhereInput], { nullable: true })
+  NOT?: Array<NotificationScalarWhereInput>;
 
-    @Field(() => [NotificationScalarWhereInput], {nullable:true})
-    NOT?: Array<NotificationScalarWhereInput>;
+  @Field(() => IntFilter, { nullable: true })
+  id?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    id?: IntFilter;
+  @Field(() => IntFilter, { nullable: true })
+  userId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    userId?: IntFilter;
+  @Field(() => StringFilter, { nullable: true })
+  type?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    type?: StringFilter;
+  @Field(() => StringFilter, { nullable: true })
+  content?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    content?: StringFilter;
+  @Field(() => BoolFilter, { nullable: true })
+  isRead?: BoolFilter;
 
-    @Field(() => BoolFilter, {nullable:true})
-    isRead?: BoolFilter;
+  @Field(() => IntNullableFilter, { nullable: true })
+  referenceId?: IntNullableFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    referenceId?: IntNullableFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 }

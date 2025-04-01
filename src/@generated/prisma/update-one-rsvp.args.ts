@@ -6,12 +6,11 @@ import { RSVPWhereUniqueInput } from '../rsvp/rsvp-where-unique.input';
 
 @ArgsType()
 export class UpdateOneRsvpArgs {
+  @Field(() => RSVPUpdateInput, { nullable: false })
+  @Type(() => RSVPUpdateInput)
+  data!: RSVPUpdateInput;
 
-    @Field(() => RSVPUpdateInput, {nullable:false})
-    @Type(() => RSVPUpdateInput)
-    data!: RSVPUpdateInput;
-
-    @Field(() => RSVPWhereUniqueInput, {nullable:false})
-    @Type(() => RSVPWhereUniqueInput)
-    where!: RSVPWhereUniqueInput;
+  @Field(() => RSVPWhereUniqueInput, { nullable: false })
+  @Type(() => RSVPWhereUniqueInput)
+  where!: RSVPWhereUniqueInput;
 }

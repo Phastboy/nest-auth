@@ -11,32 +11,33 @@ import { EventUpdateToOneWithWhereWithoutCommentsInput } from './event-update-to
 
 @InputType()
 export class EventUpdateOneWithoutCommentsNestedInput {
+  @Field(() => EventCreateWithoutCommentsInput, { nullable: true })
+  @Type(() => EventCreateWithoutCommentsInput)
+  create?: EventCreateWithoutCommentsInput;
 
-    @Field(() => EventCreateWithoutCommentsInput, {nullable:true})
-    @Type(() => EventCreateWithoutCommentsInput)
-    create?: EventCreateWithoutCommentsInput;
+  @Field(() => EventCreateOrConnectWithoutCommentsInput, { nullable: true })
+  @Type(() => EventCreateOrConnectWithoutCommentsInput)
+  connectOrCreate?: EventCreateOrConnectWithoutCommentsInput;
 
-    @Field(() => EventCreateOrConnectWithoutCommentsInput, {nullable:true})
-    @Type(() => EventCreateOrConnectWithoutCommentsInput)
-    connectOrCreate?: EventCreateOrConnectWithoutCommentsInput;
+  @Field(() => EventUpsertWithoutCommentsInput, { nullable: true })
+  @Type(() => EventUpsertWithoutCommentsInput)
+  upsert?: EventUpsertWithoutCommentsInput;
 
-    @Field(() => EventUpsertWithoutCommentsInput, {nullable:true})
-    @Type(() => EventUpsertWithoutCommentsInput)
-    upsert?: EventUpsertWithoutCommentsInput;
+  @Field(() => EventWhereInput, { nullable: true })
+  @Type(() => EventWhereInput)
+  disconnect?: EventWhereInput;
 
-    @Field(() => EventWhereInput, {nullable:true})
-    @Type(() => EventWhereInput)
-    disconnect?: EventWhereInput;
+  @Field(() => EventWhereInput, { nullable: true })
+  @Type(() => EventWhereInput)
+  delete?: EventWhereInput;
 
-    @Field(() => EventWhereInput, {nullable:true})
-    @Type(() => EventWhereInput)
-    delete?: EventWhereInput;
+  @Field(() => EventWhereUniqueInput, { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
-
-    @Field(() => EventUpdateToOneWithWhereWithoutCommentsInput, {nullable:true})
-    @Type(() => EventUpdateToOneWithWhereWithoutCommentsInput)
-    update?: EventUpdateToOneWithWhereWithoutCommentsInput;
+  @Field(() => EventUpdateToOneWithWhereWithoutCommentsInput, {
+    nullable: true,
+  })
+  @Type(() => EventUpdateToOneWithWhereWithoutCommentsInput)
+  update?: EventUpdateToOneWithWhereWithoutCommentsInput;
 }

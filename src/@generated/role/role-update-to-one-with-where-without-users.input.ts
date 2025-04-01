@@ -6,12 +6,11 @@ import { RoleUpdateWithoutUsersInput } from './role-update-without-users.input';
 
 @InputType()
 export class RoleUpdateToOneWithWhereWithoutUsersInput {
+  @Field(() => RoleWhereInput, { nullable: true })
+  @Type(() => RoleWhereInput)
+  where?: RoleWhereInput;
 
-    @Field(() => RoleWhereInput, {nullable:true})
-    @Type(() => RoleWhereInput)
-    where?: RoleWhereInput;
-
-    @Field(() => RoleUpdateWithoutUsersInput, {nullable:false})
-    @Type(() => RoleUpdateWithoutUsersInput)
-    data!: RoleUpdateWithoutUsersInput;
+  @Field(() => RoleUpdateWithoutUsersInput, { nullable: false })
+  @Type(() => RoleUpdateWithoutUsersInput)
+  data!: RoleUpdateWithoutUsersInput;
 }

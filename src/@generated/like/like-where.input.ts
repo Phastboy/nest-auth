@@ -9,37 +9,36 @@ import { EventNullableScalarRelationFilter } from '../event/event-nullable-scala
 
 @InputType()
 export class LikeWhereInput {
+  @Field(() => [LikeWhereInput], { nullable: true })
+  AND?: Array<LikeWhereInput>;
 
-    @Field(() => [LikeWhereInput], {nullable:true})
-    AND?: Array<LikeWhereInput>;
+  @Field(() => [LikeWhereInput], { nullable: true })
+  OR?: Array<LikeWhereInput>;
 
-    @Field(() => [LikeWhereInput], {nullable:true})
-    OR?: Array<LikeWhereInput>;
+  @Field(() => [LikeWhereInput], { nullable: true })
+  NOT?: Array<LikeWhereInput>;
 
-    @Field(() => [LikeWhereInput], {nullable:true})
-    NOT?: Array<LikeWhereInput>;
+  @Field(() => IntFilter, { nullable: true })
+  id?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    id?: IntFilter;
+  @Field(() => IntFilter, { nullable: true })
+  userId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    userId?: IntFilter;
+  @Field(() => IntNullableFilter, { nullable: true })
+  postId?: IntNullableFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    postId?: IntNullableFilter;
+  @Field(() => IntNullableFilter, { nullable: true })
+  eventId?: IntNullableFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    eventId?: IntNullableFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => UserScalarRelationFilter, { nullable: true })
+  user?: UserScalarRelationFilter;
 
-    @Field(() => UserScalarRelationFilter, {nullable:true})
-    user?: UserScalarRelationFilter;
+  @Field(() => PostNullableScalarRelationFilter, { nullable: true })
+  post?: PostNullableScalarRelationFilter;
 
-    @Field(() => PostNullableScalarRelationFilter, {nullable:true})
-    post?: PostNullableScalarRelationFilter;
-
-    @Field(() => EventNullableScalarRelationFilter, {nullable:true})
-    event?: EventNullableScalarRelationFilter;
+  @Field(() => EventNullableScalarRelationFilter, { nullable: true })
+  event?: EventNullableScalarRelationFilter;
 }

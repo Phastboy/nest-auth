@@ -12,8 +12,9 @@ import { ErrorHandler } from 'src/error-handler/error.util';
 @Injectable()
 export class RolesService {
   constructor(
-    private readonly prismaService: PrismaService, 
-    private readonly handler: ErrorHandler) {}
+    private readonly prismaService: PrismaService,
+    private readonly handler: ErrorHandler,
+  ) {}
 
   /**
    * @method createRole
@@ -23,21 +24,20 @@ export class RolesService {
    */
   async createRole(createRoleInput: CreateRoleInput): Promise<Role> {
     try {
-    return this.prismaService.role.create({
-      data: {
-        ...createRoleInput,
-      },
-    });
-  } catch (error) {
-    this.handler.handleError(error,
-      {
+      return this.prismaService.role.create({
+        data: {
+          ...createRoleInput,
+        },
+      });
+    } catch (error) {
+      this.handler.handleError(error, {
         service: 'RolesService',
         method: 'createRole',
         operation: 'createRole',
         metadata: {
           input: createRoleInput,
         },
-      })
+      });
     }
   }
 
@@ -50,12 +50,11 @@ export class RolesService {
     try {
       return this.prismaService.role.findMany();
     } catch (error) {
-      this.handler.handleError(error,
-        {
-          service: 'RolesService',
-          method: 'findAllRoles',
-          operation: 'findAllRoles',
-        })
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'findAllRoles',
+        operation: 'findAllRoles',
+      });
     }
   }
 
@@ -75,15 +74,14 @@ export class RolesService {
       }
       return role;
     } catch (error) {
-      this.handler.handleError(error,
-        {
-          service: 'RolesService',
-          method: 'findOneRole',
-          operation: 'findOneRole',
-          metadata: {
-            role: roleName,
-          },
-        })
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'findOneRole',
+        operation: 'findOneRole',
+        metadata: {
+          role: roleName,
+        },
+      });
     }
   }
 
@@ -96,7 +94,7 @@ export class RolesService {
    */
   async updateRole(
     id: number,
-    updateRoleInput: UpdateRoleInput
+    updateRoleInput: UpdateRoleInput,
   ): Promise<Role> {
     try {
       return this.prismaService.role.update({
@@ -106,16 +104,15 @@ export class RolesService {
         },
       });
     } catch (error) {
-      this.handler.handleError(error,
-        {
-          service: 'RolesService',
-          method: 'updateRole',
-          operation: 'updateRole',
-          metadata: {
-            id,
-            input: updateRoleInput,
-          },
-        })
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'updateRole',
+        operation: 'updateRole',
+        metadata: {
+          id,
+          input: updateRoleInput,
+        },
+      });
     }
   }
 
@@ -131,16 +128,14 @@ export class RolesService {
         where: { name: roleName },
       });
     } catch (error) {
-      this.handler.handleError(error,
-        {
-          service: 'RolesService',
-          method: 'removeRole',
-          operation: 'removeRole',
-          metadata: {
-            roleName,
-          },
-        }
-      )
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'removeRole',
+        operation: 'removeRole',
+        metadata: {
+          roleName,
+        },
+      });
     }
   }
 
@@ -151,10 +146,7 @@ export class RolesService {
    * @param {string} roleName - The name of the role to assign
    * @returns {Promise<UserRole>} - A promise that resolves to the assigned role
    */
-  async assignRoleToUser(
-    userId: number,
-    roleName: string
-  ): Promise<UserRole> {
+  async assignRoleToUser(userId: number, roleName: string): Promise<UserRole> {
     try {
       const role = await this.findOneRole(roleName);
 
@@ -168,17 +160,15 @@ export class RolesService {
         },
       });
     } catch (error) {
-      this.handler.handleError(error,
-        {
-          service: 'RolesService',
-          method: 'assignRoleToUser',
-          operation: 'assignRoleToUser',
-          metadata: {
-            userId,
-            roleName,
-          },
-        }
-      );
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'assignRoleToUser',
+        operation: 'assignRoleToUser',
+        metadata: {
+          userId,
+          roleName,
+        },
+      });
     }
   }
 
@@ -191,7 +181,7 @@ export class RolesService {
    */
   async removeRoleFromUser(
     userId: number,
-    roleName: string
+    roleName: string,
   ): Promise<UserRole> {
     try {
       const role = await this.findOneRole(roleName);
@@ -205,17 +195,15 @@ export class RolesService {
         },
       });
     } catch (error) {
-      this.handler.handleError(error,
-        {
-          service: 'RolesService',
-          method: 'removeRoleFromUser',
-          operation: 'removeRoleFromUser',
-          metadata: {
-            userId,
-            roleName,
-          },
-        }
-      );
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'removeRoleFromUser',
+        operation: 'removeRoleFromUser',
+        metadata: {
+          userId,
+          roleName,
+        },
+      });
     }
   }
 
@@ -236,16 +224,14 @@ export class RolesService {
 
       return userRoles.map((userRole) => userRole.role);
     } catch (error) {
-      this.handler.handleError(error,
-        {
-          service: 'RolesService',
-          method: 'getUserRoles',
-          operation: 'getUserRoles',
-          metadata: {
-            userId,
-          },
-        }
-      );
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'getUserRoles',
+        operation: 'getUserRoles',
+        metadata: {
+          userId,
+        },
+      });
     }
   }
 }

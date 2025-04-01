@@ -10,24 +10,23 @@ import { EventUpdateToOneWithWhereWithoutRsvpsInput } from './event-update-to-on
 
 @InputType()
 export class EventUpdateOneRequiredWithoutRsvpsNestedInput {
+  @Field(() => EventCreateWithoutRsvpsInput, { nullable: true })
+  @Type(() => EventCreateWithoutRsvpsInput)
+  create?: EventCreateWithoutRsvpsInput;
 
-    @Field(() => EventCreateWithoutRsvpsInput, {nullable:true})
-    @Type(() => EventCreateWithoutRsvpsInput)
-    create?: EventCreateWithoutRsvpsInput;
+  @Field(() => EventCreateOrConnectWithoutRsvpsInput, { nullable: true })
+  @Type(() => EventCreateOrConnectWithoutRsvpsInput)
+  connectOrCreate?: EventCreateOrConnectWithoutRsvpsInput;
 
-    @Field(() => EventCreateOrConnectWithoutRsvpsInput, {nullable:true})
-    @Type(() => EventCreateOrConnectWithoutRsvpsInput)
-    connectOrCreate?: EventCreateOrConnectWithoutRsvpsInput;
+  @Field(() => EventUpsertWithoutRsvpsInput, { nullable: true })
+  @Type(() => EventUpsertWithoutRsvpsInput)
+  upsert?: EventUpsertWithoutRsvpsInput;
 
-    @Field(() => EventUpsertWithoutRsvpsInput, {nullable:true})
-    @Type(() => EventUpsertWithoutRsvpsInput)
-    upsert?: EventUpsertWithoutRsvpsInput;
+  @Field(() => EventWhereUniqueInput, { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    connect?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
-
-    @Field(() => EventUpdateToOneWithWhereWithoutRsvpsInput, {nullable:true})
-    @Type(() => EventUpdateToOneWithWhereWithoutRsvpsInput)
-    update?: EventUpdateToOneWithWhereWithoutRsvpsInput;
+  @Field(() => EventUpdateToOneWithWhereWithoutRsvpsInput, { nullable: true })
+  @Type(() => EventUpdateToOneWithWhereWithoutRsvpsInput)
+  update?: EventUpdateToOneWithWhereWithoutRsvpsInput;
 }

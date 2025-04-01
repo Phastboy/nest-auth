@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class EventCreateManyUserInputEnvelope {
-
-    @Field(() => [EventCreateManyUserInput], {nullable:false})
-    @Type(() => EventCreateManyUserInput)
-    data!: Array<EventCreateManyUserInput>;
+  @Field(() => [EventCreateManyUserInput], { nullable: false })
+  @Type(() => EventCreateManyUserInput)
+  data!: Array<EventCreateManyUserInput>;
 }

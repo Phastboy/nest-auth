@@ -8,31 +8,30 @@ import { EventOrderByRelationAggregateInput } from '../event/event-order-by-rela
 
 @InputType()
 export class CategoryOrderByWithRelationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  name?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    name?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  slug?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    slug?: `${SortOrder}`;
+  @Field(() => SortOrderInput, { nullable: true })
+  parentId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    parentId?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: `${SortOrder}`;
+  @Field(() => CategoryOrderByWithRelationInput, { nullable: true })
+  parent?: CategoryOrderByWithRelationInput;
 
-    @Field(() => CategoryOrderByWithRelationInput, {nullable:true})
-    parent?: CategoryOrderByWithRelationInput;
+  @Field(() => CategoryOrderByRelationAggregateInput, { nullable: true })
+  children?: CategoryOrderByRelationAggregateInput;
 
-    @Field(() => CategoryOrderByRelationAggregateInput, {nullable:true})
-    children?: CategoryOrderByRelationAggregateInput;
+  @Field(() => PostOrderByRelationAggregateInput, { nullable: true })
+  posts?: PostOrderByRelationAggregateInput;
 
-    @Field(() => PostOrderByRelationAggregateInput, {nullable:true})
-    posts?: PostOrderByRelationAggregateInput;
-
-    @Field(() => EventOrderByRelationAggregateInput, {nullable:true})
-    events?: EventOrderByRelationAggregateInput;
+  @Field(() => EventOrderByRelationAggregateInput, { nullable: true })
+  events?: EventOrderByRelationAggregateInput;
 }
