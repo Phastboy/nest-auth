@@ -137,6 +137,14 @@ input CategoryCreateWithoutPostsInput {
   slug: String!
 }
 
+input CategoryIncludeInput {
+  _count: Boolean
+  children: Boolean
+  events: Boolean
+  parent: Boolean
+  posts: Boolean
+}
+
 input CategoryListRelationFilter {
   every: CategoryWhereInput
   none: CategoryWhereInput
@@ -1093,7 +1101,8 @@ input LoginInput {
 }
 
 type Mutation {
-  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  """Create a new category"""
+  createCategory(data: CreateCategoryInput!, include: CategoryIncludeInput): Category!
   createComment(createCommentInput: CreateCommentInput!): Comment!
   createEvent(createEventInput: CreateEventInput!): Event!
   createLike(createLikeInput: LikeCreateInput!): Like!
@@ -1101,7 +1110,7 @@ type Mutation {
   createPost(createPostInput: CreatePostInput!): Post!
   createRole(createRoleInput: CreateRoleInput!): Role!
   createRsvp(createRsvpInput: CreateRsvpInput!): RSVP!
-  deleteCategory(id: Int!): Category!
+  deleteCategory(categoryId: Int!, include: CategoryIncludeInput): Category!
   deleteComment(id: Int!): Comment!
   deleteEvent(id: Int!): Event!
   deletePost(id: Int!): Post!
@@ -1121,7 +1130,7 @@ type Mutation {
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
   removeRole(roleId: Int!): Role!
-  updateCategory(id: Int!, updateCategoryInput: UpdateCategoryInput!): Category!
+  updateCategory(categoryId: Int!, data: UpdateCategoryInput!, include: CategoryIncludeInput): Category!
   updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!
   updateEvent(id: Int!, updateEventInput: UpdateEventInput!): Event!
   updateLike(updateLikeInput: UpdateLikeInput!): Like!
@@ -1581,8 +1590,11 @@ input PostWhereUniqueInput {
 }
 
 type Query {
-  categories: [Category!]!
-  category(id: Int!): Category!
+  """Get all categories"""
+  categories(include: CategoryIncludeInput): [Category!]!
+
+  """Get a category by ID"""
+  category(categoryId: Int!, include: CategoryIncludeInput): Category!
   comment(id: Int!): Comment!
   comments: [Comment!]!
   event(id: Int!): Event!

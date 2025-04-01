@@ -1,67 +1,169 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { PrismaService } from 'nestjs-prisma';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
-import { PrismaService } from 'nestjs-prisma';
-import { Category } from 'src/@generated';
+import { Prisma } from '@prisma/client';
+import { CategoryIncludeInput } from './types/category-include.input';
+import { ErrorHandler } from 'src/error-handler/error.util';
+import { CategoryWithDefaultRelations, DEFAULT_CATEGORY_TO_BE_INCLUDED } from './types/categories.types';
 
 @Injectable()
 export class CategoriesService {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+  private readonly handler: ErrorHandler) {}
 
-  private readonly categoryRelations = {
-    include: {
-      posts: true,
-      events: true,
-      parent: true,
-      children: true,
-    },
-  };
+  /**
+   * Helper function to merge default includes with optional ones
+   */
+  private buildIncludeObject(includeInput?: CategoryIncludeInput): Prisma.CategoryInclude {
+    return {
+      ...DEFAULT_CATEGORY_TO_BE_INCLUDED,
+      ...(includeInput && {
+        parent: includeInput.parent ?? undefined,
+        children: includeInput.children ?? undefined,
+        posts: includeInput.posts ?? undefined,
+        events: includeInput.events ?? undefined,
+        _count: includeInput._count ?? undefined,
+      }),
+    };
+  }
 
+  /**
+   * Create a new category
+   * @param {CategoryIncludeInput} newCategoryData - The data for the new category
+   * @param {CategoryIncludeInput} includeInput - Optional includes for the category
+   * @returns {CategoryWithDefaultRelations} The created category with default relations
+   * @throws any errors that occur during the creation process
+   */
   async createCategory(
     newCategoryData: CreateCategoryInput,
-  ): Promise<Category> {
-    return this.prismaService.category.create({
-      data: {
-        ...newCategoryData,
-      },
-      ...this.categoryRelations,
-    });
-  }
-
-  async getAllCategories(): Promise<Category[]> {
-    return this.prismaService.category.findMany({
-      ...this.categoryRelations,
-    });
-  }
-
-  async getCategoryById(categoryId: number): Promise<Category> {
-    const category = await this.prismaService.category.findUnique({
-      where: { id: categoryId },
-      ...this.categoryRelations,
-    });
-
-    if (!category) {
-      throw new NotFoundException(`Category with ID ${categoryId} not found`);
+    includeInput?: CategoryIncludeInput
+  ): Promise<CategoryWithDefaultRelations> {
+    try {
+      return await this.prismaService.category.create({
+        data: newCategoryData,
+        include: this.buildIncludeObject(includeInput),
+      });
+    } catch (error) {
+      this.handler.handleError(error,{
+        operation: 'createCategory',
+        service: 'CategoriesService',
+        metadata: {
+          input: newCategoryData,
+        },
+      });
     }
-
-    return category;
   }
 
+  /**
+   * Get all categories with optional includes
+   * @param {CategoryIncludeInput} includeInput - Optional includes for the categories
+   * @returns {Promise<CategoryWithDefaultRelations[]>} The list of categories with default relations
+   * @throws any errors that occur during the retrieval process
+   */
+  async getAllCategories(includeInput?: CategoryIncludeInput): Promise<CategoryWithDefaultRelations[]> {
+    try {
+      return await this.prismaService.category.findMany({
+        include: this.buildIncludeObject(includeInput),
+      });
+    } catch (error) {
+      this.handler.handleError(error,{
+        operation: 'getAllCategories',
+        service: 'CategoriesService',
+      });
+    }
+  }
+
+  /**
+   * Get a category by ID with optional includes
+   * @param {number} categoryId - The ID of the category to retrieve
+   * @param {CategoryIncludeInput} includeInput - Optional includes for the category
+   * @returns {Promise<CategoryWithDefaultRelations>} The category with default relations
+   * @throws {NotFoundException} if the category is not found
+   */
+  async getCategory(categoryId: number, includeInput?: CategoryIncludeInput): Promise<CategoryWithDefaultRelations> {
+    try {
+      const category= await this.prismaService.category.findUnique({
+        where: { id: categoryId },
+        include: this.buildIncludeObject(includeInput),
+      });
+
+      if (!category) {
+        throw new NotFoundException(`Category with ID ${categoryId} not found`);
+      }
+      return category;
+    } catch (error) {
+      this.handler.handleError(error,{
+        operation: 'getCategory',
+        service: 'CategoriesService',
+        metadata: {
+          categoryId,
+        },
+      });
+    }
+  }
+
+  /**
+   * Update a category by ID with optional includes
+   * @param {number} categoryId - The ID of the category to update
+   * @param {UpdateCategoryInput} updateData - The data to update the category with
+   * @param {CategoryIncludeInput} includeInput - Optional includes for the updated category
+   * @returns {Promise<CategoryWithDefaultRelations>} The updated category with default relations
+   * @throws any errors that occur during the update process
+   */
   async updateCategory(
     categoryId: number,
     updateData: UpdateCategoryInput,
-  ): Promise<Category> {
-    return this.prismaService.category.update({
-      where: { id: categoryId },
-      data: updateData,
-      ...this.categoryRelations,
-    });
+    includeInput?: CategoryIncludeInput
+  ): Promise<CategoryWithDefaultRelations> {
+    try {
+      return await this.prismaService.category.update({
+        where: { id: categoryId },
+        data: updateData,
+        include: this.buildIncludeObject(includeInput),
+      });
+    } catch (error) {
+      this.handler.handleError(error,{
+        operation: 'updateCategory',
+        service: 'CategoriesService',
+        metadata: {
+          categoryId,
+          input: updateData,
+        },
+      });
+    }
   }
 
-  async deleteCategory(categoryId: number): Promise<Category> {
-    return this.prismaService.category.delete({
-      where: { id: categoryId },
-      ...this.categoryRelations,
-    });
+  /**
+   * Delete a category by ID with optional includes
+   * @param {number} categoryId - The ID of the category to delete
+   * @param {CategoryIncludeInput} includeInput - Optional includes for the deleted category
+   * @returns {Promise<CategoryWithDefaultRelations>} The deleted category with default relations
+   * @throws any errors that occur during the deletion process
+   */
+  async deleteCategory(
+    categoryId: number,
+    includeInput?: CategoryIncludeInput
+  ): Promise<CategoryWithDefaultRelations> {
+    try {
+      const category= await this.prismaService.category.delete({
+        where: { id: categoryId },
+        include: this.buildIncludeObject(includeInput),
+      });
+
+      if (!category) {
+        throw new NotFoundException(`Category with ID ${categoryId} not found`);
+      }
+      return category;
+    } catch (error) {
+      this.handler.handleError(error,{
+        operation: 'deleteCategory',
+        service: 'CategoriesService',
+        metadata: {
+          categoryId,
+        },
+      });
+    }
   }
 }
