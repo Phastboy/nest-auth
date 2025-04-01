@@ -1,10 +1,10 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
-import { UpdateUserInput } from './dto/update-user.input';
+import { UpdateUserInput } from './types/update-user.input';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { AppLogger } from 'src/app.logger';
-import { UserResponse } from './users.types';
+import { UserResponse } from './types/users.types';
 
 /**
  * @class UsersResolver

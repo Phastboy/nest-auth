@@ -1,10 +1,10 @@
 import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
 import { AuthService } from './auth.service';
 import { User } from 'src/@generated';
-import { CreateUserInput } from 'src/users/dto/create-user.input';
+import { CreateUserInput } from 'src/users/types/create-user.input';
 import { UsersService } from 'src/users/users.service';
 import { AppLogger } from 'src/app.logger';
-import { UserResponse } from 'src/users/users.types';
+import { UserResponse } from 'src/users/types/users.types';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { AuthResponse } from './types/auth.types';
 import { LoginInput } from './types/login.input';
