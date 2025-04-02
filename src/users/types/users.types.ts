@@ -10,6 +10,11 @@ export type UserWithoutPassword = Omit<Prisma.UserGetPayload<{}>, 'password'>;
  * Includes posts, events, likes, comments, and unread notifications.
  */
 export const DEFAULT_USER_INCLUDES = {
+  roles: {
+    include: {
+      role: true,
+    },
+  },
   _count: true,
 } satisfies Prisma.UserInclude;
 
@@ -29,8 +34,10 @@ export type UserResponse = Omit<UserWithRelations, 'password'>;
  * Privileged roles that have special access in the system.
  * These roles cannot be self-assigned during registration.
  */
-export type PrivilegedRole =
-  | 'SUPER_ADMIN'
-  | 'FACULTY_DEAN'
-  | 'REGISTRAR'
-  | 'DEPARTMENT_HEAD';
+export const PrivilegedRole =[
+  'superadmin',
+  'admin',
+  'dean',
+  'registrar',
+  'hod',
+]

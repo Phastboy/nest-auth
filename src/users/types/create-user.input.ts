@@ -36,4 +36,9 @@ export class CreateUserInput {
   @IsString()
   @MaxLength(500)
   bio?: string;
+
+  @Field(() => String, { nullable: true })
+  @IsOptional()
+  @IsString()
+  role?: string;
 }
