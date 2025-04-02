@@ -30,7 +30,7 @@ export class UsersService {
     private readonly handler: ErrorHandler,
   ) {}
   private readonly logger = AppLogger.getInstance(UsersService.name);
-  private defaultRole = 'student';
+  private defaultRole = 'user';
 
   /**
    * Creates a new user while ensuring that privileged roles cannot be assigned.

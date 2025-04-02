@@ -2175,6 +2175,7 @@ type UserMinAggregate {
 }
 
 type UserRole {
+  assignedBy: Int
   createdAt: DateTime!
   role: Role!
   roleId: Int!
@@ -2183,18 +2184,21 @@ type UserRole {
 }
 
 type UserRoleAvgAggregate {
+  assignedBy: Float
   roleId: Float
   userId: Float
 }
 
 type UserRoleCountAggregate {
   _all: Int!
+  assignedBy: Int!
   createdAt: Int!
   roleId: Int!
   userId: Int!
 }
 
 input UserRoleCreateManyUserInput {
+  assignedBy: Int
   createdAt: DateTime
   roleId: Int!
 }
@@ -2216,6 +2220,7 @@ input UserRoleCreateOrConnectWithoutUserInput {
 }
 
 input UserRoleCreateWithoutUserInput {
+  assignedBy: Int
   createdAt: DateTime
   role: RoleCreateNestedOneWithoutUsersInput!
 }
@@ -2227,18 +2232,21 @@ input UserRoleListRelationFilter {
 }
 
 type UserRoleMaxAggregate {
+  assignedBy: Int
   createdAt: DateTime
   roleId: Int
   userId: Int
 }
 
 type UserRoleMinAggregate {
+  assignedBy: Int
   createdAt: DateTime
   roleId: Int
   userId: Int
 }
 
 type UserRoleSumAggregate {
+  assignedBy: Int
   roleId: Int
   userId: Int
 }
@@ -2252,6 +2260,7 @@ input UserRoleWhereInput {
   AND: [UserRoleWhereInput!]
   NOT: [UserRoleWhereInput!]
   OR: [UserRoleWhereInput!]
+  assignedBy: IntNullableFilter
   createdAt: DateTimeFilter
   role: RoleScalarRelationFilter
   roleId: IntFilter
@@ -2263,6 +2272,7 @@ input UserRoleWhereUniqueInput {
   AND: [UserRoleWhereInput!]
   NOT: [UserRoleWhereInput!]
   OR: [UserRoleWhereInput!]
+  assignedBy: IntNullableFilter
   createdAt: DateTimeFilter
   role: RoleScalarRelationFilter
   roleId: IntFilter

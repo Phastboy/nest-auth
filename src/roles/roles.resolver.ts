@@ -2,8 +2,13 @@ import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { RolesService } from './roles.service';
 import { Role } from './entities/role.entity';
 import { CreateRoleInput } from './types/create-role.input';
-import { UpdateRoleInput } from './types/update-role.input';
 import { UserRole } from 'src/@generated';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
+import { AuthenticatedUser } from 'src/auth/types/auth.types';
+import { UseGuards } from '@nestjs/common';
+import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
+import { Roles } from 'src/auth/decorators/roles.decorator';
 
 /**
  * @class RolesResolver
@@ -18,6 +23,8 @@ export class RolesResolver {
    * @param {CreateRoleInput} createRoleInput - Input data for creating a role.
    * @returns {Promise<Role>} The created role.
    */
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('superadmin')
   @Mutation(() => Role)
   async createRole(
     @Args('createRoleInput') createRoleInput: CreateRoleInput,
@@ -40,34 +47,8 @@ export class RolesResolver {
    * @returns {Promise<Role>} The role with the specified ID.
    */
   @Query(() => Role, { name: 'role' })
-  async findOneRole(@Args('roleName') roleName: string) {
+  async findOneRole(@Args('roleName') roleName: string): Promise<Role> {
     return this.rolesService.findOneRole(roleName);
-  }
-
-  /**
-   * Updates an existing role.
-   * @param {number} roleId - The ID of the role to update.
-   * @param {UpdateRoleInput} updateRoleInput - Input data for updating the role.
-   * @returns {Promise<Role>} The updated role.
-   */
-  @Mutation(() => Role)
-  async updateRole(
-    @Args('roleId', { type: () => Int }) roleId: number,
-    @Args('updateRoleInput') updateRoleInput: UpdateRoleInput,
-  ): Promise<Role> {
-    return await this.rolesService.updateRole(roleId, updateRoleInput);
-  }
-
-  /**
-   * Removes a role by its ID.
-   * @param {string} roleName - The ID of the role to remove.
-   * @returns {Promise<Role>} The removed role.
-   */
-  @Mutation(() => Role)
-  async removeRole(
-    @Args('roleName', { type: () => String }) roleName: string,
-  ): Promise<Role> {
-    return await this.rolesService.removeRole(roleName);
   }
 
   /**
@@ -76,12 +57,19 @@ export class RolesResolver {
    * @param {string} roleName - The name of the role to assign.
    * @returns {Promise<UserRole>} The assigned role.
    */
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('superadmin')
   @Mutation(() => UserRole)
   async assignRoleToUser(
+    @CurrentUser() currentUser: AuthenticatedUser,
     @Args('userId', { type: () => Int }) userId: number,
     @Args('roleName') roleName: string,
   ): Promise<UserRole> {
-    return await this.rolesService.assignRoleToUser(userId, roleName);
+    return await this.rolesService.assignRoleToUser(
+      currentUser.userId,
+      userId,
+      roleName,
+    );
   }
 
   /**
@@ -90,26 +78,23 @@ export class RolesResolver {
    * @param {string} roleName - The name of the role to remove.
    * @returns {Promise<UserRole>} The removed role.
    */
+  /**
+   * @method removeRoleFromUser
+   * @description removes a role from user
+   * @param userId 
+   * @param roleName 
+   * @returns 
+   */
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles('superadmin')
   @Mutation(() => UserRole)
   async removeRoleFromUser(
     @Args('userId', { type: () => Int }) userId: number,
     @Args('roleName') roleName: string,
   ): Promise<UserRole> {
-    return await this.rolesService.removeRoleFromUser(userId, roleName);
-  }
-
-  /**
-   * Retrieves all roles assigned to a user.
-   * @param {number} userId - The ID of the user.
-   * @returns {Promise<Role[]>} A list of roles assigned to the user.
-   */
-  @Query(() => [Role], { name: 'userRoles' })
-  async getUserRoles(
-    @Args('userId', { type: () => Int }) userId: number,
-  ): Promise<Role[]> {
-    if (!userId) {
-      throw new Error('User ID is required');
-    }
-    return await this.rolesService.getUserRoles(userId);
+    return await this.rolesService.removeRoleFromUser(
+      userId,
+      roleName,
+    );
   }
 }

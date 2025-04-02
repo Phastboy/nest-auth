@@ -1,17 +1,15 @@
 import {
+  BadRequestException,
   ConflictException,
   ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
 import { CreateRoleInput } from './types/create-role.input';
-import { UpdateRoleInput } from './types/update-role.input';
 import { PrismaService } from 'nestjs-prisma';
 import { Role, UserRole } from '@prisma/client';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { UsersService } from 'src/users/users.service';
-import { assert } from 'console';
-import { tr } from '@faker-js/faker/.';
 
 /**
  * @class RolesService
@@ -24,6 +22,18 @@ export class RolesService {
     private readonly usersService: UsersService,
     private readonly handler: ErrorHandler,
   ) {}
+
+  /**
+   * @method validateRoleName
+   * @description Validates the role name
+   * @param {string} name - The name of the role
+   * @throws {BadRequestException} - If the role name is invalid
+   */
+  private async validateRoleName(name: string): Promise<void> {
+    if (!name || typeof name !== 'string') {
+      throw new BadRequestException('Role name must be a non-empty string');
+    }
+  }
 
   /**
    * @method createRole
@@ -75,6 +85,7 @@ export class RolesService {
    */
   async findOneRole(roleName: string): Promise<Role> {
     try {
+      await this.validateRoleName(roleName)
       const role = await this.prismaService.role.findUnique({
         where: { name: roleName },
       });
@@ -95,100 +106,71 @@ export class RolesService {
   }
 
   /**
-   * @method updateRole
-   * @description Updates a role by ID
-   * @param {number} id - The ID of the role to update
-   * @param {UpdateRoleInput} updateRoleInput - The input data for updating the role
-   * @returns {Promise<Role>} - A promise that resolves to the updated role
-   */
-  async updateRole(
-    id: number,
-    updateRoleInput: UpdateRoleInput,
-  ): Promise<Role> {
-    try {
-      return this.prismaService.role.update({
-        where: { id },
-        data: {
-          ...updateRoleInput,
-        },
-      });
-    } catch (error) {
-      this.handler.handleError(error, {
-        service: 'RolesService',
-        method: 'updateRole',
-        operation: 'updateRole',
-        metadata: {
-          id,
-          input: updateRoleInput,
-        },
-      });
-    }
-  }
-
-  /**
-   * @method removeRole
-   * @description Removes a role by ID
-   * @param {number} roleName - The ID of the role to remove
-   * @returns {string} - A message indicating the role has been removed
-   */
-  async removeRole(roleName: string): Promise<Role> {
-    try {
-      return this.prismaService.role.delete({
-        where: { name: roleName },
-      });
-    } catch (error) {
-      this.handler.handleError(error, {
-        service: 'RolesService',
-        method: 'removeRole',
-        operation: 'removeRole',
-        metadata: {
-          roleName,
-        },
-      });
-    }
-  }
-
-  /**
    * @method assignRoleToUser
    * @description Assigns a role to a user
    * @param {number} userId - The ID of the user to assign the role to
    * @param {string} roleName - The name of the role to assign
    * @returns {Promise<UserRole>} - A promise that resolves to the assigned role
    */
-  async assignRoleToUser(userId: number, roleName: string): Promise<UserRole> {
+  async assignRoleToUser(
+    assignerId: number,
+    userId: number,
+    roleName: string,
+  ): Promise<UserRole> {
     try {
-      await this.canAssignRole(userId, roleName);
-      const role = await this.findOneRole(roleName);
+      return await this.prismaService.$transaction(async (tx) => {
+        const user = await tx.user.findUnique({
+          where: { id: userId },
+          select: { id: true },
+        });
+        if (!user) {
+          throw new NotFoundException(`User with ID ${userId} not found`);
+        }
 
-      // check if the user already has the role
-      const existingUserRole = await this.prismaService.userRole.findUnique({
-        where: {
-          userId_roleId: {
+        const role = await tx.role.findUnique({
+          where: { name: roleName },
+          select: { id: true, level: true },
+        });
+        if (!role) {
+          throw new NotFoundException(`Role '${roleName}' not found`);
+        }
+
+        const existingAssignment = await tx.userRole.findUnique({
+          where: { userId_roleId: { userId, roleId: role.id } },
+          select: { userId: true },
+        });
+
+        if (existingAssignment) {
+          throw new ConflictException(
+            `User already has role '${roleName}'`,
+            `User ID: ${userId}, Role: ${roleName}`,
+          );
+        }
+
+        return await tx.userRole.create({
+          data: {
             userId,
             roleId: role.id,
+            assignedBy: assignerId,
           },
-        },
-      });
-      if (existingUserRole) {
-        throw new ConflictException(`User already has the role ${roleName}`, {
-          description: `User with ID ${userId} already has the role ${roleName}`,
+          include: {
+            role: true,
+            user: {
+              select: {
+                id: true,
+                username: true,
+                email: true,
+              },
+            },
+          },
         });
-      }
-      return await this.prismaService.userRole.create({
-        data: {
-          userId,
-          roleId: role.id,
-        },
-        include: {
-          role: true,
-        },
       });
     } catch (error) {
       this.handler.handleError(error, {
         service: 'RolesService',
         method: 'assignRoleToUser',
-        operation: 'assignRoleToUser',
         metadata: {
+          assignerId,
           userId,
           roleName,
         },
@@ -208,21 +190,58 @@ export class RolesService {
     roleName: string,
   ): Promise<UserRole> {
     try {
-      const role = await this.findOneRole(roleName);
+      return await this.prismaService.$transaction(async (tx) => {
+        const user = await tx.user.findUnique({
+          where: { id: userId },
+          select: { id: true },
+        });
+        if (!user) {
+          throw new NotFoundException(`User with ID ${userId} not found`);
+        }
 
-      return await this.prismaService.userRole.delete({
-        where: {
-          userId_roleId: {
-            userId,
-            roleId: role.id,
+        const role = await tx.role.findUnique({
+          where: { name: roleName },
+          select: { id: true, level: true },
+        });
+        if (!role) {
+          throw new NotFoundException(`Role '${roleName}' not found`);
+        }
+
+        const existingAssignment = await tx.userRole.findUnique({
+          where: { userId_roleId: { userId, roleId: role.id } },
+          select: { roleId: true },
+        });
+
+        if (!existingAssignment) {
+          throw new NotFoundException(
+            `User does not have role '${roleName}'`,
+            `User ID: ${userId}, Role: ${roleName}`,
+          );
+        }
+
+        return await tx.userRole.delete({
+          where: {
+            userId_roleId: {
+              roleId: existingAssignment.roleId,
+              userId,
+            },
           },
-        },
+          include: {
+            role: true,
+            user: {
+              select: {
+                id: true,
+                username: true,
+                email: true,
+              },
+            },
+          },
+        });
       });
     } catch (error) {
       this.handler.handleError(error, {
         service: 'RolesService',
         method: 'removeRoleFromUser',
-        operation: 'removeRoleFromUser',
         metadata: {
           userId,
           roleName,
@@ -254,108 +273,6 @@ export class RolesService {
         operation: 'getUserRoles',
         metadata: {
           userId,
-        },
-      });
-    }
-  }
-
-  /**
-   * canPerformAction
-   * @description Checks if a user can perform a specific action based on their roles
-   * @param {number} userId - The ID of the user
-   * @param {string} roleName - minimum role required to perform the action
-   * @returns {Promise<boolean>} - A promise that resolves to true if the user can perform the action, false otherwise
-   * @throws {NotFoundException} - If the user is not found
-   * @throws {ForbiddenException} - If the user does not have the required role
-   */
-  async canPerformAction(userId: number, roleName: string): Promise<boolean> {
-    try {
-      const minimumRoleLevel = await this.prismaService.role.findUnique({
-        where: { name: roleName },
-        select: { level: true },
-      });
-
-      if (!minimumRoleLevel) {
-        throw new NotFoundException(`Role ${roleName} not found`);
-      }
-
-      const userRoles = await this.getUserRoles(userId);
-
-      // Directly get the level for each user role
-      const userRoleLevels = userRoles.map((role) => role.level);
-
-      const hasRequiredRole = userRoleLevels.some(
-        (level) => level >= minimumRoleLevel.level,
-      );
-
-      if (!hasRequiredRole) {
-        throw new ForbiddenException(
-          `User does not have the required role ${roleName}`,
-        );
-      }
-
-      return hasRequiredRole;
-    } catch (error) {
-      this.handler.handleError(error, {
-        service: 'RolesService',
-        method: 'canPerformAction',
-        operation: 'canPerformAction',
-        metadata: {
-          userId,
-          roleName,
-        },
-      });
-    }
-  }
-
-  /**
-   * canAssignRole
-   * @description Checks if a user can assign a role to another user
-   * @param {number} userId - The ID of the user
-   * @param {string} targetedRole - The name of the role to assign
-   * @returns {Promise<boolean>} - A promise that resolves to true if the user can assign the role, false otherwise
-   * @throws {NotFoundException} - If the user is not found
-   * @throws {ForbiddenException} - If the user does not have the required role
-   */
-  private async canAssignRole(
-    userId: number,
-    targetedRole: string,
-  ): Promise<boolean> {
-    try {
-      const minimumRoleLevel = await this.prismaService.role.findUnique({
-        where: { name: targetedRole },
-        select: { level: true },
-      });
-
-      if (!minimumRoleLevel) {
-        throw new NotFoundException(`Role ${targetedRole} not found`);
-      }
-
-      const userRoles = await this.getUserRoles(userId);
-      if (!userRoles || userRoles.length === 0) {
-        throw new NotFoundException(`User with ID ${userId} not found`);
-      }
-      const userRoleLevels = userRoles.map((role) => role.level);
-
-      const hasPrivilege = userRoleLevels.some(
-        (level) => level > minimumRoleLevel.level,
-      );
-
-      if (!hasPrivilege) {
-        throw new ForbiddenException(
-          `User does not have the required role ${targetedRole}`,
-        );
-      }
-
-      return hasPrivilege;
-    } catch (error) {
-      this.handler.handleError(error, {
-        service: 'RolesService',
-        method: 'canAssignRole',
-        operation: 'canAssignRole',
-        metadata: {
-          userId,
-          targetedRole,
         },
       });
     }
