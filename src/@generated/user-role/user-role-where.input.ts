@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { IntFilter } from '../prisma/int-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 import { RoleScalarRelationFilter } from '../role/role-scalar-relation-filter.input';
@@ -21,6 +22,9 @@ export class UserRoleWhereInput {
 
   @Field(() => IntFilter, { nullable: true })
   roleId?: IntFilter;
+
+  @Field(() => IntNullableFilter, { nullable: true })
+  assignedBy?: IntNullableFilter;
 
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;

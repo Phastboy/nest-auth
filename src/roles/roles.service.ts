@@ -1,5 +1,6 @@
 import {
   ConflictException,
+  ForbiddenException,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -9,6 +10,8 @@ import { PrismaService } from 'nestjs-prisma';
 import { Role, UserRole } from '@prisma/client';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { UsersService } from 'src/users/users.service';
+import { assert } from 'console';
+import { tr } from '@faker-js/faker/.';
 
 /**
  * @class RolesService
@@ -154,8 +157,7 @@ export class RolesService {
    */
   async assignRoleToUser(userId: number, roleName: string): Promise<UserRole> {
     try {
-      // check if the user exists
-      await this.usersService.findUserById(userId);
+      await this.canAssignRole(userId, roleName);
       const role = await this.findOneRole(roleName);
 
       // check if the user already has the role
@@ -252,6 +254,108 @@ export class RolesService {
         operation: 'getUserRoles',
         metadata: {
           userId,
+        },
+      });
+    }
+  }
+
+  /**
+   * canPerformAction
+   * @description Checks if a user can perform a specific action based on their roles
+   * @param {number} userId - The ID of the user
+   * @param {string} roleName - minimum role required to perform the action
+   * @returns {Promise<boolean>} - A promise that resolves to true if the user can perform the action, false otherwise
+   * @throws {NotFoundException} - If the user is not found
+   * @throws {ForbiddenException} - If the user does not have the required role
+   */
+  async canPerformAction(userId: number, roleName: string): Promise<boolean> {
+    try {
+      const minimumRoleLevel = await this.prismaService.role.findUnique({
+        where: { name: roleName },
+        select: { level: true },
+      });
+
+      if (!minimumRoleLevel) {
+        throw new NotFoundException(`Role ${roleName} not found`);
+      }
+
+      const userRoles = await this.getUserRoles(userId);
+
+      // Directly get the level for each user role
+      const userRoleLevels = userRoles.map((role) => role.level);
+
+      const hasRequiredRole = userRoleLevels.some(
+        (level) => level >= minimumRoleLevel.level,
+      );
+
+      if (!hasRequiredRole) {
+        throw new ForbiddenException(
+          `User does not have the required role ${roleName}`,
+        );
+      }
+
+      return hasRequiredRole;
+    } catch (error) {
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'canPerformAction',
+        operation: 'canPerformAction',
+        metadata: {
+          userId,
+          roleName,
+        },
+      });
+    }
+  }
+
+  /**
+   * canAssignRole
+   * @description Checks if a user can assign a role to another user
+   * @param {number} userId - The ID of the user
+   * @param {string} targetedRole - The name of the role to assign
+   * @returns {Promise<boolean>} - A promise that resolves to true if the user can assign the role, false otherwise
+   * @throws {NotFoundException} - If the user is not found
+   * @throws {ForbiddenException} - If the user does not have the required role
+   */
+  private async canAssignRole(
+    userId: number,
+    targetedRole: string,
+  ): Promise<boolean> {
+    try {
+      const minimumRoleLevel = await this.prismaService.role.findUnique({
+        where: { name: targetedRole },
+        select: { level: true },
+      });
+
+      if (!minimumRoleLevel) {
+        throw new NotFoundException(`Role ${targetedRole} not found`);
+      }
+
+      const userRoles = await this.getUserRoles(userId);
+      if (!userRoles || userRoles.length === 0) {
+        throw new NotFoundException(`User with ID ${userId} not found`);
+      }
+      const userRoleLevels = userRoles.map((role) => role.level);
+
+      const hasPrivilege = userRoleLevels.some(
+        (level) => level > minimumRoleLevel.level,
+      );
+
+      if (!hasPrivilege) {
+        throw new ForbiddenException(
+          `User does not have the required role ${targetedRole}`,
+        );
+      }
+
+      return hasPrivilege;
+    } catch (error) {
+      this.handler.handleError(error, {
+        service: 'RolesService',
+        method: 'canAssignRole',
+        operation: 'canAssignRole',
+        metadata: {
+          userId,
+          targetedRole,
         },
       });
     }

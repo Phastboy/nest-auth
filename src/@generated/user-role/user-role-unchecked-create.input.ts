@@ -10,6 +10,9 @@ export class UserRoleUncheckedCreateInput {
   @Field(() => Int, { nullable: false })
   roleId!: number;
 
+  @Field(() => Int, { nullable: true })
+  assignedBy?: number;
+
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
 }

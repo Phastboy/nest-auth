@@ -15,6 +15,9 @@ export class UserRoleGroupBy {
   @Field(() => Int, { nullable: false })
   roleId!: number;
 
+  @Field(() => Int, { nullable: true })
+  assignedBy?: number;
+
   @Field(() => Date, { nullable: false })
   createdAt!: Date | string;
 

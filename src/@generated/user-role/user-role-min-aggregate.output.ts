@@ -10,6 +10,9 @@ export class UserRoleMinAggregate {
   @Field(() => Int, { nullable: true })
   roleId?: number;
 
+  @Field(() => Int, { nullable: true })
+  assignedBy?: number;
+
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
 }

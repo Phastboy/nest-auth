@@ -9,4 +9,7 @@ export class UserRoleAvgAggregate {
 
   @Field(() => Float, { nullable: true })
   roleId?: number;
+
+  @Field(() => Float, { nullable: true })
+  assignedBy?: number;
 }

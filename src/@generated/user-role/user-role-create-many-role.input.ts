@@ -7,6 +7,9 @@ export class UserRoleCreateManyRoleInput {
   @Field(() => Int, { nullable: false })
   userId!: number;
 
+  @Field(() => Int, { nullable: true })
+  assignedBy?: number;
+
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
 }

@@ -9,4 +9,7 @@ export class UserRoleSumOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   roleId?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  assignedBy?: `${SortOrder}`;
 }

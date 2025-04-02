@@ -1132,7 +1132,7 @@ type Mutation {
   register(createUserInput: CreateUserInput!): User!
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
-  removeRole(roleName: Int!): Role!
+  removeRole(roleName: String!): Role!
   removeRoleFromUser(roleName: String!, userId: Int!): UserRole!
   updateCategory(categoryId: Int!, data: UpdateCategoryInput!, include: CategoryIncludeInput): Category!
   updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!

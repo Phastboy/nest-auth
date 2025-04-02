@@ -64,7 +64,9 @@ export class RolesResolver {
    * @returns {Promise<Role>} The removed role.
    */
   @Mutation(() => Role)
-  async removeRole(@Args('roleName', { type: () => String }) roleName: string): Promise<Role> {
+  async removeRole(
+    @Args('roleName', { type: () => String }) roleName: string,
+  ): Promise<Role> {
     return await this.rolesService.removeRole(roleName);
   }
 

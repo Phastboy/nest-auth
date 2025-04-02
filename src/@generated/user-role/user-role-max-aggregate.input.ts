@@ -10,5 +10,8 @@ export class UserRoleMaxAggregateInput {
   roleId?: true;
 
   @Field(() => Boolean, { nullable: true })
+  assignedBy?: true;
+
+  @Field(() => Boolean, { nullable: true })
   createdAt?: true;
 }

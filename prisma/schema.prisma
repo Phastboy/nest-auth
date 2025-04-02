@@ -72,6 +72,7 @@ model UserRole {
   roleId    Int
   user      User     @relation(fields: [userId], references: [id])
   role      Role     @relation(fields: [roleId], references: [id])
+  assignedBy Int?
   createdAt DateTime @default(now())
 
   @@id([userId, roleId])
