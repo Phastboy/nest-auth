@@ -34,10 +34,4 @@ export type UserResponse = Omit<UserWithRelations, 'password'>;
  * Privileged roles that have special access in the system.
  * These roles cannot be self-assigned during registration.
  */
-export const PrivilegedRole = [
-  'superadmin',
-  'admin',
-  'dean',
-  'registrar',
-  'hod',
-];
+export const PrivilegedRole = ['superadmin', 'admin'];
