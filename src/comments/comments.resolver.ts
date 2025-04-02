@@ -5,8 +5,8 @@ import { CreateCommentInput } from './dto/create-comment.input';
 import { UpdateCommentInput } from './dto/update-comment.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { CurrentUser } from 'src/auth/current-user/current-user.decorator';
 import { AuthenticatedUser } from 'src/auth/types/auth.types';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 
 @Resolver(() => Comment)
 export class CommentsResolver {
