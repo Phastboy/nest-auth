@@ -19,7 +19,6 @@ export class SeedService implements OnModuleInit {
   }
 
   async seedDatabase() {
-    await this.clearDatabase();
     await this.seedRoles();
     await this.seedUsers();
     await this.seedCategories();
@@ -27,12 +26,33 @@ export class SeedService implements OnModuleInit {
   }
 
   private async seedRoles() {
-    const roles = ['admin', 'superadmin', 'lecturer', 'student', 'dean', 'hod'];
-    for (const roleName of roles) {
+    await this.prisma.role.deleteMany();
+    const roles = [
+      {
+        name: 'user',
+        level: 0,
+        isProtected: true,
+        description: 'Basic user role',
+      },
+      {
+        name: 'admin',
+        level: 1,
+        isProtected: true,
+        description: 'Administrator with moderation privileges',
+      },
+      {
+        name: 'superadmin',
+        level: 2,
+        isProtected: true,
+        description: 'System super administrator',
+      },
+    ];
+    for (const role of roles) {
       await this.prisma.role.create({
         data: {
-          name: roleName,
-          description: `${roleName} role`,
+          name: role.name,
+          level: role.level,
+          description: role.description,
         },
       });
     }
@@ -40,6 +60,7 @@ export class SeedService implements OnModuleInit {
   }
 
   private async seedUsers() {
+    await this.prisma.user.deleteMany();
     for (let i = 0; i < 10; i++) {
       const user = await this.prisma.user.create({
         data: {
@@ -51,7 +72,7 @@ export class SeedService implements OnModuleInit {
           roles: {
             create: {
               role: {
-                connect: { name: 'student' },
+                connect: { name: 'user' },
               },
             },
           },
@@ -72,9 +93,5 @@ export class SeedService implements OnModuleInit {
       });
     }
     this.logger.log('Categories seeded.');
-  }
-
-  private async clearDatabase() {
-    this.logger.info(`all data deleted successfully.`);
   }
 }
