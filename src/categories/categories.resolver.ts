@@ -5,8 +5,6 @@ import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { CurrentUser } from 'src/auth/current-user/current-user.decorator';
-import { AuthenticatedUser } from 'src/auth/types/auth.types';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { CategoryIncludeInput } from './types/category-include.input';

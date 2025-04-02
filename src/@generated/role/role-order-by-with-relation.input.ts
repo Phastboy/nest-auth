@@ -16,6 +16,9 @@ export class RoleOrderByWithRelationInput {
   description?: SortOrderInput;
 
   @Field(() => SortOrder, { nullable: true })
+  level?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })

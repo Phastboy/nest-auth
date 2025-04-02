@@ -30,7 +30,7 @@ export class UsersService {
     private readonly handler: ErrorHandler,
   ) {}
   private readonly logger = AppLogger.getInstance(UsersService.name);
-  private defaultRole='student'
+  private defaultRole = 'student';
 
   /**
    * Creates a new user while ensuring that privileged roles cannot be assigned.
@@ -43,7 +43,7 @@ export class UsersService {
     return this.prismaService.$transaction(async (prisma) => {
       try {
         const hashedPassword = await argon.hash(createUserInput.password);
-  
+
         const roleName = createUserInput.role ?? this.defaultRole;
         assert(isString(roleName), 'Role name must be a string');
 
@@ -52,15 +52,15 @@ export class UsersService {
             `Cannot self-assign privileged role: ${roleName}`,
           );
         }
-  
+
         const role = await prisma.role.findUnique({
           where: { name: roleName },
         });
-  
+
         if (!role) {
           throw new NotFoundException(`Role '${roleName}' does not exist`);
         }
-  
+
         const user = await prisma.user.create({
           data: {
             ...createUserInput,
@@ -83,16 +83,16 @@ export class UsersService {
             },
           },
         });
-  
+
         this.logger.info(`User created successfully`, {
-          metadata: { 
-            id: user.id, 
-            email: user.email, 
+          metadata: {
+            id: user.id,
+            email: user.email,
             username: user.username,
-            roles: user.roles.map(r => r.role.name) 
+            roles: user.roles.map((r) => r.role.name),
           },
         });
-  
+
         return user;
       } catch (error) {
         this.handler.handleError(error, {

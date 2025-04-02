@@ -18,6 +18,9 @@ export class RoleGroupBy {
   @Field(() => String, { nullable: true })
   description?: string;
 
+  @Field(() => Int, { nullable: false })
+  level!: number;
+
   @Field(() => Date, { nullable: false })
   createdAt!: Date | string;
 

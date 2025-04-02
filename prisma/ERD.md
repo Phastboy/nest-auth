@@ -20,6 +20,7 @@ erDiagram
   Int id PK
   String name UK
   String description "nullable"
+  Int level
   DateTime createdAt
   DateTime updatedAt
 }
@@ -138,6 +139,7 @@ erDiagram
   - `id`: 
   - `name`: 
   - `description`: 
+  - `level`: 
   - `createdAt`: 
   - `updatedAt`: 
 

@@ -17,6 +17,9 @@ export class RoleUncheckedUpdateInput {
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   description?: NullableStringFieldUpdateOperationsInput;
 
+  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
+  level?: IntFieldUpdateOperationsInput;
+
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;
 

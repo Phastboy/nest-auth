@@ -14,6 +14,9 @@ export class RoleCountAggregate {
   description!: number;
 
   @Field(() => Int, { nullable: false })
+  level!: number;
+
+  @Field(() => Int, { nullable: false })
   createdAt!: number;
 
   @Field(() => Int, { nullable: false })

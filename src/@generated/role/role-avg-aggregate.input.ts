@@ -5,4 +5,7 @@ import { InputType } from '@nestjs/graphql';
 export class RoleAvgAggregateInput {
   @Field(() => Boolean, { nullable: true })
   id?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  level?: true;
 }

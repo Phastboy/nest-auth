@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateRoleInput } from './types/create-role.input';
 import { UpdateRoleInput } from './types/update-role.input';
 import { PrismaService } from 'nestjs-prisma';
@@ -164,12 +168,9 @@ export class RolesService {
         },
       });
       if (existingUserRole) {
-        throw new ConflictException(
-          `User already has the role ${roleName}`,
-          {
-            description: `User with ID ${userId} already has the role ${roleName}`,
-          },
-        );
+        throw new ConflictException(`User already has the role ${roleName}`, {
+          description: `User with ID ${userId} already has the role ${roleName}`,
+        });
       }
       return await this.prismaService.userRole.create({
         data: {
