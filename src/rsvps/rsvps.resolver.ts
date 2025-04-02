@@ -5,8 +5,8 @@ import { CreateRsvpInput } from './dto/create-rsvp.input';
 import { UpdateRsvpInput } from './dto/update-rsvp.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { CurrentUser } from 'src/auth/current-user/current-user.decorator';
 import { AuthenticatedUser } from 'src/auth/types/auth.types';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 
 @Resolver(() => RSVP)
 export class RsvpsResolver {

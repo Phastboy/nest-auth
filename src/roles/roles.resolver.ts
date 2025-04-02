@@ -19,7 +19,7 @@ export class RolesResolver {
    * @returns {Promise<Role>} The created role.
    */
   @Mutation(() => Role)
-  createRole(@Args('createRoleInput') createRoleInput: CreateRoleInput) {
+  async createRole(@Args('createRoleInput') createRoleInput: CreateRoleInput): Promise<Role> {
     return this.rolesService.createRole(createRoleInput);
   }
 
@@ -38,7 +38,7 @@ export class RolesResolver {
    * @returns {Promise<Role>} The role with the specified ID.
    */
   @Query(() => Role, { name: 'role' })
-  async findOneRole(@Args('roleName', { type: () => Int }) roleName: string) {
+  async findOneRole(@Args('roleName') roleName: string) {
     return this.rolesService.findOneRole(roleName);
   }
 
@@ -58,11 +58,11 @@ export class RolesResolver {
 
   /**
    * Removes a role by its ID.
-   * @param {number} roleId - The ID of the role to remove.
+   * @param {string} roleName - The ID of the role to remove.
    * @returns {Promise<Role>} The removed role.
    */
   @Mutation(() => Role)
-  async removeRole(@Args('roleName', { type: () => Int }) roleName: string) {
+  async removeRole(@Args('roleName', { type: () => String }) roleName: string): Promise<Role> {
     return await this.rolesService.removeRole(roleName);
   }
 
@@ -72,11 +72,11 @@ export class RolesResolver {
    * @param {string} roleName - The name of the role to assign.
    * @returns {Promise<UserRole>} The assigned role.
    */
-  @Mutation(() => Role)
+  @Mutation(() => UserRole)
   async assignRoleToUser(
     @Args('userId', { type: () => Int }) userId: number,
     @Args('roleName') roleName: string,
-  ) {
+  ):Promise<UserRole> {
     return await this.rolesService.assignRoleToUser(userId, roleName);
   }
 

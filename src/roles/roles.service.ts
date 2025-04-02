@@ -1,9 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import { CreateRoleInput } from './types/create-role.input';
 import { UpdateRoleInput } from './types/update-role.input';
 import { PrismaService } from 'nestjs-prisma';
 import { Role, UserRole } from '@prisma/client';
 import { ErrorHandler } from 'src/error-handler/error.util';
+import { UsersService } from 'src/users/users.service';
 
 /**
  * @class RolesService
@@ -13,6 +14,7 @@ import { ErrorHandler } from 'src/error-handler/error.util';
 export class RolesService {
   constructor(
     private readonly prismaService: PrismaService,
+    private readonly usersService: UsersService,
     private readonly handler: ErrorHandler,
   ) {}
 
@@ -119,7 +121,7 @@ export class RolesService {
   /**
    * @method removeRole
    * @description Removes a role by ID
-   * @param {number} id - The ID of the role to remove
+   * @param {number} roleName - The ID of the role to remove
    * @returns {string} - A message indicating the role has been removed
    */
   async removeRole(roleName: string): Promise<Role> {
@@ -148,8 +150,27 @@ export class RolesService {
    */
   async assignRoleToUser(userId: number, roleName: string): Promise<UserRole> {
     try {
+      // check if the user exists
+      await this.usersService.findUserById(userId);
       const role = await this.findOneRole(roleName);
 
+      // check if the user already has the role
+      const existingUserRole = await this.prismaService.userRole.findUnique({
+        where: {
+          userId_roleId: {
+            userId,
+            roleId: role.id,
+          },
+        },
+      });
+      if (existingUserRole) {
+        throw new ConflictException(
+          `User already has the role ${roleName}`,
+          {
+            description: `User with ID ${userId} already has the role ${roleName}`,
+          },
+        );
+      }
       return await this.prismaService.userRole.create({
         data: {
           userId,

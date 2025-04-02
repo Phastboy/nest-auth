@@ -529,6 +529,7 @@ input CreateUserInput {
   bio: String
   email: String!
   password: String!
+  role: String
   username: String!
 }
 
@@ -1101,6 +1102,8 @@ input LoginInput {
 }
 
 type Mutation {
+  assignRoleToUser(roleName: String!, userId: Int!): UserRole!
+
   """Create a new category"""
   createCategory(data: CreateCategoryInput!, include: CategoryIncludeInput): Category!
   createComment(createCommentInput: CreateCommentInput!): Comment!
@@ -1117,7 +1120,7 @@ type Mutation {
   deleteRsvp(id: Int!): RSVP!
 
   """Deletes a user by ID"""
-  deleteUser(id: Int!): User!
+  deleteUser(userId: Int!): User!
 
   """for logging in a user"""
   login(loginInput: LoginInput!): AuthResponse!
@@ -1129,7 +1132,8 @@ type Mutation {
   register(createUserInput: CreateUserInput!): User!
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
-  removeRole(roleId: Int!): Role!
+  removeRole(roleName: Int!): Role!
+  removeRoleFromUser(roleName: String!, userId: Int!): UserRole!
   updateCategory(categoryId: Int!, data: UpdateCategoryInput!, include: CategoryIncludeInput): Category!
   updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!
   updateEvent(id: Int!, updateEventInput: UpdateEventInput!): Event!
@@ -1613,10 +1617,11 @@ type Query {
   notifications: [Notification!]!
   post(id: Int!): Post!
   posts: [Post!]!
-  role(roleId: Int!): Role!
+  role(roleName: String!): Role!
   roles: [Role!]!
   rsvp(id: Int!): RSVP!
   rsvps: [RSVP!]!
+  userRoles(userId: Int!): [Role!]!
 }
 
 type RSVP {
@@ -1767,6 +1772,7 @@ type Role {
   createdAt: DateTime!
   description: String
   id: ID!
+  level: Int!
   name: String!
   updatedAt: DateTime!
   users: [UserRole!]
@@ -1774,6 +1780,7 @@ type Role {
 
 type RoleAvgAggregate {
   id: Float
+  level: Float
 }
 
 type RoleCount {
@@ -1785,6 +1792,7 @@ type RoleCountAggregate {
   createdAt: Int!
   description: Int!
   id: Int!
+  level: Int!
   name: Int!
   updatedAt: Int!
 }
@@ -1803,6 +1811,7 @@ input RoleCreateOrConnectWithoutUsersInput {
 input RoleCreateWithoutUsersInput {
   createdAt: DateTime
   description: String
+  level: Int
   name: String!
   updatedAt: DateTime
 }
@@ -1811,6 +1820,7 @@ type RoleMaxAggregate {
   createdAt: DateTime
   description: String
   id: Int
+  level: Int
   name: String
   updatedAt: DateTime
 }
@@ -1819,6 +1829,7 @@ type RoleMinAggregate {
   createdAt: DateTime
   description: String
   id: Int
+  level: Int
   name: String
   updatedAt: DateTime
 }
@@ -1830,6 +1841,7 @@ input RoleScalarRelationFilter {
 
 type RoleSumAggregate {
   id: Int
+  level: Int
 }
 
 input RoleWhereInput {
@@ -1839,6 +1851,7 @@ input RoleWhereInput {
   createdAt: DateTimeFilter
   description: StringNullableFilter
   id: IntFilter
+  level: IntFilter
   name: StringFilter
   updatedAt: DateTimeFilter
   users: UserRoleListRelationFilter
@@ -1851,6 +1864,7 @@ input RoleWhereUniqueInput {
   createdAt: DateTimeFilter
   description: StringNullableFilter
   id: Int
+  level: IntFilter
   name: String
   updatedAt: DateTimeFilter
   users: UserRoleListRelationFilter
@@ -1954,6 +1968,7 @@ input UpdateUserInput {
   bio: String
   email: String
   password: String
+  role: String
   username: String
 }
 

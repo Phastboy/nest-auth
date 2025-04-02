@@ -16,6 +16,8 @@ import { AppLogger } from 'src/app.logger';
 import { ErrorHandler } from 'src/error-handler/error.util';
 import { User } from '@prisma/client';
 import { UpdateUserInput } from './types/update-user.input';
+import { assert } from 'console';
+import { isString } from 'class-validator';
 
 /**
  * @class UsersService
@@ -28,6 +30,7 @@ export class UsersService {
     private readonly handler: ErrorHandler,
   ) {}
   private readonly logger = AppLogger.getInstance(UsersService.name);
+  private defaultRole='student'
 
   /**
    * Creates a new user while ensuring that privileged roles cannot be assigned.
@@ -37,39 +40,72 @@ export class UsersService {
    * @throws {BadRequestException} - If the role assigned is a privileged role.
    */
   async createUser(createUserInput: CreateUserInput): Promise<UserResponse> {
-    try {
-      // Hash password before storing
-      const hashedPassword = await argon.hash(createUserInput.password);
+    return this.prismaService.$transaction(async (prisma) => {
+      try {
+        const hashedPassword = await argon.hash(createUserInput.password);
+  
+        const roleName = createUserInput.role ?? this.defaultRole;
+        assert(isString(roleName), 'Role name must be a string');
 
-      // Create user in the database
-      const user = await this.prismaService.user.create({
-        data: {
-          ...createUserInput,
-          password: hashedPassword,
-        },
-        omit: {
-          password: true,
-        },
-        include: DEFAULT_USER_INCLUDES,
-      });
-
-      // Log success
-      this.logger.info(`User created successfully`, {
-        metadata: { id: user.id, email: user.email, username: user.username },
-      });
-
-      return user;
-    } catch (error) {
-      // Handle errors via centralized error handler
-      return this.handler.handleError(error, {
-        operation: 'createUser',
-        service: 'UsersService',
-        metadata: {
-          email: createUserInput.email,
-          username: createUserInput.username,
-        },
-      });
-    }
+        if ((PrivilegedRole as readonly string[]).includes(roleName)) {
+          throw new BadRequestException(
+            `Cannot self-assign privileged role: ${roleName}`,
+          );
+        }
+  
+        const role = await prisma.role.findUnique({
+          where: { name: roleName },
+        });
+  
+        if (!role) {
+          throw new NotFoundException(`Role '${roleName}' does not exist`);
+        }
+  
+        const user = await prisma.user.create({
+          data: {
+            ...createUserInput,
+            password: hashedPassword,
+            roles: {
+              create: {
+                roleId: role.id,
+              },
+            },
+          },
+          omit: {
+            password: true,
+          },
+          include: {
+            ...DEFAULT_USER_INCLUDES,
+            roles: {
+              include: {
+                role: true,
+              },
+            },
+          },
+        });
+  
+        this.logger.info(`User created successfully`, {
+          metadata: { 
+            id: user.id, 
+            email: user.email, 
+            username: user.username,
+            roles: user.roles.map(r => r.role.name) 
+          },
+        });
+  
+        return user;
+      } catch (error) {
+        this.handler.handleError(error, {
+          operation: 'createUser',
+          service: 'UsersService',
+          metadata: {
+            email: createUserInput.email,
+            username: createUserInput.username,
+            input: createUserInput,
+          },
+        });
+      }
+    });
   }
 
   /**

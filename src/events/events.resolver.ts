@@ -5,8 +5,8 @@ import { CreateEventInput } from './dto/create-event.input';
 import { UpdateEventInput } from './dto/update-event.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
-import { CurrentUser } from 'src/auth/current-user/current-user.decorator';
 import { AuthenticatedUser } from 'src/auth/types/auth.types';
+import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 
 @Resolver(() => Event)
 export class EventsResolver {
