@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Int } from '@nestjs/graphql';
 import { UserRoleCreateNestedManyWithoutRoleInput } from '../user-role/user-role-create-nested-many-without-role.input';
 
 @InputType()
@@ -9,6 +10,9 @@ export class RoleCreateInput {
 
   @Field(() => String, { nullable: true })
   description?: string;
+
+  @Field(() => Int, { nullable: true })
+  level?: number;
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;

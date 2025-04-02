@@ -25,6 +25,9 @@ export class RoleScalarWhereWithAggregatesInput {
   @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
   description?: StringNullableWithAggregatesFilter;
 
+  @Field(() => IntWithAggregatesFilter, { nullable: true })
+  level?: IntWithAggregatesFilter;
+
   @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
   createdAt?: DateTimeWithAggregatesFilter;
 

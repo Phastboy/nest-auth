@@ -4,6 +4,7 @@ export enum RoleScalarFieldEnum {
   id = 'id',
   name = 'name',
   description = 'description',
+  level = 'level',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
 }

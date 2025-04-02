@@ -13,6 +13,9 @@ export class RoleMaxAggregate {
   @Field(() => String, { nullable: true })
   description?: string;
 
+  @Field(() => Int, { nullable: true })
+  level?: number;
+
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
 

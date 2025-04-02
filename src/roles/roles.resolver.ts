@@ -19,7 +19,9 @@ export class RolesResolver {
    * @returns {Promise<Role>} The created role.
    */
   @Mutation(() => Role)
-  async createRole(@Args('createRoleInput') createRoleInput: CreateRoleInput): Promise<Role> {
+  async createRole(
+    @Args('createRoleInput') createRoleInput: CreateRoleInput,
+  ): Promise<Role> {
     return this.rolesService.createRole(createRoleInput);
   }
 
@@ -62,7 +64,9 @@ export class RolesResolver {
    * @returns {Promise<Role>} The removed role.
    */
   @Mutation(() => Role)
-  async removeRole(@Args('roleName', { type: () => Int }) roleName: string): Promise<Role> {
+  async removeRole(
+    @Args('roleName', { type: () => Int }) roleName: string,
+  ): Promise<Role> {
     return await this.rolesService.removeRole(roleName);
   }
 
@@ -76,7 +80,7 @@ export class RolesResolver {
   async assignRoleToUser(
     @Args('userId', { type: () => Int }) userId: number,
     @Args('roleName') roleName: string,
-  ):Promise<UserRole> {
+  ): Promise<UserRole> {
     return await this.rolesService.assignRoleToUser(userId, roleName);
   }
 

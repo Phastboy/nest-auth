@@ -59,6 +59,7 @@ model Role {
   id          Int       @id @default(autoincrement())
   name        String    @unique
   description String?
+  level       Int       @default(0)
   users       UserRole[]
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
