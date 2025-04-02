@@ -30,29 +30,21 @@ export class SeedService implements OnModuleInit {
     const roles = [
       {
         name: 'user',
-        level: 0,
-        isProtected: true,
         description: 'Basic user role',
       },
       {
         name: 'admin',
-        level: 1,
-        isProtected: true,
         description: 'Administrator with moderation privileges',
       },
       {
         name: 'superadmin',
-        level: 2,
-        isProtected: true,
         description: 'System super administrator',
       },
     ];
     for (const role of roles) {
       await this.prisma.role.create({
         data: {
-          name: role.name,
-          level: role.level,
-          description: role.description,
+          ...role
         },
       });
     }
