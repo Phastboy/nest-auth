@@ -11,6 +11,9 @@ export class UserRoleCountAggregate {
   roleId!: number;
 
   @Field(() => Int, { nullable: false })
+  assignedBy!: number;
+
+  @Field(() => Int, { nullable: false })
   createdAt!: number;
 
   @Field(() => Int, { nullable: false })

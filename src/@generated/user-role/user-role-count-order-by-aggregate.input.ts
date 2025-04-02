@@ -11,5 +11,8 @@ export class UserRoleCountOrderByAggregateInput {
   roleId?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
+  assignedBy?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 }

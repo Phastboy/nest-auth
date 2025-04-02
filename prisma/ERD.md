@@ -27,6 +27,7 @@ erDiagram
 "user_roles" {
   Int userId FK
   Int roleId FK
+  Int assignedBy "nullable"
   DateTime createdAt
 }
 "categories" {
@@ -148,6 +149,7 @@ erDiagram
 **Properties**
   - `userId`: 
   - `roleId`: 
+  - `assignedBy`: 
   - `createdAt`: 
 
 ### `categories`

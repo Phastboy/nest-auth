@@ -8,4 +8,7 @@ export class UserRoleAvgAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   roleId?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  assignedBy?: true;
 }

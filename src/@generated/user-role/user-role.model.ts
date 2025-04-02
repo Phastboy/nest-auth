@@ -12,6 +12,9 @@ export class UserRole {
   @Field(() => Int, { nullable: false })
   roleId!: number;
 
+  @Field(() => Int, { nullable: true })
+  assignedBy!: number | null;
+
   @Field(() => Date, { nullable: false })
   createdAt!: Date;
 

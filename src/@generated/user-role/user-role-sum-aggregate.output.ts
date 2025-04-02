@@ -9,4 +9,7 @@ export class UserRoleSumAggregate {
 
   @Field(() => Int, { nullable: true })
   roleId?: number;
+
+  @Field(() => Int, { nullable: true })
+  assignedBy?: number;
 }
