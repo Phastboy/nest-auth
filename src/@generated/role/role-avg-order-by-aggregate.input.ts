@@ -6,7 +6,4 @@ import { SortOrder } from '../prisma/sort-order.enum';
 export class RoleAvgOrderByAggregateInput {
   @Field(() => SortOrder, { nullable: true })
   id?: `${SortOrder}`;
-
-  @Field(() => SortOrder, { nullable: true })
-  level?: `${SortOrder}`;
 }

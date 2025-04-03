@@ -85,7 +85,7 @@ export class RolesService {
    */
   async findOneRole(roleName: string): Promise<Role> {
     try {
-      await this.validateRoleName(roleName)
+      await this.validateRoleName(roleName);
       const role = await this.prismaService.role.findUnique({
         where: { name: roleName },
       });
@@ -129,7 +129,7 @@ export class RolesService {
 
         const role = await tx.role.findUnique({
           where: { name: roleName },
-          select: { id: true, level: true },
+          select: { id: true },
         });
         if (!role) {
           throw new NotFoundException(`Role '${roleName}' not found`);
@@ -201,7 +201,7 @@ export class RolesService {
 
         const role = await tx.role.findUnique({
           where: { name: roleName },
-          select: { id: true, level: true },
+          select: { id: true },
         });
         if (!role) {
           throw new NotFoundException(`Role '${roleName}' not found`);

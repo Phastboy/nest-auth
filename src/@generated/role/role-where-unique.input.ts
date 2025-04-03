@@ -3,7 +3,6 @@ import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { RoleWhereInput } from './role-where.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
-import { IntFilter } from '../prisma/int-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserRoleListRelationFilter } from '../user-role/user-role-list-relation-filter.input';
 
@@ -26,9 +25,6 @@ export class RoleWhereUniqueInput {
 
   @Field(() => StringNullableFilter, { nullable: true })
   description?: StringNullableFilter;
-
-  @Field(() => IntFilter, { nullable: true })
-  level?: IntFilter;
 
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;

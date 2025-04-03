@@ -1132,7 +1132,6 @@ type Mutation {
   register(createUserInput: CreateUserInput!): User!
   removeLike(id: Int!): Like!
   removeNotification(id: Int!): Notification!
-  removeRole(roleName: String!): Role!
   removeRoleFromUser(roleName: String!, userId: Int!): UserRole!
   updateCategory(categoryId: Int!, data: UpdateCategoryInput!, include: CategoryIncludeInput): Category!
   updateComment(id: Int!, updateCommentInput: UpdateCommentInput!): Comment!
@@ -1140,7 +1139,6 @@ type Mutation {
   updateLike(updateLikeInput: UpdateLikeInput!): Like!
   updateNotification(updateNotificationInput: UpdateNotificationInput!): Notification!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
-  updateRole(roleId: Int!, updateRoleInput: UpdateRoleInput!): Role!
   updateRsvp(id: Int!, updateRsvpInput: UpdateRsvpInput!): RSVP!
 
   """Updates a user by ID"""
@@ -1621,7 +1619,6 @@ type Query {
   roles: [Role!]!
   rsvp(id: Int!): RSVP!
   rsvps: [RSVP!]!
-  userRoles(userId: Int!): [Role!]!
 }
 
 type RSVP {
@@ -1949,11 +1946,6 @@ input UpdatePostInput {
   id: Int!
   image: String
   isEvent: Boolean
-}
-
-input UpdateRoleInput {
-  description: String
-  name: String
 }
 
 input UpdateRsvpInput {

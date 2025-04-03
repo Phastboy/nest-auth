@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
-import { Int } from '@nestjs/graphql';
 import { UserRole } from '../user-role/user-role.model';
 import { RoleCount } from './role-count.output';
 
@@ -15,9 +14,6 @@ export class Role {
 
   @Field(() => String, { nullable: true })
   description!: string | null;
-
-  @Field(() => Int, { defaultValue: 0, nullable: false })
-  level!: number;
 
   @Field(() => Date, { nullable: false })
   createdAt!: Date;

@@ -20,9 +20,6 @@ export class RoleOrderByWithAggregationInput {
   description?: SortOrderInput;
 
   @Field(() => SortOrder, { nullable: true })
-  level?: `${SortOrder}`;
-
-  @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
