@@ -13,7 +13,7 @@ export class NotificationsResolver {
     @Args('createNotificationInput')
     createNotificationInput: CreateNotificationInput,
   ) {
-    return this.notificationsService.create(createNotificationInput);
+    return this.notificationsService.createNotification(createNotificationInput);
   }
 
   @Query(() => [Notification], { name: 'notifications' })

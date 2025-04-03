@@ -502,8 +502,20 @@ input CreateEventInput {
 }
 
 input CreateNotificationInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """The message of the notification"""
+  content: String!
+
+  """Whether the notification is read or not"""
+  isRead: Boolean! = false
+
+  """The title of the notification"""
+  title: String!
+
+  """The type of the notification"""
+  type: String!
+
+  """The ID of the user to whom the notification is sent"""
+  userId: Int!
 }
 
 input CreatePostInput {
@@ -1769,7 +1781,6 @@ type Role {
   createdAt: DateTime!
   description: String
   id: ID!
-  level: Int!
   name: String!
   updatedAt: DateTime!
   users: [UserRole!]
@@ -1777,7 +1788,6 @@ type Role {
 
 type RoleAvgAggregate {
   id: Float
-  level: Float
 }
 
 type RoleCount {
@@ -1789,7 +1799,6 @@ type RoleCountAggregate {
   createdAt: Int!
   description: Int!
   id: Int!
-  level: Int!
   name: Int!
   updatedAt: Int!
 }
@@ -1808,7 +1817,6 @@ input RoleCreateOrConnectWithoutUsersInput {
 input RoleCreateWithoutUsersInput {
   createdAt: DateTime
   description: String
-  level: Int
   name: String!
   updatedAt: DateTime
 }
@@ -1817,7 +1825,6 @@ type RoleMaxAggregate {
   createdAt: DateTime
   description: String
   id: Int
-  level: Int
   name: String
   updatedAt: DateTime
 }
@@ -1826,7 +1833,6 @@ type RoleMinAggregate {
   createdAt: DateTime
   description: String
   id: Int
-  level: Int
   name: String
   updatedAt: DateTime
 }
@@ -1838,7 +1844,6 @@ input RoleScalarRelationFilter {
 
 type RoleSumAggregate {
   id: Int
-  level: Int
 }
 
 input RoleWhereInput {
@@ -1848,7 +1853,6 @@ input RoleWhereInput {
   createdAt: DateTimeFilter
   description: StringNullableFilter
   id: IntFilter
-  level: IntFilter
   name: StringFilter
   updatedAt: DateTimeFilter
   users: UserRoleListRelationFilter
@@ -1861,7 +1865,6 @@ input RoleWhereUniqueInput {
   createdAt: DateTimeFilter
   description: StringNullableFilter
   id: Int
-  level: IntFilter
   name: String
   updatedAt: DateTimeFilter
   users: UserRoleListRelationFilter
@@ -1935,9 +1938,21 @@ input UpdateLikeInput {
 }
 
 input UpdateNotificationInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """The message of the notification"""
+  content: String
   id: Int!
+
+  """Whether the notification is read or not"""
+  isRead: Boolean = false
+
+  """The title of the notification"""
+  title: String
+
+  """The type of the notification"""
+  type: String
+
+  """The ID of the user to whom the notification is sent"""
+  userId: Int
 }
 
 input UpdatePostInput {
