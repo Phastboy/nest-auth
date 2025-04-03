@@ -26,9 +26,6 @@ export class RoleWhereInput {
   @Field(() => StringNullableFilter, { nullable: true })
   description?: StringNullableFilter;
 
-  @Field(() => IntFilter, { nullable: true })
-  level?: IntFilter;
-
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
 

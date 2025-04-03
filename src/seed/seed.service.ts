@@ -44,7 +44,7 @@ export class SeedService implements OnModuleInit {
     for (const role of roles) {
       await this.prisma.role.create({
         data: {
-          ...role
+          ...role,
         },
       });
     }

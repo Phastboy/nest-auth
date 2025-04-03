@@ -6,7 +6,4 @@ import { Int } from '@nestjs/graphql';
 export class RoleSumAggregate {
   @Field(() => Int, { nullable: true })
   id?: number;
-
-  @Field(() => Int, { nullable: true })
-  level?: number;
 }

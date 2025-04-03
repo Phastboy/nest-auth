@@ -81,9 +81,9 @@ export class RolesResolver {
   /**
    * @method removeRoleFromUser
    * @description removes a role from user
-   * @param userId 
-   * @param roleName 
-   * @returns 
+   * @param userId
+   * @param roleName
+   * @returns
    */
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('superadmin')
@@ -92,9 +92,6 @@ export class RolesResolver {
     @Args('userId', { type: () => Int }) userId: number,
     @Args('roleName') roleName: string,
   ): Promise<UserRole> {
-    return await this.rolesService.removeRoleFromUser(
-      userId,
-      roleName,
-    );
+    return await this.rolesService.removeRoleFromUser(userId, roleName);
   }
 }
