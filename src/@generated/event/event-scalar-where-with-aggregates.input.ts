@@ -6,6 +6,7 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 import { DateTimeNullableWithAggregatesFilter } from '../prisma/date-time-nullable-with-aggregates-filter.input';
 import { StringNullableWithAggregatesFilter } from '../prisma/string-nullable-with-aggregates-filter.input';
 import { BoolWithAggregatesFilter } from '../prisma/bool-with-aggregates-filter.input';
+import { EnumEventStatusWithAggregatesFilter } from '../prisma/enum-event-status-with-aggregates-filter.input';
 
 @InputType()
 export class EventScalarWhereWithAggregatesInput {
@@ -39,11 +40,23 @@ export class EventScalarWhereWithAggregatesInput {
   @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
   image?: StringNullableWithAggregatesFilter;
 
+  @Field(() => BoolWithAggregatesFilter, { nullable: true })
+  isRecurring?: BoolWithAggregatesFilter;
+
+  @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
+  recurrenceRule?: StringNullableWithAggregatesFilter;
+
+  @Field(() => BoolWithAggregatesFilter, { nullable: true })
+  isPublic?: BoolWithAggregatesFilter;
+
   @Field(() => IntWithAggregatesFilter, { nullable: true })
   userId?: IntWithAggregatesFilter;
 
   @Field(() => BoolWithAggregatesFilter, { nullable: true })
   shareAsPost?: BoolWithAggregatesFilter;
+
+  @Field(() => EnumEventStatusWithAggregatesFilter, { nullable: true })
+  status?: EnumEventStatusWithAggregatesFilter;
 
   @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
   createdAt?: DateTimeWithAggregatesFilter;

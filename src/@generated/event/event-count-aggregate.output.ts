@@ -26,10 +26,22 @@ export class EventCountAggregate {
   image!: number;
 
   @Field(() => Int, { nullable: false })
+  isRecurring!: number;
+
+  @Field(() => Int, { nullable: false })
+  recurrenceRule!: number;
+
+  @Field(() => Int, { nullable: false })
+  isPublic!: number;
+
+  @Field(() => Int, { nullable: false })
   userId!: number;
 
   @Field(() => Int, { nullable: false })
   shareAsPost!: number;
+
+  @Field(() => Int, { nullable: false })
+  status!: number;
 
   @Field(() => Int, { nullable: false })
   createdAt!: number;

@@ -112,26 +112,40 @@ model Post {
   @@map("posts")
 }
 
+// ==============================================================
+// Event Management
+// ==============================================================
+enum EventStatus {
+  ONGOING
+  COMPLETED
+  CANCELLED
+  SHEDULED
+  POSTPONED
+}
 model Event {
-  id           Int        @id @default(autoincrement())
-  title        String
-  description  String
-  location     String
-  startTime    DateTime
-  endTime      DateTime?
-  image        String?
-  user         User       @relation(fields: [userId], references: [id])
-  userId       Int
-  shareAsPost  Boolean    @default(false)
-  post         Post?      @relation("PostedEvent")
-  categories   Category[]
-  comments     Comment[]
-  rsvps        RSVP[]
-  likes        Like[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+  id               Int           @id @default(autoincrement())
+  title            String
+  description      String
+  location         String
+  startTime        DateTime
+  endTime          DateTime?
+  image            String?
+  isRecurring      Boolean       @default(false)
+  recurrenceRule   String?
+  isPublic         Boolean       @default(true)
+  user             User          @relation(fields: [userId], references: [id])
+  userId           Int
+  shareAsPost      Boolean       @default(false)
+  post             Post?         @relation("PostedEvent")
+  status           EventStatus   @default(SHEDULED)
+  categories       Category[]
+  comments         Comment[]
+  rsvps            RSVP[]
+  likes            Like[]
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
 
-  @@index([userId, startTime])
+  @@index([userId, startTime, status])
   @@map("events")
 }
 

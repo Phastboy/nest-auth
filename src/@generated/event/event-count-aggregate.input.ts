@@ -25,10 +25,22 @@ export class EventCountAggregateInput {
   image?: true;
 
   @Field(() => Boolean, { nullable: true })
+  isRecurring?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  recurrenceRule?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  isPublic?: true;
+
+  @Field(() => Boolean, { nullable: true })
   userId?: true;
 
   @Field(() => Boolean, { nullable: true })
   shareAsPost?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  status?: true;
 
   @Field(() => Boolean, { nullable: true })
   createdAt?: true;

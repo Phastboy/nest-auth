@@ -6,6 +6,7 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
+import { EnumEventStatusFieldUpdateOperationsInput } from '../prisma/enum-event-status-field-update-operations.input';
 import { CategoryUncheckedUpdateManyWithoutEventsNestedInput } from '../category/category-unchecked-update-many-without-events-nested.input';
 import { CommentUncheckedUpdateManyWithoutEventNestedInput } from '../comment/comment-unchecked-update-many-without-event-nested.input';
 import { RSVPUncheckedUpdateManyWithoutEventNestedInput } from '../rsvp/rsvp-unchecked-update-many-without-event-nested.input';
@@ -34,11 +35,23 @@ export class EventUncheckedUpdateWithoutPostInput {
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   image?: NullableStringFieldUpdateOperationsInput;
 
+  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
+  isRecurring?: BoolFieldUpdateOperationsInput;
+
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+  recurrenceRule?: NullableStringFieldUpdateOperationsInput;
+
+  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
+  isPublic?: BoolFieldUpdateOperationsInput;
+
   @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
   userId?: IntFieldUpdateOperationsInput;
 
   @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
   shareAsPost?: BoolFieldUpdateOperationsInput;
+
+  @Field(() => EnumEventStatusFieldUpdateOperationsInput, { nullable: true })
+  status?: EnumEventStatusFieldUpdateOperationsInput;
 
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;

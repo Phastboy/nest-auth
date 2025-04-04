@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { EventStatus } from '../prisma/event-status.enum';
 import { User } from '../user/user.model';
 import { Post } from '../post/post.model';
 import { Category } from '../category/category.model';
@@ -33,11 +34,23 @@ export class Event {
   @Field(() => String, { nullable: true })
   image!: string | null;
 
+  @Field(() => Boolean, { defaultValue: false, nullable: false })
+  isRecurring!: boolean;
+
+  @Field(() => String, { nullable: true })
+  recurrenceRule!: string | null;
+
+  @Field(() => Boolean, { defaultValue: true, nullable: false })
+  isPublic!: boolean;
+
   @Field(() => Int, { nullable: false })
   userId!: number;
 
   @Field(() => Boolean, { defaultValue: false, nullable: false })
   shareAsPost!: boolean;
+
+  @Field(() => EventStatus, { defaultValue: 'SHEDULED', nullable: false })
+  status!: `${EventStatus}`;
 
   @Field(() => Date, { nullable: false })
   createdAt!: Date;

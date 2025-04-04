@@ -1,5 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { EventStatus } from '../prisma/event-status.enum';
 import { PostCreateNestedOneWithoutEventInput } from '../post/post-create-nested-one-without-event.input';
 import { CategoryCreateNestedManyWithoutEventsInput } from '../category/category-create-nested-many-without-events.input';
 import { CommentCreateNestedManyWithoutEventInput } from '../comment/comment-create-nested-many-without-event.input';
@@ -27,7 +28,19 @@ export class EventCreateWithoutUserInput {
   image?: string;
 
   @Field(() => Boolean, { nullable: true })
+  isRecurring?: boolean;
+
+  @Field(() => String, { nullable: true })
+  recurrenceRule?: string;
+
+  @Field(() => Boolean, { nullable: true })
+  isPublic?: boolean;
+
+  @Field(() => Boolean, { nullable: true })
   shareAsPost?: boolean;
+
+  @Field(() => EventStatus, { nullable: true })
+  status?: `${EventStatus}`;
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
