@@ -6,6 +6,7 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
+import { EnumEventStatusFilter } from '../prisma/enum-event-status-filter.input';
 import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 import { PostNullableScalarRelationFilter } from '../post/post-nullable-scalar-relation-filter.input';
 import { CategoryListRelationFilter } from '../category/category-list-relation-filter.input';
@@ -45,11 +46,23 @@ export class EventWhereInput {
   @Field(() => StringNullableFilter, { nullable: true })
   image?: StringNullableFilter;
 
+  @Field(() => BoolFilter, { nullable: true })
+  isRecurring?: BoolFilter;
+
+  @Field(() => StringNullableFilter, { nullable: true })
+  recurrenceRule?: StringNullableFilter;
+
+  @Field(() => BoolFilter, { nullable: true })
+  isPublic?: BoolFilter;
+
   @Field(() => IntFilter, { nullable: true })
   userId?: IntFilter;
 
   @Field(() => BoolFilter, { nullable: true })
   shareAsPost?: BoolFilter;
+
+  @Field(() => EnumEventStatusFilter, { nullable: true })
+  status?: EnumEventStatusFilter;
 
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;

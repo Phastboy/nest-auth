@@ -54,8 +54,12 @@ erDiagram
   DateTime startTime
   DateTime endTime "nullable"
   String image "nullable"
+  Boolean isRecurring
+  String recurrenceRule "nullable"
+  Boolean isPublic
   Int userId FK
   Boolean shareAsPost
+  EventStatus status
   DateTime createdAt
   DateTime updatedAt
 }
@@ -181,8 +185,12 @@ erDiagram
   - `startTime`: 
   - `endTime`: 
   - `image`: 
+  - `isRecurring`: 
+  - `recurrenceRule`: 
+  - `isPublic`: 
   - `userId`: 
   - `shareAsPost`: 
+  - `status`: 
   - `createdAt`: 
   - `updatedAt`: 
 

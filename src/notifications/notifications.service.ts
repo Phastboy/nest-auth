@@ -11,7 +11,10 @@ import { ErrorHandler } from 'src/error-handler/error.util';
  */
 @Injectable()
 export class NotificationsService {
-  constructor(private readonly prismaService: PrismaService, private readonly handler: ErrorHandler) {}
+  constructor(
+    private readonly prismaService: PrismaService,
+    private readonly handler: ErrorHandler,
+  ) {}
 
   /**
    * @method createNotification
@@ -19,7 +22,9 @@ export class NotificationsService {
    * @param {CreateNotificationInput} createNotificationInput - The input data for creating a notification
    * @returns {Promise<Notification>} - A message indicating the notification has been created
    */
-  async createNotification(createNotificationInput: CreateNotificationInput): Promise<Notification> {
+  async createNotification(
+    createNotificationInput: CreateNotificationInput,
+  ): Promise<Notification> {
     try {
       return this.prismaService.notification.create({
         data: {
@@ -64,14 +69,14 @@ export class NotificationsService {
    */
   async findOne(notificationId: number): Promise<Notification> {
     try {
-      const notification= await this.prismaService.notification.findUnique({
+      const notification = await this.prismaService.notification.findUnique({
         where: {
           id: notificationId,
         },
       });
 
       if (!notification) {
-        throw new  NotFoundException('Notification not found');
+        throw new NotFoundException('Notification not found');
       }
       return notification;
     } catch (error) {

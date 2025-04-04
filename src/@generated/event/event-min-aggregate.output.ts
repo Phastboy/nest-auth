@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { EventStatus } from '../prisma/event-status.enum';
 
 @ObjectType()
 export class EventMinAggregate {
@@ -25,11 +26,23 @@ export class EventMinAggregate {
   @Field(() => String, { nullable: true })
   image?: string;
 
+  @Field(() => Boolean, { nullable: true })
+  isRecurring?: boolean;
+
+  @Field(() => String, { nullable: true })
+  recurrenceRule?: string;
+
+  @Field(() => Boolean, { nullable: true })
+  isPublic?: boolean;
+
   @Field(() => Int, { nullable: true })
   userId?: number;
 
   @Field(() => Boolean, { nullable: true })
   shareAsPost?: boolean;
+
+  @Field(() => EventStatus, { nullable: true })
+  status?: `${EventStatus}`;
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;

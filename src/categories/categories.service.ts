@@ -36,6 +36,19 @@ export class CategoriesService {
   }
 
   /**
+   * @method generateSlug
+   * @description Generates a slug for the given category name
+   * @param {string} name - The name of the category
+   * @returns {string} The generated slug
+   */
+  private generateSlug(name: string): string {
+    return name
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-|-$/g, '');
+  }
+
+  /**
    * Create a new category
    * @param {CategoryIncludeInput} newCategoryData - The data for the new category
    * @param {CategoryIncludeInput} includeInput - Optional includes for the category
@@ -47,6 +60,11 @@ export class CategoriesService {
     includeInput?: CategoryIncludeInput,
   ): Promise<CategoryWithDefaultRelations> {
     try {
+      // Generate slug if not provided
+      const slug = newCategoryData.slug
+        ? newCategoryData.slug
+        : this.generateSlug(newCategoryData.name);
+      newCategoryData.slug = slug;
       return await this.prismaService.category.create({
         data: newCategoryData,
         include: this.buildIncludeObject(includeInput),

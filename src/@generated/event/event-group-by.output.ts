@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
+import { EventStatus } from '../prisma/event-status.enum';
 import { EventCountAggregate } from './event-count-aggregate.output';
 import { EventAvgAggregate } from './event-avg-aggregate.output';
 import { EventSumAggregate } from './event-sum-aggregate.output';
@@ -30,11 +31,23 @@ export class EventGroupBy {
   @Field(() => String, { nullable: true })
   image?: string;
 
+  @Field(() => Boolean, { nullable: false })
+  isRecurring!: boolean;
+
+  @Field(() => String, { nullable: true })
+  recurrenceRule?: string;
+
+  @Field(() => Boolean, { nullable: false })
+  isPublic!: boolean;
+
   @Field(() => Int, { nullable: false })
   userId!: number;
 
   @Field(() => Boolean, { nullable: false })
   shareAsPost!: boolean;
+
+  @Field(() => EventStatus, { nullable: false })
+  status!: `${EventStatus}`;
 
   @Field(() => Date, { nullable: false })
   createdAt!: Date | string;

@@ -8,8 +8,12 @@ export enum EventScalarFieldEnum {
   startTime = 'startTime',
   endTime = 'endTime',
   image = 'image',
+  isRecurring = 'isRecurring',
+  recurrenceRule = 'recurrenceRule',
+  isPublic = 'isPublic',
   userId = 'userId',
   shareAsPost = 'shareAsPost',
+  status = 'status',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
 }

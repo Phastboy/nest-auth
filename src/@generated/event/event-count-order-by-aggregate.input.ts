@@ -26,10 +26,22 @@ export class EventCountOrderByAggregateInput {
   image?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
+  isRecurring?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  recurrenceRule?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  isPublic?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
   userId?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
   shareAsPost?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  status?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
