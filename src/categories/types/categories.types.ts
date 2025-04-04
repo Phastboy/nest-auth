@@ -4,6 +4,8 @@ import { Prisma } from '@prisma/client';
  *  default relations to include when querying for categories.
  */
 export const DEFAULT_CATEGORY_TO_BE_INCLUDED = {
+  children: true,
+  parent: true,
   _count: true,
 } satisfies Prisma.CategoryInclude;
 
