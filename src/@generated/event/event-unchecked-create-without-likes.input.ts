@@ -2,6 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { EventStatus } from '../prisma/event-status.enum';
+import { EventMode } from '../prisma/event-mode.enum';
+import { EventType } from '../prisma/event-type.enum';
 import { PostUncheckedCreateNestedOneWithoutEventInput } from '../post/post-unchecked-create-nested-one-without-event.input';
 import { CategoryUncheckedCreateNestedManyWithoutEventsInput } from '../category/category-unchecked-create-nested-many-without-events.input';
 import { CommentUncheckedCreateNestedManyWithoutEventInput } from '../comment/comment-unchecked-create-nested-many-without-event.input';
@@ -21,8 +23,8 @@ export class EventUncheckedCreateWithoutLikesInput {
   @Field(() => String, { nullable: false })
   location!: string;
 
-  @Field(() => Date, { nullable: false })
-  startTime!: Date | string;
+  @Field(() => Date, { nullable: true })
+  startTime?: Date | string;
 
   @Field(() => Date, { nullable: true })
   endTime?: Date | string;
@@ -47,6 +49,21 @@ export class EventUncheckedCreateWithoutLikesInput {
 
   @Field(() => EventStatus, { nullable: true })
   status?: `${EventStatus}`;
+
+  @Field(() => EventMode, { nullable: true })
+  eventMode?: `${EventMode}`;
+
+  @Field(() => EventType, { nullable: true })
+  eventType?: `${EventType}`;
+
+  @Field(() => String, { nullable: true })
+  eventLink?: string;
+
+  @Field(() => Int, { nullable: true })
+  roomId?: number;
+
+  @Field(() => Int, { nullable: true })
+  buildingId?: number;
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;

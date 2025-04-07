@@ -47,7 +47,7 @@ model User {
   notifications Notification[]
   likes         Like[]
   rsvps         RSVP[]
-  roles     UserRole[]
+  roles         UserRole[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
 
@@ -56,57 +56,57 @@ model User {
 }
 
 model Role {
-  id          Int       @id @default(autoincrement())
-  name        String    @unique
+  id          Int        @id @default(autoincrement())
+  name        String     @unique
   description String?
   users       UserRole[]
-  createdAt   DateTime  @default(now())
-  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
 
   @@map("roles")
 }
 
 model UserRole {
-  userId    Int
-  roleId    Int
-  user      User     @relation(fields: [userId], references: [id])
-  role      Role     @relation(fields: [roleId], references: [id])
+  userId     Int
+  roleId     Int
+  user       User     @relation(fields: [userId], references: [id])
+  role       Role     @relation(fields: [roleId], references: [id])
   assignedBy Int?
-  createdAt DateTime @default(now())
+  createdAt  DateTime @default(now())
 
   @@id([userId, roleId])
   @@map("user_roles")
 }
 
 model Category {
-  id          Int         @id @default(autoincrement())
-  name        String      @unique
-  slug        String      @unique
-  parentId    Int?
-  parent      Category?   @relation("CategoryHierarchy", fields: [parentId], references: [id])
-  children    Category[]  @relation("CategoryHierarchy")
-  posts       Post[]
-  events      Event[]
-  createdAt   DateTime    @default(now())
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  slug      String     @unique
+  parentId  Int?
+  parent    Category?  @relation("CategoryHierarchy", fields: [parentId], references: [id])
+  children  Category[] @relation("CategoryHierarchy")
+  posts     Post[]
+  events    Event[]
+  createdAt DateTime   @default(now())
 
   @@index([parentId])
   @@map("categories")
 }
 
 model Post {
-  id          Int          @id @default(autoincrement())
-  content     String
-  image       String?
-  isEvent     Boolean      @default(false)
-  event       Event?       @relation("PostedEvent", fields: [eventId], references: [id])
-  eventId     Int?         @unique
-  user        User         @relation(fields: [userId], references: [id])
-  userId      Int
-  categories  Category[]
-  comments    Comment[]
-  likes       Like[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  id         Int        @id @default(autoincrement())
+  content    String
+  image      String?
+  isEvent    Boolean    @default(false)
+  event      Event?     @relation("PostedEvent", fields: [eventId], references: [id])
+  eventId    Int?       @unique
+  user       User       @relation(fields: [userId], references: [id])
+  userId     Int
+  categories Category[]
+  comments   Comment[]
+  likes      Like[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
 
   @@index([userId, createdAt])
   @@map("posts")
@@ -115,94 +115,152 @@ model Post {
 // ==============================================================
 // Event Management
 // ==============================================================
+enum EventMode {
+  PHYSICAL
+  VIRTUAL
+  HYBRID
+}
+
 enum EventStatus {
   ONGOING
   COMPLETED
   CANCELLED
-  SHEDULED
+  SCHEDULED
   POSTPONED
+  TBD
 }
-model Event {
-  id               Int           @id @default(autoincrement())
-  title            String
-  description      String
-  location         String
-  startTime        DateTime
-  endTime          DateTime?
-  image            String?
-  isRecurring      Boolean       @default(false)
-  recurrenceRule   String?
-  isPublic         Boolean       @default(true)
-  user             User          @relation(fields: [userId], references: [id])
-  userId           Int
-  shareAsPost      Boolean       @default(false)
-  post             Post?         @relation("PostedEvent")
-  status           EventStatus   @default(SHEDULED)
-  categories       Category[]
-  comments         Comment[]
-  rsvps            RSVP[]
-  likes            Like[]
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @updatedAt
 
-  @@index([userId, startTime, status])
+enum EventType {
+  LECTURE
+  MEETING
+  WORKSHOP
+  SEMINAR
+  CONFERENCE
+  WEBINAR
+  SOCIAL
+  OTHER
+}
+
+model Event {
+  id             Int         @id @default(autoincrement())
+  title          String
+  description    String
+  location       String
+  startTime      DateTime?
+  endTime        DateTime?
+  image          String?
+  isRecurring    Boolean     @default(false)
+  recurrenceRule String?
+  isPublic       Boolean     @default(true)
+  user           User        @relation(fields: [userId], references: [id])
+  userId         Int
+  shareAsPost    Boolean     @default(false)
+  post           Post?       @relation("PostedEvent")
+  status         EventStatus @default(SCHEDULED)
+  eventMode      EventMode   @default(PHYSICAL)
+  eventType      EventType   @default(LECTURE)
+  eventLink      String?
+  categories     Category[]
+  room           Room?       @relation(fields: [roomId], references: [id])
+  roomId         Int?
+  building       Building?   @relation(fields: [buildingId], references: [id])
+  buildingId     Int?
+  comments       Comment[]
+  rsvps          RSVP[]
+  likes          Like[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([userId, startTime, status, eventType, eventMode])
   @@map("events")
 }
 
-model Comment {
-  id          Int       @id @default(autoincrement())
-  content     String
-  user        User      @relation(fields: [userId], references: [id])
-  userId      Int
-  post        Post?     @relation(fields: [postId], references: [id])
-  postId      Int?
-  event       Event?    @relation(fields: [eventId], references: [id])
-  eventId     Int?
-  parent      Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
-  parentId    Int?
-  replies     Comment[] @relation("CommentReplies")
-  createdAt   DateTime  @default(now())
+// ==============================================================
+// Venue Management
+// ==============================================================
+model Building {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  number    Int?
+  road      String?
+  landmark  String?
+  area      String?
+  longitude Float
+  latitude  Float
+  capacity  Int?
+  rooms     Room[]
+  events    Event[]
+  createdAt DateTime @default(now())
 
-  @@index([userId, postId, eventId, parentId]) // Added indexes
+  @@map("buildings")
+}
+
+model Room {
+  id         Int      @id @default(autoincrement())
+  name       String
+  building   Building @relation(fields: [buildingId], references: [id])
+  buildingId Int
+  capacity   Int?
+  events     Event[]
+  createdAt  DateTime @default(now())
+
+  @@map("rooms")
+}
+
+model Comment {
+  id        Int       @id @default(autoincrement())
+  content   String
+  user      User      @relation(fields: [userId], references: [id])
+  userId    Int
+  post      Post?     @relation(fields: [postId], references: [id])
+  postId    Int?
+  event     Event?    @relation(fields: [eventId], references: [id])
+  eventId   Int?
+  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
+  parentId  Int?
+  replies   Comment[] @relation("CommentReplies")
+  createdAt DateTime  @default(now())
+
+  @@index([userId, postId, eventId, parentId])
   @@map("comments")
 }
 
 model Like {
-  id          Int       @id @default(autoincrement())
-  user        User      @relation(fields: [userId], references: [id])
-  userId      Int
-  post        Post?     @relation(fields: [postId], references: [id])
-  postId      Int?
-  event       Event?    @relation(fields: [eventId], references: [id])
-  eventId     Int?
-  createdAt   DateTime  @default(now())
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  post      Post?    @relation(fields: [postId], references: [id])
+  postId    Int?
+  event     Event?   @relation(fields: [eventId], references: [id])
+  eventId   Int?
+  createdAt DateTime @default(now())
 
   @@unique([userId, postId, eventId])
   @@map("likes")
 }
 
 model RSVP {
-  id          Int       @id @default(autoincrement())
-  user        User      @relation(fields: [userId], references: [id])
-  userId      Int
-  event       Event     @relation(fields: [eventId], references: [id])
-  eventId     Int
-  status      String    @default("going")
-  createdAt   DateTime  @default(now())
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+  event     Event    @relation(fields: [eventId], references: [id])
+  eventId   Int
+  status    String   @default("going")
+  createdAt DateTime @default(now())
 
-  @@unique([userId, eventId]) 
+  @@unique([userId, eventId])
   @@map("rsvps")
 }
 
 model Notification {
-  id           Int       @id @default(autoincrement())
-  user         User      @relation(fields: [userId], references: [id])
-  userId       Int
-  type         String
-  content      String
-  isRead       Boolean   @default(false)
-  referenceId  Int?
-  createdAt    DateTime  @default(now())
+  id          Int      @id @default(autoincrement())
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+  type        String
+  content     String
+  isRead      Boolean  @default(false)
+  referenceId Int?
+  createdAt   DateTime @default(now())
 
   @@index([userId, isRead, createdAt])
   @@map("notifications")

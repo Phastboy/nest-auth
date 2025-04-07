@@ -8,4 +8,10 @@ export class EventSumAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   userId?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  roomId?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  buildingId?: true;
 }

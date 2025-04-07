@@ -3,9 +3,13 @@ import { ObjectType } from '@nestjs/graphql';
 import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { EventStatus } from '../prisma/event-status.enum';
+import { EventMode } from '../prisma/event-mode.enum';
+import { EventType } from '../prisma/event-type.enum';
 import { User } from '../user/user.model';
 import { Post } from '../post/post.model';
 import { Category } from '../category/category.model';
+import { Room } from '../room/room.model';
+import { Building } from '../building/building.model';
 import { Comment } from '../comment/comment.model';
 import { RSVP } from '../rsvp/rsvp.model';
 import { Like } from '../like/like.model';
@@ -25,8 +29,8 @@ export class Event {
   @Field(() => String, { nullable: false })
   location!: string;
 
-  @Field(() => Date, { nullable: false })
-  startTime!: Date;
+  @Field(() => Date, { nullable: true })
+  startTime!: Date | null;
 
   @Field(() => Date, { nullable: true })
   endTime!: Date | null;
@@ -49,8 +53,23 @@ export class Event {
   @Field(() => Boolean, { defaultValue: false, nullable: false })
   shareAsPost!: boolean;
 
-  @Field(() => EventStatus, { defaultValue: 'SHEDULED', nullable: false })
+  @Field(() => EventStatus, { defaultValue: 'SCHEDULED', nullable: false })
   status!: `${EventStatus}`;
+
+  @Field(() => EventMode, { defaultValue: 'PHYSICAL', nullable: false })
+  eventMode!: `${EventMode}`;
+
+  @Field(() => EventType, { defaultValue: 'LECTURE', nullable: false })
+  eventType!: `${EventType}`;
+
+  @Field(() => String, { nullable: true })
+  eventLink!: string | null;
+
+  @Field(() => Int, { nullable: true })
+  roomId!: number | null;
+
+  @Field(() => Int, { nullable: true })
+  buildingId!: number | null;
 
   @Field(() => Date, { nullable: false })
   createdAt!: Date;
@@ -66,6 +85,12 @@ export class Event {
 
   @Field(() => [Category], { nullable: true })
   categories?: Array<Category>;
+
+  @Field(() => Room, { nullable: true })
+  room?: Room | null;
+
+  @Field(() => Building, { nullable: true })
+  building?: Building | null;
 
   @Field(() => [Comment], { nullable: true })
   comments?: Array<Comment>;

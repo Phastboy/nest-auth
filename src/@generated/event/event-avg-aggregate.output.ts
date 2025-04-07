@@ -9,4 +9,10 @@ export class EventAvgAggregate {
 
   @Field(() => Float, { nullable: true })
   userId?: number;
+
+  @Field(() => Float, { nullable: true })
+  roomId?: number;
+
+  @Field(() => Float, { nullable: true })
+  buildingId?: number;
 }

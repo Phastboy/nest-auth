@@ -1,9 +1,13 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { EventStatus } from '../prisma/event-status.enum';
+import { EventMode } from '../prisma/event-mode.enum';
+import { EventType } from '../prisma/event-type.enum';
 import { UserCreateNestedOneWithoutEventsInput } from '../user/user-create-nested-one-without-events.input';
 import { PostCreateNestedOneWithoutEventInput } from '../post/post-create-nested-one-without-event.input';
 import { CategoryCreateNestedManyWithoutEventsInput } from '../category/category-create-nested-many-without-events.input';
+import { RoomCreateNestedOneWithoutEventsInput } from '../room/room-create-nested-one-without-events.input';
+import { BuildingCreateNestedOneWithoutEventsInput } from '../building/building-create-nested-one-without-events.input';
 import { RSVPCreateNestedManyWithoutEventInput } from '../rsvp/rsvp-create-nested-many-without-event.input';
 import { LikeCreateNestedManyWithoutEventInput } from '../like/like-create-nested-many-without-event.input';
 
@@ -18,8 +22,8 @@ export class EventCreateWithoutCommentsInput {
   @Field(() => String, { nullable: false })
   location!: string;
 
-  @Field(() => Date, { nullable: false })
-  startTime!: Date | string;
+  @Field(() => Date, { nullable: true })
+  startTime?: Date | string;
 
   @Field(() => Date, { nullable: true })
   endTime?: Date | string;
@@ -42,6 +46,15 @@ export class EventCreateWithoutCommentsInput {
   @Field(() => EventStatus, { nullable: true })
   status?: `${EventStatus}`;
 
+  @Field(() => EventMode, { nullable: true })
+  eventMode?: `${EventMode}`;
+
+  @Field(() => EventType, { nullable: true })
+  eventType?: `${EventType}`;
+
+  @Field(() => String, { nullable: true })
+  eventLink?: string;
+
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
 
@@ -56,6 +69,12 @@ export class EventCreateWithoutCommentsInput {
 
   @Field(() => CategoryCreateNestedManyWithoutEventsInput, { nullable: true })
   categories?: CategoryCreateNestedManyWithoutEventsInput;
+
+  @Field(() => RoomCreateNestedOneWithoutEventsInput, { nullable: true })
+  room?: RoomCreateNestedOneWithoutEventsInput;
+
+  @Field(() => BuildingCreateNestedOneWithoutEventsInput, { nullable: true })
+  building?: BuildingCreateNestedOneWithoutEventsInput;
 
   @Field(() => RSVPCreateNestedManyWithoutEventInput, { nullable: true })
   rsvps?: RSVPCreateNestedManyWithoutEventInput;

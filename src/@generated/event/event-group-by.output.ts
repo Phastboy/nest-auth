@@ -2,6 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { EventStatus } from '../prisma/event-status.enum';
+import { EventMode } from '../prisma/event-mode.enum';
+import { EventType } from '../prisma/event-type.enum';
 import { EventCountAggregate } from './event-count-aggregate.output';
 import { EventAvgAggregate } from './event-avg-aggregate.output';
 import { EventSumAggregate } from './event-sum-aggregate.output';
@@ -22,8 +24,8 @@ export class EventGroupBy {
   @Field(() => String, { nullable: false })
   location!: string;
 
-  @Field(() => Date, { nullable: false })
-  startTime!: Date | string;
+  @Field(() => Date, { nullable: true })
+  startTime?: Date | string;
 
   @Field(() => Date, { nullable: true })
   endTime?: Date | string;
@@ -48,6 +50,21 @@ export class EventGroupBy {
 
   @Field(() => EventStatus, { nullable: false })
   status!: `${EventStatus}`;
+
+  @Field(() => EventMode, { nullable: false })
+  eventMode!: `${EventMode}`;
+
+  @Field(() => EventType, { nullable: false })
+  eventType!: `${EventType}`;
+
+  @Field(() => String, { nullable: true })
+  eventLink?: string;
+
+  @Field(() => Int, { nullable: true })
+  roomId?: number;
+
+  @Field(() => Int, { nullable: true })
+  buildingId?: number;
 
   @Field(() => Date, { nullable: false })
   createdAt!: Date | string;

@@ -4,8 +4,9 @@ export enum EventStatus {
   ONGOING = 'ONGOING',
   COMPLETED = 'COMPLETED',
   CANCELLED = 'CANCELLED',
-  SHEDULED = 'SHEDULED',
+  SCHEDULED = 'SCHEDULED',
   POSTPONED = 'POSTPONED',
+  TBD = 'TBD',
 }
 
 registerEnumType(EventStatus, { name: 'EventStatus', description: undefined });

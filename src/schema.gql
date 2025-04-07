@@ -12,6 +12,177 @@ input BoolFilter {
   not: NestedBoolFilter
 }
 
+type Building {
+  _count: BuildingCount!
+  area: String
+  capacity: Int
+  createdAt: DateTime!
+  events: [Event!]
+  id: ID!
+  landmark: String
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  number: Int
+  road: String
+  rooms: [Room!]
+}
+
+type BuildingAvgAggregate {
+  capacity: Float
+  id: Float
+  latitude: Float
+  longitude: Float
+  number: Float
+}
+
+type BuildingCount {
+  events: Int!
+  rooms: Int!
+}
+
+type BuildingCountAggregate {
+  _all: Int!
+  area: Int!
+  capacity: Int!
+  createdAt: Int!
+  id: Int!
+  landmark: Int!
+  latitude: Int!
+  longitude: Int!
+  name: Int!
+  number: Int!
+  road: Int!
+}
+
+input BuildingCreateNestedOneWithoutEventsInput {
+  connect: BuildingWhereUniqueInput
+  connectOrCreate: BuildingCreateOrConnectWithoutEventsInput
+  create: BuildingCreateWithoutEventsInput
+}
+
+input BuildingCreateNestedOneWithoutRoomsInput {
+  connect: BuildingWhereUniqueInput
+  connectOrCreate: BuildingCreateOrConnectWithoutRoomsInput
+  create: BuildingCreateWithoutRoomsInput
+}
+
+input BuildingCreateOrConnectWithoutEventsInput {
+  create: BuildingCreateWithoutEventsInput!
+  where: BuildingWhereUniqueInput!
+}
+
+input BuildingCreateOrConnectWithoutRoomsInput {
+  create: BuildingCreateWithoutRoomsInput!
+  where: BuildingWhereUniqueInput!
+}
+
+input BuildingCreateWithoutEventsInput {
+  area: String
+  capacity: Int
+  createdAt: DateTime
+  landmark: String
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  number: Int
+  road: String
+  rooms: RoomCreateNestedManyWithoutBuildingInput
+}
+
+input BuildingCreateWithoutRoomsInput {
+  area: String
+  capacity: Int
+  createdAt: DateTime
+  events: EventCreateNestedManyWithoutBuildingInput
+  landmark: String
+  latitude: Float!
+  longitude: Float!
+  name: String!
+  number: Int
+  road: String
+}
+
+type BuildingMaxAggregate {
+  area: String
+  capacity: Int
+  createdAt: DateTime
+  id: Int
+  landmark: String
+  latitude: Float
+  longitude: Float
+  name: String
+  number: Int
+  road: String
+}
+
+type BuildingMinAggregate {
+  area: String
+  capacity: Int
+  createdAt: DateTime
+  id: Int
+  landmark: String
+  latitude: Float
+  longitude: Float
+  name: String
+  number: Int
+  road: String
+}
+
+input BuildingNullableScalarRelationFilter {
+  is: BuildingWhereInput
+  isNot: BuildingWhereInput
+}
+
+input BuildingScalarRelationFilter {
+  is: BuildingWhereInput
+  isNot: BuildingWhereInput
+}
+
+type BuildingSumAggregate {
+  capacity: Int
+  id: Int
+  latitude: Float
+  longitude: Float
+  number: Int
+}
+
+input BuildingWhereInput {
+  AND: [BuildingWhereInput!]
+  NOT: [BuildingWhereInput!]
+  OR: [BuildingWhereInput!]
+  area: StringNullableFilter
+  capacity: IntNullableFilter
+  createdAt: DateTimeFilter
+  events: EventListRelationFilter
+  id: IntFilter
+  landmark: StringNullableFilter
+  latitude: FloatFilter
+  longitude: FloatFilter
+  name: StringFilter
+  number: IntNullableFilter
+  road: StringNullableFilter
+  rooms: RoomListRelationFilter
+}
+
+input BuildingWhereUniqueInput {
+  AND: [BuildingWhereInput!]
+  NOT: [BuildingWhereInput!]
+  OR: [BuildingWhereInput!]
+  area: StringNullableFilter
+  capacity: IntNullableFilter
+  createdAt: DateTimeFilter
+  events: EventListRelationFilter
+  id: Int
+  landmark: StringNullableFilter
+  latitude: FloatFilter
+  longitude: FloatFilter
+  name: String
+  number: IntNullableFilter
+  road: StringNullableFilter
+  rooms: RoomListRelationFilter
+}
+
 type Category {
   _count: CategoryCount!
   children: [Category!]
@@ -487,17 +658,40 @@ input CreateCommentInput {
 }
 
 input CreateEventInput {
+  categoryIds: [Int!]
+
+  """Event description"""
   description: String!
+
+  """Event end time"""
   endTime: DateTime
+
+  """Event image URL"""
   image: String
+
+  """is it a public event"""
+  isPublic: Boolean = true
+
+  """is it a recurring event"""
+  isRecurring: Boolean! = false
+
+  """Event location"""
   location: String!
 
   """Post details required if sharing as a post"""
   post: CreatePostInput
+  recurrenceRule: String
 
   """Whether to share this event as a post. Required if post is provided."""
-  shareAsPost: Boolean = false
+  shareAsPost: Boolean
+
+  """Event start time"""
   startTime: DateTime!
+
+  """status of the event"""
+  status: EventStatus = SCHEDULED
+
+  """Event title"""
   title: String!
 }
 
@@ -572,21 +766,53 @@ input DateTimeNullableFilter {
   notIn: [DateTime!]
 }
 
+input EnumEventModeFilter {
+  equals: EventMode
+  in: [EventMode!]
+  not: NestedEnumEventModeFilter
+  notIn: [EventMode!]
+}
+
+input EnumEventStatusFilter {
+  equals: EventStatus
+  in: [EventStatus!]
+  not: NestedEnumEventStatusFilter
+  notIn: [EventStatus!]
+}
+
+input EnumEventTypeFilter {
+  equals: EventType
+  in: [EventType!]
+  not: NestedEnumEventTypeFilter
+  notIn: [EventType!]
+}
+
 type Event {
   _count: EventCount!
+  building: Building
+  buildingId: Int
   categories: [Category!]
   comments: [Comment!]
   createdAt: DateTime!
   description: String!
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode!
+  eventType: EventType!
   id: ID!
   image: String
+  isPublic: Boolean!
+  isRecurring: Boolean!
   likes: [Like!]
   location: String!
   post: Post
+  recurrenceRule: String
+  room: Room
+  roomId: Int
   rsvps: [RSVP!]
   shareAsPost: Boolean!
-  startTime: DateTime!
+  startTime: DateTime
+  status: EventStatus!
   title: String!
   updatedAt: DateTime!
   user: User!
@@ -594,7 +820,9 @@ type Event {
 }
 
 type EventAvgAggregate {
+  buildingId: Float
   id: Float
+  roomId: Float
   userId: Float
 }
 
@@ -607,28 +835,98 @@ type EventCount {
 
 type EventCountAggregate {
   _all: Int!
+  buildingId: Int!
   createdAt: Int!
   description: Int!
   endTime: Int!
+  eventLink: Int!
+  eventMode: Int!
+  eventType: Int!
   id: Int!
   image: Int!
+  isPublic: Int!
+  isRecurring: Int!
   location: Int!
+  recurrenceRule: Int!
+  roomId: Int!
   shareAsPost: Int!
   startTime: Int!
+  status: Int!
   title: Int!
   updatedAt: Int!
   userId: Int!
 }
 
-input EventCreateManyUserInput {
+input EventCreateManyBuildingInput {
   createdAt: DateTime
   description: String!
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   id: Int
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   location: String!
+  recurrenceRule: String
+  roomId: Int
   shareAsPost: Boolean
-  startTime: DateTime!
+  startTime: DateTime
+  status: EventStatus
+  title: String!
+  updatedAt: DateTime
+  userId: Int!
+}
+
+input EventCreateManyBuildingInputEnvelope {
+  data: [EventCreateManyBuildingInput!]!
+}
+
+input EventCreateManyRoomInput {
+  buildingId: Int
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
+  id: Int
+  image: String
+  isPublic: Boolean
+  isRecurring: Boolean
+  location: String!
+  recurrenceRule: String
+  shareAsPost: Boolean
+  startTime: DateTime
+  status: EventStatus
+  title: String!
+  updatedAt: DateTime
+  userId: Int!
+}
+
+input EventCreateManyRoomInputEnvelope {
+  data: [EventCreateManyRoomInput!]!
+}
+
+input EventCreateManyUserInput {
+  buildingId: Int
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
+  id: Int
+  image: String
+  isPublic: Boolean
+  isRecurring: Boolean
+  location: String!
+  recurrenceRule: String
+  roomId: Int
+  shareAsPost: Boolean
+  startTime: DateTime
+  status: EventStatus
   title: String!
   updatedAt: DateTime
 }
@@ -637,10 +935,24 @@ input EventCreateManyUserInputEnvelope {
   data: [EventCreateManyUserInput!]!
 }
 
+input EventCreateNestedManyWithoutBuildingInput {
+  connect: [EventWhereUniqueInput!]
+  connectOrCreate: [EventCreateOrConnectWithoutBuildingInput!]
+  create: [EventCreateWithoutBuildingInput!]
+  createMany: EventCreateManyBuildingInputEnvelope
+}
+
 input EventCreateNestedManyWithoutCategoriesInput {
   connect: [EventWhereUniqueInput!]
   connectOrCreate: [EventCreateOrConnectWithoutCategoriesInput!]
   create: [EventCreateWithoutCategoriesInput!]
+}
+
+input EventCreateNestedManyWithoutRoomInput {
+  connect: [EventWhereUniqueInput!]
+  connectOrCreate: [EventCreateOrConnectWithoutRoomInput!]
+  create: [EventCreateWithoutRoomInput!]
+  createMany: EventCreateManyRoomInputEnvelope
 }
 
 input EventCreateNestedManyWithoutUserInput {
@@ -674,6 +986,11 @@ input EventCreateNestedOneWithoutRsvpsInput {
   create: EventCreateWithoutRsvpsInput
 }
 
+input EventCreateOrConnectWithoutBuildingInput {
+  create: EventCreateWithoutBuildingInput!
+  where: EventWhereUniqueInput!
+}
+
 input EventCreateOrConnectWithoutCategoriesInput {
   create: EventCreateWithoutCategoriesInput!
   where: EventWhereUniqueInput!
@@ -694,6 +1011,11 @@ input EventCreateOrConnectWithoutPostInput {
   where: EventWhereUniqueInput!
 }
 
+input EventCreateOrConnectWithoutRoomInput {
+  create: EventCreateWithoutRoomInput!
+  where: EventWhereUniqueInput!
+}
+
 input EventCreateOrConnectWithoutRsvpsInput {
   create: EventCreateWithoutRsvpsInput!
   where: EventWhereUniqueInput!
@@ -704,104 +1026,210 @@ input EventCreateOrConnectWithoutUserInput {
   where: EventWhereUniqueInput!
 }
 
-input EventCreateWithoutCategoriesInput {
+input EventCreateWithoutBuildingInput {
+  categories: CategoryCreateNestedManyWithoutEventsInput
   comments: CommentCreateNestedManyWithoutEventInput
   createdAt: DateTime
   description: String!
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
   post: PostCreateNestedOneWithoutEventInput
+  recurrenceRule: String
+  room: RoomCreateNestedOneWithoutEventsInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
   shareAsPost: Boolean
-  startTime: DateTime!
+  startTime: DateTime
+  status: EventStatus
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput!
+}
+
+input EventCreateWithoutCategoriesInput {
+  building: BuildingCreateNestedOneWithoutEventsInput
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
+  image: String
+  isPublic: Boolean
+  isRecurring: Boolean
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String!
+  post: PostCreateNestedOneWithoutEventInput
+  recurrenceRule: String
+  room: RoomCreateNestedOneWithoutEventsInput
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  shareAsPost: Boolean
+  startTime: DateTime
+  status: EventStatus
   title: String!
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutEventsInput!
 }
 
 input EventCreateWithoutCommentsInput {
+  building: BuildingCreateNestedOneWithoutEventsInput
   categories: CategoryCreateNestedManyWithoutEventsInput
   createdAt: DateTime
   description: String!
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
   post: PostCreateNestedOneWithoutEventInput
+  recurrenceRule: String
+  room: RoomCreateNestedOneWithoutEventsInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
   shareAsPost: Boolean
-  startTime: DateTime!
+  startTime: DateTime
+  status: EventStatus
   title: String!
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutEventsInput!
 }
 
 input EventCreateWithoutLikesInput {
+  building: BuildingCreateNestedOneWithoutEventsInput
   categories: CategoryCreateNestedManyWithoutEventsInput
   comments: CommentCreateNestedManyWithoutEventInput
   createdAt: DateTime
   description: String!
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   location: String!
   post: PostCreateNestedOneWithoutEventInput
+  recurrenceRule: String
+  room: RoomCreateNestedOneWithoutEventsInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
   shareAsPost: Boolean
-  startTime: DateTime!
+  startTime: DateTime
+  status: EventStatus
   title: String!
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutEventsInput!
 }
 
 input EventCreateWithoutPostInput {
+  building: BuildingCreateNestedOneWithoutEventsInput
   categories: CategoryCreateNestedManyWithoutEventsInput
   comments: CommentCreateNestedManyWithoutEventInput
   createdAt: DateTime
   description: String!
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
+  recurrenceRule: String
+  room: RoomCreateNestedOneWithoutEventsInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
   shareAsPost: Boolean
-  startTime: DateTime!
+  startTime: DateTime
+  status: EventStatus
+  title: String!
+  updatedAt: DateTime
+  user: UserCreateNestedOneWithoutEventsInput!
+}
+
+input EventCreateWithoutRoomInput {
+  building: BuildingCreateNestedOneWithoutEventsInput
+  categories: CategoryCreateNestedManyWithoutEventsInput
+  comments: CommentCreateNestedManyWithoutEventInput
+  createdAt: DateTime
+  description: String!
+  endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
+  image: String
+  isPublic: Boolean
+  isRecurring: Boolean
+  likes: LikeCreateNestedManyWithoutEventInput
+  location: String!
+  post: PostCreateNestedOneWithoutEventInput
+  recurrenceRule: String
+  rsvps: RSVPCreateNestedManyWithoutEventInput
+  shareAsPost: Boolean
+  startTime: DateTime
+  status: EventStatus
   title: String!
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutEventsInput!
 }
 
 input EventCreateWithoutRsvpsInput {
+  building: BuildingCreateNestedOneWithoutEventsInput
   categories: CategoryCreateNestedManyWithoutEventsInput
   comments: CommentCreateNestedManyWithoutEventInput
   createdAt: DateTime
   description: String!
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
   post: PostCreateNestedOneWithoutEventInput
+  recurrenceRule: String
+  room: RoomCreateNestedOneWithoutEventsInput
   shareAsPost: Boolean
-  startTime: DateTime!
+  startTime: DateTime
+  status: EventStatus
   title: String!
   updatedAt: DateTime
   user: UserCreateNestedOneWithoutEventsInput!
 }
 
 input EventCreateWithoutUserInput {
+  building: BuildingCreateNestedOneWithoutEventsInput
   categories: CategoryCreateNestedManyWithoutEventsInput
   comments: CommentCreateNestedManyWithoutEventInput
   createdAt: DateTime
   description: String!
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   likes: LikeCreateNestedManyWithoutEventInput
   location: String!
   post: PostCreateNestedOneWithoutEventInput
+  recurrenceRule: String
+  room: RoomCreateNestedOneWithoutEventsInput
   rsvps: RSVPCreateNestedManyWithoutEventInput
   shareAsPost: Boolean
-  startTime: DateTime!
+  startTime: DateTime
+  status: EventStatus
   title: String!
   updatedAt: DateTime
 }
@@ -813,31 +1241,55 @@ input EventListRelationFilter {
 }
 
 type EventMaxAggregate {
+  buildingId: Int
   createdAt: DateTime
   description: String
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   id: Int
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   location: String
+  recurrenceRule: String
+  roomId: Int
   shareAsPost: Boolean
   startTime: DateTime
+  status: EventStatus
   title: String
   updatedAt: DateTime
   userId: Int
 }
 
 type EventMinAggregate {
+  buildingId: Int
   createdAt: DateTime
   description: String
   endTime: DateTime
+  eventLink: String
+  eventMode: EventMode
+  eventType: EventType
   id: Int
   image: String
+  isPublic: Boolean
+  isRecurring: Boolean
   location: String
+  recurrenceRule: String
+  roomId: Int
   shareAsPost: Boolean
   startTime: DateTime
+  status: EventStatus
   title: String
   updatedAt: DateTime
   userId: Int
+}
+
+enum EventMode {
+  HYBRID
+  PHYSICAL
+  VIRTUAL
 }
 
 input EventNullableScalarRelationFilter {
@@ -850,28 +1302,61 @@ input EventScalarRelationFilter {
   isNot: EventWhereInput
 }
 
+enum EventStatus {
+  CANCELLED
+  COMPLETED
+  ONGOING
+  POSTPONED
+  SCHEDULED
+  TBD
+}
+
 type EventSumAggregate {
+  buildingId: Int
   id: Int
+  roomId: Int
   userId: Int
+}
+
+enum EventType {
+  CONFERENCE
+  LECTURE
+  MEETING
+  OTHER
+  SEMINAR
+  SOCIAL
+  WEBINAR
+  WORKSHOP
 }
 
 input EventWhereInput {
   AND: [EventWhereInput!]
   NOT: [EventWhereInput!]
   OR: [EventWhereInput!]
+  building: BuildingNullableScalarRelationFilter
+  buildingId: IntNullableFilter
   categories: CategoryListRelationFilter
   comments: CommentListRelationFilter
   createdAt: DateTimeFilter
   description: StringFilter
   endTime: DateTimeNullableFilter
+  eventLink: StringNullableFilter
+  eventMode: EnumEventModeFilter
+  eventType: EnumEventTypeFilter
   id: IntFilter
   image: StringNullableFilter
+  isPublic: BoolFilter
+  isRecurring: BoolFilter
   likes: LikeListRelationFilter
   location: StringFilter
   post: PostNullableScalarRelationFilter
+  recurrenceRule: StringNullableFilter
+  room: RoomNullableScalarRelationFilter
+  roomId: IntNullableFilter
   rsvps: RSVPListRelationFilter
   shareAsPost: BoolFilter
-  startTime: DateTimeFilter
+  startTime: DateTimeNullableFilter
+  status: EnumEventStatusFilter
   title: StringFilter
   updatedAt: DateTimeFilter
   user: UserScalarRelationFilter
@@ -882,23 +1367,45 @@ input EventWhereUniqueInput {
   AND: [EventWhereInput!]
   NOT: [EventWhereInput!]
   OR: [EventWhereInput!]
+  building: BuildingNullableScalarRelationFilter
+  buildingId: IntNullableFilter
   categories: CategoryListRelationFilter
   comments: CommentListRelationFilter
   createdAt: DateTimeFilter
   description: StringFilter
   endTime: DateTimeNullableFilter
+  eventLink: StringNullableFilter
+  eventMode: EnumEventModeFilter
+  eventType: EnumEventTypeFilter
   id: Int
   image: StringNullableFilter
+  isPublic: BoolFilter
+  isRecurring: BoolFilter
   likes: LikeListRelationFilter
   location: StringFilter
   post: PostNullableScalarRelationFilter
+  recurrenceRule: StringNullableFilter
+  room: RoomNullableScalarRelationFilter
+  roomId: IntNullableFilter
   rsvps: RSVPListRelationFilter
   shareAsPost: BoolFilter
-  startTime: DateTimeFilter
+  startTime: DateTimeNullableFilter
+  status: EnumEventStatusFilter
   title: StringFilter
   updatedAt: DateTimeFilter
   user: UserScalarRelationFilter
   userId: IntFilter
+}
+
+input FloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
 }
 
 input IntFilter {
@@ -1182,6 +1689,38 @@ input NestedDateTimeNullableFilter {
   lte: DateTime
   not: NestedDateTimeNullableFilter
   notIn: [DateTime!]
+}
+
+input NestedEnumEventModeFilter {
+  equals: EventMode
+  in: [EventMode!]
+  not: NestedEnumEventModeFilter
+  notIn: [EventMode!]
+}
+
+input NestedEnumEventStatusFilter {
+  equals: EventStatus
+  in: [EventStatus!]
+  not: NestedEnumEventStatusFilter
+  notIn: [EventStatus!]
+}
+
+input NestedEnumEventTypeFilter {
+  equals: EventType
+  in: [EventType!]
+  not: NestedEnumEventTypeFilter
+  notIn: [EventType!]
+}
+
+input NestedFloatFilter {
+  equals: Float
+  gt: Float
+  gte: Float
+  in: [Float!]
+  lt: Float
+  lte: Float
+  not: NestedFloatFilter
+  notIn: [Float!]
 }
 
 input NestedIntFilter {
@@ -1870,6 +2409,143 @@ input RoleWhereUniqueInput {
   users: UserRoleListRelationFilter
 }
 
+type Room {
+  _count: RoomCount!
+  building: Building!
+  buildingId: Int!
+  capacity: Int
+  createdAt: DateTime!
+  events: [Event!]
+  id: ID!
+  name: String!
+}
+
+type RoomAvgAggregate {
+  buildingId: Float
+  capacity: Float
+  id: Float
+}
+
+type RoomCount {
+  events: Int!
+}
+
+type RoomCountAggregate {
+  _all: Int!
+  buildingId: Int!
+  capacity: Int!
+  createdAt: Int!
+  id: Int!
+  name: Int!
+}
+
+input RoomCreateManyBuildingInput {
+  capacity: Int
+  createdAt: DateTime
+  id: Int
+  name: String!
+}
+
+input RoomCreateManyBuildingInputEnvelope {
+  data: [RoomCreateManyBuildingInput!]!
+}
+
+input RoomCreateNestedManyWithoutBuildingInput {
+  connect: [RoomWhereUniqueInput!]
+  connectOrCreate: [RoomCreateOrConnectWithoutBuildingInput!]
+  create: [RoomCreateWithoutBuildingInput!]
+  createMany: RoomCreateManyBuildingInputEnvelope
+}
+
+input RoomCreateNestedOneWithoutEventsInput {
+  connect: RoomWhereUniqueInput
+  connectOrCreate: RoomCreateOrConnectWithoutEventsInput
+  create: RoomCreateWithoutEventsInput
+}
+
+input RoomCreateOrConnectWithoutBuildingInput {
+  create: RoomCreateWithoutBuildingInput!
+  where: RoomWhereUniqueInput!
+}
+
+input RoomCreateOrConnectWithoutEventsInput {
+  create: RoomCreateWithoutEventsInput!
+  where: RoomWhereUniqueInput!
+}
+
+input RoomCreateWithoutBuildingInput {
+  capacity: Int
+  createdAt: DateTime
+  events: EventCreateNestedManyWithoutRoomInput
+  name: String!
+}
+
+input RoomCreateWithoutEventsInput {
+  building: BuildingCreateNestedOneWithoutRoomsInput!
+  capacity: Int
+  createdAt: DateTime
+  name: String!
+}
+
+input RoomListRelationFilter {
+  every: RoomWhereInput
+  none: RoomWhereInput
+  some: RoomWhereInput
+}
+
+type RoomMaxAggregate {
+  buildingId: Int
+  capacity: Int
+  createdAt: DateTime
+  id: Int
+  name: String
+}
+
+type RoomMinAggregate {
+  buildingId: Int
+  capacity: Int
+  createdAt: DateTime
+  id: Int
+  name: String
+}
+
+input RoomNullableScalarRelationFilter {
+  is: RoomWhereInput
+  isNot: RoomWhereInput
+}
+
+type RoomSumAggregate {
+  buildingId: Int
+  capacity: Int
+  id: Int
+}
+
+input RoomWhereInput {
+  AND: [RoomWhereInput!]
+  NOT: [RoomWhereInput!]
+  OR: [RoomWhereInput!]
+  building: BuildingScalarRelationFilter
+  buildingId: IntFilter
+  capacity: IntNullableFilter
+  createdAt: DateTimeFilter
+  events: EventListRelationFilter
+  id: IntFilter
+  name: StringFilter
+}
+
+input RoomWhereUniqueInput {
+  AND: [RoomWhereInput!]
+  NOT: [RoomWhereInput!]
+  OR: [RoomWhereInput!]
+  building: BuildingScalarRelationFilter
+  buildingId: IntFilter
+  capacity: IntNullableFilter
+  createdAt: DateTimeFilter
+  events: EventListRelationFilter
+  id: Int
+  name: StringFilter
+}
+
 input StringFilter {
   contains: String
   endsWith: String
@@ -1914,18 +2590,41 @@ input UpdateCommentInput {
 }
 
 input UpdateEventInput {
+  categoryIds: [Int!]
+
+  """Event description"""
   description: String
+
+  """Event end time"""
   endTime: DateTime
   id: Int!
+
+  """Event image URL"""
   image: String
+
+  """is it a public event"""
+  isPublic: Boolean = true
+
+  """is it a recurring event"""
+  isRecurring: Boolean = false
+
+  """Event location"""
   location: String
 
   """Post details required if sharing as a post"""
   post: CreatePostInput
+  recurrenceRule: String
 
   """Whether to share this event as a post. Required if post is provided."""
-  shareAsPost: Boolean = false
+  shareAsPost: Boolean
+
+  """Event start time"""
   startTime: DateTime
+
+  """status of the event"""
+  status: EventStatus = SCHEDULED
+
+  """Event title"""
   title: String
 }
 
