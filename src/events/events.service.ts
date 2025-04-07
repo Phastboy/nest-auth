@@ -9,6 +9,7 @@ import { CreateEventInput } from './dto/create-event.input';
 import { UpdateEventInput } from './dto/update-event.input';
 import { PrismaService } from 'nestjs-prisma';
 import { Event } from 'src/@generated';
+import { CreatePostInput } from 'src/posts/dto/create-post.input';
 
 @Injectable()
 export class EventsService {
@@ -23,6 +24,16 @@ export class EventsService {
     },
   };
 
+  private validatePostSharing(shareAsPost: boolean, post?: CreatePostInput) {
+    if (shareAsPost && !post) {
+      throw new BadRequestException('Post details are required when shareAsPost is true');
+    }
+  
+    if (post && !shareAsPost) {
+      throw new BadRequestException('shareAsPost must be true when providing post details');
+    }
+  }  
+
   async createEvent(
     userId: number,
     newEventData: CreateEventInput,
@@ -31,20 +42,9 @@ export class EventsService {
     const shareAsPost = newEventData.post
       ? true
       : (newEventData.shareAsPost ?? false);
-    const { post, ...eventData } = newEventData;
+    const { categoryIds, post, ...eventData } = newEventData;
 
-    // Validate the relationship between shareAsPost and post
-    if (shareAsPost && !post) {
-      throw new BadRequestException(
-        'Post details are required when shareAsPost is true',
-      );
-    }
-
-    if (post && !shareAsPost) {
-      throw new BadRequestException(
-        'shareAsPost must be true when providing post details',
-      );
-    }
+    this.validatePostSharing(shareAsPost, post);
 
     if (shareAsPost && post) {
       return this.prismaService.$transaction(async (prisma) => {
@@ -54,6 +54,11 @@ export class EventsService {
             ...eventData,
             userId,
             shareAsPost: true,
+            categories: categoryIds? {
+              connect: categoryIds?.map((categoryId) => ({
+                id: categoryId,
+              })),
+            } : undefined,
           },
         });
 
