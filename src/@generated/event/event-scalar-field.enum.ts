@@ -14,6 +14,11 @@ export enum EventScalarFieldEnum {
   userId = 'userId',
   shareAsPost = 'shareAsPost',
   status = 'status',
+  eventMode = 'eventMode',
+  eventType = 'eventType',
+  eventLink = 'eventLink',
+  roomId = 'roomId',
+  buildingId = 'buildingId',
   createdAt = 'createdAt',
   updatedAt = 'updatedAt',
 }

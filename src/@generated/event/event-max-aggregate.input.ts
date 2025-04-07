@@ -43,6 +43,21 @@ export class EventMaxAggregateInput {
   status?: true;
 
   @Field(() => Boolean, { nullable: true })
+  eventMode?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  eventType?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  eventLink?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  roomId?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  buildingId?: true;
+
+  @Field(() => Boolean, { nullable: true })
   createdAt?: true;
 
   @Field(() => Boolean, { nullable: true })

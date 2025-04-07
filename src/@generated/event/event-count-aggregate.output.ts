@@ -44,6 +44,21 @@ export class EventCountAggregate {
   status!: number;
 
   @Field(() => Int, { nullable: false })
+  eventMode!: number;
+
+  @Field(() => Int, { nullable: false })
+  eventType!: number;
+
+  @Field(() => Int, { nullable: false })
+  eventLink!: number;
+
+  @Field(() => Int, { nullable: false })
+  roomId!: number;
+
+  @Field(() => Int, { nullable: false })
+  buildingId!: number;
+
+  @Field(() => Int, { nullable: false })
   createdAt!: number;
 
   @Field(() => Int, { nullable: false })

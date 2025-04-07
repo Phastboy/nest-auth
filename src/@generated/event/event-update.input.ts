@@ -1,14 +1,18 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
-import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 import { EnumEventStatusFieldUpdateOperationsInput } from '../prisma/enum-event-status-field-update-operations.input';
+import { EnumEventModeFieldUpdateOperationsInput } from '../prisma/enum-event-mode-field-update-operations.input';
+import { EnumEventTypeFieldUpdateOperationsInput } from '../prisma/enum-event-type-field-update-operations.input';
+import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UserUpdateOneRequiredWithoutEventsNestedInput } from '../user/user-update-one-required-without-events-nested.input';
 import { PostUpdateOneWithoutEventNestedInput } from '../post/post-update-one-without-event-nested.input';
 import { CategoryUpdateManyWithoutEventsNestedInput } from '../category/category-update-many-without-events-nested.input';
+import { RoomUpdateOneWithoutEventsNestedInput } from '../room/room-update-one-without-events-nested.input';
+import { BuildingUpdateOneWithoutEventsNestedInput } from '../building/building-update-one-without-events-nested.input';
 import { CommentUpdateManyWithoutEventNestedInput } from '../comment/comment-update-many-without-event-nested.input';
 import { RSVPUpdateManyWithoutEventNestedInput } from '../rsvp/rsvp-update-many-without-event-nested.input';
 import { LikeUpdateManyWithoutEventNestedInput } from '../like/like-update-many-without-event-nested.input';
@@ -24,8 +28,8 @@ export class EventUpdateInput {
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
   location?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  startTime?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
+  startTime?: NullableDateTimeFieldUpdateOperationsInput;
 
   @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
   endTime?: NullableDateTimeFieldUpdateOperationsInput;
@@ -48,6 +52,15 @@ export class EventUpdateInput {
   @Field(() => EnumEventStatusFieldUpdateOperationsInput, { nullable: true })
   status?: EnumEventStatusFieldUpdateOperationsInput;
 
+  @Field(() => EnumEventModeFieldUpdateOperationsInput, { nullable: true })
+  eventMode?: EnumEventModeFieldUpdateOperationsInput;
+
+  @Field(() => EnumEventTypeFieldUpdateOperationsInput, { nullable: true })
+  eventType?: EnumEventTypeFieldUpdateOperationsInput;
+
+  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
+  eventLink?: NullableStringFieldUpdateOperationsInput;
+
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;
 
@@ -64,6 +77,12 @@ export class EventUpdateInput {
 
   @Field(() => CategoryUpdateManyWithoutEventsNestedInput, { nullable: true })
   categories?: CategoryUpdateManyWithoutEventsNestedInput;
+
+  @Field(() => RoomUpdateOneWithoutEventsNestedInput, { nullable: true })
+  room?: RoomUpdateOneWithoutEventsNestedInput;
+
+  @Field(() => BuildingUpdateOneWithoutEventsNestedInput, { nullable: true })
+  building?: BuildingUpdateOneWithoutEventsNestedInput;
 
   @Field(() => CommentUpdateManyWithoutEventNestedInput, { nullable: true })
   comments?: CommentUpdateManyWithoutEventNestedInput;

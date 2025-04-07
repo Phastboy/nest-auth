@@ -5,6 +5,8 @@ import { SortOrderInput } from '../prisma/sort-order.input';
 import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relation.input';
 import { PostOrderByWithRelationInput } from '../post/post-order-by-with-relation.input';
 import { CategoryOrderByRelationAggregateInput } from '../category/category-order-by-relation-aggregate.input';
+import { RoomOrderByWithRelationInput } from '../room/room-order-by-with-relation.input';
+import { BuildingOrderByWithRelationInput } from '../building/building-order-by-with-relation.input';
 import { CommentOrderByRelationAggregateInput } from '../comment/comment-order-by-relation-aggregate.input';
 import { RSVPOrderByRelationAggregateInput } from '../rsvp/rsvp-order-by-relation-aggregate.input';
 import { LikeOrderByRelationAggregateInput } from '../like/like-order-by-relation-aggregate.input';
@@ -23,8 +25,8 @@ export class EventOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true })
   location?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  startTime?: `${SortOrder}`;
+  @Field(() => SortOrderInput, { nullable: true })
+  startTime?: SortOrderInput;
 
   @Field(() => SortOrderInput, { nullable: true })
   endTime?: SortOrderInput;
@@ -51,6 +53,21 @@ export class EventOrderByWithRelationInput {
   status?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
+  eventMode?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  eventType?: `${SortOrder}`;
+
+  @Field(() => SortOrderInput, { nullable: true })
+  eventLink?: SortOrderInput;
+
+  @Field(() => SortOrderInput, { nullable: true })
+  roomId?: SortOrderInput;
+
+  @Field(() => SortOrderInput, { nullable: true })
+  buildingId?: SortOrderInput;
+
+  @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
@@ -64,6 +81,12 @@ export class EventOrderByWithRelationInput {
 
   @Field(() => CategoryOrderByRelationAggregateInput, { nullable: true })
   categories?: CategoryOrderByRelationAggregateInput;
+
+  @Field(() => RoomOrderByWithRelationInput, { nullable: true })
+  room?: RoomOrderByWithRelationInput;
+
+  @Field(() => BuildingOrderByWithRelationInput, { nullable: true })
+  building?: BuildingOrderByWithRelationInput;
 
   @Field(() => CommentOrderByRelationAggregateInput, { nullable: true })
   comments?: CommentOrderByRelationAggregateInput;

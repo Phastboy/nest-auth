@@ -44,6 +44,21 @@ export class EventMinOrderByAggregateInput {
   status?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
+  eventMode?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  eventType?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  eventLink?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  roomId?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  buildingId?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })

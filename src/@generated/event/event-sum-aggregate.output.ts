@@ -9,4 +9,10 @@ export class EventSumAggregate {
 
   @Field(() => Int, { nullable: true })
   userId?: number;
+
+  @Field(() => Int, { nullable: true })
+  roomId?: number;
+
+  @Field(() => Int, { nullable: true })
+  buildingId?: number;
 }

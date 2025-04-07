@@ -51,7 +51,7 @@ erDiagram
   String title
   String description
   String location
-  DateTime startTime
+  DateTime startTime "nullable"
   DateTime endTime "nullable"
   String image "nullable"
   Boolean isRecurring
@@ -60,8 +60,32 @@ erDiagram
   Int userId FK
   Boolean shareAsPost
   EventStatus status
+  EventMode eventMode
+  EventType eventType
+  String eventLink "nullable"
+  Int roomId FK "nullable"
+  Int buildingId FK "nullable"
   DateTime createdAt
   DateTime updatedAt
+}
+"buildings" {
+  Int id PK
+  String name UK
+  Int number "nullable"
+  String road "nullable"
+  String landmark "nullable"
+  String area "nullable"
+  Float longitude
+  Float latitude
+  Int capacity "nullable"
+  DateTime createdAt
+}
+"rooms" {
+  Int id PK
+  String name
+  Int buildingId FK
+  Int capacity "nullable"
+  DateTime createdAt
 }
 "comments" {
   Int id PK
@@ -109,6 +133,9 @@ erDiagram
 "posts" |o--o| "events" : event
 "posts" }o--|| "users" : user
 "events" }o--|| "users" : user
+"events" }o--o| "rooms" : room
+"events" }o--o| "buildings" : building
+"rooms" }o--|| "buildings" : building
 "comments" }o--|| "users" : user
 "comments" }o--o| "posts" : post
 "comments" }o--o| "events" : event
@@ -191,8 +218,36 @@ erDiagram
   - `userId`: 
   - `shareAsPost`: 
   - `status`: 
+  - `eventMode`: 
+  - `eventType`: 
+  - `eventLink`: 
+  - `roomId`: 
+  - `buildingId`: 
   - `createdAt`: 
   - `updatedAt`: 
+
+### `buildings`
+
+**Properties**
+  - `id`: 
+  - `name`: 
+  - `number`: 
+  - `road`: 
+  - `landmark`: 
+  - `area`: 
+  - `longitude`: 
+  - `latitude`: 
+  - `capacity`: 
+  - `createdAt`: 
+
+### `rooms`
+
+**Properties**
+  - `id`: 
+  - `name`: 
+  - `buildingId`: 
+  - `capacity`: 
+  - `createdAt`: 
 
 ### `comments`
 
