@@ -171,7 +171,7 @@ model Event {
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt
 
-  @@index([userId, startTime, status])
+  @@index([userId, startTime, status, eventType, eventMode])
   @@map("events")
 }
 
