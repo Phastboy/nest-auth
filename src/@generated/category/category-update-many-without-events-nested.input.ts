@@ -12,55 +12,44 @@ import { CategoryScalarWhereInput } from './category-scalar-where.input';
 
 @InputType()
 export class CategoryUpdateManyWithoutEventsNestedInput {
-  @Field(() => [CategoryCreateWithoutEventsInput], { nullable: true })
-  @Type(() => CategoryCreateWithoutEventsInput)
-  create?: Array<CategoryCreateWithoutEventsInput>;
 
-  @Field(() => [CategoryCreateOrConnectWithoutEventsInput], { nullable: true })
-  @Type(() => CategoryCreateOrConnectWithoutEventsInput)
-  connectOrCreate?: Array<CategoryCreateOrConnectWithoutEventsInput>;
+    @Field(() => [CategoryCreateWithoutEventsInput], {nullable:true})
+    @Type(() => CategoryCreateWithoutEventsInput)
+    create?: Array<CategoryCreateWithoutEventsInput>;
 
-  @Field(() => [CategoryUpsertWithWhereUniqueWithoutEventsInput], {
-    nullable: true,
-  })
-  @Type(() => CategoryUpsertWithWhereUniqueWithoutEventsInput)
-  upsert?: Array<CategoryUpsertWithWhereUniqueWithoutEventsInput>;
+    @Field(() => [CategoryCreateOrConnectWithoutEventsInput], {nullable:true})
+    @Type(() => CategoryCreateOrConnectWithoutEventsInput)
+    connectOrCreate?: Array<CategoryCreateOrConnectWithoutEventsInput>;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
+    @Field(() => [CategoryUpsertWithWhereUniqueWithoutEventsInput], {nullable:true})
+    @Type(() => CategoryUpsertWithWhereUniqueWithoutEventsInput)
+    upsert?: Array<CategoryUpsertWithWhereUniqueWithoutEventsInput>;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  disconnect?: Array<
-    Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>
-  >;
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  delete?: Array<
-    Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>
-  >;
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  connect?: Array<
-    Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>
-  >;
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 
-  @Field(() => [CategoryUpdateWithWhereUniqueWithoutEventsInput], {
-    nullable: true,
-  })
-  @Type(() => CategoryUpdateWithWhereUniqueWithoutEventsInput)
-  update?: Array<CategoryUpdateWithWhereUniqueWithoutEventsInput>;
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 
-  @Field(() => [CategoryUpdateManyWithWhereWithoutEventsInput], {
-    nullable: true,
-  })
-  @Type(() => CategoryUpdateManyWithWhereWithoutEventsInput)
-  updateMany?: Array<CategoryUpdateManyWithWhereWithoutEventsInput>;
+    @Field(() => [CategoryUpdateWithWhereUniqueWithoutEventsInput], {nullable:true})
+    @Type(() => CategoryUpdateWithWhereUniqueWithoutEventsInput)
+    update?: Array<CategoryUpdateWithWhereUniqueWithoutEventsInput>;
 
-  @Field(() => [CategoryScalarWhereInput], { nullable: true })
-  @Type(() => CategoryScalarWhereInput)
-  deleteMany?: Array<CategoryScalarWhereInput>;
+    @Field(() => [CategoryUpdateManyWithWhereWithoutEventsInput], {nullable:true})
+    @Type(() => CategoryUpdateManyWithWhereWithoutEventsInput)
+    updateMany?: Array<CategoryUpdateManyWithWhereWithoutEventsInput>;
+
+    @Field(() => [CategoryScalarWhereInput], {nullable:true})
+    @Type(() => CategoryScalarWhereInput)
+    deleteMany?: Array<CategoryScalarWhereInput>;
 }

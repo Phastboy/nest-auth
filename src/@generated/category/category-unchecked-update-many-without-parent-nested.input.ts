@@ -13,59 +13,48 @@ import { CategoryScalarWhereInput } from './category-scalar-where.input';
 
 @InputType()
 export class CategoryUncheckedUpdateManyWithoutParentNestedInput {
-  @Field(() => [CategoryCreateWithoutParentInput], { nullable: true })
-  @Type(() => CategoryCreateWithoutParentInput)
-  create?: Array<CategoryCreateWithoutParentInput>;
 
-  @Field(() => [CategoryCreateOrConnectWithoutParentInput], { nullable: true })
-  @Type(() => CategoryCreateOrConnectWithoutParentInput)
-  connectOrCreate?: Array<CategoryCreateOrConnectWithoutParentInput>;
+    @Field(() => [CategoryCreateWithoutParentInput], {nullable:true})
+    @Type(() => CategoryCreateWithoutParentInput)
+    create?: Array<CategoryCreateWithoutParentInput>;
 
-  @Field(() => [CategoryUpsertWithWhereUniqueWithoutParentInput], {
-    nullable: true,
-  })
-  @Type(() => CategoryUpsertWithWhereUniqueWithoutParentInput)
-  upsert?: Array<CategoryUpsertWithWhereUniqueWithoutParentInput>;
+    @Field(() => [CategoryCreateOrConnectWithoutParentInput], {nullable:true})
+    @Type(() => CategoryCreateOrConnectWithoutParentInput)
+    connectOrCreate?: Array<CategoryCreateOrConnectWithoutParentInput>;
 
-  @Field(() => CategoryCreateManyParentInputEnvelope, { nullable: true })
-  @Type(() => CategoryCreateManyParentInputEnvelope)
-  createMany?: CategoryCreateManyParentInputEnvelope;
+    @Field(() => [CategoryUpsertWithWhereUniqueWithoutParentInput], {nullable:true})
+    @Type(() => CategoryUpsertWithWhereUniqueWithoutParentInput)
+    upsert?: Array<CategoryUpsertWithWhereUniqueWithoutParentInput>;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
+    @Field(() => CategoryCreateManyParentInputEnvelope, {nullable:true})
+    @Type(() => CategoryCreateManyParentInputEnvelope)
+    createMany?: CategoryCreateManyParentInputEnvelope;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  disconnect?: Array<
-    Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>
-  >;
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  delete?: Array<
-    Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>
-  >;
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 
-  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
-  @Type(() => CategoryWhereUniqueInput)
-  connect?: Array<
-    Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>
-  >;
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 
-  @Field(() => [CategoryUpdateWithWhereUniqueWithoutParentInput], {
-    nullable: true,
-  })
-  @Type(() => CategoryUpdateWithWhereUniqueWithoutParentInput)
-  update?: Array<CategoryUpdateWithWhereUniqueWithoutParentInput>;
+    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
+    @Type(() => CategoryWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
 
-  @Field(() => [CategoryUpdateManyWithWhereWithoutParentInput], {
-    nullable: true,
-  })
-  @Type(() => CategoryUpdateManyWithWhereWithoutParentInput)
-  updateMany?: Array<CategoryUpdateManyWithWhereWithoutParentInput>;
+    @Field(() => [CategoryUpdateWithWhereUniqueWithoutParentInput], {nullable:true})
+    @Type(() => CategoryUpdateWithWhereUniqueWithoutParentInput)
+    update?: Array<CategoryUpdateWithWhereUniqueWithoutParentInput>;
 
-  @Field(() => [CategoryScalarWhereInput], { nullable: true })
-  @Type(() => CategoryScalarWhereInput)
-  deleteMany?: Array<CategoryScalarWhereInput>;
+    @Field(() => [CategoryUpdateManyWithWhereWithoutParentInput], {nullable:true})
+    @Type(() => CategoryUpdateManyWithWhereWithoutParentInput)
+    updateMany?: Array<CategoryUpdateManyWithWhereWithoutParentInput>;
+
+    @Field(() => [CategoryScalarWhereInput], {nullable:true})
+    @Type(() => CategoryScalarWhereInput)
+    deleteMany?: Array<CategoryScalarWhereInput>;
 }

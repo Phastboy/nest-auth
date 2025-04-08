@@ -8,15 +8,16 @@ import { EventCreateWithoutRoomInput } from './event-create-without-room.input';
 
 @InputType()
 export class EventUpsertWithWhereUniqueWithoutRoomInput {
-  @Field(() => EventWhereUniqueInput, { nullable: false })
-  @Type(() => EventWhereUniqueInput)
-  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-  @Field(() => EventUpdateWithoutRoomInput, { nullable: false })
-  @Type(() => EventUpdateWithoutRoomInput)
-  update!: EventUpdateWithoutRoomInput;
+    @Field(() => EventWhereUniqueInput, {nullable:false})
+    @Type(() => EventWhereUniqueInput)
+    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-  @Field(() => EventCreateWithoutRoomInput, { nullable: false })
-  @Type(() => EventCreateWithoutRoomInput)
-  create!: EventCreateWithoutRoomInput;
+    @Field(() => EventUpdateWithoutRoomInput, {nullable:false})
+    @Type(() => EventUpdateWithoutRoomInput)
+    update!: EventUpdateWithoutRoomInput;
+
+    @Field(() => EventCreateWithoutRoomInput, {nullable:false})
+    @Type(() => EventCreateWithoutRoomInput)
+    create!: EventCreateWithoutRoomInput;
 }

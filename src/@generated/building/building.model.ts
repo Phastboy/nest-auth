@@ -9,42 +9,43 @@ import { BuildingCount } from './building-count.output';
 
 @ObjectType()
 export class Building {
-  @Field(() => ID, { nullable: false })
-  id!: number;
 
-  @Field(() => String, { nullable: false })
-  name!: string;
+    @Field(() => ID, {nullable:false})
+    id!: number;
 
-  @Field(() => Int, { nullable: true })
-  number!: number | null;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => String, { nullable: true })
-  road!: string | null;
+    @Field(() => Int, {nullable:true})
+    number!: number | null;
 
-  @Field(() => String, { nullable: true })
-  landmark!: string | null;
+    @Field(() => String, {nullable:true})
+    road!: string | null;
 
-  @Field(() => String, { nullable: true })
-  area!: string | null;
+    @Field(() => String, {nullable:true})
+    landmark!: string | null;
 
-  @Field(() => Float, { nullable: false })
-  longitude!: number;
+    @Field(() => String, {nullable:true})
+    area!: string | null;
 
-  @Field(() => Float, { nullable: false })
-  latitude!: number;
+    @Field(() => Float, {nullable:false})
+    longitude!: number;
 
-  @Field(() => Int, { nullable: true })
-  capacity!: number | null;
+    @Field(() => Float, {nullable:false})
+    latitude!: number;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => Int, {nullable:true})
+    capacity!: number | null;
 
-  @Field(() => [Room], { nullable: true })
-  rooms?: Array<Room>;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => [Event], { nullable: true })
-  events?: Array<Event>;
+    @Field(() => [Room], {nullable:true})
+    rooms?: Array<Room>;
 
-  @Field(() => BuildingCount, { nullable: false })
-  _count?: BuildingCount;
+    @Field(() => [Event], {nullable:true})
+    events?: Array<Event>;
+
+    @Field(() => BuildingCount, {nullable:false})
+    _count?: BuildingCount;
 }

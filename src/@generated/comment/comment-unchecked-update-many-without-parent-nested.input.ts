@@ -13,53 +13,48 @@ import { CommentScalarWhereInput } from './comment-scalar-where.input';
 
 @InputType()
 export class CommentUncheckedUpdateManyWithoutParentNestedInput {
-  @Field(() => [CommentCreateWithoutParentInput], { nullable: true })
-  @Type(() => CommentCreateWithoutParentInput)
-  create?: Array<CommentCreateWithoutParentInput>;
 
-  @Field(() => [CommentCreateOrConnectWithoutParentInput], { nullable: true })
-  @Type(() => CommentCreateOrConnectWithoutParentInput)
-  connectOrCreate?: Array<CommentCreateOrConnectWithoutParentInput>;
+    @Field(() => [CommentCreateWithoutParentInput], {nullable:true})
+    @Type(() => CommentCreateWithoutParentInput)
+    create?: Array<CommentCreateWithoutParentInput>;
 
-  @Field(() => [CommentUpsertWithWhereUniqueWithoutParentInput], {
-    nullable: true,
-  })
-  @Type(() => CommentUpsertWithWhereUniqueWithoutParentInput)
-  upsert?: Array<CommentUpsertWithWhereUniqueWithoutParentInput>;
+    @Field(() => [CommentCreateOrConnectWithoutParentInput], {nullable:true})
+    @Type(() => CommentCreateOrConnectWithoutParentInput)
+    connectOrCreate?: Array<CommentCreateOrConnectWithoutParentInput>;
 
-  @Field(() => CommentCreateManyParentInputEnvelope, { nullable: true })
-  @Type(() => CommentCreateManyParentInputEnvelope)
-  createMany?: CommentCreateManyParentInputEnvelope;
+    @Field(() => [CommentUpsertWithWhereUniqueWithoutParentInput], {nullable:true})
+    @Type(() => CommentUpsertWithWhereUniqueWithoutParentInput)
+    upsert?: Array<CommentUpsertWithWhereUniqueWithoutParentInput>;
 
-  @Field(() => [CommentWhereUniqueInput], { nullable: true })
-  @Type(() => CommentWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
+    @Field(() => CommentCreateManyParentInputEnvelope, {nullable:true})
+    @Type(() => CommentCreateManyParentInputEnvelope)
+    createMany?: CommentCreateManyParentInputEnvelope;
 
-  @Field(() => [CommentWhereUniqueInput], { nullable: true })
-  @Type(() => CommentWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
+    @Field(() => [CommentWhereUniqueInput], {nullable:true})
+    @Type(() => CommentWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
 
-  @Field(() => [CommentWhereUniqueInput], { nullable: true })
-  @Type(() => CommentWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
+    @Field(() => [CommentWhereUniqueInput], {nullable:true})
+    @Type(() => CommentWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
 
-  @Field(() => [CommentWhereUniqueInput], { nullable: true })
-  @Type(() => CommentWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
+    @Field(() => [CommentWhereUniqueInput], {nullable:true})
+    @Type(() => CommentWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
 
-  @Field(() => [CommentUpdateWithWhereUniqueWithoutParentInput], {
-    nullable: true,
-  })
-  @Type(() => CommentUpdateWithWhereUniqueWithoutParentInput)
-  update?: Array<CommentUpdateWithWhereUniqueWithoutParentInput>;
+    @Field(() => [CommentWhereUniqueInput], {nullable:true})
+    @Type(() => CommentWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<CommentWhereUniqueInput, 'id'>>;
 
-  @Field(() => [CommentUpdateManyWithWhereWithoutParentInput], {
-    nullable: true,
-  })
-  @Type(() => CommentUpdateManyWithWhereWithoutParentInput)
-  updateMany?: Array<CommentUpdateManyWithWhereWithoutParentInput>;
+    @Field(() => [CommentUpdateWithWhereUniqueWithoutParentInput], {nullable:true})
+    @Type(() => CommentUpdateWithWhereUniqueWithoutParentInput)
+    update?: Array<CommentUpdateWithWhereUniqueWithoutParentInput>;
 
-  @Field(() => [CommentScalarWhereInput], { nullable: true })
-  @Type(() => CommentScalarWhereInput)
-  deleteMany?: Array<CommentScalarWhereInput>;
+    @Field(() => [CommentUpdateManyWithWhereWithoutParentInput], {nullable:true})
+    @Type(() => CommentUpdateManyWithWhereWithoutParentInput)
+    updateMany?: Array<CommentUpdateManyWithWhereWithoutParentInput>;
+
+    @Field(() => [CommentScalarWhereInput], {nullable:true})
+    @Type(() => CommentScalarWhereInput)
+    deleteMany?: Array<CommentScalarWhereInput>;
 }

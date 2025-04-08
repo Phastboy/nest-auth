@@ -7,14 +7,15 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class UpdateManyRsvpArgs {
-  @Field(() => RSVPUpdateManyMutationInput, { nullable: false })
-  @Type(() => RSVPUpdateManyMutationInput)
-  data!: RSVPUpdateManyMutationInput;
 
-  @Field(() => RSVPWhereInput, { nullable: true })
-  @Type(() => RSVPWhereInput)
-  where?: RSVPWhereInput;
+    @Field(() => RSVPUpdateManyMutationInput, {nullable:false})
+    @Type(() => RSVPUpdateManyMutationInput)
+    data!: RSVPUpdateManyMutationInput;
 
-  @Field(() => Int, { nullable: true })
-  limit?: number;
+    @Field(() => RSVPWhereInput, {nullable:true})
+    @Type(() => RSVPWhereInput)
+    where?: RSVPWhereInput;
+
+    @Field(() => Int, {nullable:true})
+    limit?: number;
 }

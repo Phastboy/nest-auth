@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneLikeArgs {
-  @Field(() => LikeCreateInput, { nullable: false })
-  @Type(() => LikeCreateInput)
-  data!: LikeCreateInput;
+
+    @Field(() => LikeCreateInput, {nullable:false})
+    @Type(() => LikeCreateInput)
+    data!: LikeCreateInput;
 }

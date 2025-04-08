@@ -9,42 +9,43 @@ import { CommentCount } from './comment-count.output';
 
 @ObjectType()
 export class Comment {
-  @Field(() => ID, { nullable: false })
-  id!: number;
 
-  @Field(() => String, { nullable: false })
-  content!: string;
+    @Field(() => ID, {nullable:false})
+    id!: number;
 
-  @Field(() => Int, { nullable: false })
-  userId!: number;
+    @Field(() => String, {nullable:false})
+    content!: string;
 
-  @Field(() => Int, { nullable: true })
-  postId!: number | null;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => Int, { nullable: true })
-  eventId!: number | null;
+    @Field(() => Int, {nullable:true})
+    postId!: number | null;
 
-  @Field(() => Int, { nullable: true })
-  parentId!: number | null;
+    @Field(() => Int, {nullable:true})
+    eventId!: number | null;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => Int, {nullable:true})
+    parentId!: number | null;
 
-  @Field(() => User, { nullable: false })
-  user?: User;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => Post, { nullable: true })
-  post?: Post | null;
+    @Field(() => User, {nullable:false})
+    user?: User;
 
-  @Field(() => Event, { nullable: true })
-  event?: Event | null;
+    @Field(() => Post, {nullable:true})
+    post?: Post | null;
 
-  @Field(() => Comment, { nullable: true })
-  parent?: Comment | null;
+    @Field(() => Event, {nullable:true})
+    event?: Event | null;
 
-  @Field(() => [Comment], { nullable: true })
-  replies?: Array<Comment>;
+    @Field(() => Comment, {nullable:true})
+    parent?: Comment | null;
 
-  @Field(() => CommentCount, { nullable: false })
-  _count?: CommentCount;
+    @Field(() => [Comment], {nullable:true})
+    replies?: Array<Comment>;
+
+    @Field(() => CommentCount, {nullable:false})
+    _count?: CommentCount;
 }

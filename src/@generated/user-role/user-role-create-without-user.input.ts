@@ -5,12 +5,13 @@ import { RoleCreateNestedOneWithoutUsersInput } from '../role/role-create-nested
 
 @InputType()
 export class UserRoleCreateWithoutUserInput {
-  @Field(() => Int, { nullable: true })
-  assignedBy?: number;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    assignedBy?: number;
 
-  @Field(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
-  role!: RoleCreateNestedOneWithoutUsersInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => RoleCreateNestedOneWithoutUsersInput, {nullable:false})
+    role!: RoleCreateNestedOneWithoutUsersInput;
 }

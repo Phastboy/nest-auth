@@ -8,18 +8,19 @@ import { LikeMaxAggregate } from './like-max-aggregate.output';
 
 @ObjectType()
 export class AggregateLike {
-  @Field(() => LikeCountAggregate, { nullable: true })
-  _count?: LikeCountAggregate;
 
-  @Field(() => LikeAvgAggregate, { nullable: true })
-  _avg?: LikeAvgAggregate;
+    @Field(() => LikeCountAggregate, {nullable:true})
+    _count?: LikeCountAggregate;
 
-  @Field(() => LikeSumAggregate, { nullable: true })
-  _sum?: LikeSumAggregate;
+    @Field(() => LikeAvgAggregate, {nullable:true})
+    _avg?: LikeAvgAggregate;
 
-  @Field(() => LikeMinAggregate, { nullable: true })
-  _min?: LikeMinAggregate;
+    @Field(() => LikeSumAggregate, {nullable:true})
+    _sum?: LikeSumAggregate;
 
-  @Field(() => LikeMaxAggregate, { nullable: true })
-  _max?: LikeMaxAggregate;
+    @Field(() => LikeMinAggregate, {nullable:true})
+    _min?: LikeMinAggregate;
+
+    @Field(() => LikeMaxAggregate, {nullable:true})
+    _max?: LikeMaxAggregate;
 }

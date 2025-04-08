@@ -14,34 +14,35 @@ import { RoomMaxAggregateInput } from './room-max-aggregate.input';
 
 @ArgsType()
 export class RoomAggregateArgs {
-  @Field(() => RoomWhereInput, { nullable: true })
-  @Type(() => RoomWhereInput)
-  where?: RoomWhereInput;
 
-  @Field(() => [RoomOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<RoomOrderByWithRelationInput>;
+    @Field(() => RoomWhereInput, {nullable:true})
+    @Type(() => RoomWhereInput)
+    where?: RoomWhereInput;
 
-  @Field(() => RoomWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+    @Field(() => [RoomOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<RoomOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => RoomWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => RoomCountAggregateInput, { nullable: true })
-  _count?: RoomCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => RoomAvgAggregateInput, { nullable: true })
-  _avg?: RoomAvgAggregateInput;
+    @Field(() => RoomCountAggregateInput, {nullable:true})
+    _count?: RoomCountAggregateInput;
 
-  @Field(() => RoomSumAggregateInput, { nullable: true })
-  _sum?: RoomSumAggregateInput;
+    @Field(() => RoomAvgAggregateInput, {nullable:true})
+    _avg?: RoomAvgAggregateInput;
 
-  @Field(() => RoomMinAggregateInput, { nullable: true })
-  _min?: RoomMinAggregateInput;
+    @Field(() => RoomSumAggregateInput, {nullable:true})
+    _sum?: RoomSumAggregateInput;
 
-  @Field(() => RoomMaxAggregateInput, { nullable: true })
-  _max?: RoomMaxAggregateInput;
+    @Field(() => RoomMinAggregateInput, {nullable:true})
+    _min?: RoomMinAggregateInput;
+
+    @Field(() => RoomMaxAggregateInput, {nullable:true})
+    _max?: RoomMaxAggregateInput;
 }

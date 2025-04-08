@@ -6,10 +6,11 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class DeleteManyRoleArgs {
-  @Field(() => RoleWhereInput, { nullable: true })
-  @Type(() => RoleWhereInput)
-  where?: RoleWhereInput;
 
-  @Field(() => Int, { nullable: true })
-  limit?: number;
+    @Field(() => RoleWhereInput, {nullable:true})
+    @Type(() => RoleWhereInput)
+    where?: RoleWhereInput;
+
+    @Field(() => Int, {nullable:true})
+    limit?: number;
 }

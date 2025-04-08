@@ -7,18 +7,19 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 
 @InputType()
 export class RoleUncheckedUpdateManyInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  name?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  description?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    description?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 }

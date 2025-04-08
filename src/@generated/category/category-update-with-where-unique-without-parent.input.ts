@@ -7,11 +7,12 @@ import { CategoryUpdateWithoutParentInput } from './category-update-without-pare
 
 @InputType()
 export class CategoryUpdateWithWhereUniqueWithoutParentInput {
-  @Field(() => CategoryWhereUniqueInput, { nullable: false })
-  @Type(() => CategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryUpdateWithoutParentInput, { nullable: false })
-  @Type(() => CategoryUpdateWithoutParentInput)
-  data!: CategoryUpdateWithoutParentInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:false})
+    @Type(() => CategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
+
+    @Field(() => CategoryUpdateWithoutParentInput, {nullable:false})
+    @Type(() => CategoryUpdateWithoutParentInput)
+    data!: CategoryUpdateWithoutParentInput;
 }

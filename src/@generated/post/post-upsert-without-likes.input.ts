@@ -7,15 +7,16 @@ import { PostWhereInput } from './post-where.input';
 
 @InputType()
 export class PostUpsertWithoutLikesInput {
-  @Field(() => PostUpdateWithoutLikesInput, { nullable: false })
-  @Type(() => PostUpdateWithoutLikesInput)
-  update!: PostUpdateWithoutLikesInput;
 
-  @Field(() => PostCreateWithoutLikesInput, { nullable: false })
-  @Type(() => PostCreateWithoutLikesInput)
-  create!: PostCreateWithoutLikesInput;
+    @Field(() => PostUpdateWithoutLikesInput, {nullable:false})
+    @Type(() => PostUpdateWithoutLikesInput)
+    update!: PostUpdateWithoutLikesInput;
 
-  @Field(() => PostWhereInput, { nullable: true })
-  @Type(() => PostWhereInput)
-  where?: PostWhereInput;
+    @Field(() => PostCreateWithoutLikesInput, {nullable:false})
+    @Type(() => PostCreateWithoutLikesInput)
+    create!: PostCreateWithoutLikesInput;
+
+    @Field(() => PostWhereInput, {nullable:true})
+    @Type(() => PostWhereInput)
+    where?: PostWhereInput;
 }

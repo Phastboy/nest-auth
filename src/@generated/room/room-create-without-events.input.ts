@@ -5,15 +5,16 @@ import { BuildingCreateNestedOneWithoutRoomsInput } from '../building/building-c
 
 @InputType()
 export class RoomCreateWithoutEventsInput {
-  @Field(() => String, { nullable: false })
-  name!: string;
 
-  @Field(() => Int, { nullable: true })
-  capacity?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    capacity?: number;
 
-  @Field(() => BuildingCreateNestedOneWithoutRoomsInput, { nullable: false })
-  building!: BuildingCreateNestedOneWithoutRoomsInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => BuildingCreateNestedOneWithoutRoomsInput, {nullable:false})
+    building!: BuildingCreateNestedOneWithoutRoomsInput;
 }

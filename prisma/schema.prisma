@@ -144,8 +144,7 @@ enum EventType {
 model Event {
   id             Int         @id @default(autoincrement())
   title          String
-  description    String
-  location       String
+  description    String?
   startTime      DateTime?
   endTime        DateTime?
   image          String?
@@ -156,7 +155,7 @@ model Event {
   userId         Int
   shareAsPost    Boolean     @default(false)
   post           Post?       @relation("PostedEvent")
-  status         EventStatus @default(SCHEDULED)
+  eventStatus    EventStatus @default(SCHEDULED)
   eventMode      EventMode   @default(PHYSICAL)
   eventType      EventType   @default(LECTURE)
   eventLink      String?
@@ -171,7 +170,7 @@ model Event {
   createdAt      DateTime    @default(now())
   updatedAt      DateTime    @updatedAt
 
-  @@index([userId, startTime, status, eventType, eventMode])
+  @@index([userId, startTime, eventStatus, eventType, eventMode])
   @@map("events")
 }
 

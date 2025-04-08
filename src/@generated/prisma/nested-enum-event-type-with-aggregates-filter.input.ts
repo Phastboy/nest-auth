@@ -6,24 +6,25 @@ import { NestedEnumEventTypeFilter } from './nested-enum-event-type-filter.input
 
 @InputType()
 export class NestedEnumEventTypeWithAggregatesFilter {
-  @Field(() => EventType, { nullable: true })
-  equals?: `${EventType}`;
 
-  @Field(() => [EventType], { nullable: true })
-  in?: Array<`${EventType}`>;
+    @Field(() => EventType, {nullable:true})
+    equals?: `${EventType}`;
 
-  @Field(() => [EventType], { nullable: true })
-  notIn?: Array<`${EventType}`>;
+    @Field(() => [EventType], {nullable:true})
+    in?: Array<`${EventType}`>;
 
-  @Field(() => NestedEnumEventTypeWithAggregatesFilter, { nullable: true })
-  not?: NestedEnumEventTypeWithAggregatesFilter;
+    @Field(() => [EventType], {nullable:true})
+    notIn?: Array<`${EventType}`>;
 
-  @Field(() => NestedIntFilter, { nullable: true })
-  _count?: NestedIntFilter;
+    @Field(() => NestedEnumEventTypeWithAggregatesFilter, {nullable:true})
+    not?: NestedEnumEventTypeWithAggregatesFilter;
 
-  @Field(() => NestedEnumEventTypeFilter, { nullable: true })
-  _min?: NestedEnumEventTypeFilter;
+    @Field(() => NestedIntFilter, {nullable:true})
+    _count?: NestedIntFilter;
 
-  @Field(() => NestedEnumEventTypeFilter, { nullable: true })
-  _max?: NestedEnumEventTypeFilter;
+    @Field(() => NestedEnumEventTypeFilter, {nullable:true})
+    _min?: NestedEnumEventTypeFilter;
+
+    @Field(() => NestedEnumEventTypeFilter, {nullable:true})
+    _max?: NestedEnumEventTypeFilter;
 }

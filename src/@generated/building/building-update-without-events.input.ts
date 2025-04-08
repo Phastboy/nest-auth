@@ -9,33 +9,34 @@ import { RoomUpdateManyWithoutBuildingNestedInput } from '../room/room-update-ma
 
 @InputType()
 export class BuildingUpdateWithoutEventsInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-  number?: NullableIntFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  road?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    number?: NullableIntFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  landmark?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    road?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  area?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    landmark?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => FloatFieldUpdateOperationsInput, { nullable: true })
-  longitude?: FloatFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    area?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => FloatFieldUpdateOperationsInput, { nullable: true })
-  latitude?: FloatFieldUpdateOperationsInput;
+    @Field(() => FloatFieldUpdateOperationsInput, {nullable:true})
+    longitude?: FloatFieldUpdateOperationsInput;
 
-  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-  capacity?: NullableIntFieldUpdateOperationsInput;
+    @Field(() => FloatFieldUpdateOperationsInput, {nullable:true})
+    latitude?: FloatFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    capacity?: NullableIntFieldUpdateOperationsInput;
 
-  @Field(() => RoomUpdateManyWithoutBuildingNestedInput, { nullable: true })
-  rooms?: RoomUpdateManyWithoutBuildingNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => RoomUpdateManyWithoutBuildingNestedInput, {nullable:true})
+    rooms?: RoomUpdateManyWithoutBuildingNestedInput;
 }

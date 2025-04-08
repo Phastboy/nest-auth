@@ -6,11 +6,12 @@ import { BuildingUpdateWithoutEventsInput } from './building-update-without-even
 
 @InputType()
 export class BuildingUpdateToOneWithWhereWithoutEventsInput {
-  @Field(() => BuildingWhereInput, { nullable: true })
-  @Type(() => BuildingWhereInput)
-  where?: BuildingWhereInput;
 
-  @Field(() => BuildingUpdateWithoutEventsInput, { nullable: false })
-  @Type(() => BuildingUpdateWithoutEventsInput)
-  data!: BuildingUpdateWithoutEventsInput;
+    @Field(() => BuildingWhereInput, {nullable:true})
+    @Type(() => BuildingWhereInput)
+    where?: BuildingWhereInput;
+
+    @Field(() => BuildingUpdateWithoutEventsInput, {nullable:false})
+    @Type(() => BuildingUpdateWithoutEventsInput)
+    data!: BuildingUpdateWithoutEventsInput;
 }

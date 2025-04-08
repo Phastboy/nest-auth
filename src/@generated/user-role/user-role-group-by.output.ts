@@ -9,30 +9,31 @@ import { UserRoleMaxAggregate } from './user-role-max-aggregate.output';
 
 @ObjectType()
 export class UserRoleGroupBy {
-  @Field(() => Int, { nullable: false })
-  userId!: number;
 
-  @Field(() => Int, { nullable: false })
-  roleId!: number;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => Int, { nullable: true })
-  assignedBy?: number;
+    @Field(() => Int, {nullable:false})
+    roleId!: number;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date | string;
+    @Field(() => Int, {nullable:true})
+    assignedBy?: number;
 
-  @Field(() => UserRoleCountAggregate, { nullable: true })
-  _count?: UserRoleCountAggregate;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date | string;
 
-  @Field(() => UserRoleAvgAggregate, { nullable: true })
-  _avg?: UserRoleAvgAggregate;
+    @Field(() => UserRoleCountAggregate, {nullable:true})
+    _count?: UserRoleCountAggregate;
 
-  @Field(() => UserRoleSumAggregate, { nullable: true })
-  _sum?: UserRoleSumAggregate;
+    @Field(() => UserRoleAvgAggregate, {nullable:true})
+    _avg?: UserRoleAvgAggregate;
 
-  @Field(() => UserRoleMinAggregate, { nullable: true })
-  _min?: UserRoleMinAggregate;
+    @Field(() => UserRoleSumAggregate, {nullable:true})
+    _sum?: UserRoleSumAggregate;
 
-  @Field(() => UserRoleMaxAggregate, { nullable: true })
-  _max?: UserRoleMaxAggregate;
+    @Field(() => UserRoleMinAggregate, {nullable:true})
+    _min?: UserRoleMinAggregate;
+
+    @Field(() => UserRoleMaxAggregate, {nullable:true})
+    _max?: UserRoleMaxAggregate;
 }

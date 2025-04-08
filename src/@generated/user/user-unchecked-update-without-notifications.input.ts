@@ -13,57 +13,46 @@ import { UserRoleUncheckedUpdateManyWithoutUserNestedInput } from '../user-role/
 
 @InputType()
 export class UserUncheckedUpdateWithoutNotificationsInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  email?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  username?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    email?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  password?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    username?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  avatar?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    password?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  bio?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    avatar?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    bio?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => PostUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  posts?: PostUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => EventUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  events?: EventUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => PostUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    posts?: PostUncheckedUpdateManyWithoutUserNestedInput;
 
-  @Field(() => CommentUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  comments?: CommentUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => EventUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    events?: EventUncheckedUpdateManyWithoutUserNestedInput;
 
-  @Field(() => LikeUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  likes?: LikeUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => CommentUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    comments?: CommentUncheckedUpdateManyWithoutUserNestedInput;
 
-  @Field(() => RSVPUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  rsvps?: RSVPUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => LikeUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    likes?: LikeUncheckedUpdateManyWithoutUserNestedInput;
 
-  @Field(() => UserRoleUncheckedUpdateManyWithoutUserNestedInput, {
-    nullable: true,
-  })
-  roles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput;
+    @Field(() => RSVPUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    rsvps?: RSVPUncheckedUpdateManyWithoutUserNestedInput;
+
+    @Field(() => UserRoleUncheckedUpdateManyWithoutUserNestedInput, {nullable:true})
+    roles?: UserRoleUncheckedUpdateManyWithoutUserNestedInput;
 }

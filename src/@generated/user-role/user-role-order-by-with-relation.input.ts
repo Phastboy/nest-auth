@@ -7,21 +7,22 @@ import { RoleOrderByWithRelationInput } from '../role/role-order-by-with-relatio
 
 @InputType()
 export class UserRoleOrderByWithRelationInput {
-  @Field(() => SortOrder, { nullable: true })
-  userId?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  roleId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    userId?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  assignedBy?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    roleId?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    assignedBy?: SortOrderInput;
 
-  @Field(() => UserOrderByWithRelationInput, { nullable: true })
-  user?: UserOrderByWithRelationInput;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => RoleOrderByWithRelationInput, { nullable: true })
-  role?: RoleOrderByWithRelationInput;
+    @Field(() => UserOrderByWithRelationInput, {nullable:true})
+    user?: UserOrderByWithRelationInput;
+
+    @Field(() => RoleOrderByWithRelationInput, {nullable:true})
+    role?: RoleOrderByWithRelationInput;
 }

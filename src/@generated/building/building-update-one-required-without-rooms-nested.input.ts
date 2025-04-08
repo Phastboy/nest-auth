@@ -10,25 +10,24 @@ import { BuildingUpdateToOneWithWhereWithoutRoomsInput } from './building-update
 
 @InputType()
 export class BuildingUpdateOneRequiredWithoutRoomsNestedInput {
-  @Field(() => BuildingCreateWithoutRoomsInput, { nullable: true })
-  @Type(() => BuildingCreateWithoutRoomsInput)
-  create?: BuildingCreateWithoutRoomsInput;
 
-  @Field(() => BuildingCreateOrConnectWithoutRoomsInput, { nullable: true })
-  @Type(() => BuildingCreateOrConnectWithoutRoomsInput)
-  connectOrCreate?: BuildingCreateOrConnectWithoutRoomsInput;
+    @Field(() => BuildingCreateWithoutRoomsInput, {nullable:true})
+    @Type(() => BuildingCreateWithoutRoomsInput)
+    create?: BuildingCreateWithoutRoomsInput;
 
-  @Field(() => BuildingUpsertWithoutRoomsInput, { nullable: true })
-  @Type(() => BuildingUpsertWithoutRoomsInput)
-  upsert?: BuildingUpsertWithoutRoomsInput;
+    @Field(() => BuildingCreateOrConnectWithoutRoomsInput, {nullable:true})
+    @Type(() => BuildingCreateOrConnectWithoutRoomsInput)
+    connectOrCreate?: BuildingCreateOrConnectWithoutRoomsInput;
 
-  @Field(() => BuildingWhereUniqueInput, { nullable: true })
-  @Type(() => BuildingWhereUniqueInput)
-  connect?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => BuildingUpsertWithoutRoomsInput, {nullable:true})
+    @Type(() => BuildingUpsertWithoutRoomsInput)
+    upsert?: BuildingUpsertWithoutRoomsInput;
 
-  @Field(() => BuildingUpdateToOneWithWhereWithoutRoomsInput, {
-    nullable: true,
-  })
-  @Type(() => BuildingUpdateToOneWithWhereWithoutRoomsInput)
-  update?: BuildingUpdateToOneWithWhereWithoutRoomsInput;
+    @Field(() => BuildingWhereUniqueInput, {nullable:true})
+    @Type(() => BuildingWhereUniqueInput)
+    connect?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => BuildingUpdateToOneWithWhereWithoutRoomsInput, {nullable:true})
+    @Type(() => BuildingUpdateToOneWithWhereWithoutRoomsInput)
+    update?: BuildingUpdateToOneWithWhereWithoutRoomsInput;
 }

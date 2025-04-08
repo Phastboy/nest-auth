@@ -7,14 +7,15 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class UpdateManyRoomArgs {
-  @Field(() => RoomUpdateManyMutationInput, { nullable: false })
-  @Type(() => RoomUpdateManyMutationInput)
-  data!: RoomUpdateManyMutationInput;
 
-  @Field(() => RoomWhereInput, { nullable: true })
-  @Type(() => RoomWhereInput)
-  where?: RoomWhereInput;
+    @Field(() => RoomUpdateManyMutationInput, {nullable:false})
+    @Type(() => RoomUpdateManyMutationInput)
+    data!: RoomUpdateManyMutationInput;
 
-  @Field(() => Int, { nullable: true })
-  limit?: number;
+    @Field(() => RoomWhereInput, {nullable:true})
+    @Type(() => RoomWhereInput)
+    where?: RoomWhereInput;
+
+    @Field(() => Int, {nullable:true})
+    limit?: number;
 }

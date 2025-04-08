@@ -7,11 +7,12 @@ import { LikeCreateWithoutPostInput } from './like-create-without-post.input';
 
 @InputType()
 export class LikeCreateOrConnectWithoutPostInput {
-  @Field(() => LikeWhereUniqueInput, { nullable: false })
-  @Type(() => LikeWhereUniqueInput)
-  where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
 
-  @Field(() => LikeCreateWithoutPostInput, { nullable: false })
-  @Type(() => LikeCreateWithoutPostInput)
-  create!: LikeCreateWithoutPostInput;
+    @Field(() => LikeWhereUniqueInput, {nullable:false})
+    @Type(() => LikeWhereUniqueInput)
+    where!: Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>;
+
+    @Field(() => LikeCreateWithoutPostInput, {nullable:false})
+    @Type(() => LikeCreateWithoutPostInput)
+    create!: LikeCreateWithoutPostInput;
 }

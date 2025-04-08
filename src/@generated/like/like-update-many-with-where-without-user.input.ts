@@ -6,11 +6,12 @@ import { LikeUpdateManyMutationInput } from './like-update-many-mutation.input';
 
 @InputType()
 export class LikeUpdateManyWithWhereWithoutUserInput {
-  @Field(() => LikeScalarWhereInput, { nullable: false })
-  @Type(() => LikeScalarWhereInput)
-  where!: LikeScalarWhereInput;
 
-  @Field(() => LikeUpdateManyMutationInput, { nullable: false })
-  @Type(() => LikeUpdateManyMutationInput)
-  data!: LikeUpdateManyMutationInput;
+    @Field(() => LikeScalarWhereInput, {nullable:false})
+    @Type(() => LikeScalarWhereInput)
+    where!: LikeScalarWhereInput;
+
+    @Field(() => LikeUpdateManyMutationInput, {nullable:false})
+    @Type(() => LikeUpdateManyMutationInput)
+    data!: LikeUpdateManyMutationInput;
 }

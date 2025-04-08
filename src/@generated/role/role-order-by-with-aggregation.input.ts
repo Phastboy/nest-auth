@@ -10,33 +10,34 @@ import { RoleSumOrderByAggregateInput } from './role-sum-order-by-aggregate.inpu
 
 @InputType()
 export class RoleOrderByWithAggregationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  name?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  description?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    name?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    description?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => RoleCountOrderByAggregateInput, { nullable: true })
-  _count?: RoleCountOrderByAggregateInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: `${SortOrder}`;
 
-  @Field(() => RoleAvgOrderByAggregateInput, { nullable: true })
-  _avg?: RoleAvgOrderByAggregateInput;
+    @Field(() => RoleCountOrderByAggregateInput, {nullable:true})
+    _count?: RoleCountOrderByAggregateInput;
 
-  @Field(() => RoleMaxOrderByAggregateInput, { nullable: true })
-  _max?: RoleMaxOrderByAggregateInput;
+    @Field(() => RoleAvgOrderByAggregateInput, {nullable:true})
+    _avg?: RoleAvgOrderByAggregateInput;
 
-  @Field(() => RoleMinOrderByAggregateInput, { nullable: true })
-  _min?: RoleMinOrderByAggregateInput;
+    @Field(() => RoleMaxOrderByAggregateInput, {nullable:true})
+    _max?: RoleMaxOrderByAggregateInput;
 
-  @Field(() => RoleSumOrderByAggregateInput, { nullable: true })
-  _sum?: RoleSumOrderByAggregateInput;
+    @Field(() => RoleMinOrderByAggregateInput, {nullable:true})
+    _min?: RoleMinOrderByAggregateInput;
+
+    @Field(() => RoleSumOrderByAggregateInput, {nullable:true})
+    _sum?: RoleSumOrderByAggregateInput;
 }

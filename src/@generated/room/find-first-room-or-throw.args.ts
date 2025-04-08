@@ -10,22 +10,23 @@ import { RoomScalarFieldEnum } from './room-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstRoomOrThrowArgs {
-  @Field(() => RoomWhereInput, { nullable: true })
-  @Type(() => RoomWhereInput)
-  where?: RoomWhereInput;
 
-  @Field(() => [RoomOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<RoomOrderByWithRelationInput>;
+    @Field(() => RoomWhereInput, {nullable:true})
+    @Type(() => RoomWhereInput)
+    where?: RoomWhereInput;
 
-  @Field(() => RoomWhereUniqueInput, { nullable: true })
-  cursor?: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+    @Field(() => [RoomOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<RoomOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => RoomWhereUniqueInput, {nullable:true})
+    cursor?: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => [RoomScalarFieldEnum], { nullable: true })
-  distinct?: Array<`${RoomScalarFieldEnum}`>;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+
+    @Field(() => [RoomScalarFieldEnum], {nullable:true})
+    distinct?: Array<`${RoomScalarFieldEnum}`>;
 }

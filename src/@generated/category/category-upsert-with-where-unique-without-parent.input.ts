@@ -8,15 +8,16 @@ import { CategoryCreateWithoutParentInput } from './category-create-without-pare
 
 @InputType()
 export class CategoryUpsertWithWhereUniqueWithoutParentInput {
-  @Field(() => CategoryWhereUniqueInput, { nullable: false })
-  @Type(() => CategoryWhereUniqueInput)
-  where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryUpdateWithoutParentInput, { nullable: false })
-  @Type(() => CategoryUpdateWithoutParentInput)
-  update!: CategoryUpdateWithoutParentInput;
+    @Field(() => CategoryWhereUniqueInput, {nullable:false})
+    @Type(() => CategoryWhereUniqueInput)
+    where!: Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>;
 
-  @Field(() => CategoryCreateWithoutParentInput, { nullable: false })
-  @Type(() => CategoryCreateWithoutParentInput)
-  create!: CategoryCreateWithoutParentInput;
+    @Field(() => CategoryUpdateWithoutParentInput, {nullable:false})
+    @Type(() => CategoryUpdateWithoutParentInput)
+    update!: CategoryUpdateWithoutParentInput;
+
+    @Field(() => CategoryCreateWithoutParentInput, {nullable:false})
+    @Type(() => CategoryCreateWithoutParentInput)
+    create!: CategoryCreateWithoutParentInput;
 }

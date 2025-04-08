@@ -7,14 +7,15 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class UpdateManyCommentArgs {
-  @Field(() => CommentUpdateManyMutationInput, { nullable: false })
-  @Type(() => CommentUpdateManyMutationInput)
-  data!: CommentUpdateManyMutationInput;
 
-  @Field(() => CommentWhereInput, { nullable: true })
-  @Type(() => CommentWhereInput)
-  where?: CommentWhereInput;
+    @Field(() => CommentUpdateManyMutationInput, {nullable:false})
+    @Type(() => CommentUpdateManyMutationInput)
+    data!: CommentUpdateManyMutationInput;
 
-  @Field(() => Int, { nullable: true })
-  limit?: number;
+    @Field(() => CommentWhereInput, {nullable:true})
+    @Type(() => CommentWhereInput)
+    where?: CommentWhereInput;
+
+    @Field(() => Int, {nullable:true})
+    limit?: number;
 }

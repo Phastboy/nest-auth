@@ -7,11 +7,12 @@ import { RoomUpdateWithoutBuildingInput } from './room-update-without-building.i
 
 @InputType()
 export class RoomUpdateWithWhereUniqueWithoutBuildingInput {
-  @Field(() => RoomWhereUniqueInput, { nullable: false })
-  @Type(() => RoomWhereUniqueInput)
-  where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
 
-  @Field(() => RoomUpdateWithoutBuildingInput, { nullable: false })
-  @Type(() => RoomUpdateWithoutBuildingInput)
-  data!: RoomUpdateWithoutBuildingInput;
+    @Field(() => RoomWhereUniqueInput, {nullable:false})
+    @Type(() => RoomWhereUniqueInput)
+    where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+
+    @Field(() => RoomUpdateWithoutBuildingInput, {nullable:false})
+    @Type(() => RoomUpdateWithoutBuildingInput)
+    data!: RoomUpdateWithoutBuildingInput;
 }

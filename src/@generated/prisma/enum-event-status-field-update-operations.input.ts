@@ -4,6 +4,7 @@ import { EventStatus } from './event-status.enum';
 
 @InputType()
 export class EnumEventStatusFieldUpdateOperationsInput {
-  @Field(() => EventStatus, { nullable: true })
-  set?: `${EventStatus}`;
+
+    @Field(() => EventStatus, {nullable:true})
+    set?: `${EventStatus}`;
 }

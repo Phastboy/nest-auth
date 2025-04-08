@@ -7,24 +7,25 @@ import { Event } from '../event/event.model';
 
 @ObjectType()
 export class RSVP {
-  @Field(() => ID, { nullable: false })
-  id!: number;
 
-  @Field(() => Int, { nullable: false })
-  userId!: number;
+    @Field(() => ID, {nullable:false})
+    id!: number;
 
-  @Field(() => Int, { nullable: false })
-  eventId!: number;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => String, { defaultValue: 'going', nullable: false })
-  status!: string;
+    @Field(() => Int, {nullable:false})
+    eventId!: number;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => String, {defaultValue:'going',nullable:false})
+    status!: string;
 
-  @Field(() => User, { nullable: false })
-  user?: User;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => Event, { nullable: false })
-  event?: Event;
+    @Field(() => User, {nullable:false})
+    user?: User;
+
+    @Field(() => Event, {nullable:false})
+    event?: Event;
 }

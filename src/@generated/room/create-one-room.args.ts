@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateOneRoomArgs {
-  @Field(() => RoomCreateInput, { nullable: false })
-  @Type(() => RoomCreateInput)
-  data!: RoomCreateInput;
+
+    @Field(() => RoomCreateInput, {nullable:false})
+    @Type(() => RoomCreateInput)
+    data!: RoomCreateInput;
 }

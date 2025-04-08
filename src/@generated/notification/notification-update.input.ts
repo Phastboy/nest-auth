@@ -8,23 +8,22 @@ import { UserUpdateOneRequiredWithoutNotificationsNestedInput } from '../user/us
 
 @InputType()
 export class NotificationUpdateInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  type?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  content?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    type?: StringFieldUpdateOperationsInput;
 
-  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
-  isRead?: BoolFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    content?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-  referenceId?: NullableIntFieldUpdateOperationsInput;
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    isRead?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    referenceId?: NullableIntFieldUpdateOperationsInput;
 
-  @Field(() => UserUpdateOneRequiredWithoutNotificationsNestedInput, {
-    nullable: true,
-  })
-  user?: UserUpdateOneRequiredWithoutNotificationsNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UserUpdateOneRequiredWithoutNotificationsNestedInput, {nullable:true})
+    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput;
 }

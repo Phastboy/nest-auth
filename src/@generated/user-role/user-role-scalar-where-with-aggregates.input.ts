@@ -6,24 +6,25 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class UserRoleScalarWhereWithAggregatesInput {
-  @Field(() => [UserRoleScalarWhereWithAggregatesInput], { nullable: true })
-  AND?: Array<UserRoleScalarWhereWithAggregatesInput>;
 
-  @Field(() => [UserRoleScalarWhereWithAggregatesInput], { nullable: true })
-  OR?: Array<UserRoleScalarWhereWithAggregatesInput>;
+    @Field(() => [UserRoleScalarWhereWithAggregatesInput], {nullable:true})
+    AND?: Array<UserRoleScalarWhereWithAggregatesInput>;
 
-  @Field(() => [UserRoleScalarWhereWithAggregatesInput], { nullable: true })
-  NOT?: Array<UserRoleScalarWhereWithAggregatesInput>;
+    @Field(() => [UserRoleScalarWhereWithAggregatesInput], {nullable:true})
+    OR?: Array<UserRoleScalarWhereWithAggregatesInput>;
 
-  @Field(() => IntWithAggregatesFilter, { nullable: true })
-  userId?: IntWithAggregatesFilter;
+    @Field(() => [UserRoleScalarWhereWithAggregatesInput], {nullable:true})
+    NOT?: Array<UserRoleScalarWhereWithAggregatesInput>;
 
-  @Field(() => IntWithAggregatesFilter, { nullable: true })
-  roleId?: IntWithAggregatesFilter;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    userId?: IntWithAggregatesFilter;
 
-  @Field(() => IntNullableWithAggregatesFilter, { nullable: true })
-  assignedBy?: IntNullableWithAggregatesFilter;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    roleId?: IntWithAggregatesFilter;
 
-  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
-  createdAt?: DateTimeWithAggregatesFilter;
+    @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
+    assignedBy?: IntNullableWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    createdAt?: DateTimeWithAggregatesFilter;
 }

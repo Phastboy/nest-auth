@@ -9,22 +9,23 @@ import { RSVPScalarFieldEnum } from '../rsvp/rsvp-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstRsvpArgs {
-  @Field(() => RSVPWhereInput, { nullable: true })
-  @Type(() => RSVPWhereInput)
-  where?: RSVPWhereInput;
 
-  @Field(() => [RSVPOrderByWithRelationInput], { nullable: true })
-  orderBy?: Array<RSVPOrderByWithRelationInput>;
+    @Field(() => RSVPWhereInput, {nullable:true})
+    @Type(() => RSVPWhereInput)
+    where?: RSVPWhereInput;
 
-  @Field(() => RSVPWhereUniqueInput, { nullable: true })
-  cursor?: RSVPWhereUniqueInput;
+    @Field(() => [RSVPOrderByWithRelationInput], {nullable:true})
+    orderBy?: Array<RSVPOrderByWithRelationInput>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => RSVPWhereUniqueInput, {nullable:true})
+    cursor?: RSVPWhereUniqueInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => [RSVPScalarFieldEnum], { nullable: true })
-  distinct?: Array<`${RSVPScalarFieldEnum}`>;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
+
+    @Field(() => [RSVPScalarFieldEnum], {nullable:true})
+    distinct?: Array<`${RSVPScalarFieldEnum}`>;
 }

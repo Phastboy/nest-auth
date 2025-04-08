@@ -4,15 +4,16 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class LikeSumAggregate {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => Int, { nullable: true })
-  userId?: number;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => Int, { nullable: true })
-  postId?: number;
+    @Field(() => Int, {nullable:true})
+    userId?: number;
 
-  @Field(() => Int, { nullable: true })
-  eventId?: number;
+    @Field(() => Int, {nullable:true})
+    postId?: number;
+
+    @Field(() => Int, {nullable:true})
+    eventId?: number;
 }

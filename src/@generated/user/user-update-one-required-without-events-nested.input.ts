@@ -10,23 +10,24 @@ import { UserUpdateToOneWithWhereWithoutEventsInput } from './user-update-to-one
 
 @InputType()
 export class UserUpdateOneRequiredWithoutEventsNestedInput {
-  @Field(() => UserCreateWithoutEventsInput, { nullable: true })
-  @Type(() => UserCreateWithoutEventsInput)
-  create?: UserCreateWithoutEventsInput;
 
-  @Field(() => UserCreateOrConnectWithoutEventsInput, { nullable: true })
-  @Type(() => UserCreateOrConnectWithoutEventsInput)
-  connectOrCreate?: UserCreateOrConnectWithoutEventsInput;
+    @Field(() => UserCreateWithoutEventsInput, {nullable:true})
+    @Type(() => UserCreateWithoutEventsInput)
+    create?: UserCreateWithoutEventsInput;
 
-  @Field(() => UserUpsertWithoutEventsInput, { nullable: true })
-  @Type(() => UserUpsertWithoutEventsInput)
-  upsert?: UserUpsertWithoutEventsInput;
+    @Field(() => UserCreateOrConnectWithoutEventsInput, {nullable:true})
+    @Type(() => UserCreateOrConnectWithoutEventsInput)
+    connectOrCreate?: UserCreateOrConnectWithoutEventsInput;
 
-  @Field(() => UserWhereUniqueInput, { nullable: true })
-  @Type(() => UserWhereUniqueInput)
-  connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
+    @Field(() => UserUpsertWithoutEventsInput, {nullable:true})
+    @Type(() => UserUpsertWithoutEventsInput)
+    upsert?: UserUpsertWithoutEventsInput;
 
-  @Field(() => UserUpdateToOneWithWhereWithoutEventsInput, { nullable: true })
-  @Type(() => UserUpdateToOneWithWhereWithoutEventsInput)
-  update?: UserUpdateToOneWithWhereWithoutEventsInput;
+    @Field(() => UserWhereUniqueInput, {nullable:true})
+    @Type(() => UserWhereUniqueInput)
+    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
+
+    @Field(() => UserUpdateToOneWithWhereWithoutEventsInput, {nullable:true})
+    @Type(() => UserUpdateToOneWithWhereWithoutEventsInput)
+    update?: UserUpdateToOneWithWhereWithoutEventsInput;
 }

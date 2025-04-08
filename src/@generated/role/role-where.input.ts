@@ -8,30 +8,31 @@ import { UserRoleListRelationFilter } from '../user-role/user-role-list-relation
 
 @InputType()
 export class RoleWhereInput {
-  @Field(() => [RoleWhereInput], { nullable: true })
-  AND?: Array<RoleWhereInput>;
 
-  @Field(() => [RoleWhereInput], { nullable: true })
-  OR?: Array<RoleWhereInput>;
+    @Field(() => [RoleWhereInput], {nullable:true})
+    AND?: Array<RoleWhereInput>;
 
-  @Field(() => [RoleWhereInput], { nullable: true })
-  NOT?: Array<RoleWhereInput>;
+    @Field(() => [RoleWhereInput], {nullable:true})
+    OR?: Array<RoleWhereInput>;
 
-  @Field(() => IntFilter, { nullable: true })
-  id?: IntFilter;
+    @Field(() => [RoleWhereInput], {nullable:true})
+    NOT?: Array<RoleWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  name?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  description?: StringNullableFilter;
+    @Field(() => StringFilter, {nullable:true})
+    name?: StringFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    description?: StringNullableFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  updatedAt?: DateTimeFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => UserRoleListRelationFilter, { nullable: true })
-  users?: UserRoleListRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    updatedAt?: DateTimeFilter;
+
+    @Field(() => UserRoleListRelationFilter, {nullable:true})
+    users?: UserRoleListRelationFilter;
 }

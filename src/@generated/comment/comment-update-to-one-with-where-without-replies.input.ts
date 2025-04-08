@@ -6,11 +6,12 @@ import { CommentUpdateWithoutRepliesInput } from './comment-update-without-repli
 
 @InputType()
 export class CommentUpdateToOneWithWhereWithoutRepliesInput {
-  @Field(() => CommentWhereInput, { nullable: true })
-  @Type(() => CommentWhereInput)
-  where?: CommentWhereInput;
 
-  @Field(() => CommentUpdateWithoutRepliesInput, { nullable: false })
-  @Type(() => CommentUpdateWithoutRepliesInput)
-  data!: CommentUpdateWithoutRepliesInput;
+    @Field(() => CommentWhereInput, {nullable:true})
+    @Type(() => CommentWhereInput)
+    where?: CommentWhereInput;
+
+    @Field(() => CommentUpdateWithoutRepliesInput, {nullable:false})
+    @Type(() => CommentUpdateWithoutRepliesInput)
+    data!: CommentUpdateWithoutRepliesInput;
 }

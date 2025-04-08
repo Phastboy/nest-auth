@@ -6,11 +6,12 @@ import { EventUpdateManyMutationInput } from './event-update-many-mutation.input
 
 @InputType()
 export class EventUpdateManyWithWhereWithoutCategoriesInput {
-  @Field(() => EventScalarWhereInput, { nullable: false })
-  @Type(() => EventScalarWhereInput)
-  where!: EventScalarWhereInput;
 
-  @Field(() => EventUpdateManyMutationInput, { nullable: false })
-  @Type(() => EventUpdateManyMutationInput)
-  data!: EventUpdateManyMutationInput;
+    @Field(() => EventScalarWhereInput, {nullable:false})
+    @Type(() => EventScalarWhereInput)
+    where!: EventScalarWhereInput;
+
+    @Field(() => EventUpdateManyMutationInput, {nullable:false})
+    @Type(() => EventUpdateManyMutationInput)
+    data!: EventUpdateManyMutationInput;
 }

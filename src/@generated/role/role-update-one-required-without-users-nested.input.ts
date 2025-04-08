@@ -10,23 +10,24 @@ import { RoleUpdateToOneWithWhereWithoutUsersInput } from './role-update-to-one-
 
 @InputType()
 export class RoleUpdateOneRequiredWithoutUsersNestedInput {
-  @Field(() => RoleCreateWithoutUsersInput, { nullable: true })
-  @Type(() => RoleCreateWithoutUsersInput)
-  create?: RoleCreateWithoutUsersInput;
 
-  @Field(() => RoleCreateOrConnectWithoutUsersInput, { nullable: true })
-  @Type(() => RoleCreateOrConnectWithoutUsersInput)
-  connectOrCreate?: RoleCreateOrConnectWithoutUsersInput;
+    @Field(() => RoleCreateWithoutUsersInput, {nullable:true})
+    @Type(() => RoleCreateWithoutUsersInput)
+    create?: RoleCreateWithoutUsersInput;
 
-  @Field(() => RoleUpsertWithoutUsersInput, { nullable: true })
-  @Type(() => RoleUpsertWithoutUsersInput)
-  upsert?: RoleUpsertWithoutUsersInput;
+    @Field(() => RoleCreateOrConnectWithoutUsersInput, {nullable:true})
+    @Type(() => RoleCreateOrConnectWithoutUsersInput)
+    connectOrCreate?: RoleCreateOrConnectWithoutUsersInput;
 
-  @Field(() => RoleWhereUniqueInput, { nullable: true })
-  @Type(() => RoleWhereUniqueInput)
-  connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => RoleUpsertWithoutUsersInput, {nullable:true})
+    @Type(() => RoleUpsertWithoutUsersInput)
+    upsert?: RoleUpsertWithoutUsersInput;
 
-  @Field(() => RoleUpdateToOneWithWhereWithoutUsersInput, { nullable: true })
-  @Type(() => RoleUpdateToOneWithWhereWithoutUsersInput)
-  update?: RoleUpdateToOneWithWhereWithoutUsersInput;
+    @Field(() => RoleWhereUniqueInput, {nullable:true})
+    @Type(() => RoleWhereUniqueInput)
+    connect?: Prisma.AtLeast<RoleWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => RoleUpdateToOneWithWhereWithoutUsersInput, {nullable:true})
+    @Type(() => RoleUpdateToOneWithWhereWithoutUsersInput)
+    update?: RoleUpdateToOneWithWhereWithoutUsersInput;
 }

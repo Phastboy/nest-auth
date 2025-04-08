@@ -14,37 +14,38 @@ import { UserRoleMaxAggregateInput } from './user-role-max-aggregate.input';
 
 @ArgsType()
 export class UserRoleGroupByArgs {
-  @Field(() => UserRoleWhereInput, { nullable: true })
-  @Type(() => UserRoleWhereInput)
-  where?: UserRoleWhereInput;
 
-  @Field(() => [UserRoleOrderByWithAggregationInput], { nullable: true })
-  orderBy?: Array<UserRoleOrderByWithAggregationInput>;
+    @Field(() => UserRoleWhereInput, {nullable:true})
+    @Type(() => UserRoleWhereInput)
+    where?: UserRoleWhereInput;
 
-  @Field(() => [UserRoleScalarFieldEnum], { nullable: false })
-  by!: Array<`${UserRoleScalarFieldEnum}`>;
+    @Field(() => [UserRoleOrderByWithAggregationInput], {nullable:true})
+    orderBy?: Array<UserRoleOrderByWithAggregationInput>;
 
-  @Field(() => UserRoleScalarWhereWithAggregatesInput, { nullable: true })
-  having?: UserRoleScalarWhereWithAggregatesInput;
+    @Field(() => [UserRoleScalarFieldEnum], {nullable:false})
+    by!: Array<`${UserRoleScalarFieldEnum}`>;
 
-  @Field(() => Int, { nullable: true })
-  take?: number;
+    @Field(() => UserRoleScalarWhereWithAggregatesInput, {nullable:true})
+    having?: UserRoleScalarWhereWithAggregatesInput;
 
-  @Field(() => Int, { nullable: true })
-  skip?: number;
+    @Field(() => Int, {nullable:true})
+    take?: number;
 
-  @Field(() => UserRoleCountAggregateInput, { nullable: true })
-  _count?: UserRoleCountAggregateInput;
+    @Field(() => Int, {nullable:true})
+    skip?: number;
 
-  @Field(() => UserRoleAvgAggregateInput, { nullable: true })
-  _avg?: UserRoleAvgAggregateInput;
+    @Field(() => UserRoleCountAggregateInput, {nullable:true})
+    _count?: UserRoleCountAggregateInput;
 
-  @Field(() => UserRoleSumAggregateInput, { nullable: true })
-  _sum?: UserRoleSumAggregateInput;
+    @Field(() => UserRoleAvgAggregateInput, {nullable:true})
+    _avg?: UserRoleAvgAggregateInput;
 
-  @Field(() => UserRoleMinAggregateInput, { nullable: true })
-  _min?: UserRoleMinAggregateInput;
+    @Field(() => UserRoleSumAggregateInput, {nullable:true})
+    _sum?: UserRoleSumAggregateInput;
 
-  @Field(() => UserRoleMaxAggregateInput, { nullable: true })
-  _max?: UserRoleMaxAggregateInput;
+    @Field(() => UserRoleMinAggregateInput, {nullable:true})
+    _min?: UserRoleMinAggregateInput;
+
+    @Field(() => UserRoleMaxAggregateInput, {nullable:true})
+    _max?: UserRoleMaxAggregateInput;
 }

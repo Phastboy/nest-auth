@@ -247,7 +247,7 @@ input CreateEventInput {
   shareAsPost: Boolean
 
   """Event start time"""
-  startTime: DateTime!
+  startTime: DateTime
 
   """status of the event"""
   status: EventStatus = SCHEDULED

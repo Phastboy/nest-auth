@@ -8,23 +8,22 @@ import { UserRoleUncheckedUpdateManyWithoutRoleNestedInput } from '../user-role/
 
 @InputType()
 export class RoleUncheckedUpdateInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  name?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  description?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    description?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => UserRoleUncheckedUpdateManyWithoutRoleNestedInput, {
-    nullable: true,
-  })
-  users?: UserRoleUncheckedUpdateManyWithoutRoleNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => UserRoleUncheckedUpdateManyWithoutRoleNestedInput, {nullable:true})
+    users?: UserRoleUncheckedUpdateManyWithoutRoleNestedInput;
 }

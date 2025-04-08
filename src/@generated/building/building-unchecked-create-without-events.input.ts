@@ -6,38 +6,37 @@ import { RoomUncheckedCreateNestedManyWithoutBuildingInput } from '../room/room-
 
 @InputType()
 export class BuildingUncheckedCreateWithoutEventsInput {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: false })
-  name!: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => Int, { nullable: true })
-  number?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => String, { nullable: true })
-  road?: string;
+    @Field(() => Int, {nullable:true})
+    number?: number;
 
-  @Field(() => String, { nullable: true })
-  landmark?: string;
+    @Field(() => String, {nullable:true})
+    road?: string;
 
-  @Field(() => String, { nullable: true })
-  area?: string;
+    @Field(() => String, {nullable:true})
+    landmark?: string;
 
-  @Field(() => Float, { nullable: false })
-  longitude!: number;
+    @Field(() => String, {nullable:true})
+    area?: string;
 
-  @Field(() => Float, { nullable: false })
-  latitude!: number;
+    @Field(() => Float, {nullable:false})
+    longitude!: number;
 
-  @Field(() => Int, { nullable: true })
-  capacity?: number;
+    @Field(() => Float, {nullable:false})
+    latitude!: number;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    capacity?: number;
 
-  @Field(() => RoomUncheckedCreateNestedManyWithoutBuildingInput, {
-    nullable: true,
-  })
-  rooms?: RoomUncheckedCreateNestedManyWithoutBuildingInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => RoomUncheckedCreateNestedManyWithoutBuildingInput, {nullable:true})
+    rooms?: RoomUncheckedCreateNestedManyWithoutBuildingInput;
 }

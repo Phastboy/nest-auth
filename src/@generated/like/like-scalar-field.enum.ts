@@ -1,14 +1,12 @@
 import { registerEnumType } from '@nestjs/graphql';
 
 export enum LikeScalarFieldEnum {
-  id = 'id',
-  userId = 'userId',
-  postId = 'postId',
-  eventId = 'eventId',
-  createdAt = 'createdAt',
+    id = "id",
+    userId = "userId",
+    postId = "postId",
+    eventId = "eventId",
+    createdAt = "createdAt"
 }
 
-registerEnumType(LikeScalarFieldEnum, {
-  name: 'LikeScalarFieldEnum',
-  description: undefined,
-});
+
+registerEnumType(LikeScalarFieldEnum, { name: 'LikeScalarFieldEnum', description: undefined })

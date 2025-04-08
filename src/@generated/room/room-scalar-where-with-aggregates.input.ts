@@ -7,27 +7,28 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class RoomScalarWhereWithAggregatesInput {
-  @Field(() => [RoomScalarWhereWithAggregatesInput], { nullable: true })
-  AND?: Array<RoomScalarWhereWithAggregatesInput>;
 
-  @Field(() => [RoomScalarWhereWithAggregatesInput], { nullable: true })
-  OR?: Array<RoomScalarWhereWithAggregatesInput>;
+    @Field(() => [RoomScalarWhereWithAggregatesInput], {nullable:true})
+    AND?: Array<RoomScalarWhereWithAggregatesInput>;
 
-  @Field(() => [RoomScalarWhereWithAggregatesInput], { nullable: true })
-  NOT?: Array<RoomScalarWhereWithAggregatesInput>;
+    @Field(() => [RoomScalarWhereWithAggregatesInput], {nullable:true})
+    OR?: Array<RoomScalarWhereWithAggregatesInput>;
 
-  @Field(() => IntWithAggregatesFilter, { nullable: true })
-  id?: IntWithAggregatesFilter;
+    @Field(() => [RoomScalarWhereWithAggregatesInput], {nullable:true})
+    NOT?: Array<RoomScalarWhereWithAggregatesInput>;
 
-  @Field(() => StringWithAggregatesFilter, { nullable: true })
-  name?: StringWithAggregatesFilter;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    id?: IntWithAggregatesFilter;
 
-  @Field(() => IntWithAggregatesFilter, { nullable: true })
-  buildingId?: IntWithAggregatesFilter;
+    @Field(() => StringWithAggregatesFilter, {nullable:true})
+    name?: StringWithAggregatesFilter;
 
-  @Field(() => IntNullableWithAggregatesFilter, { nullable: true })
-  capacity?: IntNullableWithAggregatesFilter;
+    @Field(() => IntWithAggregatesFilter, {nullable:true})
+    buildingId?: IntWithAggregatesFilter;
 
-  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
-  createdAt?: DateTimeWithAggregatesFilter;
+    @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
+    capacity?: IntNullableWithAggregatesFilter;
+
+    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
+    createdAt?: DateTimeWithAggregatesFilter;
 }
