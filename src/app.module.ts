@@ -10,10 +10,6 @@ import { GraphqlModule } from './graphql/graphql.module';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
 import { EventsModule } from './events/events.module';
-import { CommentsModule } from './comments/comments.module';
-import { LikesModule } from './likes/likes.module';
-import { NotificationsModule } from './notifications/notifications.module';
-import { RsvpsModule } from './rsvps/rsvps.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ErrorHandlerModule } from './error-handler/error-handler.module';
 import { RolesModule } from './roles/roles.module';
@@ -45,10 +41,6 @@ import { RolesModule } from './roles/roles.module';
     UsersModule,
     PostsModule,
     EventsModule,
-    CommentsModule,
-    LikesModule,
-    NotificationsModule,
-    RsvpsModule,
     CategoriesModule,
     ErrorHandlerModule,
     RolesModule,

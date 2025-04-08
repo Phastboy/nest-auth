@@ -26,13 +26,17 @@ export class EventsService {
 
   private validatePostSharing(shareAsPost: boolean, post?: CreatePostInput) {
     if (shareAsPost && !post) {
-      throw new BadRequestException('Post details are required when shareAsPost is true');
+      throw new BadRequestException(
+        'Post details are required when shareAsPost is true',
+      );
     }
-  
+
     if (post && !shareAsPost) {
-      throw new BadRequestException('shareAsPost must be true when providing post details');
+      throw new BadRequestException(
+        'shareAsPost must be true when providing post details',
+      );
     }
-  }  
+  }
 
   async createEvent(
     userId: number,
@@ -54,11 +58,13 @@ export class EventsService {
             ...eventData,
             userId,
             shareAsPost: true,
-            categories: categoryIds? {
-              connect: categoryIds?.map((categoryId) => ({
-                id: categoryId,
-              })),
-            } : undefined,
+            categories: categoryIds
+              ? {
+                  connect: categoryIds?.map((categoryId) => ({
+                    id: categoryId,
+                  })),
+                }
+              : undefined,
           },
         });
 
