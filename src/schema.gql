@@ -215,7 +215,7 @@ type CommentSumAggregate {
 
 input CreateCategoryInput {
   name: String!
-  slug: String!
+  slug: String
 }
 
 input CreateEventInput {

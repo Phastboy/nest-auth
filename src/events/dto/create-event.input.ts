@@ -2,52 +2,66 @@ import { InputType, Field, Int } from '@nestjs/graphql';
 import { CreatePostInput } from 'src/posts/dto/create-post.input';
 import { IsInt, Validate, ValidateIf } from 'class-validator';
 import { IsPostValidWhenSharing } from '../validators/post-sharing.validator';
-import { EventStatus } from 'src/@generated';
+import { EventMode, EventStatus, EventType } from 'src/@generated';
 
 @InputType()
 export class CreateEventInput {
   @Field(() => String, {
     nullable: false,
-    description: 'Event title',
+    description: 'The title of the event',
   })
   title!: string;
 
   @Field(() => String, {
-    nullable: false,
-    description: 'Event description',
+    nullable: true,
+    description: 'The description of the event',
   })
-  description!: string;
-
-  @Field(() => String, {
-    nullable: false,
-    description: 'Event location',
-  })
-  location!: string;
-
-  @Field(() => Date, {
-    nullable: false,
-    description: 'Event start time',
-  })
-  startTime!: Date | string;
+  description?: string;
 
   @Field(() => Date, {
     nullable: true,
-    description: 'Event end time',
+    description: 'The date and time when the event starts',
+  })
+  startTime?: Date | string;
+
+  @Field(() => Date, {
+    nullable: true,
+    description: 'The date and time when the event ends',
   })
   endTime?: Date | string;
 
   @Field(() => String, {
     nullable: true,
-    description: 'Event image URL',
+    description: 'The cover image of the event',
   })
   image?: string;
 
   @Field(() => Boolean, {
     nullable: true,
-    description:
-      'Whether to share this event as a post. Required if post is provided.',
+    description: 'Whether the event is frequently repeated',
   })
-  @ValidateIf((o) => o.post !== undefined)
+  isRecurring?: boolean;
+
+  @Field(() => String, {
+    nullable: true,
+    description: 'how the event is repeated',
+  })
+  recurrenceRule?: string;
+
+  @Field(() => Boolean, {
+    nullable: true,
+    description: 'Whether the event is a public event',
+  })
+  isPublic?: boolean;
+
+  @Field(() => Boolean, {
+    nullable: true,
+    description: 'whether to share the event as a post',
+  })
+  @ValidateIf((o) => o.shareAsPost !== undefined)
+  @Validate(IsPostValidWhenSharing, {
+    message: 'Event cannot be shared as a post if it is not public',
+  })
   shareAsPost?: boolean;
 
   @Field(() => CreatePostInput, {
@@ -58,31 +72,33 @@ export class CreateEventInput {
   @Validate(IsPostValidWhenSharing)
   post?: CreatePostInput;
 
-  @Field(() => Boolean, {
-    nullable: false,
-    description: 'is it a recurring event',
-    defaultValue: false,
-  })
-  isRecurring?: boolean;
-
-  @Field(() => String, { nullable: true })
-  recurrenceRule?: string;
-
-  @Field(() => Boolean, {
-    nullable: true,
-    description: 'is it a public event',
-    defaultValue: true,
-  })
-  isPublic?: boolean;
-
   @Field(() => EventStatus, {
     nullable: true,
-    description: 'status of the event',
-    defaultValue: `${EventStatus.SCHEDULED}`,
+    description: 'The status of the event',
   })
-  status?: `${EventStatus}`;
+  eventStatus?: `${EventStatus}`;
 
-  @Field(() => [Int], { nullable: true })
+  @Field(() => EventMode, {
+    nullable: true,
+    description: 'The mode of the event',
+  })
+  eventMode?: `${EventMode}`;
+
+  @Field(() => EventType, {
+    nullable: true,
+    description: 'The type of the event',
+  })
+  eventType?: `${EventType}`;
+
+  @Field(() => String, {
+    nullable: true,
+    description: 'The link to the event',
+  })
+  eventLink?: string;
+
+  @Field(() => [Int], {
+    nullable: true,
+  })
   @IsInt({ each: true })
   categoryIds?: number[];
 }
