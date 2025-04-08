@@ -9,20 +9,21 @@ import { CategoryWhereUniqueInput } from './category-where-unique.input';
 
 @InputType()
 export class CategoryUncheckedCreateNestedManyWithoutParentInput {
+  @Field(() => [CategoryCreateWithoutParentInput], { nullable: true })
+  @Type(() => CategoryCreateWithoutParentInput)
+  create?: Array<CategoryCreateWithoutParentInput>;
 
-    @Field(() => [CategoryCreateWithoutParentInput], {nullable:true})
-    @Type(() => CategoryCreateWithoutParentInput)
-    create?: Array<CategoryCreateWithoutParentInput>;
+  @Field(() => [CategoryCreateOrConnectWithoutParentInput], { nullable: true })
+  @Type(() => CategoryCreateOrConnectWithoutParentInput)
+  connectOrCreate?: Array<CategoryCreateOrConnectWithoutParentInput>;
 
-    @Field(() => [CategoryCreateOrConnectWithoutParentInput], {nullable:true})
-    @Type(() => CategoryCreateOrConnectWithoutParentInput)
-    connectOrCreate?: Array<CategoryCreateOrConnectWithoutParentInput>;
+  @Field(() => CategoryCreateManyParentInputEnvelope, { nullable: true })
+  @Type(() => CategoryCreateManyParentInputEnvelope)
+  createMany?: CategoryCreateManyParentInputEnvelope;
 
-    @Field(() => CategoryCreateManyParentInputEnvelope, {nullable:true})
-    @Type(() => CategoryCreateManyParentInputEnvelope)
-    createMany?: CategoryCreateManyParentInputEnvelope;
-
-    @Field(() => [CategoryWhereUniqueInput], {nullable:true})
-    @Type(() => CategoryWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>>;
+  @Field(() => [CategoryWhereUniqueInput], { nullable: true })
+  @Type(() => CategoryWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<CategoryWhereUniqueInput, 'id' | 'name' | 'slug'>
+  >;
 }

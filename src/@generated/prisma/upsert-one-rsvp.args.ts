@@ -7,16 +7,15 @@ import { RSVPUpdateInput } from '../rsvp/rsvp-update.input';
 
 @ArgsType()
 export class UpsertOneRsvpArgs {
+  @Field(() => RSVPWhereUniqueInput, { nullable: false })
+  @Type(() => RSVPWhereUniqueInput)
+  where!: RSVPWhereUniqueInput;
 
-    @Field(() => RSVPWhereUniqueInput, {nullable:false})
-    @Type(() => RSVPWhereUniqueInput)
-    where!: RSVPWhereUniqueInput;
+  @Field(() => RSVPCreateInput, { nullable: false })
+  @Type(() => RSVPCreateInput)
+  create!: RSVPCreateInput;
 
-    @Field(() => RSVPCreateInput, {nullable:false})
-    @Type(() => RSVPCreateInput)
-    create!: RSVPCreateInput;
-
-    @Field(() => RSVPUpdateInput, {nullable:false})
-    @Type(() => RSVPUpdateInput)
-    update!: RSVPUpdateInput;
+  @Field(() => RSVPUpdateInput, { nullable: false })
+  @Type(() => RSVPUpdateInput)
+  update!: RSVPUpdateInput;
 }

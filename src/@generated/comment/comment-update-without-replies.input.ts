@@ -9,22 +9,23 @@ import { CommentUpdateOneWithoutRepliesNestedInput } from './comment-update-one-
 
 @InputType()
 export class CommentUpdateWithoutRepliesInput {
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  content?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    content?: StringFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
+  @Field(() => UserUpdateOneRequiredWithoutCommentsNestedInput, {
+    nullable: true,
+  })
+  user?: UserUpdateOneRequiredWithoutCommentsNestedInput;
 
-    @Field(() => UserUpdateOneRequiredWithoutCommentsNestedInput, {nullable:true})
-    user?: UserUpdateOneRequiredWithoutCommentsNestedInput;
+  @Field(() => PostUpdateOneWithoutCommentsNestedInput, { nullable: true })
+  post?: PostUpdateOneWithoutCommentsNestedInput;
 
-    @Field(() => PostUpdateOneWithoutCommentsNestedInput, {nullable:true})
-    post?: PostUpdateOneWithoutCommentsNestedInput;
+  @Field(() => EventUpdateOneWithoutCommentsNestedInput, { nullable: true })
+  event?: EventUpdateOneWithoutCommentsNestedInput;
 
-    @Field(() => EventUpdateOneWithoutCommentsNestedInput, {nullable:true})
-    event?: EventUpdateOneWithoutCommentsNestedInput;
-
-    @Field(() => CommentUpdateOneWithoutRepliesNestedInput, {nullable:true})
-    parent?: CommentUpdateOneWithoutRepliesNestedInput;
+  @Field(() => CommentUpdateOneWithoutRepliesNestedInput, { nullable: true })
+  parent?: CommentUpdateOneWithoutRepliesNestedInput;
 }

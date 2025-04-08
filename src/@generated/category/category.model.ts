@@ -8,34 +8,33 @@ import { CategoryCount } from './category-count.output';
 
 @ObjectType()
 export class Category {
+  @Field(() => ID, { nullable: false })
+  id!: number;
 
-    @Field(() => ID, {nullable:false})
-    id!: number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => String, { nullable: false })
+  slug!: string;
 
-    @Field(() => String, {nullable:false})
-    slug!: string;
+  @Field(() => Int, { nullable: true })
+  parentId!: number | null;
 
-    @Field(() => Int, {nullable:true})
-    parentId!: number | null;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
+  @Field(() => Category, { nullable: true })
+  parent?: Category | null;
 
-    @Field(() => Category, {nullable:true})
-    parent?: Category | null;
+  @Field(() => [Category], { nullable: true })
+  children?: Array<Category>;
 
-    @Field(() => [Category], {nullable:true})
-    children?: Array<Category>;
+  @Field(() => [Post], { nullable: true })
+  posts?: Array<Post>;
 
-    @Field(() => [Post], {nullable:true})
-    posts?: Array<Post>;
+  @Field(() => [Event], { nullable: true })
+  events?: Array<Event>;
 
-    @Field(() => [Event], {nullable:true})
-    events?: Array<Event>;
-
-    @Field(() => CategoryCount, {nullable:false})
-    _count?: CategoryCount;
+  @Field(() => CategoryCount, { nullable: false })
+  _count?: CategoryCount;
 }

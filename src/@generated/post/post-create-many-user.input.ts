@@ -4,25 +4,24 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class PostCreateManyUserInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => String, { nullable: false })
+  content!: string;
 
-    @Field(() => String, {nullable:false})
-    content!: string;
+  @Field(() => String, { nullable: true })
+  image?: string;
 
-    @Field(() => String, {nullable:true})
-    image?: string;
+  @Field(() => Boolean, { nullable: true })
+  isEvent?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    isEvent?: boolean;
+  @Field(() => Int, { nullable: true })
+  eventId?: number;
 
-    @Field(() => Int, {nullable:true})
-    eventId?: number;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
-
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 }

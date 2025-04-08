@@ -8,31 +8,30 @@ import { RoleScalarRelationFilter } from '../role/role-scalar-relation-filter.in
 
 @InputType()
 export class UserRoleWhereInput {
+  @Field(() => [UserRoleWhereInput], { nullable: true })
+  AND?: Array<UserRoleWhereInput>;
 
-    @Field(() => [UserRoleWhereInput], {nullable:true})
-    AND?: Array<UserRoleWhereInput>;
+  @Field(() => [UserRoleWhereInput], { nullable: true })
+  OR?: Array<UserRoleWhereInput>;
 
-    @Field(() => [UserRoleWhereInput], {nullable:true})
-    OR?: Array<UserRoleWhereInput>;
+  @Field(() => [UserRoleWhereInput], { nullable: true })
+  NOT?: Array<UserRoleWhereInput>;
 
-    @Field(() => [UserRoleWhereInput], {nullable:true})
-    NOT?: Array<UserRoleWhereInput>;
+  @Field(() => IntFilter, { nullable: true })
+  userId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    userId?: IntFilter;
+  @Field(() => IntFilter, { nullable: true })
+  roleId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    roleId?: IntFilter;
+  @Field(() => IntNullableFilter, { nullable: true })
+  assignedBy?: IntNullableFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    assignedBy?: IntNullableFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => UserScalarRelationFilter, { nullable: true })
+  user?: UserScalarRelationFilter;
 
-    @Field(() => UserScalarRelationFilter, {nullable:true})
-    user?: UserScalarRelationFilter;
-
-    @Field(() => RoleScalarRelationFilter, {nullable:true})
-    role?: RoleScalarRelationFilter;
+  @Field(() => RoleScalarRelationFilter, { nullable: true })
+  role?: RoleScalarRelationFilter;
 }

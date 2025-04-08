@@ -10,24 +10,25 @@ import { UserUpdateToOneWithWhereWithoutNotificationsInput } from './user-update
 
 @InputType()
 export class UserUpdateOneRequiredWithoutNotificationsNestedInput {
+  @Field(() => UserCreateWithoutNotificationsInput, { nullable: true })
+  @Type(() => UserCreateWithoutNotificationsInput)
+  create?: UserCreateWithoutNotificationsInput;
 
-    @Field(() => UserCreateWithoutNotificationsInput, {nullable:true})
-    @Type(() => UserCreateWithoutNotificationsInput)
-    create?: UserCreateWithoutNotificationsInput;
+  @Field(() => UserCreateOrConnectWithoutNotificationsInput, { nullable: true })
+  @Type(() => UserCreateOrConnectWithoutNotificationsInput)
+  connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput;
 
-    @Field(() => UserCreateOrConnectWithoutNotificationsInput, {nullable:true})
-    @Type(() => UserCreateOrConnectWithoutNotificationsInput)
-    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput;
+  @Field(() => UserUpsertWithoutNotificationsInput, { nullable: true })
+  @Type(() => UserUpsertWithoutNotificationsInput)
+  upsert?: UserUpsertWithoutNotificationsInput;
 
-    @Field(() => UserUpsertWithoutNotificationsInput, {nullable:true})
-    @Type(() => UserUpsertWithoutNotificationsInput)
-    upsert?: UserUpsertWithoutNotificationsInput;
+  @Field(() => UserWhereUniqueInput, { nullable: true })
+  @Type(() => UserWhereUniqueInput)
+  connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
 
-    @Field(() => UserWhereUniqueInput, {nullable:true})
-    @Type(() => UserWhereUniqueInput)
-    connect?: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
-
-    @Field(() => UserUpdateToOneWithWhereWithoutNotificationsInput, {nullable:true})
-    @Type(() => UserUpdateToOneWithWhereWithoutNotificationsInput)
-    update?: UserUpdateToOneWithWhereWithoutNotificationsInput;
+  @Field(() => UserUpdateToOneWithWhereWithoutNotificationsInput, {
+    nullable: true,
+  })
+  @Type(() => UserUpdateToOneWithWhereWithoutNotificationsInput)
+  update?: UserUpdateToOneWithWhereWithoutNotificationsInput;
 }

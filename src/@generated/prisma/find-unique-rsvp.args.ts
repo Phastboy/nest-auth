@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class FindUniqueRsvpArgs {
-
-    @Field(() => RSVPWhereUniqueInput, {nullable:false})
-    @Type(() => RSVPWhereUniqueInput)
-    where!: RSVPWhereUniqueInput;
+  @Field(() => RSVPWhereUniqueInput, { nullable: false })
+  @Type(() => RSVPWhereUniqueInput)
+  where!: RSVPWhereUniqueInput;
 }

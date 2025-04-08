@@ -6,19 +6,18 @@ import { EventCreateNestedManyWithoutRoomInput } from '../event/event-create-nes
 
 @InputType()
 export class RoomCreateInput {
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => Int, { nullable: true })
+  capacity?: number;
 
-    @Field(() => Int, {nullable:true})
-    capacity?: number;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => BuildingCreateNestedOneWithoutRoomsInput, { nullable: false })
+  building!: BuildingCreateNestedOneWithoutRoomsInput;
 
-    @Field(() => BuildingCreateNestedOneWithoutRoomsInput, {nullable:false})
-    building!: BuildingCreateNestedOneWithoutRoomsInput;
-
-    @Field(() => EventCreateNestedManyWithoutRoomInput, {nullable:true})
-    events?: EventCreateNestedManyWithoutRoomInput;
+  @Field(() => EventCreateNestedManyWithoutRoomInput, { nullable: true })
+  events?: EventCreateNestedManyWithoutRoomInput;
 }

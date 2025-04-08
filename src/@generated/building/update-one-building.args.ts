@@ -7,12 +7,11 @@ import { BuildingWhereUniqueInput } from './building-where-unique.input';
 
 @ArgsType()
 export class UpdateOneBuildingArgs {
+  @Field(() => BuildingUpdateInput, { nullable: false })
+  @Type(() => BuildingUpdateInput)
+  data!: BuildingUpdateInput;
 
-    @Field(() => BuildingUpdateInput, {nullable:false})
-    @Type(() => BuildingUpdateInput)
-    data!: BuildingUpdateInput;
-
-    @Field(() => BuildingWhereUniqueInput, {nullable:false})
-    @Type(() => BuildingWhereUniqueInput)
-    where!: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
+  @Field(() => BuildingWhereUniqueInput, { nullable: false })
+  @Type(() => BuildingWhereUniqueInput)
+  where!: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 }

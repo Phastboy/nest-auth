@@ -6,11 +6,10 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class DeleteManyRoomArgs {
+  @Field(() => RoomWhereInput, { nullable: true })
+  @Type(() => RoomWhereInput)
+  where?: RoomWhereInput;
 
-    @Field(() => RoomWhereInput, {nullable:true})
-    @Type(() => RoomWhereInput)
-    where?: RoomWhereInput;
-
-    @Field(() => Int, {nullable:true})
-    limit?: number;
+  @Field(() => Int, { nullable: true })
+  limit?: number;
 }

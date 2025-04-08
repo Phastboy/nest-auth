@@ -8,16 +8,15 @@ import { RoomCreateWithoutBuildingInput } from './room-create-without-building.i
 
 @InputType()
 export class RoomUpsertWithWhereUniqueWithoutBuildingInput {
+  @Field(() => RoomWhereUniqueInput, { nullable: false })
+  @Type(() => RoomWhereUniqueInput)
+  where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
 
-    @Field(() => RoomWhereUniqueInput, {nullable:false})
-    @Type(() => RoomWhereUniqueInput)
-    where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+  @Field(() => RoomUpdateWithoutBuildingInput, { nullable: false })
+  @Type(() => RoomUpdateWithoutBuildingInput)
+  update!: RoomUpdateWithoutBuildingInput;
 
-    @Field(() => RoomUpdateWithoutBuildingInput, {nullable:false})
-    @Type(() => RoomUpdateWithoutBuildingInput)
-    update!: RoomUpdateWithoutBuildingInput;
-
-    @Field(() => RoomCreateWithoutBuildingInput, {nullable:false})
-    @Type(() => RoomCreateWithoutBuildingInput)
-    create!: RoomCreateWithoutBuildingInput;
+  @Field(() => RoomCreateWithoutBuildingInput, { nullable: false })
+  @Type(() => RoomCreateWithoutBuildingInput)
+  create!: RoomCreateWithoutBuildingInput;
 }

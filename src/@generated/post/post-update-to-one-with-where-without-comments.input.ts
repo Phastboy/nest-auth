@@ -6,12 +6,11 @@ import { PostUpdateWithoutCommentsInput } from './post-update-without-comments.i
 
 @InputType()
 export class PostUpdateToOneWithWhereWithoutCommentsInput {
+  @Field(() => PostWhereInput, { nullable: true })
+  @Type(() => PostWhereInput)
+  where?: PostWhereInput;
 
-    @Field(() => PostWhereInput, {nullable:true})
-    @Type(() => PostWhereInput)
-    where?: PostWhereInput;
-
-    @Field(() => PostUpdateWithoutCommentsInput, {nullable:false})
-    @Type(() => PostUpdateWithoutCommentsInput)
-    data!: PostUpdateWithoutCommentsInput;
+  @Field(() => PostUpdateWithoutCommentsInput, { nullable: false })
+  @Type(() => PostUpdateWithoutCommentsInput)
+  data!: PostUpdateWithoutCommentsInput;
 }

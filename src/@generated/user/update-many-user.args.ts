@@ -7,15 +7,14 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class UpdateManyUserArgs {
+  @Field(() => UserUpdateManyMutationInput, { nullable: false })
+  @Type(() => UserUpdateManyMutationInput)
+  data!: UserUpdateManyMutationInput;
 
-    @Field(() => UserUpdateManyMutationInput, {nullable:false})
-    @Type(() => UserUpdateManyMutationInput)
-    data!: UserUpdateManyMutationInput;
+  @Field(() => UserWhereInput, { nullable: true })
+  @Type(() => UserWhereInput)
+  where?: UserWhereInput;
 
-    @Field(() => UserWhereInput, {nullable:true})
-    @Type(() => UserWhereInput)
-    where?: UserWhereInput;
-
-    @Field(() => Int, {nullable:true})
-    limit?: number;
+  @Field(() => Int, { nullable: true })
+  limit?: number;
 }

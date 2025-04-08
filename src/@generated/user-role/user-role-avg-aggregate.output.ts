@@ -4,13 +4,12 @@ import { Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class UserRoleAvgAggregate {
+  @Field(() => Float, { nullable: true })
+  userId?: number;
 
-    @Field(() => Float, {nullable:true})
-    userId?: number;
+  @Field(() => Float, { nullable: true })
+  roleId?: number;
 
-    @Field(() => Float, {nullable:true})
-    roleId?: number;
-
-    @Field(() => Float, {nullable:true})
-    assignedBy?: number;
+  @Field(() => Float, { nullable: true })
+  assignedBy?: number;
 }

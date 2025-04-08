@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyCommentArgs {
-
-    @Field(() => [CommentCreateManyInput], {nullable:false})
-    @Type(() => CommentCreateManyInput)
-    data!: Array<CommentCreateManyInput>;
+  @Field(() => [CommentCreateManyInput], { nullable: false })
+  @Type(() => CommentCreateManyInput)
+  data!: Array<CommentCreateManyInput>;
 }

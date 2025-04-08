@@ -7,16 +7,15 @@ import { RoomWhereInput } from './room-where.input';
 
 @InputType()
 export class RoomUpsertWithoutEventsInput {
+  @Field(() => RoomUpdateWithoutEventsInput, { nullable: false })
+  @Type(() => RoomUpdateWithoutEventsInput)
+  update!: RoomUpdateWithoutEventsInput;
 
-    @Field(() => RoomUpdateWithoutEventsInput, {nullable:false})
-    @Type(() => RoomUpdateWithoutEventsInput)
-    update!: RoomUpdateWithoutEventsInput;
+  @Field(() => RoomCreateWithoutEventsInput, { nullable: false })
+  @Type(() => RoomCreateWithoutEventsInput)
+  create!: RoomCreateWithoutEventsInput;
 
-    @Field(() => RoomCreateWithoutEventsInput, {nullable:false})
-    @Type(() => RoomCreateWithoutEventsInput)
-    create!: RoomCreateWithoutEventsInput;
-
-    @Field(() => RoomWhereInput, {nullable:true})
-    @Type(() => RoomWhereInput)
-    where?: RoomWhereInput;
+  @Field(() => RoomWhereInput, { nullable: true })
+  @Type(() => RoomWhereInput)
+  where?: RoomWhereInput;
 }

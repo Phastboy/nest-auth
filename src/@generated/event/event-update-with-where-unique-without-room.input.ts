@@ -7,12 +7,11 @@ import { EventUpdateWithoutRoomInput } from './event-update-without-room.input';
 
 @InputType()
 export class EventUpdateWithWhereUniqueWithoutRoomInput {
+  @Field(() => EventWhereUniqueInput, { nullable: false })
+  @Type(() => EventWhereUniqueInput)
+  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:false})
-    @Type(() => EventWhereUniqueInput)
-    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
-
-    @Field(() => EventUpdateWithoutRoomInput, {nullable:false})
-    @Type(() => EventUpdateWithoutRoomInput)
-    data!: EventUpdateWithoutRoomInput;
+  @Field(() => EventUpdateWithoutRoomInput, { nullable: false })
+  @Type(() => EventUpdateWithoutRoomInput)
+  data!: EventUpdateWithoutRoomInput;
 }

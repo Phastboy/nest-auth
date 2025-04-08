@@ -14,35 +14,34 @@ import { BuildingMaxAggregateInput } from './building-max-aggregate.input';
 
 @ArgsType()
 export class BuildingAggregateArgs {
+  @Field(() => BuildingWhereInput, { nullable: true })
+  @Type(() => BuildingWhereInput)
+  where?: BuildingWhereInput;
 
-    @Field(() => BuildingWhereInput, {nullable:true})
-    @Type(() => BuildingWhereInput)
-    where?: BuildingWhereInput;
+  @Field(() => [BuildingOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<BuildingOrderByWithRelationInput>;
 
-    @Field(() => [BuildingOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<BuildingOrderByWithRelationInput>;
+  @Field(() => BuildingWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => BuildingWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => BuildingCountAggregateInput, { nullable: true })
+  _count?: BuildingCountAggregateInput;
 
-    @Field(() => BuildingCountAggregateInput, {nullable:true})
-    _count?: BuildingCountAggregateInput;
+  @Field(() => BuildingAvgAggregateInput, { nullable: true })
+  _avg?: BuildingAvgAggregateInput;
 
-    @Field(() => BuildingAvgAggregateInput, {nullable:true})
-    _avg?: BuildingAvgAggregateInput;
+  @Field(() => BuildingSumAggregateInput, { nullable: true })
+  _sum?: BuildingSumAggregateInput;
 
-    @Field(() => BuildingSumAggregateInput, {nullable:true})
-    _sum?: BuildingSumAggregateInput;
+  @Field(() => BuildingMinAggregateInput, { nullable: true })
+  _min?: BuildingMinAggregateInput;
 
-    @Field(() => BuildingMinAggregateInput, {nullable:true})
-    _min?: BuildingMinAggregateInput;
-
-    @Field(() => BuildingMaxAggregateInput, {nullable:true})
-    _max?: BuildingMaxAggregateInput;
+  @Field(() => BuildingMaxAggregateInput, { nullable: true })
+  _max?: BuildingMaxAggregateInput;
 }

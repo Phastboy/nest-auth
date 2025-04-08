@@ -7,16 +7,15 @@ import { EventUpdateManyWithoutRoomNestedInput } from '../event/event-update-man
 
 @InputType()
 export class RoomUpdateWithoutBuildingInput {
+  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
+  name?: StringFieldUpdateOperationsInput;
 
-    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
-    name?: StringFieldUpdateOperationsInput;
+  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+  capacity?: NullableIntFieldUpdateOperationsInput;
 
-    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
-    capacity?: NullableIntFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => EventUpdateManyWithoutRoomNestedInput, {nullable:true})
-    events?: EventUpdateManyWithoutRoomNestedInput;
+  @Field(() => EventUpdateManyWithoutRoomNestedInput, { nullable: true })
+  events?: EventUpdateManyWithoutRoomNestedInput;
 }

@@ -10,23 +10,22 @@ import { EventScalarFieldEnum } from './event-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstEventOrThrowArgs {
+  @Field(() => EventWhereInput, { nullable: true })
+  @Type(() => EventWhereInput)
+  where?: EventWhereInput;
 
-    @Field(() => EventWhereInput, {nullable:true})
-    @Type(() => EventWhereInput)
-    where?: EventWhereInput;
+  @Field(() => [EventOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<EventOrderByWithRelationInput>;
 
-    @Field(() => [EventOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<EventOrderByWithRelationInput>;
+  @Field(() => EventWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [EventScalarFieldEnum], {nullable:true})
-    distinct?: Array<`${EventScalarFieldEnum}`>;
+  @Field(() => [EventScalarFieldEnum], { nullable: true })
+  distinct?: Array<`${EventScalarFieldEnum}`>;
 }

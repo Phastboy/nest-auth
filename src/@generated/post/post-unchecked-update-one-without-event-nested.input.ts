@@ -11,32 +11,31 @@ import { PostUpdateToOneWithWhereWithoutEventInput } from './post-update-to-one-
 
 @InputType()
 export class PostUncheckedUpdateOneWithoutEventNestedInput {
+  @Field(() => PostCreateWithoutEventInput, { nullable: true })
+  @Type(() => PostCreateWithoutEventInput)
+  create?: PostCreateWithoutEventInput;
 
-    @Field(() => PostCreateWithoutEventInput, {nullable:true})
-    @Type(() => PostCreateWithoutEventInput)
-    create?: PostCreateWithoutEventInput;
+  @Field(() => PostCreateOrConnectWithoutEventInput, { nullable: true })
+  @Type(() => PostCreateOrConnectWithoutEventInput)
+  connectOrCreate?: PostCreateOrConnectWithoutEventInput;
 
-    @Field(() => PostCreateOrConnectWithoutEventInput, {nullable:true})
-    @Type(() => PostCreateOrConnectWithoutEventInput)
-    connectOrCreate?: PostCreateOrConnectWithoutEventInput;
+  @Field(() => PostUpsertWithoutEventInput, { nullable: true })
+  @Type(() => PostUpsertWithoutEventInput)
+  upsert?: PostUpsertWithoutEventInput;
 
-    @Field(() => PostUpsertWithoutEventInput, {nullable:true})
-    @Type(() => PostUpsertWithoutEventInput)
-    upsert?: PostUpsertWithoutEventInput;
+  @Field(() => PostWhereInput, { nullable: true })
+  @Type(() => PostWhereInput)
+  disconnect?: PostWhereInput;
 
-    @Field(() => PostWhereInput, {nullable:true})
-    @Type(() => PostWhereInput)
-    disconnect?: PostWhereInput;
+  @Field(() => PostWhereInput, { nullable: true })
+  @Type(() => PostWhereInput)
+  delete?: PostWhereInput;
 
-    @Field(() => PostWhereInput, {nullable:true})
-    @Type(() => PostWhereInput)
-    delete?: PostWhereInput;
+  @Field(() => PostWhereUniqueInput, { nullable: true })
+  @Type(() => PostWhereUniqueInput)
+  connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
 
-    @Field(() => PostWhereUniqueInput, {nullable:true})
-    @Type(() => PostWhereUniqueInput)
-    connect?: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
-
-    @Field(() => PostUpdateToOneWithWhereWithoutEventInput, {nullable:true})
-    @Type(() => PostUpdateToOneWithWhereWithoutEventInput)
-    update?: PostUpdateToOneWithWhereWithoutEventInput;
+  @Field(() => PostUpdateToOneWithWhereWithoutEventInput, { nullable: true })
+  @Type(() => PostUpdateToOneWithWhereWithoutEventInput)
+  update?: PostUpdateToOneWithWhereWithoutEventInput;
 }

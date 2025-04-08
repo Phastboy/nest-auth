@@ -6,12 +6,11 @@ import { UserRoleUpdateManyMutationInput } from './user-role-update-many-mutatio
 
 @InputType()
 export class UserRoleUpdateManyWithWhereWithoutUserInput {
+  @Field(() => UserRoleScalarWhereInput, { nullable: false })
+  @Type(() => UserRoleScalarWhereInput)
+  where!: UserRoleScalarWhereInput;
 
-    @Field(() => UserRoleScalarWhereInput, {nullable:false})
-    @Type(() => UserRoleScalarWhereInput)
-    where!: UserRoleScalarWhereInput;
-
-    @Field(() => UserRoleUpdateManyMutationInput, {nullable:false})
-    @Type(() => UserRoleUpdateManyMutationInput)
-    data!: UserRoleUpdateManyMutationInput;
+  @Field(() => UserRoleUpdateManyMutationInput, { nullable: false })
+  @Type(() => UserRoleUpdateManyMutationInput)
+  data!: UserRoleUpdateManyMutationInput;
 }

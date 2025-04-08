@@ -6,8 +6,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class DeleteOneRoomArgs {
-
-    @Field(() => RoomWhereUniqueInput, {nullable:false})
-    @Type(() => RoomWhereUniqueInput)
-    where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+  @Field(() => RoomWhereUniqueInput, { nullable: false })
+  @Type(() => RoomWhereUniqueInput)
+  where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
 }

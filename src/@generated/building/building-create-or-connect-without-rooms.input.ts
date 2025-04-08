@@ -7,12 +7,11 @@ import { BuildingCreateWithoutRoomsInput } from './building-create-without-rooms
 
 @InputType()
 export class BuildingCreateOrConnectWithoutRoomsInput {
+  @Field(() => BuildingWhereUniqueInput, { nullable: false })
+  @Type(() => BuildingWhereUniqueInput)
+  where!: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => BuildingWhereUniqueInput, {nullable:false})
-    @Type(() => BuildingWhereUniqueInput)
-    where!: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
-
-    @Field(() => BuildingCreateWithoutRoomsInput, {nullable:false})
-    @Type(() => BuildingCreateWithoutRoomsInput)
-    create!: BuildingCreateWithoutRoomsInput;
+  @Field(() => BuildingCreateWithoutRoomsInput, { nullable: false })
+  @Type(() => BuildingCreateWithoutRoomsInput)
+  create!: BuildingCreateWithoutRoomsInput;
 }

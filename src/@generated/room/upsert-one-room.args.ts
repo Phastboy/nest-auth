@@ -8,16 +8,15 @@ import { RoomUpdateInput } from './room-update.input';
 
 @ArgsType()
 export class UpsertOneRoomArgs {
+  @Field(() => RoomWhereUniqueInput, { nullable: false })
+  @Type(() => RoomWhereUniqueInput)
+  where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
 
-    @Field(() => RoomWhereUniqueInput, {nullable:false})
-    @Type(() => RoomWhereUniqueInput)
-    where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+  @Field(() => RoomCreateInput, { nullable: false })
+  @Type(() => RoomCreateInput)
+  create!: RoomCreateInput;
 
-    @Field(() => RoomCreateInput, {nullable:false})
-    @Type(() => RoomCreateInput)
-    create!: RoomCreateInput;
-
-    @Field(() => RoomUpdateInput, {nullable:false})
-    @Type(() => RoomUpdateInput)
-    update!: RoomUpdateInput;
+  @Field(() => RoomUpdateInput, { nullable: false })
+  @Type(() => RoomUpdateInput)
+  update!: RoomUpdateInput;
 }

@@ -7,12 +7,11 @@ import { UserRoleCreateWithoutRoleInput } from './user-role-create-without-role.
 
 @InputType()
 export class UserRoleCreateOrConnectWithoutRoleInput {
+  @Field(() => UserRoleWhereUniqueInput, { nullable: false })
+  @Type(() => UserRoleWhereUniqueInput)
+  where!: Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>;
 
-    @Field(() => UserRoleWhereUniqueInput, {nullable:false})
-    @Type(() => UserRoleWhereUniqueInput)
-    where!: Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>;
-
-    @Field(() => UserRoleCreateWithoutRoleInput, {nullable:false})
-    @Type(() => UserRoleCreateWithoutRoleInput)
-    create!: UserRoleCreateWithoutRoleInput;
+  @Field(() => UserRoleCreateWithoutRoleInput, { nullable: false })
+  @Type(() => UserRoleCreateWithoutRoleInput)
+  create!: UserRoleCreateWithoutRoleInput;
 }

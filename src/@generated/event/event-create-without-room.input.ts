@@ -13,70 +13,69 @@ import { LikeCreateNestedManyWithoutEventInput } from '../like/like-create-neste
 
 @InputType()
 export class EventCreateWithoutRoomInput {
+  @Field(() => String, { nullable: false })
+  title!: string;
 
-    @Field(() => String, {nullable:false})
-    title!: string;
+  @Field(() => String, { nullable: true })
+  description?: string;
 
-    @Field(() => String, {nullable:true})
-    description?: string;
+  @Field(() => Date, { nullable: true })
+  startTime?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    startTime?: Date | string;
+  @Field(() => Date, { nullable: true })
+  endTime?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    endTime?: Date | string;
+  @Field(() => String, { nullable: true })
+  image?: string;
 
-    @Field(() => String, {nullable:true})
-    image?: string;
+  @Field(() => Boolean, { nullable: true })
+  isRecurring?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    isRecurring?: boolean;
+  @Field(() => String, { nullable: true })
+  recurrenceRule?: string;
 
-    @Field(() => String, {nullable:true})
-    recurrenceRule?: string;
+  @Field(() => Boolean, { nullable: true })
+  isPublic?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    isPublic?: boolean;
+  @Field(() => Boolean, { nullable: true })
+  shareAsPost?: boolean;
 
-    @Field(() => Boolean, {nullable:true})
-    shareAsPost?: boolean;
+  @Field(() => EventStatus, { nullable: true })
+  eventStatus?: `${EventStatus}`;
 
-    @Field(() => EventStatus, {nullable:true})
-    eventStatus?: `${EventStatus}`;
+  @Field(() => EventMode, { nullable: true })
+  eventMode?: `${EventMode}`;
 
-    @Field(() => EventMode, {nullable:true})
-    eventMode?: `${EventMode}`;
+  @Field(() => EventType, { nullable: true })
+  eventType?: `${EventType}`;
 
-    @Field(() => EventType, {nullable:true})
-    eventType?: `${EventType}`;
+  @Field(() => String, { nullable: true })
+  eventLink?: string;
 
-    @Field(() => String, {nullable:true})
-    eventLink?: string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  updatedAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    updatedAt?: Date | string;
+  @Field(() => UserCreateNestedOneWithoutEventsInput, { nullable: false })
+  user!: UserCreateNestedOneWithoutEventsInput;
 
-    @Field(() => UserCreateNestedOneWithoutEventsInput, {nullable:false})
-    user!: UserCreateNestedOneWithoutEventsInput;
+  @Field(() => PostCreateNestedOneWithoutEventInput, { nullable: true })
+  post?: PostCreateNestedOneWithoutEventInput;
 
-    @Field(() => PostCreateNestedOneWithoutEventInput, {nullable:true})
-    post?: PostCreateNestedOneWithoutEventInput;
+  @Field(() => CategoryCreateNestedManyWithoutEventsInput, { nullable: true })
+  categories?: CategoryCreateNestedManyWithoutEventsInput;
 
-    @Field(() => CategoryCreateNestedManyWithoutEventsInput, {nullable:true})
-    categories?: CategoryCreateNestedManyWithoutEventsInput;
+  @Field(() => BuildingCreateNestedOneWithoutEventsInput, { nullable: true })
+  building?: BuildingCreateNestedOneWithoutEventsInput;
 
-    @Field(() => BuildingCreateNestedOneWithoutEventsInput, {nullable:true})
-    building?: BuildingCreateNestedOneWithoutEventsInput;
+  @Field(() => CommentCreateNestedManyWithoutEventInput, { nullable: true })
+  comments?: CommentCreateNestedManyWithoutEventInput;
 
-    @Field(() => CommentCreateNestedManyWithoutEventInput, {nullable:true})
-    comments?: CommentCreateNestedManyWithoutEventInput;
+  @Field(() => RSVPCreateNestedManyWithoutEventInput, { nullable: true })
+  rsvps?: RSVPCreateNestedManyWithoutEventInput;
 
-    @Field(() => RSVPCreateNestedManyWithoutEventInput, {nullable:true})
-    rsvps?: RSVPCreateNestedManyWithoutEventInput;
-
-    @Field(() => LikeCreateNestedManyWithoutEventInput, {nullable:true})
-    likes?: LikeCreateNestedManyWithoutEventInput;
+  @Field(() => LikeCreateNestedManyWithoutEventInput, { nullable: true })
+  likes?: LikeCreateNestedManyWithoutEventInput;
 }

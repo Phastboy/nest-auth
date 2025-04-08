@@ -6,12 +6,11 @@ import { RoomUpdateManyMutationInput } from './room-update-many-mutation.input';
 
 @InputType()
 export class RoomUpdateManyWithWhereWithoutBuildingInput {
+  @Field(() => RoomScalarWhereInput, { nullable: false })
+  @Type(() => RoomScalarWhereInput)
+  where!: RoomScalarWhereInput;
 
-    @Field(() => RoomScalarWhereInput, {nullable:false})
-    @Type(() => RoomScalarWhereInput)
-    where!: RoomScalarWhereInput;
-
-    @Field(() => RoomUpdateManyMutationInput, {nullable:false})
-    @Type(() => RoomUpdateManyMutationInput)
-    data!: RoomUpdateManyMutationInput;
+  @Field(() => RoomUpdateManyMutationInput, { nullable: false })
+  @Type(() => RoomUpdateManyMutationInput)
+  data!: RoomUpdateManyMutationInput;
 }

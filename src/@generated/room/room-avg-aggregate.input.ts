@@ -3,13 +3,12 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class RoomAvgAggregateInput {
+  @Field(() => Boolean, { nullable: true })
+  id?: true;
 
-    @Field(() => Boolean, {nullable:true})
-    id?: true;
+  @Field(() => Boolean, { nullable: true })
+  buildingId?: true;
 
-    @Field(() => Boolean, {nullable:true})
-    buildingId?: true;
-
-    @Field(() => Boolean, {nullable:true})
-    capacity?: true;
+  @Field(() => Boolean, { nullable: true })
+  capacity?: true;
 }

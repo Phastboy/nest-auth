@@ -8,28 +8,27 @@ import { RoomCount } from './room-count.output';
 
 @ObjectType()
 export class Room {
+  @Field(() => ID, { nullable: false })
+  id!: number;
 
-    @Field(() => ID, {nullable:false})
-    id!: number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => Int, { nullable: false })
+  buildingId!: number;
 
-    @Field(() => Int, {nullable:false})
-    buildingId!: number;
+  @Field(() => Int, { nullable: true })
+  capacity!: number | null;
 
-    @Field(() => Int, {nullable:true})
-    capacity!: number | null;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date;
+  @Field(() => Building, { nullable: false })
+  building?: Building;
 
-    @Field(() => Building, {nullable:false})
-    building?: Building;
+  @Field(() => [Event], { nullable: true })
+  events?: Array<Event>;
 
-    @Field(() => [Event], {nullable:true})
-    events?: Array<Event>;
-
-    @Field(() => RoomCount, {nullable:false})
-    _count?: RoomCount;
+  @Field(() => RoomCount, { nullable: false })
+  _count?: RoomCount;
 }

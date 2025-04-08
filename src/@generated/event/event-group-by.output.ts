@@ -12,76 +12,75 @@ import { EventMaxAggregate } from './event-max-aggregate.output';
 
 @ObjectType()
 export class EventGroupBy {
+  @Field(() => Int, { nullable: false })
+  id!: number;
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+  @Field(() => String, { nullable: false })
+  title!: string;
 
-    @Field(() => String, {nullable:false})
-    title!: string;
+  @Field(() => String, { nullable: true })
+  description?: string;
 
-    @Field(() => String, {nullable:true})
-    description?: string;
+  @Field(() => Date, { nullable: true })
+  startTime?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    startTime?: Date | string;
+  @Field(() => Date, { nullable: true })
+  endTime?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    endTime?: Date | string;
+  @Field(() => String, { nullable: true })
+  image?: string;
 
-    @Field(() => String, {nullable:true})
-    image?: string;
+  @Field(() => Boolean, { nullable: false })
+  isRecurring!: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    isRecurring!: boolean;
+  @Field(() => String, { nullable: true })
+  recurrenceRule?: string;
 
-    @Field(() => String, {nullable:true})
-    recurrenceRule?: string;
+  @Field(() => Boolean, { nullable: false })
+  isPublic!: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    isPublic!: boolean;
+  @Field(() => Int, { nullable: false })
+  userId!: number;
 
-    @Field(() => Int, {nullable:false})
-    userId!: number;
+  @Field(() => Boolean, { nullable: false })
+  shareAsPost!: boolean;
 
-    @Field(() => Boolean, {nullable:false})
-    shareAsPost!: boolean;
+  @Field(() => EventStatus, { nullable: false })
+  eventStatus!: `${EventStatus}`;
 
-    @Field(() => EventStatus, {nullable:false})
-    eventStatus!: `${EventStatus}`;
+  @Field(() => EventMode, { nullable: false })
+  eventMode!: `${EventMode}`;
 
-    @Field(() => EventMode, {nullable:false})
-    eventMode!: `${EventMode}`;
+  @Field(() => EventType, { nullable: false })
+  eventType!: `${EventType}`;
 
-    @Field(() => EventType, {nullable:false})
-    eventType!: `${EventType}`;
+  @Field(() => String, { nullable: true })
+  eventLink?: string;
 
-    @Field(() => String, {nullable:true})
-    eventLink?: string;
+  @Field(() => Int, { nullable: true })
+  roomId?: number;
 
-    @Field(() => Int, {nullable:true})
-    roomId?: number;
+  @Field(() => Int, { nullable: true })
+  buildingId?: number;
 
-    @Field(() => Int, {nullable:true})
-    buildingId?: number;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
+  @Field(() => Date, { nullable: false })
+  updatedAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    updatedAt!: Date | string;
+  @Field(() => EventCountAggregate, { nullable: true })
+  _count?: EventCountAggregate;
 
-    @Field(() => EventCountAggregate, {nullable:true})
-    _count?: EventCountAggregate;
+  @Field(() => EventAvgAggregate, { nullable: true })
+  _avg?: EventAvgAggregate;
 
-    @Field(() => EventAvgAggregate, {nullable:true})
-    _avg?: EventAvgAggregate;
+  @Field(() => EventSumAggregate, { nullable: true })
+  _sum?: EventSumAggregate;
 
-    @Field(() => EventSumAggregate, {nullable:true})
-    _sum?: EventSumAggregate;
+  @Field(() => EventMinAggregate, { nullable: true })
+  _min?: EventMinAggregate;
 
-    @Field(() => EventMinAggregate, {nullable:true})
-    _min?: EventMinAggregate;
-
-    @Field(() => EventMaxAggregate, {nullable:true})
-    _max?: EventMaxAggregate;
+  @Field(() => EventMaxAggregate, { nullable: true })
+  _max?: EventMaxAggregate;
 }

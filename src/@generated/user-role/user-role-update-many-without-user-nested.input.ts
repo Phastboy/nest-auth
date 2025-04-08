@@ -13,48 +13,53 @@ import { UserRoleScalarWhereInput } from './user-role-scalar-where.input';
 
 @InputType()
 export class UserRoleUpdateManyWithoutUserNestedInput {
+  @Field(() => [UserRoleCreateWithoutUserInput], { nullable: true })
+  @Type(() => UserRoleCreateWithoutUserInput)
+  create?: Array<UserRoleCreateWithoutUserInput>;
 
-    @Field(() => [UserRoleCreateWithoutUserInput], {nullable:true})
-    @Type(() => UserRoleCreateWithoutUserInput)
-    create?: Array<UserRoleCreateWithoutUserInput>;
+  @Field(() => [UserRoleCreateOrConnectWithoutUserInput], { nullable: true })
+  @Type(() => UserRoleCreateOrConnectWithoutUserInput)
+  connectOrCreate?: Array<UserRoleCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [UserRoleCreateOrConnectWithoutUserInput], {nullable:true})
-    @Type(() => UserRoleCreateOrConnectWithoutUserInput)
-    connectOrCreate?: Array<UserRoleCreateOrConnectWithoutUserInput>;
+  @Field(() => [UserRoleUpsertWithWhereUniqueWithoutUserInput], {
+    nullable: true,
+  })
+  @Type(() => UserRoleUpsertWithWhereUniqueWithoutUserInput)
+  upsert?: Array<UserRoleUpsertWithWhereUniqueWithoutUserInput>;
 
-    @Field(() => [UserRoleUpsertWithWhereUniqueWithoutUserInput], {nullable:true})
-    @Type(() => UserRoleUpsertWithWhereUniqueWithoutUserInput)
-    upsert?: Array<UserRoleUpsertWithWhereUniqueWithoutUserInput>;
+  @Field(() => UserRoleCreateManyUserInputEnvelope, { nullable: true })
+  @Type(() => UserRoleCreateManyUserInputEnvelope)
+  createMany?: UserRoleCreateManyUserInputEnvelope;
 
-    @Field(() => UserRoleCreateManyUserInputEnvelope, {nullable:true})
-    @Type(() => UserRoleCreateManyUserInputEnvelope)
-    createMany?: UserRoleCreateManyUserInputEnvelope;
+  @Field(() => [UserRoleWhereUniqueInput], { nullable: true })
+  @Type(() => UserRoleWhereUniqueInput)
+  set?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
 
-    @Field(() => [UserRoleWhereUniqueInput], {nullable:true})
-    @Type(() => UserRoleWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
+  @Field(() => [UserRoleWhereUniqueInput], { nullable: true })
+  @Type(() => UserRoleWhereUniqueInput)
+  disconnect?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
 
-    @Field(() => [UserRoleWhereUniqueInput], {nullable:true})
-    @Type(() => UserRoleWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
+  @Field(() => [UserRoleWhereUniqueInput], { nullable: true })
+  @Type(() => UserRoleWhereUniqueInput)
+  delete?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
 
-    @Field(() => [UserRoleWhereUniqueInput], {nullable:true})
-    @Type(() => UserRoleWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
+  @Field(() => [UserRoleWhereUniqueInput], { nullable: true })
+  @Type(() => UserRoleWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
 
-    @Field(() => [UserRoleWhereUniqueInput], {nullable:true})
-    @Type(() => UserRoleWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
+  @Field(() => [UserRoleUpdateWithWhereUniqueWithoutUserInput], {
+    nullable: true,
+  })
+  @Type(() => UserRoleUpdateWithWhereUniqueWithoutUserInput)
+  update?: Array<UserRoleUpdateWithWhereUniqueWithoutUserInput>;
 
-    @Field(() => [UserRoleUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
-    @Type(() => UserRoleUpdateWithWhereUniqueWithoutUserInput)
-    update?: Array<UserRoleUpdateWithWhereUniqueWithoutUserInput>;
+  @Field(() => [UserRoleUpdateManyWithWhereWithoutUserInput], {
+    nullable: true,
+  })
+  @Type(() => UserRoleUpdateManyWithWhereWithoutUserInput)
+  updateMany?: Array<UserRoleUpdateManyWithWhereWithoutUserInput>;
 
-    @Field(() => [UserRoleUpdateManyWithWhereWithoutUserInput], {nullable:true})
-    @Type(() => UserRoleUpdateManyWithWhereWithoutUserInput)
-    updateMany?: Array<UserRoleUpdateManyWithWhereWithoutUserInput>;
-
-    @Field(() => [UserRoleScalarWhereInput], {nullable:true})
-    @Type(() => UserRoleScalarWhereInput)
-    deleteMany?: Array<UserRoleScalarWhereInput>;
+  @Field(() => [UserRoleScalarWhereInput], { nullable: true })
+  @Type(() => UserRoleScalarWhereInput)
+  deleteMany?: Array<UserRoleScalarWhereInput>;
 }
