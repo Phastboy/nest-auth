@@ -4,15 +4,16 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class RoomCreateManyBuildingInput {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: false })
-  name!: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => Int, { nullable: true })
-  capacity?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    capacity?: number;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 }

@@ -8,15 +8,16 @@ import { BuildingUpdateInput } from './building-update.input';
 
 @ArgsType()
 export class UpsertOneBuildingArgs {
-  @Field(() => BuildingWhereUniqueInput, { nullable: false })
-  @Type(() => BuildingWhereUniqueInput)
-  where!: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 
-  @Field(() => BuildingCreateInput, { nullable: false })
-  @Type(() => BuildingCreateInput)
-  create!: BuildingCreateInput;
+    @Field(() => BuildingWhereUniqueInput, {nullable:false})
+    @Type(() => BuildingWhereUniqueInput)
+    where!: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 
-  @Field(() => BuildingUpdateInput, { nullable: false })
-  @Type(() => BuildingUpdateInput)
-  update!: BuildingUpdateInput;
+    @Field(() => BuildingCreateInput, {nullable:false})
+    @Type(() => BuildingCreateInput)
+    create!: BuildingCreateInput;
+
+    @Field(() => BuildingUpdateInput, {nullable:false})
+    @Type(() => BuildingUpdateInput)
+    update!: BuildingUpdateInput;
 }

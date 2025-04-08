@@ -11,31 +11,32 @@ import { RoomUpdateToOneWithWhereWithoutEventsInput } from './room-update-to-one
 
 @InputType()
 export class RoomUpdateOneWithoutEventsNestedInput {
-  @Field(() => RoomCreateWithoutEventsInput, { nullable: true })
-  @Type(() => RoomCreateWithoutEventsInput)
-  create?: RoomCreateWithoutEventsInput;
 
-  @Field(() => RoomCreateOrConnectWithoutEventsInput, { nullable: true })
-  @Type(() => RoomCreateOrConnectWithoutEventsInput)
-  connectOrCreate?: RoomCreateOrConnectWithoutEventsInput;
+    @Field(() => RoomCreateWithoutEventsInput, {nullable:true})
+    @Type(() => RoomCreateWithoutEventsInput)
+    create?: RoomCreateWithoutEventsInput;
 
-  @Field(() => RoomUpsertWithoutEventsInput, { nullable: true })
-  @Type(() => RoomUpsertWithoutEventsInput)
-  upsert?: RoomUpsertWithoutEventsInput;
+    @Field(() => RoomCreateOrConnectWithoutEventsInput, {nullable:true})
+    @Type(() => RoomCreateOrConnectWithoutEventsInput)
+    connectOrCreate?: RoomCreateOrConnectWithoutEventsInput;
 
-  @Field(() => RoomWhereInput, { nullable: true })
-  @Type(() => RoomWhereInput)
-  disconnect?: RoomWhereInput;
+    @Field(() => RoomUpsertWithoutEventsInput, {nullable:true})
+    @Type(() => RoomUpsertWithoutEventsInput)
+    upsert?: RoomUpsertWithoutEventsInput;
 
-  @Field(() => RoomWhereInput, { nullable: true })
-  @Type(() => RoomWhereInput)
-  delete?: RoomWhereInput;
+    @Field(() => RoomWhereInput, {nullable:true})
+    @Type(() => RoomWhereInput)
+    disconnect?: RoomWhereInput;
 
-  @Field(() => RoomWhereUniqueInput, { nullable: true })
-  @Type(() => RoomWhereUniqueInput)
-  connect?: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+    @Field(() => RoomWhereInput, {nullable:true})
+    @Type(() => RoomWhereInput)
+    delete?: RoomWhereInput;
 
-  @Field(() => RoomUpdateToOneWithWhereWithoutEventsInput, { nullable: true })
-  @Type(() => RoomUpdateToOneWithWhereWithoutEventsInput)
-  update?: RoomUpdateToOneWithWhereWithoutEventsInput;
+    @Field(() => RoomWhereUniqueInput, {nullable:true})
+    @Type(() => RoomWhereUniqueInput)
+    connect?: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+
+    @Field(() => RoomUpdateToOneWithWhereWithoutEventsInput, {nullable:true})
+    @Type(() => RoomUpdateToOneWithWhereWithoutEventsInput)
+    update?: RoomUpdateToOneWithWhereWithoutEventsInput;
 }

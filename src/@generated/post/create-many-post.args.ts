@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyPostArgs {
-  @Field(() => [PostCreateManyInput], { nullable: false })
-  @Type(() => PostCreateManyInput)
-  data!: Array<PostCreateManyInput>;
+
+    @Field(() => [PostCreateManyInput], {nullable:false})
+    @Type(() => PostCreateManyInput)
+    data!: Array<PostCreateManyInput>;
 }

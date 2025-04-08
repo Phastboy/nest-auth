@@ -7,11 +7,12 @@ import { RoleWhereUniqueInput } from './role-where-unique.input';
 
 @ArgsType()
 export class UpdateOneRoleArgs {
-  @Field(() => RoleUpdateInput, { nullable: false })
-  @Type(() => RoleUpdateInput)
-  data!: RoleUpdateInput;
 
-  @Field(() => RoleWhereUniqueInput, { nullable: false })
-  @Type(() => RoleWhereUniqueInput)
-  where!: Prisma.AtLeast<RoleWhereUniqueInput, 'id' | 'name'>;
+    @Field(() => RoleUpdateInput, {nullable:false})
+    @Type(() => RoleUpdateInput)
+    data!: RoleUpdateInput;
+
+    @Field(() => RoleWhereUniqueInput, {nullable:false})
+    @Type(() => RoleWhereUniqueInput)
+    where!: Prisma.AtLeast<RoleWhereUniqueInput, 'id' | 'name'>;
 }

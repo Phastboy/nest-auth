@@ -11,48 +11,49 @@ import { EventListRelationFilter } from '../event/event-list-relation-filter.inp
 
 @InputType()
 export class BuildingWhereInput {
-  @Field(() => [BuildingWhereInput], { nullable: true })
-  AND?: Array<BuildingWhereInput>;
 
-  @Field(() => [BuildingWhereInput], { nullable: true })
-  OR?: Array<BuildingWhereInput>;
+    @Field(() => [BuildingWhereInput], {nullable:true})
+    AND?: Array<BuildingWhereInput>;
 
-  @Field(() => [BuildingWhereInput], { nullable: true })
-  NOT?: Array<BuildingWhereInput>;
+    @Field(() => [BuildingWhereInput], {nullable:true})
+    OR?: Array<BuildingWhereInput>;
 
-  @Field(() => IntFilter, { nullable: true })
-  id?: IntFilter;
+    @Field(() => [BuildingWhereInput], {nullable:true})
+    NOT?: Array<BuildingWhereInput>;
 
-  @Field(() => StringFilter, { nullable: true })
-  name?: StringFilter;
+    @Field(() => IntFilter, {nullable:true})
+    id?: IntFilter;
 
-  @Field(() => IntNullableFilter, { nullable: true })
-  number?: IntNullableFilter;
+    @Field(() => StringFilter, {nullable:true})
+    name?: StringFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  road?: StringNullableFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    number?: IntNullableFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  landmark?: StringNullableFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    road?: StringNullableFilter;
 
-  @Field(() => StringNullableFilter, { nullable: true })
-  area?: StringNullableFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    landmark?: StringNullableFilter;
 
-  @Field(() => FloatFilter, { nullable: true })
-  longitude?: FloatFilter;
+    @Field(() => StringNullableFilter, {nullable:true})
+    area?: StringNullableFilter;
 
-  @Field(() => FloatFilter, { nullable: true })
-  latitude?: FloatFilter;
+    @Field(() => FloatFilter, {nullable:true})
+    longitude?: FloatFilter;
 
-  @Field(() => IntNullableFilter, { nullable: true })
-  capacity?: IntNullableFilter;
+    @Field(() => FloatFilter, {nullable:true})
+    latitude?: FloatFilter;
 
-  @Field(() => DateTimeFilter, { nullable: true })
-  createdAt?: DateTimeFilter;
+    @Field(() => IntNullableFilter, {nullable:true})
+    capacity?: IntNullableFilter;
 
-  @Field(() => RoomListRelationFilter, { nullable: true })
-  rooms?: RoomListRelationFilter;
+    @Field(() => DateTimeFilter, {nullable:true})
+    createdAt?: DateTimeFilter;
 
-  @Field(() => EventListRelationFilter, { nullable: true })
-  events?: EventListRelationFilter;
+    @Field(() => RoomListRelationFilter, {nullable:true})
+    rooms?: RoomListRelationFilter;
+
+    @Field(() => EventListRelationFilter, {nullable:true})
+    events?: EventListRelationFilter;
 }

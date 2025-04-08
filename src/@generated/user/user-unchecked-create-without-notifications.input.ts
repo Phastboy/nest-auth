@@ -10,57 +10,46 @@ import { UserRoleUncheckedCreateNestedManyWithoutUserInput } from '../user-role/
 
 @InputType()
 export class UserUncheckedCreateWithoutNotificationsInput {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: false })
-  email!: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => String, { nullable: false })
-  username!: string;
+    @Field(() => String, {nullable:false})
+    email!: string;
 
-  @Field(() => String, { nullable: false })
-  password!: string;
+    @Field(() => String, {nullable:false})
+    username!: string;
 
-  @Field(() => String, { nullable: true })
-  avatar?: string;
+    @Field(() => String, {nullable:false})
+    password!: string;
 
-  @Field(() => String, { nullable: true })
-  bio?: string;
+    @Field(() => String, {nullable:true})
+    avatar?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => String, {nullable:true})
+    bio?: string;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => PostUncheckedCreateNestedManyWithoutUserInput, {
-    nullable: true,
-  })
-  posts?: PostUncheckedCreateNestedManyWithoutUserInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => EventUncheckedCreateNestedManyWithoutUserInput, {
-    nullable: true,
-  })
-  events?: EventUncheckedCreateNestedManyWithoutUserInput;
+    @Field(() => PostUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    posts?: PostUncheckedCreateNestedManyWithoutUserInput;
 
-  @Field(() => CommentUncheckedCreateNestedManyWithoutUserInput, {
-    nullable: true,
-  })
-  comments?: CommentUncheckedCreateNestedManyWithoutUserInput;
+    @Field(() => EventUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    events?: EventUncheckedCreateNestedManyWithoutUserInput;
 
-  @Field(() => LikeUncheckedCreateNestedManyWithoutUserInput, {
-    nullable: true,
-  })
-  likes?: LikeUncheckedCreateNestedManyWithoutUserInput;
+    @Field(() => CommentUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    comments?: CommentUncheckedCreateNestedManyWithoutUserInput;
 
-  @Field(() => RSVPUncheckedCreateNestedManyWithoutUserInput, {
-    nullable: true,
-  })
-  rsvps?: RSVPUncheckedCreateNestedManyWithoutUserInput;
+    @Field(() => LikeUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    likes?: LikeUncheckedCreateNestedManyWithoutUserInput;
 
-  @Field(() => UserRoleUncheckedCreateNestedManyWithoutUserInput, {
-    nullable: true,
-  })
-  roles?: UserRoleUncheckedCreateNestedManyWithoutUserInput;
+    @Field(() => RSVPUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    rsvps?: RSVPUncheckedCreateNestedManyWithoutUserInput;
+
+    @Field(() => UserRoleUncheckedCreateNestedManyWithoutUserInput, {nullable:true})
+    roles?: UserRoleUncheckedCreateNestedManyWithoutUserInput;
 }

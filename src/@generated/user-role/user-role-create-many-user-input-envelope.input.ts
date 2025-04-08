@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class UserRoleCreateManyUserInputEnvelope {
-  @Field(() => [UserRoleCreateManyUserInput], { nullable: false })
-  @Type(() => UserRoleCreateManyUserInput)
-  data!: Array<UserRoleCreateManyUserInput>;
+
+    @Field(() => [UserRoleCreateManyUserInput], {nullable:false})
+    @Type(() => UserRoleCreateManyUserInput)
+    data!: Array<UserRoleCreateManyUserInput>;
 }

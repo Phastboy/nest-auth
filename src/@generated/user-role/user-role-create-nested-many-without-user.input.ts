@@ -9,19 +9,20 @@ import { UserRoleWhereUniqueInput } from './user-role-where-unique.input';
 
 @InputType()
 export class UserRoleCreateNestedManyWithoutUserInput {
-  @Field(() => [UserRoleCreateWithoutUserInput], { nullable: true })
-  @Type(() => UserRoleCreateWithoutUserInput)
-  create?: Array<UserRoleCreateWithoutUserInput>;
 
-  @Field(() => [UserRoleCreateOrConnectWithoutUserInput], { nullable: true })
-  @Type(() => UserRoleCreateOrConnectWithoutUserInput)
-  connectOrCreate?: Array<UserRoleCreateOrConnectWithoutUserInput>;
+    @Field(() => [UserRoleCreateWithoutUserInput], {nullable:true})
+    @Type(() => UserRoleCreateWithoutUserInput)
+    create?: Array<UserRoleCreateWithoutUserInput>;
 
-  @Field(() => UserRoleCreateManyUserInputEnvelope, { nullable: true })
-  @Type(() => UserRoleCreateManyUserInputEnvelope)
-  createMany?: UserRoleCreateManyUserInputEnvelope;
+    @Field(() => [UserRoleCreateOrConnectWithoutUserInput], {nullable:true})
+    @Type(() => UserRoleCreateOrConnectWithoutUserInput)
+    connectOrCreate?: Array<UserRoleCreateOrConnectWithoutUserInput>;
 
-  @Field(() => [UserRoleWhereUniqueInput], { nullable: true })
-  @Type(() => UserRoleWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
+    @Field(() => UserRoleCreateManyUserInputEnvelope, {nullable:true})
+    @Type(() => UserRoleCreateManyUserInputEnvelope)
+    createMany?: UserRoleCreateManyUserInputEnvelope;
+
+    @Field(() => [UserRoleWhereUniqueInput], {nullable:true})
+    @Type(() => UserRoleWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>>;
 }

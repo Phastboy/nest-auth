@@ -5,20 +5,19 @@ import { EventUncheckedCreateNestedManyWithoutRoomInput } from '../event/event-u
 
 @InputType()
 export class RoomUncheckedCreateWithoutBuildingInput {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: false })
-  name!: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => Int, { nullable: true })
-  capacity?: number;
+    @Field(() => String, {nullable:false})
+    name!: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    capacity?: number;
 
-  @Field(() => EventUncheckedCreateNestedManyWithoutRoomInput, {
-    nullable: true,
-  })
-  events?: EventUncheckedCreateNestedManyWithoutRoomInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => EventUncheckedCreateNestedManyWithoutRoomInput, {nullable:true})
+    events?: EventUncheckedCreateNestedManyWithoutRoomInput;
 }

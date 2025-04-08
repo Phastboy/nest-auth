@@ -9,30 +9,25 @@ import { EventUncheckedUpdateManyWithoutCategoriesNestedInput } from '../event/e
 
 @InputType()
 export class CategoryUncheckedUpdateWithoutParentInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  name?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  slug?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    slug?: StringFieldUpdateOperationsInput;
 
-  @Field(() => CategoryUncheckedUpdateManyWithoutParentNestedInput, {
-    nullable: true,
-  })
-  children?: CategoryUncheckedUpdateManyWithoutParentNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => PostUncheckedUpdateManyWithoutCategoriesNestedInput, {
-    nullable: true,
-  })
-  posts?: PostUncheckedUpdateManyWithoutCategoriesNestedInput;
+    @Field(() => CategoryUncheckedUpdateManyWithoutParentNestedInput, {nullable:true})
+    children?: CategoryUncheckedUpdateManyWithoutParentNestedInput;
 
-  @Field(() => EventUncheckedUpdateManyWithoutCategoriesNestedInput, {
-    nullable: true,
-  })
-  events?: EventUncheckedUpdateManyWithoutCategoriesNestedInput;
+    @Field(() => PostUncheckedUpdateManyWithoutCategoriesNestedInput, {nullable:true})
+    posts?: PostUncheckedUpdateManyWithoutCategoriesNestedInput;
+
+    @Field(() => EventUncheckedUpdateManyWithoutCategoriesNestedInput, {nullable:true})
+    events?: EventUncheckedUpdateManyWithoutCategoriesNestedInput;
 }

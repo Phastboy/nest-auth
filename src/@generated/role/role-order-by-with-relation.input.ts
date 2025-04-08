@@ -6,21 +6,22 @@ import { UserRoleOrderByRelationAggregateInput } from '../user-role/user-role-or
 
 @InputType()
 export class RoleOrderByWithRelationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  name?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  description?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    name?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    description?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => UserRoleOrderByRelationAggregateInput, { nullable: true })
-  users?: UserRoleOrderByRelationAggregateInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: `${SortOrder}`;
+
+    @Field(() => UserRoleOrderByRelationAggregateInput, {nullable:true})
+    users?: UserRoleOrderByRelationAggregateInput;
 }

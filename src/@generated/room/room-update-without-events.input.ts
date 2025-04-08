@@ -7,17 +7,16 @@ import { BuildingUpdateOneRequiredWithoutRoomsNestedInput } from '../building/bu
 
 @InputType()
 export class RoomUpdateWithoutEventsInput {
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-  capacity?: NullableIntFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    name?: StringFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    capacity?: NullableIntFieldUpdateOperationsInput;
 
-  @Field(() => BuildingUpdateOneRequiredWithoutRoomsNestedInput, {
-    nullable: true,
-  })
-  building?: BuildingUpdateOneRequiredWithoutRoomsNestedInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
+
+    @Field(() => BuildingUpdateOneRequiredWithoutRoomsNestedInput, {nullable:true})
+    building?: BuildingUpdateOneRequiredWithoutRoomsNestedInput;
 }

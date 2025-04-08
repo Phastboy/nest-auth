@@ -8,33 +8,34 @@ import { LikeCreateNestedManyWithoutPostInput } from '../like/like-create-nested
 
 @InputType()
 export class PostCreateInput {
-  @Field(() => String, { nullable: false })
-  content!: string;
 
-  @Field(() => String, { nullable: true })
-  image?: string;
+    @Field(() => String, {nullable:false})
+    content!: string;
 
-  @Field(() => Boolean, { nullable: true })
-  isEvent?: boolean;
+    @Field(() => String, {nullable:true})
+    image?: string;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Boolean, {nullable:true})
+    isEvent?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  updatedAt?: Date | string;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => EventCreateNestedOneWithoutPostInput, { nullable: true })
-  event?: EventCreateNestedOneWithoutPostInput;
+    @Field(() => Date, {nullable:true})
+    updatedAt?: Date | string;
 
-  @Field(() => UserCreateNestedOneWithoutPostsInput, { nullable: false })
-  user!: UserCreateNestedOneWithoutPostsInput;
+    @Field(() => EventCreateNestedOneWithoutPostInput, {nullable:true})
+    event?: EventCreateNestedOneWithoutPostInput;
 
-  @Field(() => CategoryCreateNestedManyWithoutPostsInput, { nullable: true })
-  categories?: CategoryCreateNestedManyWithoutPostsInput;
+    @Field(() => UserCreateNestedOneWithoutPostsInput, {nullable:false})
+    user!: UserCreateNestedOneWithoutPostsInput;
 
-  @Field(() => CommentCreateNestedManyWithoutPostInput, { nullable: true })
-  comments?: CommentCreateNestedManyWithoutPostInput;
+    @Field(() => CategoryCreateNestedManyWithoutPostsInput, {nullable:true})
+    categories?: CategoryCreateNestedManyWithoutPostsInput;
 
-  @Field(() => LikeCreateNestedManyWithoutPostInput, { nullable: true })
-  likes?: LikeCreateNestedManyWithoutPostInput;
+    @Field(() => CommentCreateNestedManyWithoutPostInput, {nullable:true})
+    comments?: CommentCreateNestedManyWithoutPostInput;
+
+    @Field(() => LikeCreateNestedManyWithoutPostInput, {nullable:true})
+    likes?: LikeCreateNestedManyWithoutPostInput;
 }

@@ -5,12 +5,13 @@ import { EventCreateNestedOneWithoutLikesInput } from '../event/event-create-nes
 
 @InputType()
 export class LikeCreateWithoutPostInput {
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
 
-  @Field(() => UserCreateNestedOneWithoutLikesInput, { nullable: false })
-  user!: UserCreateNestedOneWithoutLikesInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 
-  @Field(() => EventCreateNestedOneWithoutLikesInput, { nullable: true })
-  event?: EventCreateNestedOneWithoutLikesInput;
+    @Field(() => UserCreateNestedOneWithoutLikesInput, {nullable:false})
+    user!: UserCreateNestedOneWithoutLikesInput;
+
+    @Field(() => EventCreateNestedOneWithoutLikesInput, {nullable:true})
+    event?: EventCreateNestedOneWithoutLikesInput;
 }

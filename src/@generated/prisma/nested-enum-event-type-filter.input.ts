@@ -4,15 +4,16 @@ import { EventType } from './event-type.enum';
 
 @InputType()
 export class NestedEnumEventTypeFilter {
-  @Field(() => EventType, { nullable: true })
-  equals?: `${EventType}`;
 
-  @Field(() => [EventType], { nullable: true })
-  in?: Array<`${EventType}`>;
+    @Field(() => EventType, {nullable:true})
+    equals?: `${EventType}`;
 
-  @Field(() => [EventType], { nullable: true })
-  notIn?: Array<`${EventType}`>;
+    @Field(() => [EventType], {nullable:true})
+    in?: Array<`${EventType}`>;
 
-  @Field(() => NestedEnumEventTypeFilter, { nullable: true })
-  not?: NestedEnumEventTypeFilter;
+    @Field(() => [EventType], {nullable:true})
+    notIn?: Array<`${EventType}`>;
+
+    @Field(() => NestedEnumEventTypeFilter, {nullable:true})
+    not?: NestedEnumEventTypeFilter;
 }

@@ -3,18 +3,19 @@ import { InputType } from '@nestjs/graphql';
 
 @InputType()
 export class UserRoleCountAggregateInput {
-  @Field(() => Boolean, { nullable: true })
-  userId?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  roleId?: true;
+    @Field(() => Boolean, {nullable:true})
+    userId?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  assignedBy?: true;
+    @Field(() => Boolean, {nullable:true})
+    roleId?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  createdAt?: true;
+    @Field(() => Boolean, {nullable:true})
+    assignedBy?: true;
 
-  @Field(() => Boolean, { nullable: true })
-  _all?: true;
+    @Field(() => Boolean, {nullable:true})
+    createdAt?: true;
+
+    @Field(() => Boolean, {nullable:true})
+    _all?: true;
 }

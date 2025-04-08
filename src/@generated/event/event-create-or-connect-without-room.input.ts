@@ -7,11 +7,12 @@ import { EventCreateWithoutRoomInput } from './event-create-without-room.input';
 
 @InputType()
 export class EventCreateOrConnectWithoutRoomInput {
-  @Field(() => EventWhereUniqueInput, { nullable: false })
-  @Type(() => EventWhereUniqueInput)
-  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-  @Field(() => EventCreateWithoutRoomInput, { nullable: false })
-  @Type(() => EventCreateWithoutRoomInput)
-  create!: EventCreateWithoutRoomInput;
+    @Field(() => EventWhereUniqueInput, {nullable:false})
+    @Type(() => EventWhereUniqueInput)
+    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+
+    @Field(() => EventCreateWithoutRoomInput, {nullable:false})
+    @Type(() => EventCreateWithoutRoomInput)
+    create!: EventCreateWithoutRoomInput;
 }

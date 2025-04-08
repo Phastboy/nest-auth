@@ -2,8 +2,8 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
-import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
+import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
 import { EnumEventStatusFieldUpdateOperationsInput } from '../prisma/enum-event-status-field-update-operations.input';
 import { EnumEventModeFieldUpdateOperationsInput } from '../prisma/enum-event-mode-field-update-operations.input';
@@ -18,85 +18,73 @@ import { LikeUncheckedUpdateManyWithoutEventNestedInput } from '../like/like-unc
 
 @InputType()
 export class EventUncheckedUpdateWithoutRoomInput {
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  title?: StringFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    id?: IntFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  description?: StringFieldUpdateOperationsInput;
+    @Field(() => StringFieldUpdateOperationsInput, {nullable:true})
+    title?: StringFieldUpdateOperationsInput;
 
-  @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
-  location?: StringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    description?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  startTime?: NullableDateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableDateTimeFieldUpdateOperationsInput, {nullable:true})
+    startTime?: NullableDateTimeFieldUpdateOperationsInput;
 
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  endTime?: NullableDateTimeFieldUpdateOperationsInput;
+    @Field(() => NullableDateTimeFieldUpdateOperationsInput, {nullable:true})
+    endTime?: NullableDateTimeFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  image?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    image?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
-  isRecurring?: BoolFieldUpdateOperationsInput;
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    isRecurring?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  recurrenceRule?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    recurrenceRule?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
-  isPublic?: BoolFieldUpdateOperationsInput;
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    isPublic?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
-  userId?: IntFieldUpdateOperationsInput;
+    @Field(() => IntFieldUpdateOperationsInput, {nullable:true})
+    userId?: IntFieldUpdateOperationsInput;
 
-  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
-  shareAsPost?: BoolFieldUpdateOperationsInput;
+    @Field(() => BoolFieldUpdateOperationsInput, {nullable:true})
+    shareAsPost?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => EnumEventStatusFieldUpdateOperationsInput, { nullable: true })
-  status?: EnumEventStatusFieldUpdateOperationsInput;
+    @Field(() => EnumEventStatusFieldUpdateOperationsInput, {nullable:true})
+    eventStatus?: EnumEventStatusFieldUpdateOperationsInput;
 
-  @Field(() => EnumEventModeFieldUpdateOperationsInput, { nullable: true })
-  eventMode?: EnumEventModeFieldUpdateOperationsInput;
+    @Field(() => EnumEventModeFieldUpdateOperationsInput, {nullable:true})
+    eventMode?: EnumEventModeFieldUpdateOperationsInput;
 
-  @Field(() => EnumEventTypeFieldUpdateOperationsInput, { nullable: true })
-  eventType?: EnumEventTypeFieldUpdateOperationsInput;
+    @Field(() => EnumEventTypeFieldUpdateOperationsInput, {nullable:true})
+    eventType?: EnumEventTypeFieldUpdateOperationsInput;
 
-  @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
-  eventLink?: NullableStringFieldUpdateOperationsInput;
+    @Field(() => NullableStringFieldUpdateOperationsInput, {nullable:true})
+    eventLink?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-  buildingId?: NullableIntFieldUpdateOperationsInput;
+    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
+    buildingId?: NullableIntFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  createdAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
-  updatedAt?: DateTimeFieldUpdateOperationsInput;
+    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
+    updatedAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => PostUncheckedUpdateOneWithoutEventNestedInput, {
-    nullable: true,
-  })
-  post?: PostUncheckedUpdateOneWithoutEventNestedInput;
+    @Field(() => PostUncheckedUpdateOneWithoutEventNestedInput, {nullable:true})
+    post?: PostUncheckedUpdateOneWithoutEventNestedInput;
 
-  @Field(() => CategoryUncheckedUpdateManyWithoutEventsNestedInput, {
-    nullable: true,
-  })
-  categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput;
+    @Field(() => CategoryUncheckedUpdateManyWithoutEventsNestedInput, {nullable:true})
+    categories?: CategoryUncheckedUpdateManyWithoutEventsNestedInput;
 
-  @Field(() => CommentUncheckedUpdateManyWithoutEventNestedInput, {
-    nullable: true,
-  })
-  comments?: CommentUncheckedUpdateManyWithoutEventNestedInput;
+    @Field(() => CommentUncheckedUpdateManyWithoutEventNestedInput, {nullable:true})
+    comments?: CommentUncheckedUpdateManyWithoutEventNestedInput;
 
-  @Field(() => RSVPUncheckedUpdateManyWithoutEventNestedInput, {
-    nullable: true,
-  })
-  rsvps?: RSVPUncheckedUpdateManyWithoutEventNestedInput;
+    @Field(() => RSVPUncheckedUpdateManyWithoutEventNestedInput, {nullable:true})
+    rsvps?: RSVPUncheckedUpdateManyWithoutEventNestedInput;
 
-  @Field(() => LikeUncheckedUpdateManyWithoutEventNestedInput, {
-    nullable: true,
-  })
-  likes?: LikeUncheckedUpdateManyWithoutEventNestedInput;
+    @Field(() => LikeUncheckedUpdateManyWithoutEventNestedInput, {nullable:true})
+    likes?: LikeUncheckedUpdateManyWithoutEventNestedInput;
 }

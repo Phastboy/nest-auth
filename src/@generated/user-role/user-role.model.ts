@@ -6,21 +6,22 @@ import { Role } from '../role/role.model';
 
 @ObjectType()
 export class UserRole {
-  @Field(() => Int, { nullable: false })
-  userId!: number;
 
-  @Field(() => Int, { nullable: false })
-  roleId!: number;
+    @Field(() => Int, {nullable:false})
+    userId!: number;
 
-  @Field(() => Int, { nullable: true })
-  assignedBy!: number | null;
+    @Field(() => Int, {nullable:false})
+    roleId!: number;
 
-  @Field(() => Date, { nullable: false })
-  createdAt!: Date;
+    @Field(() => Int, {nullable:true})
+    assignedBy!: number | null;
 
-  @Field(() => User, { nullable: false })
-  user?: User;
+    @Field(() => Date, {nullable:false})
+    createdAt!: Date;
 
-  @Field(() => Role, { nullable: false })
-  role?: Role;
+    @Field(() => User, {nullable:false})
+    user?: User;
+
+    @Field(() => Role, {nullable:false})
+    role?: Role;
 }

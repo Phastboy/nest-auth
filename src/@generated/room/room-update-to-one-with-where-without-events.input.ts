@@ -6,11 +6,12 @@ import { RoomUpdateWithoutEventsInput } from './room-update-without-events.input
 
 @InputType()
 export class RoomUpdateToOneWithWhereWithoutEventsInput {
-  @Field(() => RoomWhereInput, { nullable: true })
-  @Type(() => RoomWhereInput)
-  where?: RoomWhereInput;
 
-  @Field(() => RoomUpdateWithoutEventsInput, { nullable: false })
-  @Type(() => RoomUpdateWithoutEventsInput)
-  data!: RoomUpdateWithoutEventsInput;
+    @Field(() => RoomWhereInput, {nullable:true})
+    @Type(() => RoomWhereInput)
+    where?: RoomWhereInput;
+
+    @Field(() => RoomUpdateWithoutEventsInput, {nullable:false})
+    @Type(() => RoomUpdateWithoutEventsInput)
+    data!: RoomUpdateWithoutEventsInput;
 }

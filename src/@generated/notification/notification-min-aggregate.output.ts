@@ -4,24 +4,25 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class NotificationMinAggregate {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => Int, { nullable: true })
-  userId?: number;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => String, { nullable: true })
-  type?: string;
+    @Field(() => Int, {nullable:true})
+    userId?: number;
 
-  @Field(() => String, { nullable: true })
-  content?: string;
+    @Field(() => String, {nullable:true})
+    type?: string;
 
-  @Field(() => Boolean, { nullable: true })
-  isRead?: boolean;
+    @Field(() => String, {nullable:true})
+    content?: string;
 
-  @Field(() => Int, { nullable: true })
-  referenceId?: number;
+    @Field(() => Boolean, {nullable:true})
+    isRead?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    referenceId?: number;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 }

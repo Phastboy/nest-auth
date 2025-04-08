@@ -10,42 +10,43 @@ import { LikeOrderByRelationAggregateInput } from '../like/like-order-by-relatio
 
 @InputType()
 export class PostOrderByWithRelationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  content?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  image?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    content?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  isEvent?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    image?: SortOrderInput;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  eventId?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    isEvent?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  userId?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    eventId?: SortOrderInput;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    userId?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  updatedAt?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => EventOrderByWithRelationInput, { nullable: true })
-  event?: EventOrderByWithRelationInput;
+    @Field(() => SortOrder, {nullable:true})
+    updatedAt?: `${SortOrder}`;
 
-  @Field(() => UserOrderByWithRelationInput, { nullable: true })
-  user?: UserOrderByWithRelationInput;
+    @Field(() => EventOrderByWithRelationInput, {nullable:true})
+    event?: EventOrderByWithRelationInput;
 
-  @Field(() => CategoryOrderByRelationAggregateInput, { nullable: true })
-  categories?: CategoryOrderByRelationAggregateInput;
+    @Field(() => UserOrderByWithRelationInput, {nullable:true})
+    user?: UserOrderByWithRelationInput;
 
-  @Field(() => CommentOrderByRelationAggregateInput, { nullable: true })
-  comments?: CommentOrderByRelationAggregateInput;
+    @Field(() => CategoryOrderByRelationAggregateInput, {nullable:true})
+    categories?: CategoryOrderByRelationAggregateInput;
 
-  @Field(() => LikeOrderByRelationAggregateInput, { nullable: true })
-  likes?: LikeOrderByRelationAggregateInput;
+    @Field(() => CommentOrderByRelationAggregateInput, {nullable:true})
+    comments?: CommentOrderByRelationAggregateInput;
+
+    @Field(() => LikeOrderByRelationAggregateInput, {nullable:true})
+    likes?: LikeOrderByRelationAggregateInput;
 }

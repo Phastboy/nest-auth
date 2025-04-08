@@ -8,18 +8,19 @@ import { RoomMaxAggregate } from './room-max-aggregate.output';
 
 @ObjectType()
 export class AggregateRoom {
-  @Field(() => RoomCountAggregate, { nullable: true })
-  _count?: RoomCountAggregate;
 
-  @Field(() => RoomAvgAggregate, { nullable: true })
-  _avg?: RoomAvgAggregate;
+    @Field(() => RoomCountAggregate, {nullable:true})
+    _count?: RoomCountAggregate;
 
-  @Field(() => RoomSumAggregate, { nullable: true })
-  _sum?: RoomSumAggregate;
+    @Field(() => RoomAvgAggregate, {nullable:true})
+    _avg?: RoomAvgAggregate;
 
-  @Field(() => RoomMinAggregate, { nullable: true })
-  _min?: RoomMinAggregate;
+    @Field(() => RoomSumAggregate, {nullable:true})
+    _sum?: RoomSumAggregate;
 
-  @Field(() => RoomMaxAggregate, { nullable: true })
-  _max?: RoomMaxAggregate;
+    @Field(() => RoomMinAggregate, {nullable:true})
+    _min?: RoomMinAggregate;
+
+    @Field(() => RoomMaxAggregate, {nullable:true})
+    _max?: RoomMaxAggregate;
 }

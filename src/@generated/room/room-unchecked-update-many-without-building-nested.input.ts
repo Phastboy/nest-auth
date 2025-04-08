@@ -13,53 +13,48 @@ import { RoomScalarWhereInput } from './room-scalar-where.input';
 
 @InputType()
 export class RoomUncheckedUpdateManyWithoutBuildingNestedInput {
-  @Field(() => [RoomCreateWithoutBuildingInput], { nullable: true })
-  @Type(() => RoomCreateWithoutBuildingInput)
-  create?: Array<RoomCreateWithoutBuildingInput>;
 
-  @Field(() => [RoomCreateOrConnectWithoutBuildingInput], { nullable: true })
-  @Type(() => RoomCreateOrConnectWithoutBuildingInput)
-  connectOrCreate?: Array<RoomCreateOrConnectWithoutBuildingInput>;
+    @Field(() => [RoomCreateWithoutBuildingInput], {nullable:true})
+    @Type(() => RoomCreateWithoutBuildingInput)
+    create?: Array<RoomCreateWithoutBuildingInput>;
 
-  @Field(() => [RoomUpsertWithWhereUniqueWithoutBuildingInput], {
-    nullable: true,
-  })
-  @Type(() => RoomUpsertWithWhereUniqueWithoutBuildingInput)
-  upsert?: Array<RoomUpsertWithWhereUniqueWithoutBuildingInput>;
+    @Field(() => [RoomCreateOrConnectWithoutBuildingInput], {nullable:true})
+    @Type(() => RoomCreateOrConnectWithoutBuildingInput)
+    connectOrCreate?: Array<RoomCreateOrConnectWithoutBuildingInput>;
 
-  @Field(() => RoomCreateManyBuildingInputEnvelope, { nullable: true })
-  @Type(() => RoomCreateManyBuildingInputEnvelope)
-  createMany?: RoomCreateManyBuildingInputEnvelope;
+    @Field(() => [RoomUpsertWithWhereUniqueWithoutBuildingInput], {nullable:true})
+    @Type(() => RoomUpsertWithWhereUniqueWithoutBuildingInput)
+    upsert?: Array<RoomUpsertWithWhereUniqueWithoutBuildingInput>;
 
-  @Field(() => [RoomWhereUniqueInput], { nullable: true })
-  @Type(() => RoomWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<RoomWhereUniqueInput, 'id'>>;
+    @Field(() => RoomCreateManyBuildingInputEnvelope, {nullable:true})
+    @Type(() => RoomCreateManyBuildingInputEnvelope)
+    createMany?: RoomCreateManyBuildingInputEnvelope;
 
-  @Field(() => [RoomWhereUniqueInput], { nullable: true })
-  @Type(() => RoomWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<RoomWhereUniqueInput, 'id'>>;
+    @Field(() => [RoomWhereUniqueInput], {nullable:true})
+    @Type(() => RoomWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<RoomWhereUniqueInput, 'id'>>;
 
-  @Field(() => [RoomWhereUniqueInput], { nullable: true })
-  @Type(() => RoomWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<RoomWhereUniqueInput, 'id'>>;
+    @Field(() => [RoomWhereUniqueInput], {nullable:true})
+    @Type(() => RoomWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<RoomWhereUniqueInput, 'id'>>;
 
-  @Field(() => [RoomWhereUniqueInput], { nullable: true })
-  @Type(() => RoomWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<RoomWhereUniqueInput, 'id'>>;
+    @Field(() => [RoomWhereUniqueInput], {nullable:true})
+    @Type(() => RoomWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<RoomWhereUniqueInput, 'id'>>;
 
-  @Field(() => [RoomUpdateWithWhereUniqueWithoutBuildingInput], {
-    nullable: true,
-  })
-  @Type(() => RoomUpdateWithWhereUniqueWithoutBuildingInput)
-  update?: Array<RoomUpdateWithWhereUniqueWithoutBuildingInput>;
+    @Field(() => [RoomWhereUniqueInput], {nullable:true})
+    @Type(() => RoomWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<RoomWhereUniqueInput, 'id'>>;
 
-  @Field(() => [RoomUpdateManyWithWhereWithoutBuildingInput], {
-    nullable: true,
-  })
-  @Type(() => RoomUpdateManyWithWhereWithoutBuildingInput)
-  updateMany?: Array<RoomUpdateManyWithWhereWithoutBuildingInput>;
+    @Field(() => [RoomUpdateWithWhereUniqueWithoutBuildingInput], {nullable:true})
+    @Type(() => RoomUpdateWithWhereUniqueWithoutBuildingInput)
+    update?: Array<RoomUpdateWithWhereUniqueWithoutBuildingInput>;
 
-  @Field(() => [RoomScalarWhereInput], { nullable: true })
-  @Type(() => RoomScalarWhereInput)
-  deleteMany?: Array<RoomScalarWhereInput>;
+    @Field(() => [RoomUpdateManyWithWhereWithoutBuildingInput], {nullable:true})
+    @Type(() => RoomUpdateManyWithWhereWithoutBuildingInput)
+    updateMany?: Array<RoomUpdateManyWithWhereWithoutBuildingInput>;
+
+    @Field(() => [RoomScalarWhereInput], {nullable:true})
+    @Type(() => RoomScalarWhereInput)
+    deleteMany?: Array<RoomScalarWhereInput>;
 }

@@ -7,11 +7,12 @@ import { RoomWhereUniqueInput } from './room-where-unique.input';
 
 @ArgsType()
 export class UpdateOneRoomArgs {
-  @Field(() => RoomUpdateInput, { nullable: false })
-  @Type(() => RoomUpdateInput)
-  data!: RoomUpdateInput;
 
-  @Field(() => RoomWhereUniqueInput, { nullable: false })
-  @Type(() => RoomWhereUniqueInput)
-  where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
+    @Field(() => RoomUpdateInput, {nullable:false})
+    @Type(() => RoomUpdateInput)
+    data!: RoomUpdateInput;
+
+    @Field(() => RoomWhereUniqueInput, {nullable:false})
+    @Type(() => RoomWhereUniqueInput)
+    where!: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
 }

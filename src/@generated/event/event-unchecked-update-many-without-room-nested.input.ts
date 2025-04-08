@@ -13,47 +13,48 @@ import { EventScalarWhereInput } from './event-scalar-where.input';
 
 @InputType()
 export class EventUncheckedUpdateManyWithoutRoomNestedInput {
-  @Field(() => [EventCreateWithoutRoomInput], { nullable: true })
-  @Type(() => EventCreateWithoutRoomInput)
-  create?: Array<EventCreateWithoutRoomInput>;
 
-  @Field(() => [EventCreateOrConnectWithoutRoomInput], { nullable: true })
-  @Type(() => EventCreateOrConnectWithoutRoomInput)
-  connectOrCreate?: Array<EventCreateOrConnectWithoutRoomInput>;
+    @Field(() => [EventCreateWithoutRoomInput], {nullable:true})
+    @Type(() => EventCreateWithoutRoomInput)
+    create?: Array<EventCreateWithoutRoomInput>;
 
-  @Field(() => [EventUpsertWithWhereUniqueWithoutRoomInput], { nullable: true })
-  @Type(() => EventUpsertWithWhereUniqueWithoutRoomInput)
-  upsert?: Array<EventUpsertWithWhereUniqueWithoutRoomInput>;
+    @Field(() => [EventCreateOrConnectWithoutRoomInput], {nullable:true})
+    @Type(() => EventCreateOrConnectWithoutRoomInput)
+    connectOrCreate?: Array<EventCreateOrConnectWithoutRoomInput>;
 
-  @Field(() => EventCreateManyRoomInputEnvelope, { nullable: true })
-  @Type(() => EventCreateManyRoomInputEnvelope)
-  createMany?: EventCreateManyRoomInputEnvelope;
+    @Field(() => [EventUpsertWithWhereUniqueWithoutRoomInput], {nullable:true})
+    @Type(() => EventUpsertWithWhereUniqueWithoutRoomInput)
+    upsert?: Array<EventUpsertWithWhereUniqueWithoutRoomInput>;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+    @Field(() => EventCreateManyRoomInputEnvelope, {nullable:true})
+    @Type(() => EventCreateManyRoomInputEnvelope)
+    createMany?: EventCreateManyRoomInputEnvelope;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-  @Field(() => [EventWhereUniqueInput], { nullable: true })
-  @Type(() => EventWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-  @Field(() => [EventUpdateWithWhereUniqueWithoutRoomInput], { nullable: true })
-  @Type(() => EventUpdateWithWhereUniqueWithoutRoomInput)
-  update?: Array<EventUpdateWithWhereUniqueWithoutRoomInput>;
+    @Field(() => [EventWhereUniqueInput], {nullable:true})
+    @Type(() => EventWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-  @Field(() => [EventUpdateManyWithWhereWithoutRoomInput], { nullable: true })
-  @Type(() => EventUpdateManyWithWhereWithoutRoomInput)
-  updateMany?: Array<EventUpdateManyWithWhereWithoutRoomInput>;
+    @Field(() => [EventUpdateWithWhereUniqueWithoutRoomInput], {nullable:true})
+    @Type(() => EventUpdateWithWhereUniqueWithoutRoomInput)
+    update?: Array<EventUpdateWithWhereUniqueWithoutRoomInput>;
 
-  @Field(() => [EventScalarWhereInput], { nullable: true })
-  @Type(() => EventScalarWhereInput)
-  deleteMany?: Array<EventScalarWhereInput>;
+    @Field(() => [EventUpdateManyWithWhereWithoutRoomInput], {nullable:true})
+    @Type(() => EventUpdateManyWithWhereWithoutRoomInput)
+    updateMany?: Array<EventUpdateManyWithWhereWithoutRoomInput>;
+
+    @Field(() => [EventScalarWhereInput], {nullable:true})
+    @Type(() => EventScalarWhereInput)
+    deleteMany?: Array<EventScalarWhereInput>;
 }

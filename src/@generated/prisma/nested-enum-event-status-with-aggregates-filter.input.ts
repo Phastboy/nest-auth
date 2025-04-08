@@ -6,24 +6,25 @@ import { NestedEnumEventStatusFilter } from './nested-enum-event-status-filter.i
 
 @InputType()
 export class NestedEnumEventStatusWithAggregatesFilter {
-  @Field(() => EventStatus, { nullable: true })
-  equals?: `${EventStatus}`;
 
-  @Field(() => [EventStatus], { nullable: true })
-  in?: Array<`${EventStatus}`>;
+    @Field(() => EventStatus, {nullable:true})
+    equals?: `${EventStatus}`;
 
-  @Field(() => [EventStatus], { nullable: true })
-  notIn?: Array<`${EventStatus}`>;
+    @Field(() => [EventStatus], {nullable:true})
+    in?: Array<`${EventStatus}`>;
 
-  @Field(() => NestedEnumEventStatusWithAggregatesFilter, { nullable: true })
-  not?: NestedEnumEventStatusWithAggregatesFilter;
+    @Field(() => [EventStatus], {nullable:true})
+    notIn?: Array<`${EventStatus}`>;
 
-  @Field(() => NestedIntFilter, { nullable: true })
-  _count?: NestedIntFilter;
+    @Field(() => NestedEnumEventStatusWithAggregatesFilter, {nullable:true})
+    not?: NestedEnumEventStatusWithAggregatesFilter;
 
-  @Field(() => NestedEnumEventStatusFilter, { nullable: true })
-  _min?: NestedEnumEventStatusFilter;
+    @Field(() => NestedIntFilter, {nullable:true})
+    _count?: NestedIntFilter;
 
-  @Field(() => NestedEnumEventStatusFilter, { nullable: true })
-  _max?: NestedEnumEventStatusFilter;
+    @Field(() => NestedEnumEventStatusFilter, {nullable:true})
+    _min?: NestedEnumEventStatusFilter;
+
+    @Field(() => NestedEnumEventStatusFilter, {nullable:true})
+    _max?: NestedEnumEventStatusFilter;
 }

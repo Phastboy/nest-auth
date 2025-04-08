@@ -5,23 +5,22 @@ import { UserCreateNestedOneWithoutNotificationsInput } from '../user/user-creat
 
 @InputType()
 export class NotificationCreateInput {
-  @Field(() => String, { nullable: false })
-  type!: string;
 
-  @Field(() => String, { nullable: false })
-  content!: string;
+    @Field(() => String, {nullable:false})
+    type!: string;
 
-  @Field(() => Boolean, { nullable: true })
-  isRead?: boolean;
+    @Field(() => String, {nullable:false})
+    content!: string;
 
-  @Field(() => Int, { nullable: true })
-  referenceId?: number;
+    @Field(() => Boolean, {nullable:true})
+    isRead?: boolean;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    referenceId?: number;
 
-  @Field(() => UserCreateNestedOneWithoutNotificationsInput, {
-    nullable: false,
-  })
-  user!: UserCreateNestedOneWithoutNotificationsInput;
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
+
+    @Field(() => UserCreateNestedOneWithoutNotificationsInput, {nullable:false})
+    user!: UserCreateNestedOneWithoutNotificationsInput;
 }

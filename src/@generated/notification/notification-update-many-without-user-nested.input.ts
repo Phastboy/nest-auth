@@ -13,55 +13,48 @@ import { NotificationScalarWhereInput } from './notification-scalar-where.input'
 
 @InputType()
 export class NotificationUpdateManyWithoutUserNestedInput {
-  @Field(() => [NotificationCreateWithoutUserInput], { nullable: true })
-  @Type(() => NotificationCreateWithoutUserInput)
-  create?: Array<NotificationCreateWithoutUserInput>;
 
-  @Field(() => [NotificationCreateOrConnectWithoutUserInput], {
-    nullable: true,
-  })
-  @Type(() => NotificationCreateOrConnectWithoutUserInput)
-  connectOrCreate?: Array<NotificationCreateOrConnectWithoutUserInput>;
+    @Field(() => [NotificationCreateWithoutUserInput], {nullable:true})
+    @Type(() => NotificationCreateWithoutUserInput)
+    create?: Array<NotificationCreateWithoutUserInput>;
 
-  @Field(() => [NotificationUpsertWithWhereUniqueWithoutUserInput], {
-    nullable: true,
-  })
-  @Type(() => NotificationUpsertWithWhereUniqueWithoutUserInput)
-  upsert?: Array<NotificationUpsertWithWhereUniqueWithoutUserInput>;
+    @Field(() => [NotificationCreateOrConnectWithoutUserInput], {nullable:true})
+    @Type(() => NotificationCreateOrConnectWithoutUserInput)
+    connectOrCreate?: Array<NotificationCreateOrConnectWithoutUserInput>;
 
-  @Field(() => NotificationCreateManyUserInputEnvelope, { nullable: true })
-  @Type(() => NotificationCreateManyUserInputEnvelope)
-  createMany?: NotificationCreateManyUserInputEnvelope;
+    @Field(() => [NotificationUpsertWithWhereUniqueWithoutUserInput], {nullable:true})
+    @Type(() => NotificationUpsertWithWhereUniqueWithoutUserInput)
+    upsert?: Array<NotificationUpsertWithWhereUniqueWithoutUserInput>;
 
-  @Field(() => [NotificationWhereUniqueInput], { nullable: true })
-  @Type(() => NotificationWhereUniqueInput)
-  set?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    @Field(() => NotificationCreateManyUserInputEnvelope, {nullable:true})
+    @Type(() => NotificationCreateManyUserInputEnvelope)
+    createMany?: NotificationCreateManyUserInputEnvelope;
 
-  @Field(() => [NotificationWhereUniqueInput], { nullable: true })
-  @Type(() => NotificationWhereUniqueInput)
-  disconnect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    @Field(() => [NotificationWhereUniqueInput], {nullable:true})
+    @Type(() => NotificationWhereUniqueInput)
+    set?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
 
-  @Field(() => [NotificationWhereUniqueInput], { nullable: true })
-  @Type(() => NotificationWhereUniqueInput)
-  delete?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    @Field(() => [NotificationWhereUniqueInput], {nullable:true})
+    @Type(() => NotificationWhereUniqueInput)
+    disconnect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
 
-  @Field(() => [NotificationWhereUniqueInput], { nullable: true })
-  @Type(() => NotificationWhereUniqueInput)
-  connect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
+    @Field(() => [NotificationWhereUniqueInput], {nullable:true})
+    @Type(() => NotificationWhereUniqueInput)
+    delete?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
 
-  @Field(() => [NotificationUpdateWithWhereUniqueWithoutUserInput], {
-    nullable: true,
-  })
-  @Type(() => NotificationUpdateWithWhereUniqueWithoutUserInput)
-  update?: Array<NotificationUpdateWithWhereUniqueWithoutUserInput>;
+    @Field(() => [NotificationWhereUniqueInput], {nullable:true})
+    @Type(() => NotificationWhereUniqueInput)
+    connect?: Array<Prisma.AtLeast<NotificationWhereUniqueInput, 'id'>>;
 
-  @Field(() => [NotificationUpdateManyWithWhereWithoutUserInput], {
-    nullable: true,
-  })
-  @Type(() => NotificationUpdateManyWithWhereWithoutUserInput)
-  updateMany?: Array<NotificationUpdateManyWithWhereWithoutUserInput>;
+    @Field(() => [NotificationUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
+    @Type(() => NotificationUpdateWithWhereUniqueWithoutUserInput)
+    update?: Array<NotificationUpdateWithWhereUniqueWithoutUserInput>;
 
-  @Field(() => [NotificationScalarWhereInput], { nullable: true })
-  @Type(() => NotificationScalarWhereInput)
-  deleteMany?: Array<NotificationScalarWhereInput>;
+    @Field(() => [NotificationUpdateManyWithWhereWithoutUserInput], {nullable:true})
+    @Type(() => NotificationUpdateManyWithWhereWithoutUserInput)
+    updateMany?: Array<NotificationUpdateManyWithWhereWithoutUserInput>;
+
+    @Field(() => [NotificationScalarWhereInput], {nullable:true})
+    @Type(() => NotificationScalarWhereInput)
+    deleteMany?: Array<NotificationScalarWhereInput>;
 }

@@ -5,33 +5,34 @@ import { Float } from '@nestjs/graphql';
 
 @ObjectType()
 export class BuildingMaxAggregate {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => String, { nullable: true })
-  name?: string;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => Int, { nullable: true })
-  number?: number;
+    @Field(() => String, {nullable:true})
+    name?: string;
 
-  @Field(() => String, { nullable: true })
-  road?: string;
+    @Field(() => Int, {nullable:true})
+    number?: number;
 
-  @Field(() => String, { nullable: true })
-  landmark?: string;
+    @Field(() => String, {nullable:true})
+    road?: string;
 
-  @Field(() => String, { nullable: true })
-  area?: string;
+    @Field(() => String, {nullable:true})
+    landmark?: string;
 
-  @Field(() => Float, { nullable: true })
-  longitude?: number;
+    @Field(() => String, {nullable:true})
+    area?: string;
 
-  @Field(() => Float, { nullable: true })
-  latitude?: number;
+    @Field(() => Float, {nullable:true})
+    longitude?: number;
 
-  @Field(() => Int, { nullable: true })
-  capacity?: number;
+    @Field(() => Float, {nullable:true})
+    latitude?: number;
 
-  @Field(() => Date, { nullable: true })
-  createdAt?: Date | string;
+    @Field(() => Int, {nullable:true})
+    capacity?: number;
+
+    @Field(() => Date, {nullable:true})
+    createdAt?: Date | string;
 }

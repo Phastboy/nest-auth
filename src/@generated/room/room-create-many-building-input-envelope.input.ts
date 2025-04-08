@@ -5,7 +5,8 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class RoomCreateManyBuildingInputEnvelope {
-  @Field(() => [RoomCreateManyBuildingInput], { nullable: false })
-  @Type(() => RoomCreateManyBuildingInput)
-  data!: Array<RoomCreateManyBuildingInput>;
+
+    @Field(() => [RoomCreateManyBuildingInput], {nullable:false})
+    @Type(() => RoomCreateManyBuildingInput)
+    data!: Array<RoomCreateManyBuildingInput>;
 }

@@ -7,24 +7,25 @@ import { EventOrderByRelationAggregateInput } from '../event/event-order-by-rela
 
 @InputType()
 export class RoomOrderByWithRelationInput {
-  @Field(() => SortOrder, { nullable: true })
-  id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  name?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    id?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  buildingId?: `${SortOrder}`;
+    @Field(() => SortOrder, {nullable:true})
+    name?: `${SortOrder}`;
 
-  @Field(() => SortOrderInput, { nullable: true })
-  capacity?: SortOrderInput;
+    @Field(() => SortOrder, {nullable:true})
+    buildingId?: `${SortOrder}`;
 
-  @Field(() => SortOrder, { nullable: true })
-  createdAt?: `${SortOrder}`;
+    @Field(() => SortOrderInput, {nullable:true})
+    capacity?: SortOrderInput;
 
-  @Field(() => BuildingOrderByWithRelationInput, { nullable: true })
-  building?: BuildingOrderByWithRelationInput;
+    @Field(() => SortOrder, {nullable:true})
+    createdAt?: `${SortOrder}`;
 
-  @Field(() => EventOrderByRelationAggregateInput, { nullable: true })
-  events?: EventOrderByRelationAggregateInput;
+    @Field(() => BuildingOrderByWithRelationInput, {nullable:true})
+    building?: BuildingOrderByWithRelationInput;
+
+    @Field(() => EventOrderByRelationAggregateInput, {nullable:true})
+    events?: EventOrderByRelationAggregateInput;
 }

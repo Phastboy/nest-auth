@@ -7,15 +7,16 @@ import { RoleWhereInput } from './role-where.input';
 
 @InputType()
 export class RoleUpsertWithoutUsersInput {
-  @Field(() => RoleUpdateWithoutUsersInput, { nullable: false })
-  @Type(() => RoleUpdateWithoutUsersInput)
-  update!: RoleUpdateWithoutUsersInput;
 
-  @Field(() => RoleCreateWithoutUsersInput, { nullable: false })
-  @Type(() => RoleCreateWithoutUsersInput)
-  create!: RoleCreateWithoutUsersInput;
+    @Field(() => RoleUpdateWithoutUsersInput, {nullable:false})
+    @Type(() => RoleUpdateWithoutUsersInput)
+    update!: RoleUpdateWithoutUsersInput;
 
-  @Field(() => RoleWhereInput, { nullable: true })
-  @Type(() => RoleWhereInput)
-  where?: RoleWhereInput;
+    @Field(() => RoleCreateWithoutUsersInput, {nullable:false})
+    @Type(() => RoleCreateWithoutUsersInput)
+    create!: RoleCreateWithoutUsersInput;
+
+    @Field(() => RoleWhereInput, {nullable:true})
+    @Type(() => RoleWhereInput)
+    where?: RoleWhereInput;
 }

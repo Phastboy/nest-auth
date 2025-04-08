@@ -7,15 +7,16 @@ import { UserWhereInput } from './user-where.input';
 
 @InputType()
 export class UserUpsertWithoutEventsInput {
-  @Field(() => UserUpdateWithoutEventsInput, { nullable: false })
-  @Type(() => UserUpdateWithoutEventsInput)
-  update!: UserUpdateWithoutEventsInput;
 
-  @Field(() => UserCreateWithoutEventsInput, { nullable: false })
-  @Type(() => UserCreateWithoutEventsInput)
-  create!: UserCreateWithoutEventsInput;
+    @Field(() => UserUpdateWithoutEventsInput, {nullable:false})
+    @Type(() => UserUpdateWithoutEventsInput)
+    update!: UserUpdateWithoutEventsInput;
 
-  @Field(() => UserWhereInput, { nullable: true })
-  @Type(() => UserWhereInput)
-  where?: UserWhereInput;
+    @Field(() => UserCreateWithoutEventsInput, {nullable:false})
+    @Type(() => UserCreateWithoutEventsInput)
+    create!: UserCreateWithoutEventsInput;
+
+    @Field(() => UserWhereInput, {nullable:true})
+    @Type(() => UserWhereInput)
+    where?: UserWhereInput;
 }

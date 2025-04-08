@@ -7,11 +7,12 @@ import { BuildingCreateWithoutEventsInput } from './building-create-without-even
 
 @InputType()
 export class BuildingCreateOrConnectWithoutEventsInput {
-  @Field(() => BuildingWhereUniqueInput, { nullable: false })
-  @Type(() => BuildingWhereUniqueInput)
-  where!: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 
-  @Field(() => BuildingCreateWithoutEventsInput, { nullable: false })
-  @Type(() => BuildingCreateWithoutEventsInput)
-  create!: BuildingCreateWithoutEventsInput;
+    @Field(() => BuildingWhereUniqueInput, {nullable:false})
+    @Type(() => BuildingWhereUniqueInput)
+    where!: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
+
+    @Field(() => BuildingCreateWithoutEventsInput, {nullable:false})
+    @Type(() => BuildingCreateWithoutEventsInput)
+    create!: BuildingCreateWithoutEventsInput;
 }

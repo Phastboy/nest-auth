@@ -4,12 +4,13 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class RSVPSumAggregate {
-  @Field(() => Int, { nullable: true })
-  id?: number;
 
-  @Field(() => Int, { nullable: true })
-  userId?: number;
+    @Field(() => Int, {nullable:true})
+    id?: number;
 
-  @Field(() => Int, { nullable: true })
-  eventId?: number;
+    @Field(() => Int, {nullable:true})
+    userId?: number;
+
+    @Field(() => Int, {nullable:true})
+    eventId?: number;
 }

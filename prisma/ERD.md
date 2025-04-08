@@ -49,8 +49,7 @@ erDiagram
 "events" {
   Int id PK
   String title
-  String description
-  String location
+  String description "nullable"
   DateTime startTime "nullable"
   DateTime endTime "nullable"
   String image "nullable"
@@ -59,7 +58,7 @@ erDiagram
   Boolean isPublic
   Int userId FK
   Boolean shareAsPost
-  EventStatus status
+  EventStatus eventStatus
   EventMode eventMode
   EventType eventType
   String eventLink "nullable"
@@ -208,7 +207,6 @@ erDiagram
   - `id`: 
   - `title`: 
   - `description`: 
-  - `location`: 
   - `startTime`: 
   - `endTime`: 
   - `image`: 
@@ -217,7 +215,7 @@ erDiagram
   - `isPublic`: 
   - `userId`: 
   - `shareAsPost`: 
-  - `status`: 
+  - `eventStatus`: 
   - `eventMode`: 
   - `eventType`: 
   - `eventLink`: 
