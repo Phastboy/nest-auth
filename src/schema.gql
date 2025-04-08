@@ -215,44 +215,52 @@ type CommentSumAggregate {
 
 input CreateCategoryInput {
   name: String!
-  slug: String!
+  slug: String
 }
 
 input CreateEventInput {
   categoryIds: [Int!]
 
-  """Event description"""
-  description: String!
+  """The description of the event"""
+  description: String
 
-  """Event end time"""
+  """The date and time when the event ends"""
   endTime: DateTime
 
-  """Event image URL"""
+  """The link to the event"""
+  eventLink: String
+
+  """The mode of the event"""
+  eventMode: EventMode
+
+  """The status of the event"""
+  eventStatus: EventStatus
+
+  """The type of the event"""
+  eventType: EventType
+
+  """The cover image of the event"""
   image: String
 
-  """is it a public event"""
-  isPublic: Boolean = true
+  """Whether the event is a public event"""
+  isPublic: Boolean
 
-  """is it a recurring event"""
-  isRecurring: Boolean! = false
-
-  """Event location"""
-  location: String!
+  """Whether the event is frequently repeated"""
+  isRecurring: Boolean
 
   """Post details required if sharing as a post"""
   post: CreatePostInput
+
+  """how the event is repeated"""
   recurrenceRule: String
 
-  """Whether to share this event as a post. Required if post is provided."""
+  """whether to share the event as a post"""
   shareAsPost: Boolean
 
-  """Event start time"""
+  """The date and time when the event starts"""
   startTime: DateTime
 
-  """status of the event"""
-  status: EventStatus = SCHEDULED
-
-  """Event title"""
+  """The title of the event"""
   title: String!
 }
 
@@ -289,17 +297,17 @@ type Event {
   categories: [Category!]
   comments: [Comment!]
   createdAt: DateTime!
-  description: String!
+  description: String
   endTime: DateTime
   eventLink: String
   eventMode: EventMode!
+  eventStatus: EventStatus!
   eventType: EventType!
   id: ID!
   image: String
   isPublic: Boolean!
   isRecurring: Boolean!
   likes: [Like!]
-  location: String!
   post: Post
   recurrenceRule: String
   room: Room
@@ -307,7 +315,6 @@ type Event {
   rsvps: [RSVP!]
   shareAsPost: Boolean!
   startTime: DateTime
-  status: EventStatus!
   title: String!
   updatedAt: DateTime!
   user: User!
@@ -336,17 +343,16 @@ type EventCountAggregate {
   endTime: Int!
   eventLink: Int!
   eventMode: Int!
+  eventStatus: Int!
   eventType: Int!
   id: Int!
   image: Int!
   isPublic: Int!
   isRecurring: Int!
-  location: Int!
   recurrenceRule: Int!
   roomId: Int!
   shareAsPost: Int!
   startTime: Int!
-  status: Int!
   title: Int!
   updatedAt: Int!
   userId: Int!
@@ -359,17 +365,16 @@ type EventMaxAggregate {
   endTime: DateTime
   eventLink: String
   eventMode: EventMode
+  eventStatus: EventStatus
   eventType: EventType
   id: Int
   image: String
   isPublic: Boolean
   isRecurring: Boolean
-  location: String
   recurrenceRule: String
   roomId: Int
   shareAsPost: Boolean
   startTime: DateTime
-  status: EventStatus
   title: String
   updatedAt: DateTime
   userId: Int
@@ -382,17 +387,16 @@ type EventMinAggregate {
   endTime: DateTime
   eventLink: String
   eventMode: EventMode
+  eventStatus: EventStatus
   eventType: EventType
   id: Int
   image: String
   isPublic: Boolean
   isRecurring: Boolean
-  location: String
   recurrenceRule: String
   roomId: Int
   shareAsPost: Boolean
   startTime: DateTime
-  status: EventStatus
   title: String
   updatedAt: DateTime
   userId: Int
@@ -821,39 +825,47 @@ input UpdateCategoryInput {
 input UpdateEventInput {
   categoryIds: [Int!]
 
-  """Event description"""
+  """The description of the event"""
   description: String
 
-  """Event end time"""
+  """The date and time when the event ends"""
   endTime: DateTime
+
+  """The link to the event"""
+  eventLink: String
+
+  """The mode of the event"""
+  eventMode: EventMode
+
+  """The status of the event"""
+  eventStatus: EventStatus
+
+  """The type of the event"""
+  eventType: EventType
   id: Int!
 
-  """Event image URL"""
+  """The cover image of the event"""
   image: String
 
-  """is it a public event"""
-  isPublic: Boolean = true
+  """Whether the event is a public event"""
+  isPublic: Boolean
 
-  """is it a recurring event"""
-  isRecurring: Boolean = false
-
-  """Event location"""
-  location: String
+  """Whether the event is frequently repeated"""
+  isRecurring: Boolean
 
   """Post details required if sharing as a post"""
   post: CreatePostInput
+
+  """how the event is repeated"""
   recurrenceRule: String
 
-  """Whether to share this event as a post. Required if post is provided."""
+  """whether to share the event as a post"""
   shareAsPost: Boolean
 
-  """Event start time"""
+  """The date and time when the event starts"""
   startTime: DateTime
 
-  """status of the event"""
-  status: EventStatus = SCHEDULED
-
-  """Event title"""
+  """The title of the event"""
   title: String
 }
 

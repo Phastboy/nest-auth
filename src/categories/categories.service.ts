@@ -1,7 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
-import { CreateCategoryInput } from './dto/create-category.input';
-import { UpdateCategoryInput } from './dto/update-category.input';
 import { Prisma } from '@prisma/client';
 import { CategoryIncludeInput } from './types/category-include.input';
 import { ErrorHandler } from 'src/error-handler/error.util';
@@ -9,6 +7,8 @@ import {
   CategoryWithDefaultRelations,
   DEFAULT_CATEGORY_TO_BE_INCLUDED,
 } from './types/categories.types';
+import { CreateCategoryInput } from './types/create-category.input';
+import { UpdateCategoryInput } from './types/update-category.input';
 
 @Injectable()
 export class CategoriesService {
@@ -66,7 +66,10 @@ export class CategoriesService {
         : this.generateSlug(newCategoryData.name);
       newCategoryData.slug = slug;
       return await this.prismaService.category.create({
-        data: newCategoryData,
+        data: {
+          ...newCategoryData,
+          slug,
+        },
         include: this.buildIncludeObject(includeInput),
       });
     } catch (error) {

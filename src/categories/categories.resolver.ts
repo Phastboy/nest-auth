@@ -1,13 +1,13 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { CategoriesService } from './categories.service';
 import { Category, Role } from 'src/@generated';
-import { CreateCategoryInput } from './dto/create-category.input';
-import { UpdateCategoryInput } from './dto/update-category.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt.guard';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { CategoryIncludeInput } from './types/category-include.input';
+import { CreateCategoryInput } from './types/create-category.input';
+import { UpdateCategoryInput } from './types/update-category.input';
 
 /**
  * @class CategoriesResolver
