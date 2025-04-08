@@ -9,20 +9,21 @@ import { LikeWhereUniqueInput } from './like-where-unique.input';
 
 @InputType()
 export class LikeCreateNestedManyWithoutPostInput {
+  @Field(() => [LikeCreateWithoutPostInput], { nullable: true })
+  @Type(() => LikeCreateWithoutPostInput)
+  create?: Array<LikeCreateWithoutPostInput>;
 
-    @Field(() => [LikeCreateWithoutPostInput], {nullable:true})
-    @Type(() => LikeCreateWithoutPostInput)
-    create?: Array<LikeCreateWithoutPostInput>;
+  @Field(() => [LikeCreateOrConnectWithoutPostInput], { nullable: true })
+  @Type(() => LikeCreateOrConnectWithoutPostInput)
+  connectOrCreate?: Array<LikeCreateOrConnectWithoutPostInput>;
 
-    @Field(() => [LikeCreateOrConnectWithoutPostInput], {nullable:true})
-    @Type(() => LikeCreateOrConnectWithoutPostInput)
-    connectOrCreate?: Array<LikeCreateOrConnectWithoutPostInput>;
+  @Field(() => LikeCreateManyPostInputEnvelope, { nullable: true })
+  @Type(() => LikeCreateManyPostInputEnvelope)
+  createMany?: LikeCreateManyPostInputEnvelope;
 
-    @Field(() => LikeCreateManyPostInputEnvelope, {nullable:true})
-    @Type(() => LikeCreateManyPostInputEnvelope)
-    createMany?: LikeCreateManyPostInputEnvelope;
-
-    @Field(() => [LikeWhereUniqueInput], {nullable:true})
-    @Type(() => LikeWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>>;
+  @Field(() => [LikeWhereUniqueInput], { nullable: true })
+  @Type(() => LikeWhereUniqueInput)
+  connect?: Array<
+    Prisma.AtLeast<LikeWhereUniqueInput, 'id' | 'userId_postId_eventId'>
+  >;
 }

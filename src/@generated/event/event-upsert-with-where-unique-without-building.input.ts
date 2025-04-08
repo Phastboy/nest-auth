@@ -8,16 +8,15 @@ import { EventCreateWithoutBuildingInput } from './event-create-without-building
 
 @InputType()
 export class EventUpsertWithWhereUniqueWithoutBuildingInput {
+  @Field(() => EventWhereUniqueInput, { nullable: false })
+  @Type(() => EventWhereUniqueInput)
+  where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
 
-    @Field(() => EventWhereUniqueInput, {nullable:false})
-    @Type(() => EventWhereUniqueInput)
-    where!: Prisma.AtLeast<EventWhereUniqueInput, 'id'>;
+  @Field(() => EventUpdateWithoutBuildingInput, { nullable: false })
+  @Type(() => EventUpdateWithoutBuildingInput)
+  update!: EventUpdateWithoutBuildingInput;
 
-    @Field(() => EventUpdateWithoutBuildingInput, {nullable:false})
-    @Type(() => EventUpdateWithoutBuildingInput)
-    update!: EventUpdateWithoutBuildingInput;
-
-    @Field(() => EventCreateWithoutBuildingInput, {nullable:false})
-    @Type(() => EventCreateWithoutBuildingInput)
-    create!: EventCreateWithoutBuildingInput;
+  @Field(() => EventCreateWithoutBuildingInput, { nullable: false })
+  @Type(() => EventCreateWithoutBuildingInput)
+  create!: EventCreateWithoutBuildingInput;
 }

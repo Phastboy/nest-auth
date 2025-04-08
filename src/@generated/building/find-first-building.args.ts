@@ -10,23 +10,22 @@ import { BuildingScalarFieldEnum } from './building-scalar-field.enum';
 
 @ArgsType()
 export class FindFirstBuildingArgs {
+  @Field(() => BuildingWhereInput, { nullable: true })
+  @Type(() => BuildingWhereInput)
+  where?: BuildingWhereInput;
 
-    @Field(() => BuildingWhereInput, {nullable:true})
-    @Type(() => BuildingWhereInput)
-    where?: BuildingWhereInput;
+  @Field(() => [BuildingOrderByWithRelationInput], { nullable: true })
+  orderBy?: Array<BuildingOrderByWithRelationInput>;
 
-    @Field(() => [BuildingOrderByWithRelationInput], {nullable:true})
-    orderBy?: Array<BuildingOrderByWithRelationInput>;
+  @Field(() => BuildingWhereUniqueInput, { nullable: true })
+  cursor?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => BuildingWhereUniqueInput, {nullable:true})
-    cursor?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
-
-    @Field(() => [BuildingScalarFieldEnum], {nullable:true})
-    distinct?: Array<`${BuildingScalarFieldEnum}`>;
+  @Field(() => [BuildingScalarFieldEnum], { nullable: true })
+  distinct?: Array<`${BuildingScalarFieldEnum}`>;
 }

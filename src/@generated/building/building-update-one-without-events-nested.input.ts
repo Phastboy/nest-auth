@@ -11,32 +11,33 @@ import { BuildingUpdateToOneWithWhereWithoutEventsInput } from './building-updat
 
 @InputType()
 export class BuildingUpdateOneWithoutEventsNestedInput {
+  @Field(() => BuildingCreateWithoutEventsInput, { nullable: true })
+  @Type(() => BuildingCreateWithoutEventsInput)
+  create?: BuildingCreateWithoutEventsInput;
 
-    @Field(() => BuildingCreateWithoutEventsInput, {nullable:true})
-    @Type(() => BuildingCreateWithoutEventsInput)
-    create?: BuildingCreateWithoutEventsInput;
+  @Field(() => BuildingCreateOrConnectWithoutEventsInput, { nullable: true })
+  @Type(() => BuildingCreateOrConnectWithoutEventsInput)
+  connectOrCreate?: BuildingCreateOrConnectWithoutEventsInput;
 
-    @Field(() => BuildingCreateOrConnectWithoutEventsInput, {nullable:true})
-    @Type(() => BuildingCreateOrConnectWithoutEventsInput)
-    connectOrCreate?: BuildingCreateOrConnectWithoutEventsInput;
+  @Field(() => BuildingUpsertWithoutEventsInput, { nullable: true })
+  @Type(() => BuildingUpsertWithoutEventsInput)
+  upsert?: BuildingUpsertWithoutEventsInput;
 
-    @Field(() => BuildingUpsertWithoutEventsInput, {nullable:true})
-    @Type(() => BuildingUpsertWithoutEventsInput)
-    upsert?: BuildingUpsertWithoutEventsInput;
+  @Field(() => BuildingWhereInput, { nullable: true })
+  @Type(() => BuildingWhereInput)
+  disconnect?: BuildingWhereInput;
 
-    @Field(() => BuildingWhereInput, {nullable:true})
-    @Type(() => BuildingWhereInput)
-    disconnect?: BuildingWhereInput;
+  @Field(() => BuildingWhereInput, { nullable: true })
+  @Type(() => BuildingWhereInput)
+  delete?: BuildingWhereInput;
 
-    @Field(() => BuildingWhereInput, {nullable:true})
-    @Type(() => BuildingWhereInput)
-    delete?: BuildingWhereInput;
+  @Field(() => BuildingWhereUniqueInput, { nullable: true })
+  @Type(() => BuildingWhereUniqueInput)
+  connect?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 
-    @Field(() => BuildingWhereUniqueInput, {nullable:true})
-    @Type(() => BuildingWhereUniqueInput)
-    connect?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
-
-    @Field(() => BuildingUpdateToOneWithWhereWithoutEventsInput, {nullable:true})
-    @Type(() => BuildingUpdateToOneWithWhereWithoutEventsInput)
-    update?: BuildingUpdateToOneWithWhereWithoutEventsInput;
+  @Field(() => BuildingUpdateToOneWithWhereWithoutEventsInput, {
+    nullable: true,
+  })
+  @Type(() => BuildingUpdateToOneWithWhereWithoutEventsInput)
+  update?: BuildingUpdateToOneWithWhereWithoutEventsInput;
 }

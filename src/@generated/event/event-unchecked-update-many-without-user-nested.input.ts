@@ -13,48 +13,47 @@ import { EventScalarWhereInput } from './event-scalar-where.input';
 
 @InputType()
 export class EventUncheckedUpdateManyWithoutUserNestedInput {
+  @Field(() => [EventCreateWithoutUserInput], { nullable: true })
+  @Type(() => EventCreateWithoutUserInput)
+  create?: Array<EventCreateWithoutUserInput>;
 
-    @Field(() => [EventCreateWithoutUserInput], {nullable:true})
-    @Type(() => EventCreateWithoutUserInput)
-    create?: Array<EventCreateWithoutUserInput>;
+  @Field(() => [EventCreateOrConnectWithoutUserInput], { nullable: true })
+  @Type(() => EventCreateOrConnectWithoutUserInput)
+  connectOrCreate?: Array<EventCreateOrConnectWithoutUserInput>;
 
-    @Field(() => [EventCreateOrConnectWithoutUserInput], {nullable:true})
-    @Type(() => EventCreateOrConnectWithoutUserInput)
-    connectOrCreate?: Array<EventCreateOrConnectWithoutUserInput>;
+  @Field(() => [EventUpsertWithWhereUniqueWithoutUserInput], { nullable: true })
+  @Type(() => EventUpsertWithWhereUniqueWithoutUserInput)
+  upsert?: Array<EventUpsertWithWhereUniqueWithoutUserInput>;
 
-    @Field(() => [EventUpsertWithWhereUniqueWithoutUserInput], {nullable:true})
-    @Type(() => EventUpsertWithWhereUniqueWithoutUserInput)
-    upsert?: Array<EventUpsertWithWhereUniqueWithoutUserInput>;
+  @Field(() => EventCreateManyUserInputEnvelope, { nullable: true })
+  @Type(() => EventCreateManyUserInputEnvelope)
+  createMany?: EventCreateManyUserInputEnvelope;
 
-    @Field(() => EventCreateManyUserInputEnvelope, {nullable:true})
-    @Type(() => EventCreateManyUserInputEnvelope)
-    createMany?: EventCreateManyUserInputEnvelope;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventUpdateWithWhereUniqueWithoutUserInput], { nullable: true })
+  @Type(() => EventUpdateWithWhereUniqueWithoutUserInput)
+  update?: Array<EventUpdateWithWhereUniqueWithoutUserInput>;
 
-    @Field(() => [EventUpdateWithWhereUniqueWithoutUserInput], {nullable:true})
-    @Type(() => EventUpdateWithWhereUniqueWithoutUserInput)
-    update?: Array<EventUpdateWithWhereUniqueWithoutUserInput>;
+  @Field(() => [EventUpdateManyWithWhereWithoutUserInput], { nullable: true })
+  @Type(() => EventUpdateManyWithWhereWithoutUserInput)
+  updateMany?: Array<EventUpdateManyWithWhereWithoutUserInput>;
 
-    @Field(() => [EventUpdateManyWithWhereWithoutUserInput], {nullable:true})
-    @Type(() => EventUpdateManyWithWhereWithoutUserInput)
-    updateMany?: Array<EventUpdateManyWithWhereWithoutUserInput>;
-
-    @Field(() => [EventScalarWhereInput], {nullable:true})
-    @Type(() => EventScalarWhereInput)
-    deleteMany?: Array<EventScalarWhereInput>;
+  @Field(() => [EventScalarWhereInput], { nullable: true })
+  @Type(() => EventScalarWhereInput)
+  deleteMany?: Array<EventScalarWhereInput>;
 }

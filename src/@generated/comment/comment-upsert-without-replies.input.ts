@@ -7,16 +7,15 @@ import { CommentWhereInput } from './comment-where.input';
 
 @InputType()
 export class CommentUpsertWithoutRepliesInput {
+  @Field(() => CommentUpdateWithoutRepliesInput, { nullable: false })
+  @Type(() => CommentUpdateWithoutRepliesInput)
+  update!: CommentUpdateWithoutRepliesInput;
 
-    @Field(() => CommentUpdateWithoutRepliesInput, {nullable:false})
-    @Type(() => CommentUpdateWithoutRepliesInput)
-    update!: CommentUpdateWithoutRepliesInput;
+  @Field(() => CommentCreateWithoutRepliesInput, { nullable: false })
+  @Type(() => CommentCreateWithoutRepliesInput)
+  create!: CommentCreateWithoutRepliesInput;
 
-    @Field(() => CommentCreateWithoutRepliesInput, {nullable:false})
-    @Type(() => CommentCreateWithoutRepliesInput)
-    create!: CommentCreateWithoutRepliesInput;
-
-    @Field(() => CommentWhereInput, {nullable:true})
-    @Type(() => CommentWhereInput)
-    where?: CommentWhereInput;
+  @Field(() => CommentWhereInput, { nullable: true })
+  @Type(() => CommentWhereInput)
+  where?: CommentWhereInput;
 }

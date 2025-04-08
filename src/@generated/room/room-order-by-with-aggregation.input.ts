@@ -10,34 +10,33 @@ import { RoomSumOrderByAggregateInput } from './room-sum-order-by-aggregate.inpu
 
 @InputType()
 export class RoomOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  name?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    name?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  buildingId?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    buildingId?: `${SortOrder}`;
+  @Field(() => SortOrderInput, { nullable: true })
+  capacity?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    capacity?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: `${SortOrder}`;
+  @Field(() => RoomCountOrderByAggregateInput, { nullable: true })
+  _count?: RoomCountOrderByAggregateInput;
 
-    @Field(() => RoomCountOrderByAggregateInput, {nullable:true})
-    _count?: RoomCountOrderByAggregateInput;
+  @Field(() => RoomAvgOrderByAggregateInput, { nullable: true })
+  _avg?: RoomAvgOrderByAggregateInput;
 
-    @Field(() => RoomAvgOrderByAggregateInput, {nullable:true})
-    _avg?: RoomAvgOrderByAggregateInput;
+  @Field(() => RoomMaxOrderByAggregateInput, { nullable: true })
+  _max?: RoomMaxOrderByAggregateInput;
 
-    @Field(() => RoomMaxOrderByAggregateInput, {nullable:true})
-    _max?: RoomMaxOrderByAggregateInput;
+  @Field(() => RoomMinOrderByAggregateInput, { nullable: true })
+  _min?: RoomMinOrderByAggregateInput;
 
-    @Field(() => RoomMinOrderByAggregateInput, {nullable:true})
-    _min?: RoomMinOrderByAggregateInput;
-
-    @Field(() => RoomSumOrderByAggregateInput, {nullable:true})
-    _sum?: RoomSumOrderByAggregateInput;
+  @Field(() => RoomSumOrderByAggregateInput, { nullable: true })
+  _sum?: RoomSumOrderByAggregateInput;
 }

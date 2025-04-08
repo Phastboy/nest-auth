@@ -4,22 +4,21 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class RoomCountAggregate {
+  @Field(() => Int, { nullable: false })
+  id!: number;
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+  @Field(() => Int, { nullable: false })
+  name!: number;
 
-    @Field(() => Int, {nullable:false})
-    name!: number;
+  @Field(() => Int, { nullable: false })
+  buildingId!: number;
 
-    @Field(() => Int, {nullable:false})
-    buildingId!: number;
+  @Field(() => Int, { nullable: false })
+  capacity!: number;
 
-    @Field(() => Int, {nullable:false})
-    capacity!: number;
+  @Field(() => Int, { nullable: false })
+  createdAt!: number;
 
-    @Field(() => Int, {nullable:false})
-    createdAt!: number;
-
-    @Field(() => Int, {nullable:false})
-    _all!: number;
+  @Field(() => Int, { nullable: false })
+  _all!: number;
 }

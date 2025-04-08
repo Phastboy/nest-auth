@@ -4,13 +4,12 @@ import { SortOrder } from '../prisma/sort-order.enum';
 
 @InputType()
 export class NotificationSumOrderByAggregateInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  userId?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    userId?: `${SortOrder}`;
-
-    @Field(() => SortOrder, {nullable:true})
-    referenceId?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  referenceId?: `${SortOrder}`;
 }

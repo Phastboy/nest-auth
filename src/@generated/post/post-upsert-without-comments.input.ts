@@ -7,16 +7,15 @@ import { PostWhereInput } from './post-where.input';
 
 @InputType()
 export class PostUpsertWithoutCommentsInput {
+  @Field(() => PostUpdateWithoutCommentsInput, { nullable: false })
+  @Type(() => PostUpdateWithoutCommentsInput)
+  update!: PostUpdateWithoutCommentsInput;
 
-    @Field(() => PostUpdateWithoutCommentsInput, {nullable:false})
-    @Type(() => PostUpdateWithoutCommentsInput)
-    update!: PostUpdateWithoutCommentsInput;
+  @Field(() => PostCreateWithoutCommentsInput, { nullable: false })
+  @Type(() => PostCreateWithoutCommentsInput)
+  create!: PostCreateWithoutCommentsInput;
 
-    @Field(() => PostCreateWithoutCommentsInput, {nullable:false})
-    @Type(() => PostCreateWithoutCommentsInput)
-    create!: PostCreateWithoutCommentsInput;
-
-    @Field(() => PostWhereInput, {nullable:true})
-    @Type(() => PostWhereInput)
-    where?: PostWhereInput;
+  @Field(() => PostWhereInput, { nullable: true })
+  @Type(() => PostWhereInput)
+  where?: PostWhereInput;
 }

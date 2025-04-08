@@ -6,16 +6,15 @@ import { RoleCreateNestedOneWithoutUsersInput } from '../role/role-create-nested
 
 @InputType()
 export class UserRoleCreateInput {
+  @Field(() => Int, { nullable: true })
+  assignedBy?: number;
 
-    @Field(() => Int, {nullable:true})
-    assignedBy?: number;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => UserCreateNestedOneWithoutRolesInput, { nullable: false })
+  user!: UserCreateNestedOneWithoutRolesInput;
 
-    @Field(() => UserCreateNestedOneWithoutRolesInput, {nullable:false})
-    user!: UserCreateNestedOneWithoutRolesInput;
-
-    @Field(() => RoleCreateNestedOneWithoutUsersInput, {nullable:false})
-    role!: RoleCreateNestedOneWithoutUsersInput;
+  @Field(() => RoleCreateNestedOneWithoutUsersInput, { nullable: false })
+  role!: RoleCreateNestedOneWithoutUsersInput;
 }

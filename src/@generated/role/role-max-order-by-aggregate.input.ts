@@ -4,19 +4,18 @@ import { SortOrder } from '../prisma/sort-order.enum';
 
 @InputType()
 export class RoleMaxOrderByAggregateInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  name?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    name?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  description?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    description?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: `${SortOrder}`;
-
-    @Field(() => SortOrder, {nullable:true})
-    updatedAt?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  updatedAt?: `${SortOrder}`;
 }

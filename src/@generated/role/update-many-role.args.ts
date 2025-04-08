@@ -7,15 +7,14 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class UpdateManyRoleArgs {
+  @Field(() => RoleUpdateManyMutationInput, { nullable: false })
+  @Type(() => RoleUpdateManyMutationInput)
+  data!: RoleUpdateManyMutationInput;
 
-    @Field(() => RoleUpdateManyMutationInput, {nullable:false})
-    @Type(() => RoleUpdateManyMutationInput)
-    data!: RoleUpdateManyMutationInput;
+  @Field(() => RoleWhereInput, { nullable: true })
+  @Type(() => RoleWhereInput)
+  where?: RoleWhereInput;
 
-    @Field(() => RoleWhereInput, {nullable:true})
-    @Type(() => RoleWhereInput)
-    where?: RoleWhereInput;
-
-    @Field(() => Int, {nullable:true})
-    limit?: number;
+  @Field(() => Int, { nullable: true })
+  limit?: number;
 }

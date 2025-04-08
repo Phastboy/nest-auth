@@ -4,16 +4,15 @@ import { Int } from '@nestjs/graphql';
 
 @ObjectType()
 export class UserRoleMinAggregate {
+  @Field(() => Int, { nullable: true })
+  userId?: number;
 
-    @Field(() => Int, {nullable:true})
-    userId?: number;
+  @Field(() => Int, { nullable: true })
+  roleId?: number;
 
-    @Field(() => Int, {nullable:true})
-    roleId?: number;
+  @Field(() => Int, { nullable: true })
+  assignedBy?: number;
 
-    @Field(() => Int, {nullable:true})
-    assignedBy?: number;
-
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 }

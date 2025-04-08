@@ -13,48 +13,53 @@ import { EventScalarWhereInput } from './event-scalar-where.input';
 
 @InputType()
 export class EventUncheckedUpdateManyWithoutBuildingNestedInput {
+  @Field(() => [EventCreateWithoutBuildingInput], { nullable: true })
+  @Type(() => EventCreateWithoutBuildingInput)
+  create?: Array<EventCreateWithoutBuildingInput>;
 
-    @Field(() => [EventCreateWithoutBuildingInput], {nullable:true})
-    @Type(() => EventCreateWithoutBuildingInput)
-    create?: Array<EventCreateWithoutBuildingInput>;
+  @Field(() => [EventCreateOrConnectWithoutBuildingInput], { nullable: true })
+  @Type(() => EventCreateOrConnectWithoutBuildingInput)
+  connectOrCreate?: Array<EventCreateOrConnectWithoutBuildingInput>;
 
-    @Field(() => [EventCreateOrConnectWithoutBuildingInput], {nullable:true})
-    @Type(() => EventCreateOrConnectWithoutBuildingInput)
-    connectOrCreate?: Array<EventCreateOrConnectWithoutBuildingInput>;
+  @Field(() => [EventUpsertWithWhereUniqueWithoutBuildingInput], {
+    nullable: true,
+  })
+  @Type(() => EventUpsertWithWhereUniqueWithoutBuildingInput)
+  upsert?: Array<EventUpsertWithWhereUniqueWithoutBuildingInput>;
 
-    @Field(() => [EventUpsertWithWhereUniqueWithoutBuildingInput], {nullable:true})
-    @Type(() => EventUpsertWithWhereUniqueWithoutBuildingInput)
-    upsert?: Array<EventUpsertWithWhereUniqueWithoutBuildingInput>;
+  @Field(() => EventCreateManyBuildingInputEnvelope, { nullable: true })
+  @Type(() => EventCreateManyBuildingInputEnvelope)
+  createMany?: EventCreateManyBuildingInputEnvelope;
 
-    @Field(() => EventCreateManyBuildingInputEnvelope, {nullable:true})
-    @Type(() => EventCreateManyBuildingInputEnvelope)
-    createMany?: EventCreateManyBuildingInputEnvelope;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    set?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    disconnect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    delete?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventWhereUniqueInput], { nullable: true })
+  @Type(() => EventWhereUniqueInput)
+  connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
 
-    @Field(() => [EventWhereUniqueInput], {nullable:true})
-    @Type(() => EventWhereUniqueInput)
-    connect?: Array<Prisma.AtLeast<EventWhereUniqueInput, 'id'>>;
+  @Field(() => [EventUpdateWithWhereUniqueWithoutBuildingInput], {
+    nullable: true,
+  })
+  @Type(() => EventUpdateWithWhereUniqueWithoutBuildingInput)
+  update?: Array<EventUpdateWithWhereUniqueWithoutBuildingInput>;
 
-    @Field(() => [EventUpdateWithWhereUniqueWithoutBuildingInput], {nullable:true})
-    @Type(() => EventUpdateWithWhereUniqueWithoutBuildingInput)
-    update?: Array<EventUpdateWithWhereUniqueWithoutBuildingInput>;
+  @Field(() => [EventUpdateManyWithWhereWithoutBuildingInput], {
+    nullable: true,
+  })
+  @Type(() => EventUpdateManyWithWhereWithoutBuildingInput)
+  updateMany?: Array<EventUpdateManyWithWhereWithoutBuildingInput>;
 
-    @Field(() => [EventUpdateManyWithWhereWithoutBuildingInput], {nullable:true})
-    @Type(() => EventUpdateManyWithWhereWithoutBuildingInput)
-    updateMany?: Array<EventUpdateManyWithWhereWithoutBuildingInput>;
-
-    @Field(() => [EventScalarWhereInput], {nullable:true})
-    @Type(() => EventScalarWhereInput)
-    deleteMany?: Array<EventScalarWhereInput>;
+  @Field(() => [EventScalarWhereInput], { nullable: true })
+  @Type(() => EventScalarWhereInput)
+  deleteMany?: Array<EventScalarWhereInput>;
 }

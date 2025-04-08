@@ -14,38 +14,37 @@ import { RoomMaxAggregateInput } from './room-max-aggregate.input';
 
 @ArgsType()
 export class RoomGroupByArgs {
+  @Field(() => RoomWhereInput, { nullable: true })
+  @Type(() => RoomWhereInput)
+  where?: RoomWhereInput;
 
-    @Field(() => RoomWhereInput, {nullable:true})
-    @Type(() => RoomWhereInput)
-    where?: RoomWhereInput;
+  @Field(() => [RoomOrderByWithAggregationInput], { nullable: true })
+  orderBy?: Array<RoomOrderByWithAggregationInput>;
 
-    @Field(() => [RoomOrderByWithAggregationInput], {nullable:true})
-    orderBy?: Array<RoomOrderByWithAggregationInput>;
+  @Field(() => [RoomScalarFieldEnum], { nullable: false })
+  by!: Array<`${RoomScalarFieldEnum}`>;
 
-    @Field(() => [RoomScalarFieldEnum], {nullable:false})
-    by!: Array<`${RoomScalarFieldEnum}`>;
+  @Field(() => RoomScalarWhereWithAggregatesInput, { nullable: true })
+  having?: RoomScalarWhereWithAggregatesInput;
 
-    @Field(() => RoomScalarWhereWithAggregatesInput, {nullable:true})
-    having?: RoomScalarWhereWithAggregatesInput;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-    @Field(() => Int, {nullable:true})
-    take?: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 
-    @Field(() => Int, {nullable:true})
-    skip?: number;
+  @Field(() => RoomCountAggregateInput, { nullable: true })
+  _count?: RoomCountAggregateInput;
 
-    @Field(() => RoomCountAggregateInput, {nullable:true})
-    _count?: RoomCountAggregateInput;
+  @Field(() => RoomAvgAggregateInput, { nullable: true })
+  _avg?: RoomAvgAggregateInput;
 
-    @Field(() => RoomAvgAggregateInput, {nullable:true})
-    _avg?: RoomAvgAggregateInput;
+  @Field(() => RoomSumAggregateInput, { nullable: true })
+  _sum?: RoomSumAggregateInput;
 
-    @Field(() => RoomSumAggregateInput, {nullable:true})
-    _sum?: RoomSumAggregateInput;
+  @Field(() => RoomMinAggregateInput, { nullable: true })
+  _min?: RoomMinAggregateInput;
 
-    @Field(() => RoomMinAggregateInput, {nullable:true})
-    _min?: RoomMinAggregateInput;
-
-    @Field(() => RoomMaxAggregateInput, {nullable:true})
-    _max?: RoomMaxAggregateInput;
+  @Field(() => RoomMaxAggregateInput, { nullable: true })
+  _max?: RoomMaxAggregateInput;
 }

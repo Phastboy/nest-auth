@@ -7,16 +7,15 @@ import { BuildingWhereInput } from './building-where.input';
 
 @InputType()
 export class BuildingUpsertWithoutRoomsInput {
+  @Field(() => BuildingUpdateWithoutRoomsInput, { nullable: false })
+  @Type(() => BuildingUpdateWithoutRoomsInput)
+  update!: BuildingUpdateWithoutRoomsInput;
 
-    @Field(() => BuildingUpdateWithoutRoomsInput, {nullable:false})
-    @Type(() => BuildingUpdateWithoutRoomsInput)
-    update!: BuildingUpdateWithoutRoomsInput;
+  @Field(() => BuildingCreateWithoutRoomsInput, { nullable: false })
+  @Type(() => BuildingCreateWithoutRoomsInput)
+  create!: BuildingCreateWithoutRoomsInput;
 
-    @Field(() => BuildingCreateWithoutRoomsInput, {nullable:false})
-    @Type(() => BuildingCreateWithoutRoomsInput)
-    create!: BuildingCreateWithoutRoomsInput;
-
-    @Field(() => BuildingWhereInput, {nullable:true})
-    @Type(() => BuildingWhereInput)
-    where?: BuildingWhereInput;
+  @Field(() => BuildingWhereInput, { nullable: true })
+  @Type(() => BuildingWhereInput)
+  where?: BuildingWhereInput;
 }

@@ -8,16 +8,15 @@ import { BuildingWhereUniqueInput } from './building-where-unique.input';
 
 @InputType()
 export class BuildingCreateNestedOneWithoutRoomsInput {
+  @Field(() => BuildingCreateWithoutRoomsInput, { nullable: true })
+  @Type(() => BuildingCreateWithoutRoomsInput)
+  create?: BuildingCreateWithoutRoomsInput;
 
-    @Field(() => BuildingCreateWithoutRoomsInput, {nullable:true})
-    @Type(() => BuildingCreateWithoutRoomsInput)
-    create?: BuildingCreateWithoutRoomsInput;
+  @Field(() => BuildingCreateOrConnectWithoutRoomsInput, { nullable: true })
+  @Type(() => BuildingCreateOrConnectWithoutRoomsInput)
+  connectOrCreate?: BuildingCreateOrConnectWithoutRoomsInput;
 
-    @Field(() => BuildingCreateOrConnectWithoutRoomsInput, {nullable:true})
-    @Type(() => BuildingCreateOrConnectWithoutRoomsInput)
-    connectOrCreate?: BuildingCreateOrConnectWithoutRoomsInput;
-
-    @Field(() => BuildingWhereUniqueInput, {nullable:true})
-    @Type(() => BuildingWhereUniqueInput)
-    connect?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
+  @Field(() => BuildingWhereUniqueInput, { nullable: true })
+  @Type(() => BuildingWhereUniqueInput)
+  connect?: Prisma.AtLeast<BuildingWhereUniqueInput, 'id' | 'name'>;
 }

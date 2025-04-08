@@ -7,12 +7,11 @@ import { UserRoleUpdateWithoutUserInput } from './user-role-update-without-user.
 
 @InputType()
 export class UserRoleUpdateWithWhereUniqueWithoutUserInput {
+  @Field(() => UserRoleWhereUniqueInput, { nullable: false })
+  @Type(() => UserRoleWhereUniqueInput)
+  where!: Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>;
 
-    @Field(() => UserRoleWhereUniqueInput, {nullable:false})
-    @Type(() => UserRoleWhereUniqueInput)
-    where!: Prisma.AtLeast<UserRoleWhereUniqueInput, 'userId_roleId'>;
-
-    @Field(() => UserRoleUpdateWithoutUserInput, {nullable:false})
-    @Type(() => UserRoleUpdateWithoutUserInput)
-    data!: UserRoleUpdateWithoutUserInput;
+  @Field(() => UserRoleUpdateWithoutUserInput, { nullable: false })
+  @Type(() => UserRoleUpdateWithoutUserInput)
+  data!: UserRoleUpdateWithoutUserInput;
 }

@@ -6,12 +6,11 @@ import { BuildingUpdateWithoutRoomsInput } from './building-update-without-rooms
 
 @InputType()
 export class BuildingUpdateToOneWithWhereWithoutRoomsInput {
+  @Field(() => BuildingWhereInput, { nullable: true })
+  @Type(() => BuildingWhereInput)
+  where?: BuildingWhereInput;
 
-    @Field(() => BuildingWhereInput, {nullable:true})
-    @Type(() => BuildingWhereInput)
-    where?: BuildingWhereInput;
-
-    @Field(() => BuildingUpdateWithoutRoomsInput, {nullable:false})
-    @Type(() => BuildingUpdateWithoutRoomsInput)
-    data!: BuildingUpdateWithoutRoomsInput;
+  @Field(() => BuildingUpdateWithoutRoomsInput, { nullable: false })
+  @Type(() => BuildingUpdateWithoutRoomsInput)
+  data!: BuildingUpdateWithoutRoomsInput;
 }

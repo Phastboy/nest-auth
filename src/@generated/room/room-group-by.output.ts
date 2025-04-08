@@ -9,34 +9,33 @@ import { RoomMaxAggregate } from './room-max-aggregate.output';
 
 @ObjectType()
 export class RoomGroupBy {
+  @Field(() => Int, { nullable: false })
+  id!: number;
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => Int, { nullable: false })
+  buildingId!: number;
 
-    @Field(() => Int, {nullable:false})
-    buildingId!: number;
+  @Field(() => Int, { nullable: true })
+  capacity?: number;
 
-    @Field(() => Int, {nullable:true})
-    capacity?: number;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
+  @Field(() => RoomCountAggregate, { nullable: true })
+  _count?: RoomCountAggregate;
 
-    @Field(() => RoomCountAggregate, {nullable:true})
-    _count?: RoomCountAggregate;
+  @Field(() => RoomAvgAggregate, { nullable: true })
+  _avg?: RoomAvgAggregate;
 
-    @Field(() => RoomAvgAggregate, {nullable:true})
-    _avg?: RoomAvgAggregate;
+  @Field(() => RoomSumAggregate, { nullable: true })
+  _sum?: RoomSumAggregate;
 
-    @Field(() => RoomSumAggregate, {nullable:true})
-    _sum?: RoomSumAggregate;
+  @Field(() => RoomMinAggregate, { nullable: true })
+  _min?: RoomMinAggregate;
 
-    @Field(() => RoomMinAggregate, {nullable:true})
-    _min?: RoomMinAggregate;
-
-    @Field(() => RoomMaxAggregate, {nullable:true})
-    _max?: RoomMaxAggregate;
+  @Field(() => RoomMaxAggregate, { nullable: true })
+  _max?: RoomMaxAggregate;
 }

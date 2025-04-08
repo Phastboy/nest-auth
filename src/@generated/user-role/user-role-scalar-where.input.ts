@@ -6,25 +6,24 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 
 @InputType()
 export class UserRoleScalarWhereInput {
+  @Field(() => [UserRoleScalarWhereInput], { nullable: true })
+  AND?: Array<UserRoleScalarWhereInput>;
 
-    @Field(() => [UserRoleScalarWhereInput], {nullable:true})
-    AND?: Array<UserRoleScalarWhereInput>;
+  @Field(() => [UserRoleScalarWhereInput], { nullable: true })
+  OR?: Array<UserRoleScalarWhereInput>;
 
-    @Field(() => [UserRoleScalarWhereInput], {nullable:true})
-    OR?: Array<UserRoleScalarWhereInput>;
+  @Field(() => [UserRoleScalarWhereInput], { nullable: true })
+  NOT?: Array<UserRoleScalarWhereInput>;
 
-    @Field(() => [UserRoleScalarWhereInput], {nullable:true})
-    NOT?: Array<UserRoleScalarWhereInput>;
+  @Field(() => IntFilter, { nullable: true })
+  userId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    userId?: IntFilter;
+  @Field(() => IntFilter, { nullable: true })
+  roleId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    roleId?: IntFilter;
+  @Field(() => IntNullableFilter, { nullable: true })
+  assignedBy?: IntNullableFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    assignedBy?: IntNullableFilter;
-
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 }

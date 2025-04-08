@@ -6,11 +6,10 @@ import { Int } from '@nestjs/graphql';
 
 @ArgsType()
 export class DeleteManyCommentArgs {
+  @Field(() => CommentWhereInput, { nullable: true })
+  @Type(() => CommentWhereInput)
+  where?: CommentWhereInput;
 
-    @Field(() => CommentWhereInput, {nullable:true})
-    @Type(() => CommentWhereInput)
-    where?: CommentWhereInput;
-
-    @Field(() => Int, {nullable:true})
-    limit?: number;
+  @Field(() => Int, { nullable: true })
+  limit?: number;
 }

@@ -11,34 +11,33 @@ import { EventListRelationFilter } from '../event/event-list-relation-filter.inp
 
 @InputType()
 export class RoomWhereUniqueInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => [RoomWhereInput], { nullable: true })
+  AND?: Array<RoomWhereInput>;
 
-    @Field(() => [RoomWhereInput], {nullable:true})
-    AND?: Array<RoomWhereInput>;
+  @Field(() => [RoomWhereInput], { nullable: true })
+  OR?: Array<RoomWhereInput>;
 
-    @Field(() => [RoomWhereInput], {nullable:true})
-    OR?: Array<RoomWhereInput>;
+  @Field(() => [RoomWhereInput], { nullable: true })
+  NOT?: Array<RoomWhereInput>;
 
-    @Field(() => [RoomWhereInput], {nullable:true})
-    NOT?: Array<RoomWhereInput>;
+  @Field(() => StringFilter, { nullable: true })
+  name?: StringFilter;
 
-    @Field(() => StringFilter, {nullable:true})
-    name?: StringFilter;
+  @Field(() => IntFilter, { nullable: true })
+  buildingId?: IntFilter;
 
-    @Field(() => IntFilter, {nullable:true})
-    buildingId?: IntFilter;
+  @Field(() => IntNullableFilter, { nullable: true })
+  capacity?: IntNullableFilter;
 
-    @Field(() => IntNullableFilter, {nullable:true})
-    capacity?: IntNullableFilter;
+  @Field(() => DateTimeFilter, { nullable: true })
+  createdAt?: DateTimeFilter;
 
-    @Field(() => DateTimeFilter, {nullable:true})
-    createdAt?: DateTimeFilter;
+  @Field(() => BuildingScalarRelationFilter, { nullable: true })
+  building?: BuildingScalarRelationFilter;
 
-    @Field(() => BuildingScalarRelationFilter, {nullable:true})
-    building?: BuildingScalarRelationFilter;
-
-    @Field(() => EventListRelationFilter, {nullable:true})
-    events?: EventListRelationFilter;
+  @Field(() => EventListRelationFilter, { nullable: true })
+  events?: EventListRelationFilter;
 }

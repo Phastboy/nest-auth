@@ -5,16 +5,15 @@ import { NestedEnumEventStatusFilter } from './nested-enum-event-status-filter.i
 
 @InputType()
 export class EnumEventStatusFilter {
+  @Field(() => EventStatus, { nullable: true })
+  equals?: `${EventStatus}`;
 
-    @Field(() => EventStatus, {nullable:true})
-    equals?: `${EventStatus}`;
+  @Field(() => [EventStatus], { nullable: true })
+  in?: Array<`${EventStatus}`>;
 
-    @Field(() => [EventStatus], {nullable:true})
-    in?: Array<`${EventStatus}`>;
+  @Field(() => [EventStatus], { nullable: true })
+  notIn?: Array<`${EventStatus}`>;
 
-    @Field(() => [EventStatus], {nullable:true})
-    notIn?: Array<`${EventStatus}`>;
-
-    @Field(() => NestedEnumEventStatusFilter, {nullable:true})
-    not?: NestedEnumEventStatusFilter;
+  @Field(() => NestedEnumEventStatusFilter, { nullable: true })
+  not?: NestedEnumEventStatusFilter;
 }

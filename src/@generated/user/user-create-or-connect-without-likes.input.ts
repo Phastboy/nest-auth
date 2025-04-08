@@ -7,12 +7,11 @@ import { UserCreateWithoutLikesInput } from './user-create-without-likes.input';
 
 @InputType()
 export class UserCreateOrConnectWithoutLikesInput {
+  @Field(() => UserWhereUniqueInput, { nullable: false })
+  @Type(() => UserWhereUniqueInput)
+  where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
 
-    @Field(() => UserWhereUniqueInput, {nullable:false})
-    @Type(() => UserWhereUniqueInput)
-    where!: Prisma.AtLeast<UserWhereUniqueInput, 'id' | 'email' | 'username'>;
-
-    @Field(() => UserCreateWithoutLikesInput, {nullable:false})
-    @Type(() => UserCreateWithoutLikesInput)
-    create!: UserCreateWithoutLikesInput;
+  @Field(() => UserCreateWithoutLikesInput, { nullable: false })
+  @Type(() => UserCreateWithoutLikesInput)
+  create!: UserCreateWithoutLikesInput;
 }

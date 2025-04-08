@@ -6,13 +6,12 @@ import { RoleUpdateOneRequiredWithoutUsersNestedInput } from '../role/role-updat
 
 @InputType()
 export class UserRoleUpdateWithoutUserInput {
+  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+  assignedBy?: NullableIntFieldUpdateOperationsInput;
 
-    @Field(() => NullableIntFieldUpdateOperationsInput, {nullable:true})
-    assignedBy?: NullableIntFieldUpdateOperationsInput;
+  @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
+  createdAt?: DateTimeFieldUpdateOperationsInput;
 
-    @Field(() => DateTimeFieldUpdateOperationsInput, {nullable:true})
-    createdAt?: DateTimeFieldUpdateOperationsInput;
-
-    @Field(() => RoleUpdateOneRequiredWithoutUsersNestedInput, {nullable:true})
-    role?: RoleUpdateOneRequiredWithoutUsersNestedInput;
+  @Field(() => RoleUpdateOneRequiredWithoutUsersNestedInput, { nullable: true })
+  role?: RoleUpdateOneRequiredWithoutUsersNestedInput;
 }

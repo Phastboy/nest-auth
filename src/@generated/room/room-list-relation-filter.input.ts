@@ -4,13 +4,12 @@ import { RoomWhereInput } from './room-where.input';
 
 @InputType()
 export class RoomListRelationFilter {
+  @Field(() => RoomWhereInput, { nullable: true })
+  every?: RoomWhereInput;
 
-    @Field(() => RoomWhereInput, {nullable:true})
-    every?: RoomWhereInput;
+  @Field(() => RoomWhereInput, { nullable: true })
+  some?: RoomWhereInput;
 
-    @Field(() => RoomWhereInput, {nullable:true})
-    some?: RoomWhereInput;
-
-    @Field(() => RoomWhereInput, {nullable:true})
-    none?: RoomWhereInput;
+  @Field(() => RoomWhereInput, { nullable: true })
+  none?: RoomWhereInput;
 }

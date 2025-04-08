@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @ArgsType()
 export class CreateManyRoomArgs {
-
-    @Field(() => [RoomCreateManyInput], {nullable:false})
-    @Type(() => RoomCreateManyInput)
-    data!: Array<RoomCreateManyInput>;
+  @Field(() => [RoomCreateManyInput], { nullable: false })
+  @Type(() => RoomCreateManyInput)
+  data!: Array<RoomCreateManyInput>;
 }

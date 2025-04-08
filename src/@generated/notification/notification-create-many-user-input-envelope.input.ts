@@ -5,8 +5,7 @@ import { Type } from 'class-transformer';
 
 @InputType()
 export class NotificationCreateManyUserInputEnvelope {
-
-    @Field(() => [NotificationCreateManyUserInput], {nullable:false})
-    @Type(() => NotificationCreateManyUserInput)
-    data!: Array<NotificationCreateManyUserInput>;
+  @Field(() => [NotificationCreateManyUserInput], { nullable: false })
+  @Type(() => NotificationCreateManyUserInput)
+  data!: Array<NotificationCreateManyUserInput>;
 }

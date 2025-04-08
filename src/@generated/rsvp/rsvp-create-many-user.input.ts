@@ -4,16 +4,15 @@ import { Int } from '@nestjs/graphql';
 
 @InputType()
 export class RSVPCreateManyUserInput {
+  @Field(() => Int, { nullable: true })
+  id?: number;
 
-    @Field(() => Int, {nullable:true})
-    id?: number;
+  @Field(() => Int, { nullable: false })
+  eventId!: number;
 
-    @Field(() => Int, {nullable:false})
-    eventId!: number;
+  @Field(() => String, { nullable: true })
+  status?: string;
 
-    @Field(() => String, {nullable:true})
-    status?: string;
-
-    @Field(() => Date, {nullable:true})
-    createdAt?: Date | string;
+  @Field(() => Date, { nullable: true })
+  createdAt?: Date | string;
 }

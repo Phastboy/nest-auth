@@ -11,32 +11,31 @@ import { RoomUpdateToOneWithWhereWithoutEventsInput } from './room-update-to-one
 
 @InputType()
 export class RoomUpdateOneWithoutEventsNestedInput {
+  @Field(() => RoomCreateWithoutEventsInput, { nullable: true })
+  @Type(() => RoomCreateWithoutEventsInput)
+  create?: RoomCreateWithoutEventsInput;
 
-    @Field(() => RoomCreateWithoutEventsInput, {nullable:true})
-    @Type(() => RoomCreateWithoutEventsInput)
-    create?: RoomCreateWithoutEventsInput;
+  @Field(() => RoomCreateOrConnectWithoutEventsInput, { nullable: true })
+  @Type(() => RoomCreateOrConnectWithoutEventsInput)
+  connectOrCreate?: RoomCreateOrConnectWithoutEventsInput;
 
-    @Field(() => RoomCreateOrConnectWithoutEventsInput, {nullable:true})
-    @Type(() => RoomCreateOrConnectWithoutEventsInput)
-    connectOrCreate?: RoomCreateOrConnectWithoutEventsInput;
+  @Field(() => RoomUpsertWithoutEventsInput, { nullable: true })
+  @Type(() => RoomUpsertWithoutEventsInput)
+  upsert?: RoomUpsertWithoutEventsInput;
 
-    @Field(() => RoomUpsertWithoutEventsInput, {nullable:true})
-    @Type(() => RoomUpsertWithoutEventsInput)
-    upsert?: RoomUpsertWithoutEventsInput;
+  @Field(() => RoomWhereInput, { nullable: true })
+  @Type(() => RoomWhereInput)
+  disconnect?: RoomWhereInput;
 
-    @Field(() => RoomWhereInput, {nullable:true})
-    @Type(() => RoomWhereInput)
-    disconnect?: RoomWhereInput;
+  @Field(() => RoomWhereInput, { nullable: true })
+  @Type(() => RoomWhereInput)
+  delete?: RoomWhereInput;
 
-    @Field(() => RoomWhereInput, {nullable:true})
-    @Type(() => RoomWhereInput)
-    delete?: RoomWhereInput;
+  @Field(() => RoomWhereUniqueInput, { nullable: true })
+  @Type(() => RoomWhereUniqueInput)
+  connect?: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
 
-    @Field(() => RoomWhereUniqueInput, {nullable:true})
-    @Type(() => RoomWhereUniqueInput)
-    connect?: Prisma.AtLeast<RoomWhereUniqueInput, 'id'>;
-
-    @Field(() => RoomUpdateToOneWithWhereWithoutEventsInput, {nullable:true})
-    @Type(() => RoomUpdateToOneWithWhereWithoutEventsInput)
-    update?: RoomUpdateToOneWithWhereWithoutEventsInput;
+  @Field(() => RoomUpdateToOneWithWhereWithoutEventsInput, { nullable: true })
+  @Type(() => RoomUpdateToOneWithWhereWithoutEventsInput)
+  update?: RoomUpdateToOneWithWhereWithoutEventsInput;
 }

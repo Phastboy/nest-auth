@@ -7,12 +7,11 @@ import { PostCreateWithoutCommentsInput } from './post-create-without-comments.i
 
 @InputType()
 export class PostCreateOrConnectWithoutCommentsInput {
+  @Field(() => PostWhereUniqueInput, { nullable: false })
+  @Type(() => PostWhereUniqueInput)
+  where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
 
-    @Field(() => PostWhereUniqueInput, {nullable:false})
-    @Type(() => PostWhereUniqueInput)
-    where!: Prisma.AtLeast<PostWhereUniqueInput, 'id' | 'eventId'>;
-
-    @Field(() => PostCreateWithoutCommentsInput, {nullable:false})
-    @Type(() => PostCreateWithoutCommentsInput)
-    create!: PostCreateWithoutCommentsInput;
+  @Field(() => PostCreateWithoutCommentsInput, { nullable: false })
+  @Type(() => PostCreateWithoutCommentsInput)
+  create!: PostCreateWithoutCommentsInput;
 }

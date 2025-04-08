@@ -10,49 +10,48 @@ import { BuildingMaxAggregate } from './building-max-aggregate.output';
 
 @ObjectType()
 export class BuildingGroupBy {
+  @Field(() => Int, { nullable: false })
+  id!: number;
 
-    @Field(() => Int, {nullable:false})
-    id!: number;
+  @Field(() => String, { nullable: false })
+  name!: string;
 
-    @Field(() => String, {nullable:false})
-    name!: string;
+  @Field(() => Int, { nullable: true })
+  number?: number;
 
-    @Field(() => Int, {nullable:true})
-    number?: number;
+  @Field(() => String, { nullable: true })
+  road?: string;
 
-    @Field(() => String, {nullable:true})
-    road?: string;
+  @Field(() => String, { nullable: true })
+  landmark?: string;
 
-    @Field(() => String, {nullable:true})
-    landmark?: string;
+  @Field(() => String, { nullable: true })
+  area?: string;
 
-    @Field(() => String, {nullable:true})
-    area?: string;
+  @Field(() => Float, { nullable: false })
+  longitude!: number;
 
-    @Field(() => Float, {nullable:false})
-    longitude!: number;
+  @Field(() => Float, { nullable: false })
+  latitude!: number;
 
-    @Field(() => Float, {nullable:false})
-    latitude!: number;
+  @Field(() => Int, { nullable: true })
+  capacity?: number;
 
-    @Field(() => Int, {nullable:true})
-    capacity?: number;
+  @Field(() => Date, { nullable: false })
+  createdAt!: Date | string;
 
-    @Field(() => Date, {nullable:false})
-    createdAt!: Date | string;
+  @Field(() => BuildingCountAggregate, { nullable: true })
+  _count?: BuildingCountAggregate;
 
-    @Field(() => BuildingCountAggregate, {nullable:true})
-    _count?: BuildingCountAggregate;
+  @Field(() => BuildingAvgAggregate, { nullable: true })
+  _avg?: BuildingAvgAggregate;
 
-    @Field(() => BuildingAvgAggregate, {nullable:true})
-    _avg?: BuildingAvgAggregate;
+  @Field(() => BuildingSumAggregate, { nullable: true })
+  _sum?: BuildingSumAggregate;
 
-    @Field(() => BuildingSumAggregate, {nullable:true})
-    _sum?: BuildingSumAggregate;
+  @Field(() => BuildingMinAggregate, { nullable: true })
+  _min?: BuildingMinAggregate;
 
-    @Field(() => BuildingMinAggregate, {nullable:true})
-    _min?: BuildingMinAggregate;
-
-    @Field(() => BuildingMaxAggregate, {nullable:true})
-    _max?: BuildingMaxAggregate;
+  @Field(() => BuildingMaxAggregate, { nullable: true })
+  _max?: BuildingMaxAggregate;
 }

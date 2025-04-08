@@ -10,34 +10,33 @@ import { LikeSumOrderByAggregateInput } from './like-sum-order-by-aggregate.inpu
 
 @InputType()
 export class LikeOrderByWithAggregationInput {
+  @Field(() => SortOrder, { nullable: true })
+  id?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    id?: `${SortOrder}`;
+  @Field(() => SortOrder, { nullable: true })
+  userId?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    userId?: `${SortOrder}`;
+  @Field(() => SortOrderInput, { nullable: true })
+  postId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    postId?: SortOrderInput;
+  @Field(() => SortOrderInput, { nullable: true })
+  eventId?: SortOrderInput;
 
-    @Field(() => SortOrderInput, {nullable:true})
-    eventId?: SortOrderInput;
+  @Field(() => SortOrder, { nullable: true })
+  createdAt?: `${SortOrder}`;
 
-    @Field(() => SortOrder, {nullable:true})
-    createdAt?: `${SortOrder}`;
+  @Field(() => LikeCountOrderByAggregateInput, { nullable: true })
+  _count?: LikeCountOrderByAggregateInput;
 
-    @Field(() => LikeCountOrderByAggregateInput, {nullable:true})
-    _count?: LikeCountOrderByAggregateInput;
+  @Field(() => LikeAvgOrderByAggregateInput, { nullable: true })
+  _avg?: LikeAvgOrderByAggregateInput;
 
-    @Field(() => LikeAvgOrderByAggregateInput, {nullable:true})
-    _avg?: LikeAvgOrderByAggregateInput;
+  @Field(() => LikeMaxOrderByAggregateInput, { nullable: true })
+  _max?: LikeMaxOrderByAggregateInput;
 
-    @Field(() => LikeMaxOrderByAggregateInput, {nullable:true})
-    _max?: LikeMaxOrderByAggregateInput;
+  @Field(() => LikeMinOrderByAggregateInput, { nullable: true })
+  _min?: LikeMinOrderByAggregateInput;
 
-    @Field(() => LikeMinOrderByAggregateInput, {nullable:true})
-    _min?: LikeMinOrderByAggregateInput;
-
-    @Field(() => LikeSumOrderByAggregateInput, {nullable:true})
-    _sum?: LikeSumOrderByAggregateInput;
+  @Field(() => LikeSumOrderByAggregateInput, { nullable: true })
+  _sum?: LikeSumOrderByAggregateInput;
 }

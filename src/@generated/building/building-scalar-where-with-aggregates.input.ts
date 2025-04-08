@@ -9,43 +9,42 @@ import { DateTimeWithAggregatesFilter } from '../prisma/date-time-with-aggregate
 
 @InputType()
 export class BuildingScalarWhereWithAggregatesInput {
+  @Field(() => [BuildingScalarWhereWithAggregatesInput], { nullable: true })
+  AND?: Array<BuildingScalarWhereWithAggregatesInput>;
 
-    @Field(() => [BuildingScalarWhereWithAggregatesInput], {nullable:true})
-    AND?: Array<BuildingScalarWhereWithAggregatesInput>;
+  @Field(() => [BuildingScalarWhereWithAggregatesInput], { nullable: true })
+  OR?: Array<BuildingScalarWhereWithAggregatesInput>;
 
-    @Field(() => [BuildingScalarWhereWithAggregatesInput], {nullable:true})
-    OR?: Array<BuildingScalarWhereWithAggregatesInput>;
+  @Field(() => [BuildingScalarWhereWithAggregatesInput], { nullable: true })
+  NOT?: Array<BuildingScalarWhereWithAggregatesInput>;
 
-    @Field(() => [BuildingScalarWhereWithAggregatesInput], {nullable:true})
-    NOT?: Array<BuildingScalarWhereWithAggregatesInput>;
+  @Field(() => IntWithAggregatesFilter, { nullable: true })
+  id?: IntWithAggregatesFilter;
 
-    @Field(() => IntWithAggregatesFilter, {nullable:true})
-    id?: IntWithAggregatesFilter;
+  @Field(() => StringWithAggregatesFilter, { nullable: true })
+  name?: StringWithAggregatesFilter;
 
-    @Field(() => StringWithAggregatesFilter, {nullable:true})
-    name?: StringWithAggregatesFilter;
+  @Field(() => IntNullableWithAggregatesFilter, { nullable: true })
+  number?: IntNullableWithAggregatesFilter;
 
-    @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
-    number?: IntNullableWithAggregatesFilter;
+  @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
+  road?: StringNullableWithAggregatesFilter;
 
-    @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
-    road?: StringNullableWithAggregatesFilter;
+  @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
+  landmark?: StringNullableWithAggregatesFilter;
 
-    @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
-    landmark?: StringNullableWithAggregatesFilter;
+  @Field(() => StringNullableWithAggregatesFilter, { nullable: true })
+  area?: StringNullableWithAggregatesFilter;
 
-    @Field(() => StringNullableWithAggregatesFilter, {nullable:true})
-    area?: StringNullableWithAggregatesFilter;
+  @Field(() => FloatWithAggregatesFilter, { nullable: true })
+  longitude?: FloatWithAggregatesFilter;
 
-    @Field(() => FloatWithAggregatesFilter, {nullable:true})
-    longitude?: FloatWithAggregatesFilter;
+  @Field(() => FloatWithAggregatesFilter, { nullable: true })
+  latitude?: FloatWithAggregatesFilter;
 
-    @Field(() => FloatWithAggregatesFilter, {nullable:true})
-    latitude?: FloatWithAggregatesFilter;
+  @Field(() => IntNullableWithAggregatesFilter, { nullable: true })
+  capacity?: IntNullableWithAggregatesFilter;
 
-    @Field(() => IntNullableWithAggregatesFilter, {nullable:true})
-    capacity?: IntNullableWithAggregatesFilter;
-
-    @Field(() => DateTimeWithAggregatesFilter, {nullable:true})
-    createdAt?: DateTimeWithAggregatesFilter;
+  @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
+  createdAt?: DateTimeWithAggregatesFilter;
 }
