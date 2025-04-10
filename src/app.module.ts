@@ -13,6 +13,7 @@ import { EventsModule } from './events/events.module';
 import { CategoriesModule } from './categories/categories.module';
 import { ErrorHandlerModule } from './error-handler/error-handler.module';
 import { RolesModule } from './roles/roles.module';
+import { RecurrenceModule } from './recurrence/recurrence.module';
 
 @Module({
   imports: [
@@ -44,6 +45,7 @@ import { RolesModule } from './roles/roles.module';
     CategoriesModule,
     ErrorHandlerModule,
     RolesModule,
+    RecurrenceModule,
   ],
   controllers: [],
   providers: [
