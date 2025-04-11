@@ -59,7 +59,7 @@ export class RecurrenceService {
       return {
         ruleSetString: ruleSet.toString(),
         ruleSet,
-        occurrences: processedDates as any,
+        occurrences: processedDates as T extends true ? string[] : DateTime[],
       };
     } catch (error: any) {
       throw new InternalServerErrorException(
