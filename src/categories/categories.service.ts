@@ -23,15 +23,19 @@ export class CategoriesService {
   private buildIncludeObject(
     includeInput?: CategoryIncludeInput,
   ): Prisma.CategoryInclude {
+    if (!includeInput) return DEFAULT_CATEGORY_TO_BE_INCLUDED;
+
+    const includeRelations: Prisma.CategoryInclude = {};
+    Object.keys(includeInput).forEach((key) => {
+      const typedKey = key as keyof CategoryIncludeInput;
+      if (includeInput[typedKey] !== undefined) {
+        includeRelations[typedKey] = includeInput[typedKey];
+      }
+    });
+    
     return {
       ...DEFAULT_CATEGORY_TO_BE_INCLUDED,
-      ...(includeInput && {
-        parent: includeInput.parent ?? undefined,
-        children: includeInput.children ?? undefined,
-        posts: includeInput.posts ?? undefined,
-        events: includeInput.events ?? undefined,
-        _count: includeInput._count ?? undefined,
-      }),
+      ...includeRelations,
     };
   }
 
