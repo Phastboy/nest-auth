@@ -1,4 +1,3 @@
-import { F } from '@faker-js/faker/dist/airline-CBNP41sR';
 import { Field, InputType, Int } from '@nestjs/graphql';
 import { log } from 'console';
 import { DateTime } from 'graphql-scalars/typings/mocks';
