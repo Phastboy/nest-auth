@@ -90,12 +90,12 @@ export class RecurrenceService {
     try {
       const ruleSet = RRuleSet.parse(ruleSetString.trim());
       const dates = ruleSet.all();
-      const processedDates = this.processDates(dates, !!asString);
+      const processedDates: T extends true ? string[] : DateTime[] = this.processDates(dates, !!asString) as T extends true ? string[] : DateTime[];
 
       return {
         ruleSetString,
         ruleSet,
-        occurrences: processedDates as any,
+        occurrences: processedDates,
       };
     } catch (error: any) {
       throw new BadRequestException(
