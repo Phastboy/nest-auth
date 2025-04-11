@@ -32,7 +32,7 @@ export class CategoriesService {
         includeRelations[typedKey] = includeInput[typedKey];
       }
     });
-    
+
     return {
       ...DEFAULT_CATEGORY_TO_BE_INCLUDED,
       ...includeRelations,

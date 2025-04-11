@@ -10,10 +10,33 @@ import { UpdateEventInput } from './dto/update-event.input';
 import { PrismaService } from 'nestjs-prisma';
 import { Event } from 'src/@generated';
 import { CreatePostInput } from 'src/posts/dto/create-post.input';
+import { EventIncludeInput } from './dto/event-include.input';
+import { Prisma } from '@prisma/client';
+import { DEFAULT_EVENT_RELATIONS_TO_BE_INCLUDED } from './dto/event.type';
 
 @Injectable()
 export class EventsService {
   constructor(private readonly prismaService: PrismaService) {}
+
+  private buildIncludeRelations(
+    includeInput?: EventIncludeInput,
+  ): Prisma.EventInclude {
+    if (!includeInput) return DEFAULT_EVENT_RELATIONS_TO_BE_INCLUDED;
+
+    const includeRelations: Prisma.EventInclude = {};
+
+    Object.keys(includeInput).forEach((key) => {
+      const typedKey = key as keyof EventIncludeInput;
+      if (includeInput[typedKey] !== undefined) {
+        includeRelations[typedKey] = includeInput[typedKey];
+      }
+    });
+
+    return {
+      ...DEFAULT_EVENT_RELATIONS_TO_BE_INCLUDED,
+      ...includeRelations,
+    };
+  }
 
   private readonly logger = new Logger(EventsService.name);
 
