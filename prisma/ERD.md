@@ -41,7 +41,7 @@ erDiagram
   String content
   String image "nullable"
   Boolean isEvent
-  Int eventId FK "nullable"
+  Int eventId FK,UK "nullable"
   Int userId FK
   DateTime createdAt
   DateTime updatedAt
