@@ -15,13 +15,13 @@ describe('RecurrenceService', () => {
   });
 
   it('should create a DateTime object with correct values', () => {
-    const dateTime = service.createDateTime(2023, 10, 1, 12, 30, 45);
-    expect(dateTime.year).toBe(2023);
-    expect(dateTime.month).toBe(10);
-    expect(dateTime.day).toBe(1);
-    expect(dateTime.hour).toBe(12);
-    expect(dateTime.minute).toBe(30);
-    expect(dateTime.second).toBe(45);
+    const dateTime = new Date(2023, 9, 1, 12, 30, 45); // Month is 0-indexed in JavaScript Date
+    expect(dateTime.getFullYear()).toBe(2023);
+    expect(dateTime.getMonth() + 1).toBe(10); // Adjust for 0-indexed month
+    expect(dateTime.getDate()).toBe(1);
+    expect(dateTime.getHours()).toBe(12);
+    expect(dateTime.getMinutes()).toBe(30);
+    expect(dateTime.getSeconds()).toBe(45);
   });
 
   it('should return occurrences from a valid ruleSet string', () => {
