@@ -42,7 +42,7 @@ export class RecurrenceInput {
     description: `The interval between each frequency iteration. For example, when using ${RecurrenceFrequency.Daily}, an interval of 2 would mean once every 2 days. The default interval is 1.`,
     defaultValue: 1,
   })
-  interval: number;
+  interval?: number;
 
   @Field(() => Weekday, {
     nullable: true,
