@@ -1,39 +1,26 @@
-import {
-  ValidatorConstraint,
-  ValidatorConstraintInterface,
-  ValidationArguments,
-} from 'class-validator';
-import { CreateEventInput } from '../dto/create-event.input';
+import { ValidationOptions } from 'class-validator';
+import { ValidateFieldDependency } from './field-dependency.validator';
 
-@ValidatorConstraint({ name: 'IsPostValidWhenSharing', async: false })
-export class IsPostValidWhenSharing implements ValidatorConstraintInterface {
-  validate(post: any, args: ValidationArguments) {
-    const object = args.object as CreateEventInput;
+export function IsPostValidWhenSharing(validationOptions?: ValidationOptions) {
+  return ValidateFieldDependency(
+    {
+      field: 'shareAsPost',
+      condition: (value) => value === true,
+      required: true,
+      message: 'Post details are required when shareAsPost is true',
+    },
+    validationOptions,
+  );
+}
 
-    // If shareAsPost is true, post must be provided
-    if (object.shareAsPost === true && !post) {
-      return false;
-    }
-
-    // If post is provided, shareAsPost must be true
-    if (post && object.shareAsPost !== true) {
-      return false;
-    }
-
-    return true;
-  }
-
-  defaultMessage(args: ValidationArguments) {
-    const object = args.object as CreateEventInput;
-
-    if (object.shareAsPost === true && !object.post) {
-      return 'Post details are required when shareAsPost is true';
-    }
-
-    if (object.post && object.shareAsPost !== true) {
-      return 'shareAsPost must be true when providing post details';
-    }
-
-    return 'Invalid post sharing configuration';
-  }
+export function IsShareAsPostValid(validationOptions?: ValidationOptions) {
+  return ValidateFieldDependency(
+    {
+      field: 'post',
+      condition: (value) => value !== undefined,
+      required: true,
+      message: 'shareAsPost must be true when providing post details',
+    },
+    validationOptions,
+  );
 }
