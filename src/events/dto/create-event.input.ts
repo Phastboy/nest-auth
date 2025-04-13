@@ -1,8 +1,10 @@
 import { InputType, Field, Int } from '@nestjs/graphql';
 import { CreatePostInput } from 'src/posts/dto/create-post.input';
-import { IsInt, Validate, ValidateIf } from 'class-validator';
-import { IsPostValidWhenSharing } from '../validators/post-sharing.validator';
+import { IsInt, validate, Validate, ValidateIf } from 'class-validator';
 import { EventMode, EventStatus, EventType } from 'src/@generated';
+import { RecurrenceInput } from 'src/recurrence/types/recurrence.input';
+import { ValidatePostSharing } from '../validators/post-sharing.validator';
+import { ValidateRecurrence } from '../validators/recurrence.validator';
 
 @InputType()
 export class CreateEventInput {
@@ -42,11 +44,12 @@ export class CreateEventInput {
   })
   isRecurring?: boolean;
 
-  @Field(() => String, {
+  @Field(() => RecurrenceInput, {
     nullable: true,
     description: 'how the event is repeated',
   })
-  recurrenceRule?: string;
+  @ValidateRecurrence()
+  recurrenceRule?: RecurrenceInput;
 
   @Field(() => Boolean, {
     nullable: true,
@@ -58,18 +61,13 @@ export class CreateEventInput {
     nullable: true,
     description: 'whether to share the event as a post',
   })
-  @ValidateIf((o) => o.shareAsPost !== undefined)
-  @Validate(IsPostValidWhenSharing, {
-    message: 'Event cannot be shared as a post if it is not public',
-  })
   shareAsPost?: boolean;
 
   @Field(() => CreatePostInput, {
     nullable: true,
     description: 'Post details required if sharing as a post',
   })
-  @ValidateIf((o) => o.shareAsPost === true)
-  @Validate(IsPostValidWhenSharing)
+  @ValidatePostSharing()
   post?: CreatePostInput;
 
   @Field(() => EventStatus, {

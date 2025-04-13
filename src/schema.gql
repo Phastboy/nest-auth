@@ -771,7 +771,7 @@ input RecurrenceInput {
   """
   The start date and time of the recurrence. If not provided, the current date and time will be used.
   """
-  dtstart: DateTime = "2025-04-13T03:04:25.615Z"
+  dtstart: DateTime = "2025-04-13T04:37:29.456Z"
 
   """
   The frequency of the recurrence. if not given, the default frequency is YEARLY.
