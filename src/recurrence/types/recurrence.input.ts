@@ -1,6 +1,4 @@
-import { Field, InputType, Int } from '@nestjs/graphql';
-import { log } from 'console';
-import { DateTime } from 'graphql-scalars/typings/mocks';
+import { Field, InputType, Int, registerEnumType } from '@nestjs/graphql';
 import { Weekday, WeekdayInput } from './weekday.input';
 
 export enum RecurrenceFrequency {
@@ -13,6 +11,11 @@ export enum RecurrenceFrequency {
   Secondly = 'SECONDLY',
 }
 
+registerEnumType(RecurrenceFrequency, {
+  name: 'RecurrenceFrequency',
+  description: 'The frequency at which an event recurs',
+});
+
 @InputType()
 export class RecurrenceInput {
   @Field(() => RecurrenceFrequency, {
@@ -23,7 +26,7 @@ export class RecurrenceInput {
   })
   frequency?: RecurrenceFrequency;
 
-  @Field(() => DateTime, {
+  @Field(() => Date, {
     nullable: true,
     description:
       'The start date and time of the recurrence. If not provided, the current date and time will be used.',
@@ -51,7 +54,7 @@ export class RecurrenceInput {
   })
   wkst?: Weekday;
 
-  @Field(() => DateTime, {
+  @Field(() => Date, {
     nullable: true,
     description: `The end date and time of the recurrence. If provided, it will override the count parameter.  If a recurrence instance happens to be the same as the ${Date} instance given in the until argument, this will be the last occurrence.`,
   })
