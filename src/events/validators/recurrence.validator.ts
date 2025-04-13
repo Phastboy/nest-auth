@@ -1,50 +1,25 @@
 import { ValidationOptions } from 'class-validator';
-import { ValidateFieldDependency } from './field-dependency.validator';
-import { RecurrenceInput } from 'src/recurrence/types/recurrence.input';
+import { ValidateDependentFields } from './dependent-fields.validator';
 
 /**
- * Validates that a recurrence rule exists when isRecurring is true
- * @function IsValidRecurrence
- * @param {ValidationOptions} [validationOptions] - Optional validation options
- * @returns {PropertyDecorator} A class-validator decorator function
+ * Validates that the recurrence configuration is logically consistent.
+ * @param validationOptions - Optional class-validator options
+ * @returns PropertyDecorator
  *
  * @example
- * @IsValidRecurrence()
+ * @ValidateRecurrence()
+ * isRecurring?: boolean;
  * recurrenceRule?: RecurrenceInput;
  */
-export function IsValidRecurrence(
-  validationOptions?: ValidationOptions,
-): PropertyDecorator {
-  return ValidateFieldDependency(
-    {
-      field: 'isRecurring',
-      condition: (isRecurring: boolean) => isRecurring,
-      message: 'Recurrence rule is required when isRecurring is true',
-      required: true,
-    },
-    validationOptions,
-  );
-}
-
-/**
- * Validates that isRecurring is properly set when a recurrence rule exists
- * @function IsRecurringValid
- * @param {ValidationOptions} [validationOptions] - Optional validation options
- * @returns {PropertyDecorator} A class-validator decorator function
- *
- * @example
- * @IsRecurringValid()
- * isRecurring?: boolean;
- */
-export function IsRecurringValid(
-  validationOptions?: ValidationOptions,
-): PropertyDecorator {
-  return ValidateFieldDependency(
-    {
-      field: 'recurrenceRule',
-      condition: (recurrenceRule: RecurrenceInput) => !!recurrenceRule,
-      message: 'isRecurring must be true when recurrence rule is defined',
-      required: true,
+export function ValidateRecurrence(validationOptions?: ValidationOptions): PropertyDecorator {
+  return ValidateDependentFields(
+    ['isRecurring'],
+    ([recurrenceRule, isRecurring]) => isRecurring ? !!recurrenceRule : !recurrenceRule,
+    (args) => {
+      const { isRecurring, recurrenceRule } = args.object as any;
+      if (isRecurring && !recurrenceRule) return 'recurrenceRule is required when isRecurring is true!';
+      if (recurrenceRule && !isRecurring) return 'isRecurring must be true if recurrenceRule is provided!';
+      return 'Invalid recurrence configuration!';
     },
     validationOptions,
   );

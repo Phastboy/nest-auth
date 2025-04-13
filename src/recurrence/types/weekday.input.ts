@@ -1,4 +1,4 @@
-import { Field, InputType } from '@nestjs/graphql';
+import { Field, InputType, registerEnumType } from '@nestjs/graphql';
 
 export enum Weekday {
   Monday = 'MO',
@@ -9,6 +9,11 @@ export enum Weekday {
   Saturday = 'SA',
   Sunday = 'SU',
 }
+
+registerEnumType(Weekday, {
+  name: 'Weekday',
+  description: 'The days of the week',
+});
 
 @InputType()
 export class WeekdayInput {
