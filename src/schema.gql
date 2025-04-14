@@ -358,6 +358,14 @@ type EventCountAggregate {
   userId: Int!
 }
 
+input EventFilterInput {
+  categoryId: Int
+  eventMode: EventMode
+  eventStatus: EventStatus
+  eventType: EventType
+  userId: Int
+}
+
 input EventIncludeInput {
   _count: Boolean
   categories: Boolean
@@ -655,7 +663,7 @@ type Query {
 
   """Get a category by ID"""
   category(categoryId: Int!, include: CategoryIncludeInput): Category!
-  findAllEvents(categoryId: Int, eventMode: String, eventStatus: String, eventType: String, includeInput: EventIncludeInput): [Event!]!
+  findAllEvents(filterInput: EventFilterInput, includeInput: EventIncludeInput): [Event!]!
 
   """Finds all users"""
   findAllUsers: [User!]!
@@ -778,7 +786,7 @@ input RecurrenceInput {
   """
   The start date and time of the recurrence. If not provided, the current date and time will be used.
   """
-  dtstart: DateTime = "2025-04-14T02:04:19.780Z"
+  dtstart: DateTime = "2025-04-14T02:42:20.327Z"
 
   """
   The frequency of the recurrence. if not given, the default frequency is YEARLY.

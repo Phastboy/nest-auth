@@ -2,17 +2,41 @@ import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import { CreateEventInput } from './dto/create-event.input';
 import { UpdateEventInput } from './dto/update-event.input';
 import { PrismaService } from 'nestjs-prisma';
-import { Event } from 'src/@generated';
 import { EventIncludeInput } from './dto/event-include.input';
-import { Prisma } from '@prisma/client';
-import { DEFAULT_EVENT_RELATIONS_TO_BE_INCLUDED } from './dto/event.type';
+import { EventMode, EventStatus, EventType, Prisma } from '@prisma/client';
+import {
+  DEFAULT_EVENT_RELATIONS_TO_BE_INCLUDED,
+  EventWithRelations,
+} from './dto/event.type';
 import { RecurrenceService } from 'src/recurrence/recurrence.service';
+import { ErrorHandler } from 'src/error-handler/error.util';
 
+/**
+ * @description Interface for filtering events
+ * @property userId - ID of the user who created the event
+ * @property categoryId - ID of the category the event belongs to
+ * @property eventStatus - Status of the event (e.g., active, inactive)
+ * @property eventType - Type of the event (e.g., public, private)
+ * @property eventMode - Mode of the event (e.g., online, offline)
+ */
+export interface IEventFilter {
+  userId?: number;
+  categoryId?: number;
+  eventStatus?: EventStatus;
+  eventType?: EventType;
+  eventMode?: EventMode;
+}
+
+/**
+ * @class EventsService for managing events
+ * @description This class handles the business logic for creating, retrieving, and managing events.
+ */
 @Injectable()
 export class EventsService {
   constructor(
     private readonly prismaService: PrismaService,
     private readonly recurrenceService: RecurrenceService,
+    private readonly handler: ErrorHandler,
   ) {}
 
   private readonly logger = new Logger(EventsService.name);
@@ -36,11 +60,20 @@ export class EventsService {
     };
   }
 
+  /**
+   * @method createEvent
+   * @description Creates a new event and optionally shares it as a post.
+   * @param userId the user ID of the event creator
+   * @param newEventData the data for the new event
+   * @param includeInput the relations to include in the event response
+   * @returns the created event
+   * @throws BadRequestException if the event creation fails
+   */
   async createEvent(
     userId: number,
     newEventData: CreateEventInput,
     includeInput?: EventIncludeInput,
-  ): Promise<Event> {
+  ): Promise<EventWithRelations> {
     const recurrenceRule = newEventData.isRecurring
       ? this.recurrenceService.getRecurrences({
           rruleOptions: newEventData.recurrenceRule!,
@@ -65,6 +98,7 @@ export class EventsService {
                 }
               : undefined,
           },
+          include: this.buildIncludeRelations(includeInput),
         });
 
         this.logger.log(`Event created successfully with ID: ${event.id}`);
@@ -98,5 +132,47 @@ export class EventsService {
       },
       include: this.buildIncludeRelations(includeInput),
     });
+  }
+
+  /**
+   * @method findAllEvents
+   * @description Retrieves all events, optionally filtered by user ID and category ID.
+   * @param filter the filter criteria for retrieving events
+   * @param includeInput the relations to include in the event response
+   * @returns an array of events
+   * @throws BadRequestException if the event retrieval fails
+   */
+  async findAllEvents(
+    filter: IEventFilter,
+    includeInput?: EventIncludeInput,
+  ): Promise<EventWithRelations[]> {
+    const where: Prisma.EventWhereInput = {
+      ...(filter.userId && { userId: filter.userId }),
+      ...(filter.categoryId && {
+        categories: {
+          some: {
+            id: filter.categoryId,
+          },
+        },
+      }),
+      ...(filter.eventStatus && { eventStatus: filter.eventStatus }),
+      ...(filter.eventType && { eventType: filter.eventType }),
+      ...(filter.eventMode && { eventMode: filter.eventMode }),
+    };
+    try {
+      return await this.prismaService.event.findMany({
+        where,
+        include: this.buildIncludeRelations(includeInput),
+      });
+    } catch (error) {
+      this.handler.handleError(error, {
+        operation: 'findAllEvents',
+        service: 'EventsService',
+        metadata: {
+          filter,
+          includeInput,
+        },
+      });
+    }
   }
 }
