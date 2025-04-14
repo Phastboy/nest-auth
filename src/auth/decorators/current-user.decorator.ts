@@ -6,7 +6,9 @@ import {
 import { GqlExecutionContext } from '@nestjs/graphql';
 import { AuthenticatedUser } from '../types/auth.types';
 import { PrismaService } from 'nestjs-prisma';
+import { AppLogger } from 'src/app.logger';
 
+const logger = new AppLogger('CurrentUserDecorator');
 export interface ICurrentUser extends AuthenticatedUser {
   roles?: string[];
 }
@@ -17,6 +19,7 @@ export const CurrentUser = createParamDecorator(
   ): Promise<ICurrentUser> => {
     const ctx = GqlExecutionContext.create(context);
     const user = ctx.getContext().req.user;
+    logger.log('Current user:', user);
     if (!user?.userId) {
       throw new NotFoundException('User not found');
     }
