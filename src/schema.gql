@@ -358,6 +358,12 @@ type EventCountAggregate {
   userId: Int!
 }
 
+input EventIncludeInput {
+  _count: Boolean
+  categories: Boolean
+  post: Boolean
+}
+
 type EventMaxAggregate {
   buildingId: Int
   createdAt: DateTime
@@ -495,7 +501,7 @@ type Mutation {
 
   """Create a new category"""
   createCategory(data: CreateCategoryInput!, include: CategoryIncludeInput): Category!
-  createEvent(createEventInput: CreateEventInput!): Event!
+  createEvent(createEventInput: CreateEventInput!, includeInput: EventIncludeInput): Event!
   createPost(createPostInput: CreatePostInput!): Post!
   createRole(createRoleInput: CreateRoleInput!): Role!
   deleteCategory(categoryId: Int!, include: CategoryIncludeInput): Category!
@@ -649,6 +655,7 @@ type Query {
 
   """Get a category by ID"""
   category(categoryId: Int!, include: CategoryIncludeInput): Category!
+  findAllEvents(categoryId: Int, eventMode: String, eventStatus: String, eventType: String, includeInput: EventIncludeInput): [Event!]!
 
   """Finds all users"""
   findAllUsers: [User!]!
@@ -771,7 +778,7 @@ input RecurrenceInput {
   """
   The start date and time of the recurrence. If not provided, the current date and time will be used.
   """
-  dtstart: DateTime = "2025-04-13T04:37:29.456Z"
+  dtstart: DateTime = "2025-04-14T02:04:19.780Z"
 
   """
   The frequency of the recurrence. if not given, the default frequency is YEARLY.
