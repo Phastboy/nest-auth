@@ -5,11 +5,6 @@ import { RecurrenceService } from 'src/recurrence/recurrence.service';
 import { ErrorHandler } from 'src/error-handler/error.util';
 
 @Module({
-  providers: [
-    EventsResolver, 
-    EventsService, 
-    RecurrenceService, 
-    ErrorHandler
-  ],
+  providers: [EventsResolver, EventsService, RecurrenceService, ErrorHandler],
 })
 export class EventsModule {}
