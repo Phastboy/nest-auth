@@ -526,8 +526,10 @@ type Mutation {
 
   """for creating a new user"""
   register(createUserInput: CreateUserInput!): User!
+  removeEvent(eventId: Int!, includeInput: EventIncludeInput): Event!
   removeRoleFromUser(roleName: String!, userId: Int!): UserRole!
   updateCategory(categoryId: Int!, data: UpdateCategoryInput!, include: CategoryIncludeInput): Category!
+  updateEvent(eventId: Int!, includeInput: EventIncludeInput, updateEventInput: UpdateEventInput!): Event!
   updatePost(id: Int!, updatePostInput: UpdatePostInput!): Post!
 
   """Updates a user by ID"""
@@ -667,6 +669,7 @@ type Query {
 
   """Finds all users"""
   findAllUsers: [User!]!
+  findOneEvent(eventId: Int!, includeInput: EventIncludeInput): Event!
 
   """Finds a user by ID"""
   findOneUser(id: Int!): User!
@@ -786,7 +789,7 @@ input RecurrenceInput {
   """
   The start date and time of the recurrence. If not provided, the current date and time will be used.
   """
-  dtstart: DateTime = "2025-04-14T02:42:20.327Z"
+  dtstart: DateTime = "2025-04-14T03:40:29.648Z"
 
   """
   The frequency of the recurrence. if not given, the default frequency is YEARLY.
@@ -922,6 +925,53 @@ input UpdateCategoryInput {
   id: Int!
   name: String
   slug: String
+}
+
+input UpdateEventInput {
+  categoryIds: [Int!]
+
+  """The description of the event"""
+  description: String
+
+  """The date and time when the event ends"""
+  endTime: DateTime
+
+  """The link to the event"""
+  eventLink: String
+
+  """The mode of the event"""
+  eventMode: EventMode
+
+  """The status of the event"""
+  eventStatus: EventStatus
+
+  """The type of the event"""
+  eventType: EventType
+  id: Int!
+
+  """The cover image of the event"""
+  image: String
+
+  """Whether the event is a public event"""
+  isPublic: Boolean
+
+  """Whether the event is frequently repeated"""
+  isRecurring: Boolean
+
+  """Post details required if sharing as a post"""
+  post: CreatePostInput
+
+  """how the event is repeated"""
+  recurrenceRule: RecurrenceInput
+
+  """whether to share the event as a post"""
+  shareAsPost: Boolean
+
+  """The date and time when the event starts"""
+  startTime: DateTime
+
+  """The title of the event"""
+  title: String
 }
 
 input UpdatePostInput {

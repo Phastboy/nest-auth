@@ -175,4 +175,135 @@ export class EventsService {
       });
     }
   }
+
+  /**
+   * @method findEventById
+   * @description Retrieves an event by its ID, optionally including specified relations.
+   * @param eventId the ID of the event to retrieve
+   * @param includeInput the relations to include in the event response
+   * @returns the event with the specified ID
+   * @throws Exception if the event retrieval fails
+   */
+  async findEventById(
+    eventId: number,
+    includeInput?: EventIncludeInput,
+  ): Promise<EventWithRelations> {
+    try {
+      return await this.prismaService.event.findUniqueOrThrow({
+        where: { id: eventId },
+        include: this.buildIncludeRelations(includeInput),
+      });
+    } catch (error) {
+      this.handler.handleError(error, {
+        operation: 'findEventById',
+        service: 'EventsService',
+        metadata: {
+          eventId,
+          includeInput,
+        },
+      });
+    }
+  }
+
+  /**
+   * @method updateEvent
+   * @description Updates an existing event by its ID.
+   * @param eventId the ID of the event to update
+   * @param userId the ID of the user updating the event, strictly the same as the creator
+   * @param updateEventInput the data for updating the event
+   * @returns Event the updated event
+   * @throws any errors that occur during the update process
+   */
+  async updateEvent(
+    eventId: number,
+    userId: number,
+    updateEventInput: UpdateEventInput,
+    includeInput?: EventIncludeInput,
+  ): Promise<EventWithRelations> {
+    const recurrenceRule = updateEventInput.isRecurring
+      ? this.recurrenceService.getRecurrences({
+          rruleOptions: updateEventInput.recurrenceRule!,
+        }).rruleString
+      : undefined;
+
+    try {
+      // confirm that the user is the creator of the event
+      const event = await this.prismaService.event.findUniqueOrThrow({
+        where: { id: eventId },
+      });
+      if (event.userId !== userId) {
+        throw new BadRequestException(
+          `User with ID ${userId} is not authorized to update this event.`,
+        );
+      }
+      // update the event
+      return await this.prismaService.event.update({
+        where: { id: eventId },
+        data: {
+          ...updateEventInput,
+          userId,
+          isRecurring: updateEventInput.isRecurring,
+          recurrenceRule,
+          post: updateEventInput.post
+            ? {
+                update: updateEventInput.post,
+              }
+            : undefined,
+        },
+        include: this.buildIncludeRelations(includeInput),
+      });
+    } catch (error) {
+      this.handler.handleError(error, {
+        operation: 'updateEvent',
+        service: 'EventsService',
+        metadata: {
+          eventId,
+          userId,
+          updateEventInput,
+          includeInput,
+        },
+      });
+    }
+  }
+
+  /**
+   * @method deleteEvent
+   * @description Deletes an event by its ID.
+   * @param eventId the ID of the event to delete
+   * @param userId the ID of the user deleting the event, strictly the same as the creator
+   * @returns Event the deleted event
+   * @throws any errors that occur during the deletion process
+   */
+  async deleteEvent(
+    eventId: number,
+    userId: number,
+    includeInput?: EventIncludeInput,
+  ): Promise<EventWithRelations> {
+    try {
+      // confirm that the user is the creator of the event
+      const event = await this.prismaService.event.findUniqueOrThrow({
+        where: { id: eventId },
+      });
+      if (event.userId !== userId) {
+        throw new BadRequestException(
+          `User with ID ${userId} is not authorized to delete this event.`,
+        );
+      }
+      // delete the event
+      return await this.prismaService.event.delete({
+        where: { id: eventId },
+        include: this.buildIncludeRelations(includeInput),
+      });
+    } catch (error) {
+      this.handler.handleError(error, {
+        operation: 'deleteEvent',
+        service: 'EventsService',
+        metadata: {
+          eventId,
+          userId,
+          includeInput,
+        },
+      });
+    }
+  }
 }
