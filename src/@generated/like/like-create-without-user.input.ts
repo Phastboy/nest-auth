@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { PostCreateNestedOneWithoutLikesInput } from '../post/post-create-nested-one-without-likes.input';
 import { EventCreateNestedOneWithoutLikesInput } from '../event/event-create-nested-one-without-likes.input';
+import { EventOccurrenceCreateNestedOneWithoutLikesInput } from '../event-occurrence/event-occurrence-create-nested-one-without-likes.input';
 
 @InputType()
 export class LikeCreateWithoutUserInput {
@@ -13,4 +14,9 @@ export class LikeCreateWithoutUserInput {
 
   @Field(() => EventCreateNestedOneWithoutLikesInput, { nullable: true })
   event?: EventCreateNestedOneWithoutLikesInput;
+
+  @Field(() => EventOccurrenceCreateNestedOneWithoutLikesInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceCreateNestedOneWithoutLikesInput;
 }

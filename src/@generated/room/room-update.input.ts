@@ -4,7 +4,7 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { BuildingUpdateOneRequiredWithoutRoomsNestedInput } from '../building/building-update-one-required-without-rooms-nested.input';
-import { EventUpdateManyWithoutRoomNestedInput } from '../event/event-update-many-without-room-nested.input';
+import { EventOccurrenceUpdateManyWithoutRoomNestedInput } from '../event-occurrence/event-occurrence-update-many-without-room-nested.input';
 
 @InputType()
 export class RoomUpdateInput {
@@ -22,6 +22,8 @@ export class RoomUpdateInput {
   })
   building?: BuildingUpdateOneRequiredWithoutRoomsNestedInput;
 
-  @Field(() => EventUpdateManyWithoutRoomNestedInput, { nullable: true })
-  events?: EventUpdateManyWithoutRoomNestedInput;
+  @Field(() => EventOccurrenceUpdateManyWithoutRoomNestedInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceUpdateManyWithoutRoomNestedInput;
 }

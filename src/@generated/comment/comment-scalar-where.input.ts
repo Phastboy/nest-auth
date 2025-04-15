@@ -36,4 +36,7 @@ export class CommentScalarWhereInput {
 
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
+
+  @Field(() => IntNullableFilter, { nullable: true })
+  eventOccurrenceId?: IntNullableFilter;
 }

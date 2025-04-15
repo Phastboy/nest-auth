@@ -6,6 +6,7 @@ import { UserUpdateOneRequiredWithoutCommentsNestedInput } from '../user/user-up
 import { EventUpdateOneWithoutCommentsNestedInput } from '../event/event-update-one-without-comments-nested.input';
 import { CommentUpdateOneWithoutRepliesNestedInput } from './comment-update-one-without-replies-nested.input';
 import { CommentUpdateManyWithoutParentNestedInput } from './comment-update-many-without-parent-nested.input';
+import { EventOccurrenceUpdateOneWithoutCommentsNestedInput } from '../event-occurrence/event-occurrence-update-one-without-comments-nested.input';
 
 @InputType()
 export class CommentUpdateWithoutPostInput {
@@ -28,4 +29,9 @@ export class CommentUpdateWithoutPostInput {
 
   @Field(() => CommentUpdateManyWithoutParentNestedInput, { nullable: true })
   replies?: CommentUpdateManyWithoutParentNestedInput;
+
+  @Field(() => EventOccurrenceUpdateOneWithoutCommentsNestedInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceUpdateOneWithoutCommentsNestedInput;
 }

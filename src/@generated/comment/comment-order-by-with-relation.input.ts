@@ -6,6 +6,7 @@ import { UserOrderByWithRelationInput } from '../user/user-order-by-with-relatio
 import { PostOrderByWithRelationInput } from '../post/post-order-by-with-relation.input';
 import { EventOrderByWithRelationInput } from '../event/event-order-by-with-relation.input';
 import { CommentOrderByRelationAggregateInput } from './comment-order-by-relation-aggregate.input';
+import { EventOccurrenceOrderByWithRelationInput } from '../event-occurrence/event-occurrence-order-by-with-relation.input';
 
 @InputType()
 export class CommentOrderByWithRelationInput {
@@ -30,6 +31,9 @@ export class CommentOrderByWithRelationInput {
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 
+  @Field(() => SortOrderInput, { nullable: true })
+  eventOccurrenceId?: SortOrderInput;
+
   @Field(() => UserOrderByWithRelationInput, { nullable: true })
   user?: UserOrderByWithRelationInput;
 
@@ -44,4 +48,7 @@ export class CommentOrderByWithRelationInput {
 
   @Field(() => CommentOrderByRelationAggregateInput, { nullable: true })
   replies?: CommentOrderByRelationAggregateInput;
+
+  @Field(() => EventOccurrenceOrderByWithRelationInput, { nullable: true })
+  EventOccurrence?: EventOccurrenceOrderByWithRelationInput;
 }

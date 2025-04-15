@@ -1,15 +1,13 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
-import { EventStatus } from '../prisma/event-status.enum';
 import { EventMode } from '../prisma/event-mode.enum';
 import { EventType } from '../prisma/event-type.enum';
 import { UserCreateNestedOneWithoutEventsInput } from '../user/user-create-nested-one-without-events.input';
 import { PostCreateNestedOneWithoutEventInput } from '../post/post-create-nested-one-without-event.input';
 import { CategoryCreateNestedManyWithoutEventsInput } from '../category/category-create-nested-many-without-events.input';
-import { RoomCreateNestedOneWithoutEventsInput } from '../room/room-create-nested-one-without-events.input';
-import { BuildingCreateNestedOneWithoutEventsInput } from '../building/building-create-nested-one-without-events.input';
 import { CommentCreateNestedManyWithoutEventInput } from '../comment/comment-create-nested-many-without-event.input';
 import { RSVPCreateNestedManyWithoutEventInput } from '../rsvp/rsvp-create-nested-many-without-event.input';
+import { EventOccurrenceCreateNestedManyWithoutEventInput } from '../event-occurrence/event-occurrence-create-nested-many-without-event.input';
 
 @InputType()
 export class EventCreateWithoutLikesInput {
@@ -18,12 +16,6 @@ export class EventCreateWithoutLikesInput {
 
   @Field(() => String, { nullable: true })
   description?: string;
-
-  @Field(() => Date, { nullable: true })
-  startTime?: Date | string;
-
-  @Field(() => Date, { nullable: true })
-  endTime?: Date | string;
 
   @Field(() => String, { nullable: true })
   image?: string;
@@ -38,10 +30,10 @@ export class EventCreateWithoutLikesInput {
   isPublic?: boolean;
 
   @Field(() => Boolean, { nullable: true })
-  shareAsPost?: boolean;
+  active?: boolean;
 
-  @Field(() => EventStatus, { nullable: true })
-  eventStatus?: `${EventStatus}`;
+  @Field(() => Boolean, { nullable: true })
+  shareAsPost?: boolean;
 
   @Field(() => EventMode, { nullable: true })
   eventMode?: `${EventMode}`;
@@ -67,15 +59,14 @@ export class EventCreateWithoutLikesInput {
   @Field(() => CategoryCreateNestedManyWithoutEventsInput, { nullable: true })
   categories?: CategoryCreateNestedManyWithoutEventsInput;
 
-  @Field(() => RoomCreateNestedOneWithoutEventsInput, { nullable: true })
-  room?: RoomCreateNestedOneWithoutEventsInput;
-
-  @Field(() => BuildingCreateNestedOneWithoutEventsInput, { nullable: true })
-  building?: BuildingCreateNestedOneWithoutEventsInput;
-
   @Field(() => CommentCreateNestedManyWithoutEventInput, { nullable: true })
   comments?: CommentCreateNestedManyWithoutEventInput;
 
   @Field(() => RSVPCreateNestedManyWithoutEventInput, { nullable: true })
   rsvps?: RSVPCreateNestedManyWithoutEventInput;
+
+  @Field(() => EventOccurrenceCreateNestedManyWithoutEventInput, {
+    nullable: true,
+  })
+  occurrences?: EventOccurrenceCreateNestedManyWithoutEventInput;
 }

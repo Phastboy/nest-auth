@@ -29,4 +29,7 @@ export class LikeScalarWhereInput {
 
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
+
+  @Field(() => IntNullableFilter, { nullable: true })
+  eventOccurrenceId?: IntNullableFilter;
 }

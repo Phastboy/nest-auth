@@ -4,7 +4,7 @@ import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { Room } from '../room/room.model';
-import { Event } from '../event/event.model';
+import { EventOccurrence } from '../event-occurrence/event-occurrence.model';
 import { BuildingCount } from './building-count.output';
 
 @ObjectType()
@@ -42,8 +42,8 @@ export class Building {
   @Field(() => [Room], { nullable: true })
   rooms?: Array<Room>;
 
-  @Field(() => [Event], { nullable: true })
-  events?: Array<Event>;
+  @Field(() => [EventOccurrence], { nullable: true })
+  EventOccurrence?: Array<EventOccurrence>;
 
   @Field(() => BuildingCount, { nullable: false })
   _count?: BuildingCount;

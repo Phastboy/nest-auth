@@ -2,9 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
-import { EnumEventStatusFieldUpdateOperationsInput } from '../prisma/enum-event-status-field-update-operations.input';
 import { EnumEventModeFieldUpdateOperationsInput } from '../prisma/enum-event-mode-field-update-operations.input';
 import { EnumEventTypeFieldUpdateOperationsInput } from '../prisma/enum-event-type-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
@@ -16,12 +14,6 @@ export class EventUpdateManyMutationInput {
 
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   description?: NullableStringFieldUpdateOperationsInput;
-
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  startTime?: NullableDateTimeFieldUpdateOperationsInput;
-
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  endTime?: NullableDateTimeFieldUpdateOperationsInput;
 
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   image?: NullableStringFieldUpdateOperationsInput;
@@ -36,10 +28,10 @@ export class EventUpdateManyMutationInput {
   isPublic?: BoolFieldUpdateOperationsInput;
 
   @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
-  shareAsPost?: BoolFieldUpdateOperationsInput;
+  active?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => EnumEventStatusFieldUpdateOperationsInput, { nullable: true })
-  eventStatus?: EnumEventStatusFieldUpdateOperationsInput;
+  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
+  shareAsPost?: BoolFieldUpdateOperationsInput;
 
   @Field(() => EnumEventModeFieldUpdateOperationsInput, { nullable: true })
   eventMode?: EnumEventModeFieldUpdateOperationsInput;

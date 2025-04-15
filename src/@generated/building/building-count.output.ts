@@ -8,5 +8,5 @@ export class BuildingCount {
   rooms?: number;
 
   @Field(() => Int, { nullable: false })
-  events?: number;
+  EventOccurrence?: number;
 }

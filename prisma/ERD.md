@@ -50,20 +50,29 @@ erDiagram
   Int id PK
   String title
   String description "nullable"
-  DateTime startTime "nullable"
-  DateTime endTime "nullable"
   String image "nullable"
   Boolean isRecurring
   String recurrenceRule "nullable"
   Boolean isPublic
+  Boolean active
   Int userId FK
   Boolean shareAsPost
-  EventStatus eventStatus
   EventMode eventMode
   EventType eventType
   String eventLink "nullable"
-  Int roomId FK "nullable"
+  DateTime createdAt
+  DateTime updatedAt
+}
+"event_occurrences" {
+  Int id PK
+  Int eventId FK
+  DateTime startTime
+  DateTime endTime
+  EventStatus eventStatus
+  EventMode eventMode
+  String eventLink "nullable"
   Int buildingId FK "nullable"
+  Int roomId FK "nullable"
   DateTime createdAt
   DateTime updatedAt
 }
@@ -94,6 +103,7 @@ erDiagram
   Int eventId FK "nullable"
   Int parentId FK "nullable"
   DateTime createdAt
+  Int eventOccurrenceId FK "nullable"
 }
 "likes" {
   Int id PK
@@ -101,6 +111,7 @@ erDiagram
   Int postId FK "nullable"
   Int eventId FK "nullable"
   DateTime createdAt
+  Int eventOccurrenceId FK "nullable"
 }
 "rsvps" {
   Int id PK
@@ -108,6 +119,7 @@ erDiagram
   Int eventId FK
   String status
   DateTime createdAt
+  Int eventOccurrenceId FK "nullable"
 }
 "notifications" {
   Int id PK
@@ -132,18 +144,22 @@ erDiagram
 "posts" |o--o| "events" : event
 "posts" }o--|| "users" : user
 "events" }o--|| "users" : user
-"events" }o--o| "rooms" : room
-"events" }o--o| "buildings" : building
+"event_occurrences" }o--|| "events" : event
+"event_occurrences" }o--o| "buildings" : building
+"event_occurrences" }o--o| "rooms" : room
 "rooms" }o--|| "buildings" : building
 "comments" }o--|| "users" : user
 "comments" }o--o| "posts" : post
 "comments" }o--o| "events" : event
 "comments" }o--o| "comments" : parent
+"comments" }o--o| "event_occurrences" : EventOccurrence
 "likes" }o--|| "users" : user
 "likes" }o--o| "posts" : post
 "likes" }o--o| "events" : event
+"likes" }o--o| "event_occurrences" : EventOccurrence
 "rsvps" }o--|| "users" : user
 "rsvps" }o--|| "events" : event
+"rsvps" }o--o| "event_occurrences" : EventOccurrence
 "notifications" }o--|| "users" : user
 "_CategoryToPost" }o--|| "categories" : Category
 "_CategoryToPost" }o--|| "posts" : Post
@@ -207,20 +223,31 @@ erDiagram
   - `id`: 
   - `title`: 
   - `description`: 
-  - `startTime`: 
-  - `endTime`: 
   - `image`: 
   - `isRecurring`: 
   - `recurrenceRule`: 
   - `isPublic`: 
+  - `active`: 
   - `userId`: 
   - `shareAsPost`: 
-  - `eventStatus`: 
   - `eventMode`: 
   - `eventType`: 
   - `eventLink`: 
-  - `roomId`: 
+  - `createdAt`: 
+  - `updatedAt`: 
+
+### `event_occurrences`
+
+**Properties**
+  - `id`: 
+  - `eventId`: 
+  - `startTime`: 
+  - `endTime`: 
+  - `eventStatus`: 
+  - `eventMode`: 
+  - `eventLink`: 
   - `buildingId`: 
+  - `roomId`: 
   - `createdAt`: 
   - `updatedAt`: 
 
@@ -257,6 +284,7 @@ erDiagram
   - `eventId`: 
   - `parentId`: 
   - `createdAt`: 
+  - `eventOccurrenceId`: 
 
 ### `likes`
 
@@ -266,6 +294,7 @@ erDiagram
   - `postId`: 
   - `eventId`: 
   - `createdAt`: 
+  - `eventOccurrenceId`: 
 
 ### `rsvps`
 
@@ -275,6 +304,7 @@ erDiagram
   - `eventId`: 
   - `status`: 
   - `createdAt`: 
+  - `eventOccurrenceId`: 
 
 ### `notifications`
 

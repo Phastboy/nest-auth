@@ -5,6 +5,7 @@ import { Int } from '@nestjs/graphql';
 import { User } from '../user/user.model';
 import { Post } from '../post/post.model';
 import { Event } from '../event/event.model';
+import { EventOccurrence } from '../event-occurrence/event-occurrence.model';
 
 @ObjectType()
 export class Like {
@@ -23,6 +24,9 @@ export class Like {
   @Field(() => Date, { nullable: false })
   createdAt!: Date;
 
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId!: number | null;
+
   @Field(() => User, { nullable: false })
   user?: User;
 
@@ -31,4 +35,7 @@ export class Like {
 
   @Field(() => Event, { nullable: true })
   event?: Event | null;
+
+  @Field(() => EventOccurrence, { nullable: true })
+  EventOccurrence?: EventOccurrence | null;
 }

@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
 import { SortOrderInput } from '../prisma/sort-order.input';
 import { BuildingOrderByWithRelationInput } from '../building/building-order-by-with-relation.input';
-import { EventOrderByRelationAggregateInput } from '../event/event-order-by-relation-aggregate.input';
+import { EventOccurrenceOrderByRelationAggregateInput } from '../event-occurrence/event-occurrence-order-by-relation-aggregate.input';
 
 @InputType()
 export class RoomOrderByWithRelationInput {
@@ -25,6 +25,6 @@ export class RoomOrderByWithRelationInput {
   @Field(() => BuildingOrderByWithRelationInput, { nullable: true })
   building?: BuildingOrderByWithRelationInput;
 
-  @Field(() => EventOrderByRelationAggregateInput, { nullable: true })
-  events?: EventOrderByRelationAggregateInput;
+  @Field(() => EventOccurrenceOrderByRelationAggregateInput, { nullable: true })
+  EventOccurrence?: EventOccurrenceOrderByRelationAggregateInput;
 }

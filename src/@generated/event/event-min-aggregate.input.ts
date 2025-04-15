@@ -13,12 +13,6 @@ export class EventMinAggregateInput {
   description?: true;
 
   @Field(() => Boolean, { nullable: true })
-  startTime?: true;
-
-  @Field(() => Boolean, { nullable: true })
-  endTime?: true;
-
-  @Field(() => Boolean, { nullable: true })
   image?: true;
 
   @Field(() => Boolean, { nullable: true })
@@ -31,13 +25,13 @@ export class EventMinAggregateInput {
   isPublic?: true;
 
   @Field(() => Boolean, { nullable: true })
+  active?: true;
+
+  @Field(() => Boolean, { nullable: true })
   userId?: true;
 
   @Field(() => Boolean, { nullable: true })
   shareAsPost?: true;
-
-  @Field(() => Boolean, { nullable: true })
-  eventStatus?: true;
 
   @Field(() => Boolean, { nullable: true })
   eventMode?: true;
@@ -47,12 +41,6 @@ export class EventMinAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   eventLink?: true;
-
-  @Field(() => Boolean, { nullable: true })
-  roomId?: true;
-
-  @Field(() => Boolean, { nullable: true })
-  buildingId?: true;
 
   @Field(() => Boolean, { nullable: true })
   createdAt?: true;

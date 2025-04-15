@@ -18,4 +18,7 @@ export class LikeMinOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  eventOccurrenceId?: `${SortOrder}`;
 }

@@ -18,4 +18,7 @@ export class CommentSumAggregate {
 
   @Field(() => Int, { nullable: true })
   parentId?: number;
+
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId?: number;
 }

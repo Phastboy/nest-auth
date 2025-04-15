@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
-import { EventUpdateManyWithoutRoomNestedInput } from '../event/event-update-many-without-room-nested.input';
+import { EventOccurrenceUpdateManyWithoutRoomNestedInput } from '../event-occurrence/event-occurrence-update-many-without-room-nested.input';
 
 @InputType()
 export class RoomUpdateWithoutBuildingInput {
@@ -16,6 +16,8 @@ export class RoomUpdateWithoutBuildingInput {
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;
 
-  @Field(() => EventUpdateManyWithoutRoomNestedInput, { nullable: true })
-  events?: EventUpdateManyWithoutRoomNestedInput;
+  @Field(() => EventOccurrenceUpdateManyWithoutRoomNestedInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceUpdateManyWithoutRoomNestedInput;
 }

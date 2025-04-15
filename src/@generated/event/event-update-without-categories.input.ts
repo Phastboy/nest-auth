@@ -2,19 +2,16 @@ import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
-import { EnumEventStatusFieldUpdateOperationsInput } from '../prisma/enum-event-status-field-update-operations.input';
 import { EnumEventModeFieldUpdateOperationsInput } from '../prisma/enum-event-mode-field-update-operations.input';
 import { EnumEventTypeFieldUpdateOperationsInput } from '../prisma/enum-event-type-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UserUpdateOneRequiredWithoutEventsNestedInput } from '../user/user-update-one-required-without-events-nested.input';
 import { PostUpdateOneWithoutEventNestedInput } from '../post/post-update-one-without-event-nested.input';
-import { RoomUpdateOneWithoutEventsNestedInput } from '../room/room-update-one-without-events-nested.input';
-import { BuildingUpdateOneWithoutEventsNestedInput } from '../building/building-update-one-without-events-nested.input';
 import { CommentUpdateManyWithoutEventNestedInput } from '../comment/comment-update-many-without-event-nested.input';
 import { RSVPUpdateManyWithoutEventNestedInput } from '../rsvp/rsvp-update-many-without-event-nested.input';
 import { LikeUpdateManyWithoutEventNestedInput } from '../like/like-update-many-without-event-nested.input';
+import { EventOccurrenceUpdateManyWithoutEventNestedInput } from '../event-occurrence/event-occurrence-update-many-without-event-nested.input';
 
 @InputType()
 export class EventUpdateWithoutCategoriesInput {
@@ -23,12 +20,6 @@ export class EventUpdateWithoutCategoriesInput {
 
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   description?: NullableStringFieldUpdateOperationsInput;
-
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  startTime?: NullableDateTimeFieldUpdateOperationsInput;
-
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  endTime?: NullableDateTimeFieldUpdateOperationsInput;
 
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   image?: NullableStringFieldUpdateOperationsInput;
@@ -43,10 +34,10 @@ export class EventUpdateWithoutCategoriesInput {
   isPublic?: BoolFieldUpdateOperationsInput;
 
   @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
-  shareAsPost?: BoolFieldUpdateOperationsInput;
+  active?: BoolFieldUpdateOperationsInput;
 
-  @Field(() => EnumEventStatusFieldUpdateOperationsInput, { nullable: true })
-  eventStatus?: EnumEventStatusFieldUpdateOperationsInput;
+  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
+  shareAsPost?: BoolFieldUpdateOperationsInput;
 
   @Field(() => EnumEventModeFieldUpdateOperationsInput, { nullable: true })
   eventMode?: EnumEventModeFieldUpdateOperationsInput;
@@ -71,12 +62,6 @@ export class EventUpdateWithoutCategoriesInput {
   @Field(() => PostUpdateOneWithoutEventNestedInput, { nullable: true })
   post?: PostUpdateOneWithoutEventNestedInput;
 
-  @Field(() => RoomUpdateOneWithoutEventsNestedInput, { nullable: true })
-  room?: RoomUpdateOneWithoutEventsNestedInput;
-
-  @Field(() => BuildingUpdateOneWithoutEventsNestedInput, { nullable: true })
-  building?: BuildingUpdateOneWithoutEventsNestedInput;
-
   @Field(() => CommentUpdateManyWithoutEventNestedInput, { nullable: true })
   comments?: CommentUpdateManyWithoutEventNestedInput;
 
@@ -85,4 +70,9 @@ export class EventUpdateWithoutCategoriesInput {
 
   @Field(() => LikeUpdateManyWithoutEventNestedInput, { nullable: true })
   likes?: LikeUpdateManyWithoutEventNestedInput;
+
+  @Field(() => EventOccurrenceUpdateManyWithoutEventNestedInput, {
+    nullable: true,
+  })
+  occurrences?: EventOccurrenceUpdateManyWithoutEventNestedInput;
 }

@@ -142,110 +142,139 @@ enum EventType {
 }
 
 model Event {
-  id             Int         @id @default(autoincrement())
+  id             Int               @id @default(autoincrement())
   title          String
   description    String?
-  startTime      DateTime?
-  endTime        DateTime?
   image          String?
-  isRecurring    Boolean     @default(false)
+  isRecurring    Boolean           @default(false)
   recurrenceRule String?
-  isPublic       Boolean     @default(true)
-  user           User        @relation(fields: [userId], references: [id])
+  isPublic       Boolean           @default(true)
+  active         Boolean           @default(true)
+  user           User              @relation(fields: [userId], references: [id])
   userId         Int
-  shareAsPost    Boolean     @default(false)
-  post           Post?       @relation("PostedEvent")
-  eventStatus    EventStatus @default(SCHEDULED)
-  eventMode      EventMode   @default(PHYSICAL)
-  eventType      EventType   @default(LECTURE)
+  shareAsPost    Boolean           @default(false)
+  post           Post?             @relation("PostedEvent")
+  eventMode      EventMode         @default(PHYSICAL)
+  eventType      EventType         @default(LECTURE)
   eventLink      String?
   categories     Category[]
-  room           Room?       @relation(fields: [roomId], references: [id])
-  roomId         Int?
-  building       Building?   @relation(fields: [buildingId], references: [id])
-  buildingId     Int?
   comments       Comment[]
   rsvps          RSVP[]
   likes          Like[]
-  createdAt      DateTime    @default(now())
-  updatedAt      DateTime    @updatedAt
+  occurrences    EventOccurrence[]
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
 
-  @@index([userId, startTime, eventStatus, eventType, eventMode])
+  @@index([userId, eventType, eventMode, active])
   @@map("events")
+}
+
+model EventOccurrence {
+  id      Int   @id @default(autoincrement())
+  event   Event @relation(fields: [eventId], references: [id])
+  eventId Int
+
+  startTime DateTime
+  endTime   DateTime
+
+  eventStatus EventStatus @default(SCHEDULED)
+  eventMode   EventMode   @default(PHYSICAL)
+  eventLink   String?
+
+  building   Building? @relation(fields: [buildingId], references: [id])
+  buildingId Int?
+  room       Room?     @relation(fields: [roomId], references: [id])
+  roomId     Int?
+
+  rsvps    RSVP[]
+  comments Comment[]
+  likes    Like[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([eventId, startTime, eventStatus, buildingId, roomId])
+  @@map("event_occurrences")
 }
 
 // ==============================================================
 // Venue Management
 // ==============================================================
 model Building {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
-  number    Int?
-  road      String?
-  landmark  String?
-  area      String?
-  longitude Float
-  latitude  Float
-  capacity  Int?
-  rooms     Room[]
-  events    Event[]
-  createdAt DateTime @default(now())
+  id              Int               @id @default(autoincrement())
+  name            String            @unique
+  number          Int?
+  road            String?
+  landmark        String?
+  area            String?
+  longitude       Float
+  latitude        Float
+  capacity        Int?
+  rooms           Room[]
+  createdAt       DateTime          @default(now())
+  EventOccurrence EventOccurrence[]
 
   @@map("buildings")
 }
 
 model Room {
-  id         Int      @id @default(autoincrement())
-  name       String
-  building   Building @relation(fields: [buildingId], references: [id])
-  buildingId Int
-  capacity   Int?
-  events     Event[]
-  createdAt  DateTime @default(now())
+  id              Int               @id @default(autoincrement())
+  name            String
+  building        Building          @relation(fields: [buildingId], references: [id])
+  buildingId      Int
+  capacity        Int?
+  createdAt       DateTime          @default(now())
+  EventOccurrence EventOccurrence[]
 
   @@map("rooms")
 }
 
 model Comment {
-  id        Int       @id @default(autoincrement())
-  content   String
-  user      User      @relation(fields: [userId], references: [id])
-  userId    Int
-  post      Post?     @relation(fields: [postId], references: [id])
-  postId    Int?
-  event     Event?    @relation(fields: [eventId], references: [id])
-  eventId   Int?
-  parent    Comment?  @relation("CommentReplies", fields: [parentId], references: [id])
-  parentId  Int?
-  replies   Comment[] @relation("CommentReplies")
-  createdAt DateTime  @default(now())
+  id                Int              @id @default(autoincrement())
+  content           String
+  user              User             @relation(fields: [userId], references: [id])
+  userId            Int
+  post              Post?            @relation(fields: [postId], references: [id])
+  postId            Int?
+  event             Event?           @relation(fields: [eventId], references: [id])
+  eventId           Int?
+  parent            Comment?         @relation("CommentReplies", fields: [parentId], references: [id])
+  parentId          Int?
+  replies           Comment[]        @relation("CommentReplies")
+  createdAt         DateTime         @default(now())
+  EventOccurrence   EventOccurrence? @relation(fields: [eventOccurrenceId], references: [id])
+  eventOccurrenceId Int?
 
   @@index([userId, postId, eventId, parentId])
   @@map("comments")
 }
 
 model Like {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  post      Post?    @relation(fields: [postId], references: [id])
-  postId    Int?
-  event     Event?   @relation(fields: [eventId], references: [id])
-  eventId   Int?
-  createdAt DateTime @default(now())
+  id                Int              @id @default(autoincrement())
+  user              User             @relation(fields: [userId], references: [id])
+  userId            Int
+  post              Post?            @relation(fields: [postId], references: [id])
+  postId            Int?
+  event             Event?           @relation(fields: [eventId], references: [id])
+  eventId           Int?
+  createdAt         DateTime         @default(now())
+  EventOccurrence   EventOccurrence? @relation(fields: [eventOccurrenceId], references: [id])
+  eventOccurrenceId Int?
 
   @@unique([userId, postId, eventId])
   @@map("likes")
 }
 
 model RSVP {
-  id        Int      @id @default(autoincrement())
-  user      User     @relation(fields: [userId], references: [id])
-  userId    Int
-  event     Event    @relation(fields: [eventId], references: [id])
-  eventId   Int
-  status    String   @default("going")
-  createdAt DateTime @default(now())
+  id                Int              @id @default(autoincrement())
+  user              User             @relation(fields: [userId], references: [id])
+  userId            Int
+  event             Event            @relation(fields: [eventId], references: [id])
+  eventId           Int
+  status            String           @default("going")
+  createdAt         DateTime         @default(now())
+  EventOccurrence   EventOccurrence? @relation(fields: [eventOccurrenceId], references: [id])
+  eventOccurrenceId Int?
 
   @@unique([userId, eventId])
   @@map("rsvps")

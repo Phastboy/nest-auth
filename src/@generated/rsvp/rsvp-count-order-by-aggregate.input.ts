@@ -18,4 +18,7 @@ export class RSVPCountOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  eventOccurrenceId?: `${SortOrder}`;
 }

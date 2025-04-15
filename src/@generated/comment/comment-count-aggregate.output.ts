@@ -26,5 +26,8 @@ export class CommentCountAggregate {
   createdAt!: number;
 
   @Field(() => Int, { nullable: false })
+  eventOccurrenceId!: number;
+
+  @Field(() => Int, { nullable: false })
   _all!: number;
 }

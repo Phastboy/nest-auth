@@ -24,4 +24,7 @@ export class CommentMinAggregate {
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
+
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId?: number;
 }

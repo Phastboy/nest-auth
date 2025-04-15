@@ -6,6 +6,7 @@ export enum RSVPScalarFieldEnum {
   eventId = 'eventId',
   status = 'status',
   createdAt = 'createdAt',
+  eventOccurrenceId = 'eventOccurrenceId',
 }
 
 registerEnumType(RSVPScalarFieldEnum, {

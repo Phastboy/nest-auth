@@ -15,4 +15,7 @@ export class LikeSumOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   eventId?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  eventOccurrenceId?: `${SortOrder}`;
 }

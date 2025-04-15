@@ -15,4 +15,7 @@ export class EventCount {
 
   @Field(() => Int, { nullable: false })
   likes?: number;
+
+  @Field(() => Int, { nullable: false })
+  occurrences?: number;
 }

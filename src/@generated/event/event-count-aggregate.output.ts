@@ -14,12 +14,6 @@ export class EventCountAggregate {
   description!: number;
 
   @Field(() => Int, { nullable: false })
-  startTime!: number;
-
-  @Field(() => Int, { nullable: false })
-  endTime!: number;
-
-  @Field(() => Int, { nullable: false })
   image!: number;
 
   @Field(() => Int, { nullable: false })
@@ -32,13 +26,13 @@ export class EventCountAggregate {
   isPublic!: number;
 
   @Field(() => Int, { nullable: false })
+  active!: number;
+
+  @Field(() => Int, { nullable: false })
   userId!: number;
 
   @Field(() => Int, { nullable: false })
   shareAsPost!: number;
-
-  @Field(() => Int, { nullable: false })
-  eventStatus!: number;
 
   @Field(() => Int, { nullable: false })
   eventMode!: number;
@@ -48,12 +42,6 @@ export class EventCountAggregate {
 
   @Field(() => Int, { nullable: false })
   eventLink!: number;
-
-  @Field(() => Int, { nullable: false })
-  roomId!: number;
-
-  @Field(() => Int, { nullable: false })
-  buildingId!: number;
 
   @Field(() => Int, { nullable: false })
   createdAt!: number;

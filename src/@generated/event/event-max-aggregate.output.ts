@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { EventStatus } from '../prisma/event-status.enum';
 import { EventMode } from '../prisma/event-mode.enum';
 import { EventType } from '../prisma/event-type.enum';
 
@@ -16,12 +15,6 @@ export class EventMaxAggregate {
   @Field(() => String, { nullable: true })
   description?: string;
 
-  @Field(() => Date, { nullable: true })
-  startTime?: Date | string;
-
-  @Field(() => Date, { nullable: true })
-  endTime?: Date | string;
-
   @Field(() => String, { nullable: true })
   image?: string;
 
@@ -34,14 +27,14 @@ export class EventMaxAggregate {
   @Field(() => Boolean, { nullable: true })
   isPublic?: boolean;
 
+  @Field(() => Boolean, { nullable: true })
+  active?: boolean;
+
   @Field(() => Int, { nullable: true })
   userId?: number;
 
   @Field(() => Boolean, { nullable: true })
   shareAsPost?: boolean;
-
-  @Field(() => EventStatus, { nullable: true })
-  eventStatus?: `${EventStatus}`;
 
   @Field(() => EventMode, { nullable: true })
   eventMode?: `${EventMode}`;
@@ -51,12 +44,6 @@ export class EventMaxAggregate {
 
   @Field(() => String, { nullable: true })
   eventLink?: string;
-
-  @Field(() => Int, { nullable: true })
-  roomId?: number;
-
-  @Field(() => Int, { nullable: true })
-  buildingId?: number;
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;

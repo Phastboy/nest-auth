@@ -12,4 +12,7 @@ export class RSVPSumOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   eventId?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  eventOccurrenceId?: `${SortOrder}`;
 }

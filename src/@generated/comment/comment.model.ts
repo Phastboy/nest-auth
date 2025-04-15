@@ -5,6 +5,7 @@ import { Int } from '@nestjs/graphql';
 import { User } from '../user/user.model';
 import { Post } from '../post/post.model';
 import { Event } from '../event/event.model';
+import { EventOccurrence } from '../event-occurrence/event-occurrence.model';
 import { CommentCount } from './comment-count.output';
 
 @ObjectType()
@@ -30,6 +31,9 @@ export class Comment {
   @Field(() => Date, { nullable: false })
   createdAt!: Date;
 
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId!: number | null;
+
   @Field(() => User, { nullable: false })
   user?: User;
 
@@ -44,6 +48,9 @@ export class Comment {
 
   @Field(() => [Comment], { nullable: true })
   replies?: Array<Comment>;
+
+  @Field(() => EventOccurrence, { nullable: true })
+  EventOccurrence?: EventOccurrence | null;
 
   @Field(() => CommentCount, { nullable: false })
   _count?: CommentCount;

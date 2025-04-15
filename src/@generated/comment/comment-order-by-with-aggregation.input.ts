@@ -31,6 +31,9 @@ export class CommentOrderByWithAggregationInput {
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 
+  @Field(() => SortOrderInput, { nullable: true })
+  eventOccurrenceId?: SortOrderInput;
+
   @Field(() => CommentCountOrderByAggregateInput, { nullable: true })
   _count?: CommentCountOrderByAggregateInput;
 

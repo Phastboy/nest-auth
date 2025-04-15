@@ -25,6 +25,9 @@ export class LikeOrderByWithAggregationInput {
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
 
+  @Field(() => SortOrderInput, { nullable: true })
+  eventOccurrenceId?: SortOrderInput;
+
   @Field(() => LikeCountOrderByAggregateInput, { nullable: true })
   _count?: LikeCountOrderByAggregateInput;
 

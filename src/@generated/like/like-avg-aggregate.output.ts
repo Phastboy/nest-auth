@@ -15,4 +15,7 @@ export class LikeAvgAggregate {
 
   @Field(() => Float, { nullable: true })
   eventId?: number;
+
+  @Field(() => Float, { nullable: true })
+  eventOccurrenceId?: number;
 }

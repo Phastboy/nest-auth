@@ -12,4 +12,7 @@ export class RSVPSumAggregate {
 
   @Field(() => Int, { nullable: true })
   eventId?: number;
+
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId?: number;
 }

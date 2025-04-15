@@ -17,4 +17,7 @@ export class LikeMinAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   createdAt?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  eventOccurrenceId?: true;
 }

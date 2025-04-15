@@ -7,7 +7,7 @@ import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
 import { FloatFilter } from '../prisma/float-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { RoomListRelationFilter } from '../room/room-list-relation-filter.input';
-import { EventListRelationFilter } from '../event/event-list-relation-filter.input';
+import { EventOccurrenceListRelationFilter } from '../event-occurrence/event-occurrence-list-relation-filter.input';
 
 @InputType()
 export class BuildingWhereInput {
@@ -53,6 +53,6 @@ export class BuildingWhereInput {
   @Field(() => RoomListRelationFilter, { nullable: true })
   rooms?: RoomListRelationFilter;
 
-  @Field(() => EventListRelationFilter, { nullable: true })
-  events?: EventListRelationFilter;
+  @Field(() => EventOccurrenceListRelationFilter, { nullable: true })
+  EventOccurrence?: EventOccurrenceListRelationFilter;
 }

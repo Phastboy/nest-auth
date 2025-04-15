@@ -20,12 +20,6 @@ export class EventOrderByWithAggregationInput {
   description?: SortOrderInput;
 
   @Field(() => SortOrderInput, { nullable: true })
-  startTime?: SortOrderInput;
-
-  @Field(() => SortOrderInput, { nullable: true })
-  endTime?: SortOrderInput;
-
-  @Field(() => SortOrderInput, { nullable: true })
   image?: SortOrderInput;
 
   @Field(() => SortOrder, { nullable: true })
@@ -38,13 +32,13 @@ export class EventOrderByWithAggregationInput {
   isPublic?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
+  active?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
   userId?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
   shareAsPost?: `${SortOrder}`;
-
-  @Field(() => SortOrder, { nullable: true })
-  eventStatus?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
   eventMode?: `${SortOrder}`;
@@ -54,12 +48,6 @@ export class EventOrderByWithAggregationInput {
 
   @Field(() => SortOrderInput, { nullable: true })
   eventLink?: SortOrderInput;
-
-  @Field(() => SortOrderInput, { nullable: true })
-  roomId?: SortOrderInput;
-
-  @Field(() => SortOrderInput, { nullable: true })
-  buildingId?: SortOrderInput;
 
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;

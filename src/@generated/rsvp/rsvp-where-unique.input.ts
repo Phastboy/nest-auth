@@ -6,8 +6,10 @@ import { RSVPWhereInput } from './rsvp-where.input';
 import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
+import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 import { EventScalarRelationFilter } from '../event/event-scalar-relation-filter.input';
+import { EventOccurrenceNullableScalarRelationFilter } from '../event-occurrence/event-occurrence-nullable-scalar-relation-filter.input';
 
 @InputType()
 export class RSVPWhereUniqueInput {
@@ -38,9 +40,15 @@ export class RSVPWhereUniqueInput {
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
 
+  @Field(() => IntNullableFilter, { nullable: true })
+  eventOccurrenceId?: IntNullableFilter;
+
   @Field(() => UserScalarRelationFilter, { nullable: true })
   user?: UserScalarRelationFilter;
 
   @Field(() => EventScalarRelationFilter, { nullable: true })
   event?: EventScalarRelationFilter;
+
+  @Field(() => EventOccurrenceNullableScalarRelationFilter, { nullable: true })
+  EventOccurrence?: EventOccurrenceNullableScalarRelationFilter;
 }
