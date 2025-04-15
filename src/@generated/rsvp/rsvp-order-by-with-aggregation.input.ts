@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { SortOrder } from '../prisma/sort-order.enum';
+import { SortOrderInput } from '../prisma/sort-order.input';
 import { RSVPCountOrderByAggregateInput } from './rsvp-count-order-by-aggregate.input';
 import { RSVPAvgOrderByAggregateInput } from './rsvp-avg-order-by-aggregate.input';
 import { RSVPMaxOrderByAggregateInput } from './rsvp-max-order-by-aggregate.input';
@@ -23,6 +24,9 @@ export class RSVPOrderByWithAggregationInput {
 
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;
+
+  @Field(() => SortOrderInput, { nullable: true })
+  eventOccurrenceId?: SortOrderInput;
 
   @Field(() => RSVPCountOrderByAggregateInput, { nullable: true })
   _count?: RSVPCountOrderByAggregateInput;

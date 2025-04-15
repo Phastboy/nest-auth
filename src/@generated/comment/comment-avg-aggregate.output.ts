@@ -18,4 +18,7 @@ export class CommentAvgAggregate {
 
   @Field(() => Float, { nullable: true })
   parentId?: number;
+
+  @Field(() => Float, { nullable: true })
+  eventOccurrenceId?: number;
 }

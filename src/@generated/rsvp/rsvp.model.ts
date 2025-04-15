@@ -4,6 +4,7 @@ import { ID } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { User } from '../user/user.model';
 import { Event } from '../event/event.model';
+import { EventOccurrence } from '../event-occurrence/event-occurrence.model';
 
 @ObjectType()
 export class RSVP {
@@ -22,9 +23,15 @@ export class RSVP {
   @Field(() => Date, { nullable: false })
   createdAt!: Date;
 
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId!: number | null;
+
   @Field(() => User, { nullable: false })
   user?: User;
 
   @Field(() => Event, { nullable: false })
   event?: Event;
+
+  @Field(() => EventOccurrence, { nullable: true })
+  EventOccurrence?: EventOccurrence | null;
 }

@@ -3,6 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UserUpdateOneRequiredWithoutLikesNestedInput } from '../user/user-update-one-required-without-likes-nested.input';
 import { EventUpdateOneWithoutLikesNestedInput } from '../event/event-update-one-without-likes-nested.input';
+import { EventOccurrenceUpdateOneWithoutLikesNestedInput } from '../event-occurrence/event-occurrence-update-one-without-likes-nested.input';
 
 @InputType()
 export class LikeUpdateWithoutPostInput {
@@ -14,4 +15,9 @@ export class LikeUpdateWithoutPostInput {
 
   @Field(() => EventUpdateOneWithoutLikesNestedInput, { nullable: true })
   event?: EventUpdateOneWithoutLikesNestedInput;
+
+  @Field(() => EventOccurrenceUpdateOneWithoutLikesNestedInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceUpdateOneWithoutLikesNestedInput;
 }

@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { EventStatus } from '../prisma/event-status.enum';
 import { EventMode } from '../prisma/event-mode.enum';
 import { EventType } from '../prisma/event-type.enum';
 import { PostUncheckedCreateNestedOneWithoutEventInput } from '../post/post-unchecked-create-nested-one-without-event.input';
@@ -9,6 +8,7 @@ import { CategoryUncheckedCreateNestedManyWithoutEventsInput } from '../category
 import { CommentUncheckedCreateNestedManyWithoutEventInput } from '../comment/comment-unchecked-create-nested-many-without-event.input';
 import { RSVPUncheckedCreateNestedManyWithoutEventInput } from '../rsvp/rsvp-unchecked-create-nested-many-without-event.input';
 import { LikeUncheckedCreateNestedManyWithoutEventInput } from '../like/like-unchecked-create-nested-many-without-event.input';
+import { EventOccurrenceUncheckedCreateNestedManyWithoutEventInput } from '../event-occurrence/event-occurrence-unchecked-create-nested-many-without-event.input';
 
 @InputType()
 export class EventUncheckedCreateWithoutUserInput {
@@ -20,12 +20,6 @@ export class EventUncheckedCreateWithoutUserInput {
 
   @Field(() => String, { nullable: true })
   description?: string;
-
-  @Field(() => Date, { nullable: true })
-  startTime?: Date | string;
-
-  @Field(() => Date, { nullable: true })
-  endTime?: Date | string;
 
   @Field(() => String, { nullable: true })
   image?: string;
@@ -40,10 +34,10 @@ export class EventUncheckedCreateWithoutUserInput {
   isPublic?: boolean;
 
   @Field(() => Boolean, { nullable: true })
-  shareAsPost?: boolean;
+  active?: boolean;
 
-  @Field(() => EventStatus, { nullable: true })
-  eventStatus?: `${EventStatus}`;
+  @Field(() => Boolean, { nullable: true })
+  shareAsPost?: boolean;
 
   @Field(() => EventMode, { nullable: true })
   eventMode?: `${EventMode}`;
@@ -53,12 +47,6 @@ export class EventUncheckedCreateWithoutUserInput {
 
   @Field(() => String, { nullable: true })
   eventLink?: string;
-
-  @Field(() => Int, { nullable: true })
-  roomId?: number;
-
-  @Field(() => Int, { nullable: true })
-  buildingId?: number;
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
@@ -90,4 +78,9 @@ export class EventUncheckedCreateWithoutUserInput {
     nullable: true,
   })
   likes?: LikeUncheckedCreateNestedManyWithoutEventInput;
+
+  @Field(() => EventOccurrenceUncheckedCreateNestedManyWithoutEventInput, {
+    nullable: true,
+  })
+  occurrences?: EventOccurrenceUncheckedCreateNestedManyWithoutEventInput;
 }

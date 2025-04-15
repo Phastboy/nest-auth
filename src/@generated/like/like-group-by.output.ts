@@ -24,6 +24,9 @@ export class LikeGroupBy {
   @Field(() => Date, { nullable: false })
   createdAt!: Date | string;
 
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId?: number;
+
   @Field(() => LikeCountAggregate, { nullable: true })
   _count?: LikeCountAggregate;
 

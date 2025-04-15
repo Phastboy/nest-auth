@@ -36,4 +36,7 @@ export class CommentScalarWhereWithAggregatesInput {
 
   @Field(() => DateTimeWithAggregatesFilter, { nullable: true })
   createdAt?: DateTimeWithAggregatesFilter;
+
+  @Field(() => IntNullableWithAggregatesFilter, { nullable: true })
+  eventOccurrenceId?: IntNullableWithAggregatesFilter;
 }

@@ -11,4 +11,7 @@ export class RSVPSumAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   eventId?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  eventOccurrenceId?: true;
 }

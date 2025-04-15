@@ -30,6 +30,9 @@ export class CommentGroupBy {
   @Field(() => Date, { nullable: false })
   createdAt!: Date | string;
 
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId?: number;
+
   @Field(() => CommentCountAggregate, { nullable: true })
   _count?: CommentCountAggregate;
 

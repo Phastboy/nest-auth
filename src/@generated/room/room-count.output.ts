@@ -5,5 +5,5 @@ import { Int } from '@nestjs/graphql';
 @ObjectType()
 export class RoomCount {
   @Field(() => Int, { nullable: false })
-  events?: number;
+  EventOccurrence?: number;
 }

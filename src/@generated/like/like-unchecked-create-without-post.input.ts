@@ -15,4 +15,7 @@ export class LikeUncheckedCreateWithoutPostInput {
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;
+
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId?: number;
 }

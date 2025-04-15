@@ -24,12 +24,14 @@ export { EventCreateNestedManyWithoutRoomInput } from './event-create-nested-man
 export { EventCreateNestedManyWithoutUserInput } from './event-create-nested-many-without-user.input';
 export { EventCreateNestedOneWithoutCommentsInput } from './event-create-nested-one-without-comments.input';
 export { EventCreateNestedOneWithoutLikesInput } from './event-create-nested-one-without-likes.input';
+export { EventCreateNestedOneWithoutOccurrencesInput } from './event-create-nested-one-without-occurrences.input';
 export { EventCreateNestedOneWithoutPostInput } from './event-create-nested-one-without-post.input';
 export { EventCreateNestedOneWithoutRsvpsInput } from './event-create-nested-one-without-rsvps.input';
 export { EventCreateOrConnectWithoutBuildingInput } from './event-create-or-connect-without-building.input';
 export { EventCreateOrConnectWithoutCategoriesInput } from './event-create-or-connect-without-categories.input';
 export { EventCreateOrConnectWithoutCommentsInput } from './event-create-or-connect-without-comments.input';
 export { EventCreateOrConnectWithoutLikesInput } from './event-create-or-connect-without-likes.input';
+export { EventCreateOrConnectWithoutOccurrencesInput } from './event-create-or-connect-without-occurrences.input';
 export { EventCreateOrConnectWithoutPostInput } from './event-create-or-connect-without-post.input';
 export { EventCreateOrConnectWithoutRoomInput } from './event-create-or-connect-without-room.input';
 export { EventCreateOrConnectWithoutRsvpsInput } from './event-create-or-connect-without-rsvps.input';
@@ -38,6 +40,7 @@ export { EventCreateWithoutBuildingInput } from './event-create-without-building
 export { EventCreateWithoutCategoriesInput } from './event-create-without-categories.input';
 export { EventCreateWithoutCommentsInput } from './event-create-without-comments.input';
 export { EventCreateWithoutLikesInput } from './event-create-without-likes.input';
+export { EventCreateWithoutOccurrencesInput } from './event-create-without-occurrences.input';
 export { EventCreateWithoutPostInput } from './event-create-without-post.input';
 export { EventCreateWithoutRoomInput } from './event-create-without-room.input';
 export { EventCreateWithoutRsvpsInput } from './event-create-without-rsvps.input';
@@ -71,6 +74,7 @@ export { EventUncheckedCreateWithoutBuildingInput } from './event-unchecked-crea
 export { EventUncheckedCreateWithoutCategoriesInput } from './event-unchecked-create-without-categories.input';
 export { EventUncheckedCreateWithoutCommentsInput } from './event-unchecked-create-without-comments.input';
 export { EventUncheckedCreateWithoutLikesInput } from './event-unchecked-create-without-likes.input';
+export { EventUncheckedCreateWithoutOccurrencesInput } from './event-unchecked-create-without-occurrences.input';
 export { EventUncheckedCreateWithoutPostInput } from './event-unchecked-create-without-post.input';
 export { EventUncheckedCreateWithoutRoomInput } from './event-unchecked-create-without-room.input';
 export { EventUncheckedCreateWithoutRsvpsInput } from './event-unchecked-create-without-rsvps.input';
@@ -89,6 +93,7 @@ export { EventUncheckedUpdateWithoutBuildingInput } from './event-unchecked-upda
 export { EventUncheckedUpdateWithoutCategoriesInput } from './event-unchecked-update-without-categories.input';
 export { EventUncheckedUpdateWithoutCommentsInput } from './event-unchecked-update-without-comments.input';
 export { EventUncheckedUpdateWithoutLikesInput } from './event-unchecked-update-without-likes.input';
+export { EventUncheckedUpdateWithoutOccurrencesInput } from './event-unchecked-update-without-occurrences.input';
 export { EventUncheckedUpdateWithoutPostInput } from './event-unchecked-update-without-post.input';
 export { EventUncheckedUpdateWithoutRoomInput } from './event-unchecked-update-without-room.input';
 export { EventUncheckedUpdateWithoutRsvpsInput } from './event-unchecked-update-without-rsvps.input';
@@ -103,12 +108,14 @@ export { EventUpdateManyWithoutBuildingNestedInput } from './event-update-many-w
 export { EventUpdateManyWithoutCategoriesNestedInput } from './event-update-many-without-categories-nested.input';
 export { EventUpdateManyWithoutRoomNestedInput } from './event-update-many-without-room-nested.input';
 export { EventUpdateManyWithoutUserNestedInput } from './event-update-many-without-user-nested.input';
+export { EventUpdateOneRequiredWithoutOccurrencesNestedInput } from './event-update-one-required-without-occurrences-nested.input';
 export { EventUpdateOneRequiredWithoutRsvpsNestedInput } from './event-update-one-required-without-rsvps-nested.input';
 export { EventUpdateOneWithoutCommentsNestedInput } from './event-update-one-without-comments-nested.input';
 export { EventUpdateOneWithoutLikesNestedInput } from './event-update-one-without-likes-nested.input';
 export { EventUpdateOneWithoutPostNestedInput } from './event-update-one-without-post-nested.input';
 export { EventUpdateToOneWithWhereWithoutCommentsInput } from './event-update-to-one-with-where-without-comments.input';
 export { EventUpdateToOneWithWhereWithoutLikesInput } from './event-update-to-one-with-where-without-likes.input';
+export { EventUpdateToOneWithWhereWithoutOccurrencesInput } from './event-update-to-one-with-where-without-occurrences.input';
 export { EventUpdateToOneWithWhereWithoutPostInput } from './event-update-to-one-with-where-without-post.input';
 export { EventUpdateToOneWithWhereWithoutRsvpsInput } from './event-update-to-one-with-where-without-rsvps.input';
 export { EventUpdateWithWhereUniqueWithoutBuildingInput } from './event-update-with-where-unique-without-building.input';
@@ -119,6 +126,7 @@ export { EventUpdateWithoutBuildingInput } from './event-update-without-building
 export { EventUpdateWithoutCategoriesInput } from './event-update-without-categories.input';
 export { EventUpdateWithoutCommentsInput } from './event-update-without-comments.input';
 export { EventUpdateWithoutLikesInput } from './event-update-without-likes.input';
+export { EventUpdateWithoutOccurrencesInput } from './event-update-without-occurrences.input';
 export { EventUpdateWithoutPostInput } from './event-update-without-post.input';
 export { EventUpdateWithoutRoomInput } from './event-update-without-room.input';
 export { EventUpdateWithoutRsvpsInput } from './event-update-without-rsvps.input';
@@ -130,6 +138,7 @@ export { EventUpsertWithWhereUniqueWithoutRoomInput } from './event-upsert-with-
 export { EventUpsertWithWhereUniqueWithoutUserInput } from './event-upsert-with-where-unique-without-user.input';
 export { EventUpsertWithoutCommentsInput } from './event-upsert-without-comments.input';
 export { EventUpsertWithoutLikesInput } from './event-upsert-without-likes.input';
+export { EventUpsertWithoutOccurrencesInput } from './event-upsert-without-occurrences.input';
 export { EventUpsertWithoutPostInput } from './event-upsert-without-post.input';
 export { EventUpsertWithoutRsvpsInput } from './event-upsert-without-rsvps.input';
 export { EventWhereUniqueInput } from './event-where-unique.input';

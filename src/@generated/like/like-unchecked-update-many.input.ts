@@ -20,4 +20,7 @@ export class LikeUncheckedUpdateManyInput {
 
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;
+
+  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+  eventOccurrenceId?: NullableIntFieldUpdateOperationsInput;
 }

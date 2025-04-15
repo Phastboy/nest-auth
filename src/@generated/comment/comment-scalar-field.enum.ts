@@ -8,6 +8,7 @@ export enum CommentScalarFieldEnum {
   eventId = 'eventId',
   parentId = 'parentId',
   createdAt = 'createdAt',
+  eventOccurrenceId = 'eventOccurrenceId',
 }
 
 registerEnumType(CommentScalarFieldEnum, {

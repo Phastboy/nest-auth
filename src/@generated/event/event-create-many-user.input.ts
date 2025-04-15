@@ -1,7 +1,6 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
-import { EventStatus } from '../prisma/event-status.enum';
 import { EventMode } from '../prisma/event-mode.enum';
 import { EventType } from '../prisma/event-type.enum';
 
@@ -16,12 +15,6 @@ export class EventCreateManyUserInput {
   @Field(() => String, { nullable: true })
   description?: string;
 
-  @Field(() => Date, { nullable: true })
-  startTime?: Date | string;
-
-  @Field(() => Date, { nullable: true })
-  endTime?: Date | string;
-
   @Field(() => String, { nullable: true })
   image?: string;
 
@@ -35,10 +28,10 @@ export class EventCreateManyUserInput {
   isPublic?: boolean;
 
   @Field(() => Boolean, { nullable: true })
-  shareAsPost?: boolean;
+  active?: boolean;
 
-  @Field(() => EventStatus, { nullable: true })
-  eventStatus?: `${EventStatus}`;
+  @Field(() => Boolean, { nullable: true })
+  shareAsPost?: boolean;
 
   @Field(() => EventMode, { nullable: true })
   eventMode?: `${EventMode}`;
@@ -48,12 +41,6 @@ export class EventCreateManyUserInput {
 
   @Field(() => String, { nullable: true })
   eventLink?: string;
-
-  @Field(() => Int, { nullable: true })
-  roomId?: number;
-
-  @Field(() => Int, { nullable: true })
-  buildingId?: number;
 
   @Field(() => Date, { nullable: true })
   createdAt?: Date | string;

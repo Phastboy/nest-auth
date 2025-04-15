@@ -3,12 +3,9 @@ import { InputType } from '@nestjs/graphql';
 import { IntFieldUpdateOperationsInput } from '../prisma/int-field-update-operations.input';
 import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-operations.input';
 import { NullableStringFieldUpdateOperationsInput } from '../prisma/nullable-string-field-update-operations.input';
-import { NullableDateTimeFieldUpdateOperationsInput } from '../prisma/nullable-date-time-field-update-operations.input';
 import { BoolFieldUpdateOperationsInput } from '../prisma/bool-field-update-operations.input';
-import { EnumEventStatusFieldUpdateOperationsInput } from '../prisma/enum-event-status-field-update-operations.input';
 import { EnumEventModeFieldUpdateOperationsInput } from '../prisma/enum-event-mode-field-update-operations.input';
 import { EnumEventTypeFieldUpdateOperationsInput } from '../prisma/enum-event-type-field-update-operations.input';
-import { NullableIntFieldUpdateOperationsInput } from '../prisma/nullable-int-field-update-operations.input';
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 
 @InputType()
@@ -22,12 +19,6 @@ export class EventUncheckedUpdateManyInput {
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   description?: NullableStringFieldUpdateOperationsInput;
 
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  startTime?: NullableDateTimeFieldUpdateOperationsInput;
-
-  @Field(() => NullableDateTimeFieldUpdateOperationsInput, { nullable: true })
-  endTime?: NullableDateTimeFieldUpdateOperationsInput;
-
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   image?: NullableStringFieldUpdateOperationsInput;
 
@@ -40,14 +31,14 @@ export class EventUncheckedUpdateManyInput {
   @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
   isPublic?: BoolFieldUpdateOperationsInput;
 
+  @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
+  active?: BoolFieldUpdateOperationsInput;
+
   @Field(() => IntFieldUpdateOperationsInput, { nullable: true })
   userId?: IntFieldUpdateOperationsInput;
 
   @Field(() => BoolFieldUpdateOperationsInput, { nullable: true })
   shareAsPost?: BoolFieldUpdateOperationsInput;
-
-  @Field(() => EnumEventStatusFieldUpdateOperationsInput, { nullable: true })
-  eventStatus?: EnumEventStatusFieldUpdateOperationsInput;
 
   @Field(() => EnumEventModeFieldUpdateOperationsInput, { nullable: true })
   eventMode?: EnumEventModeFieldUpdateOperationsInput;
@@ -57,12 +48,6 @@ export class EventUncheckedUpdateManyInput {
 
   @Field(() => NullableStringFieldUpdateOperationsInput, { nullable: true })
   eventLink?: NullableStringFieldUpdateOperationsInput;
-
-  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-  roomId?: NullableIntFieldUpdateOperationsInput;
-
-  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
-  buildingId?: NullableIntFieldUpdateOperationsInput;
 
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;

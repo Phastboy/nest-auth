@@ -24,6 +24,9 @@ export class RSVPGroupBy {
   @Field(() => Date, { nullable: false })
   createdAt!: Date | string;
 
+  @Field(() => Int, { nullable: true })
+  eventOccurrenceId?: number;
+
   @Field(() => RSVPCountAggregate, { nullable: true })
   _count?: RSVPCountAggregate;
 

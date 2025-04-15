@@ -4,6 +4,7 @@ import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-up
 import { UserUpdateOneRequiredWithoutLikesNestedInput } from '../user/user-update-one-required-without-likes-nested.input';
 import { PostUpdateOneWithoutLikesNestedInput } from '../post/post-update-one-without-likes-nested.input';
 import { EventUpdateOneWithoutLikesNestedInput } from '../event/event-update-one-without-likes-nested.input';
+import { EventOccurrenceUpdateOneWithoutLikesNestedInput } from '../event-occurrence/event-occurrence-update-one-without-likes-nested.input';
 
 @InputType()
 export class LikeUpdateInput {
@@ -18,4 +19,9 @@ export class LikeUpdateInput {
 
   @Field(() => EventUpdateOneWithoutLikesNestedInput, { nullable: true })
   event?: EventUpdateOneWithoutLikesNestedInput;
+
+  @Field(() => EventOccurrenceUpdateOneWithoutLikesNestedInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceUpdateOneWithoutLikesNestedInput;
 }

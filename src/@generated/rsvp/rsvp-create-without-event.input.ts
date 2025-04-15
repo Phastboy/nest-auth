@@ -1,6 +1,7 @@
 import { Field } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
 import { UserCreateNestedOneWithoutRsvpsInput } from '../user/user-create-nested-one-without-rsvps.input';
+import { EventOccurrenceCreateNestedOneWithoutRsvpsInput } from '../event-occurrence/event-occurrence-create-nested-one-without-rsvps.input';
 
 @InputType()
 export class RSVPCreateWithoutEventInput {
@@ -12,4 +13,9 @@ export class RSVPCreateWithoutEventInput {
 
   @Field(() => UserCreateNestedOneWithoutRsvpsInput, { nullable: false })
   user!: UserCreateNestedOneWithoutRsvpsInput;
+
+  @Field(() => EventOccurrenceCreateNestedOneWithoutRsvpsInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceCreateNestedOneWithoutRsvpsInput;
 }

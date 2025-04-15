@@ -12,4 +12,7 @@ export class RSVPAvgAggregate {
 
   @Field(() => Float, { nullable: true })
   eventId?: number;
+
+  @Field(() => Float, { nullable: true })
+  eventOccurrenceId?: number;
 }

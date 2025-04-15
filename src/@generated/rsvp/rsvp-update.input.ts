@@ -4,6 +4,7 @@ import { StringFieldUpdateOperationsInput } from '../prisma/string-field-update-
 import { DateTimeFieldUpdateOperationsInput } from '../prisma/date-time-field-update-operations.input';
 import { UserUpdateOneRequiredWithoutRsvpsNestedInput } from '../user/user-update-one-required-without-rsvps-nested.input';
 import { EventUpdateOneRequiredWithoutRsvpsNestedInput } from '../event/event-update-one-required-without-rsvps-nested.input';
+import { EventOccurrenceUpdateOneWithoutRsvpsNestedInput } from '../event-occurrence/event-occurrence-update-one-without-rsvps-nested.input';
 
 @InputType()
 export class RSVPUpdateInput {
@@ -20,4 +21,9 @@ export class RSVPUpdateInput {
     nullable: true,
   })
   event?: EventUpdateOneRequiredWithoutRsvpsNestedInput;
+
+  @Field(() => EventOccurrenceUpdateOneWithoutRsvpsNestedInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceUpdateOneWithoutRsvpsNestedInput;
 }

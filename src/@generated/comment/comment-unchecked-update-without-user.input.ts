@@ -26,6 +26,9 @@ export class CommentUncheckedUpdateWithoutUserInput {
   @Field(() => DateTimeFieldUpdateOperationsInput, { nullable: true })
   createdAt?: DateTimeFieldUpdateOperationsInput;
 
+  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+  eventOccurrenceId?: NullableIntFieldUpdateOperationsInput;
+
   @Field(() => CommentUncheckedUpdateManyWithoutParentNestedInput, {
     nullable: true,
   })

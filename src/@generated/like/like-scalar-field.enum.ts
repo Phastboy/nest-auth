@@ -6,6 +6,7 @@ export enum LikeScalarFieldEnum {
   postId = 'postId',
   eventId = 'eventId',
   createdAt = 'createdAt',
+  eventOccurrenceId = 'eventOccurrenceId',
 }
 
 registerEnumType(LikeScalarFieldEnum, {

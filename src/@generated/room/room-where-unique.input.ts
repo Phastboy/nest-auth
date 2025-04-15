@@ -7,7 +7,7 @@ import { IntFilter } from '../prisma/int-filter.input';
 import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { BuildingScalarRelationFilter } from '../building/building-scalar-relation-filter.input';
-import { EventListRelationFilter } from '../event/event-list-relation-filter.input';
+import { EventOccurrenceListRelationFilter } from '../event-occurrence/event-occurrence-list-relation-filter.input';
 
 @InputType()
 export class RoomWhereUniqueInput {
@@ -38,6 +38,6 @@ export class RoomWhereUniqueInput {
   @Field(() => BuildingScalarRelationFilter, { nullable: true })
   building?: BuildingScalarRelationFilter;
 
-  @Field(() => EventListRelationFilter, { nullable: true })
-  events?: EventListRelationFilter;
+  @Field(() => EventOccurrenceListRelationFilter, { nullable: true })
+  EventOccurrence?: EventOccurrenceListRelationFilter;
 }

@@ -19,5 +19,8 @@ export class LikeCountAggregateInput {
   createdAt?: true;
 
   @Field(() => Boolean, { nullable: true })
+  eventOccurrenceId?: true;
+
+  @Field(() => Boolean, { nullable: true })
   _all?: true;
 }

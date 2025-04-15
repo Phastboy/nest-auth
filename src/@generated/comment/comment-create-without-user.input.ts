@@ -4,6 +4,7 @@ import { PostCreateNestedOneWithoutCommentsInput } from '../post/post-create-nes
 import { EventCreateNestedOneWithoutCommentsInput } from '../event/event-create-nested-one-without-comments.input';
 import { CommentCreateNestedOneWithoutRepliesInput } from './comment-create-nested-one-without-replies.input';
 import { CommentCreateNestedManyWithoutParentInput } from './comment-create-nested-many-without-parent.input';
+import { EventOccurrenceCreateNestedOneWithoutCommentsInput } from '../event-occurrence/event-occurrence-create-nested-one-without-comments.input';
 
 @InputType()
 export class CommentCreateWithoutUserInput {
@@ -24,4 +25,9 @@ export class CommentCreateWithoutUserInput {
 
   @Field(() => CommentCreateNestedManyWithoutParentInput, { nullable: true })
   replies?: CommentCreateNestedManyWithoutParentInput;
+
+  @Field(() => EventOccurrenceCreateNestedOneWithoutCommentsInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceCreateNestedOneWithoutCommentsInput;
 }

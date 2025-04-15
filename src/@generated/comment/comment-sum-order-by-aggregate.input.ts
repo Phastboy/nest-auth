@@ -18,4 +18,7 @@ export class CommentSumOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   parentId?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
+  eventOccurrenceId?: `${SortOrder}`;
 }

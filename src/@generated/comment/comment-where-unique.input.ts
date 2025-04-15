@@ -11,6 +11,7 @@ import { PostNullableScalarRelationFilter } from '../post/post-nullable-scalar-r
 import { EventNullableScalarRelationFilter } from '../event/event-nullable-scalar-relation-filter.input';
 import { CommentNullableScalarRelationFilter } from './comment-nullable-scalar-relation-filter.input';
 import { CommentListRelationFilter } from './comment-list-relation-filter.input';
+import { EventOccurrenceNullableScalarRelationFilter } from '../event-occurrence/event-occurrence-nullable-scalar-relation-filter.input';
 
 @InputType()
 export class CommentWhereUniqueInput {
@@ -44,6 +45,9 @@ export class CommentWhereUniqueInput {
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
 
+  @Field(() => IntNullableFilter, { nullable: true })
+  eventOccurrenceId?: IntNullableFilter;
+
   @Field(() => UserScalarRelationFilter, { nullable: true })
   user?: UserScalarRelationFilter;
 
@@ -58,4 +62,7 @@ export class CommentWhereUniqueInput {
 
   @Field(() => CommentListRelationFilter, { nullable: true })
   replies?: CommentListRelationFilter;
+
+  @Field(() => EventOccurrenceNullableScalarRelationFilter, { nullable: true })
+  EventOccurrence?: EventOccurrenceNullableScalarRelationFilter;
 }

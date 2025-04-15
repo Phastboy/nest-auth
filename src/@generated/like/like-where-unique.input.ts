@@ -9,6 +9,7 @@ import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 import { PostNullableScalarRelationFilter } from '../post/post-nullable-scalar-relation-filter.input';
 import { EventNullableScalarRelationFilter } from '../event/event-nullable-scalar-relation-filter.input';
+import { EventOccurrenceNullableScalarRelationFilter } from '../event-occurrence/event-occurrence-nullable-scalar-relation-filter.input';
 
 @InputType()
 export class LikeWhereUniqueInput {
@@ -39,6 +40,9 @@ export class LikeWhereUniqueInput {
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
 
+  @Field(() => IntNullableFilter, { nullable: true })
+  eventOccurrenceId?: IntNullableFilter;
+
   @Field(() => UserScalarRelationFilter, { nullable: true })
   user?: UserScalarRelationFilter;
 
@@ -47,4 +51,7 @@ export class LikeWhereUniqueInput {
 
   @Field(() => EventNullableScalarRelationFilter, { nullable: true })
   event?: EventNullableScalarRelationFilter;
+
+  @Field(() => EventOccurrenceNullableScalarRelationFilter, { nullable: true })
+  EventOccurrence?: EventOccurrenceNullableScalarRelationFilter;
 }

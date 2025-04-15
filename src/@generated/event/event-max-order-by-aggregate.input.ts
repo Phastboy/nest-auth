@@ -14,12 +14,6 @@ export class EventMaxOrderByAggregateInput {
   description?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
-  startTime?: `${SortOrder}`;
-
-  @Field(() => SortOrder, { nullable: true })
-  endTime?: `${SortOrder}`;
-
-  @Field(() => SortOrder, { nullable: true })
   image?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
@@ -32,13 +26,13 @@ export class EventMaxOrderByAggregateInput {
   isPublic?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
+  active?: `${SortOrder}`;
+
+  @Field(() => SortOrder, { nullable: true })
   userId?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
   shareAsPost?: `${SortOrder}`;
-
-  @Field(() => SortOrder, { nullable: true })
-  eventStatus?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
   eventMode?: `${SortOrder}`;
@@ -48,12 +42,6 @@ export class EventMaxOrderByAggregateInput {
 
   @Field(() => SortOrder, { nullable: true })
   eventLink?: `${SortOrder}`;
-
-  @Field(() => SortOrder, { nullable: true })
-  roomId?: `${SortOrder}`;
-
-  @Field(() => SortOrder, { nullable: true })
-  buildingId?: `${SortOrder}`;
 
   @Field(() => SortOrder, { nullable: true })
   createdAt?: `${SortOrder}`;

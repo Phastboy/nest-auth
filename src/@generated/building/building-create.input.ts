@@ -3,7 +3,7 @@ import { InputType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { Float } from '@nestjs/graphql';
 import { RoomCreateNestedManyWithoutBuildingInput } from '../room/room-create-nested-many-without-building.input';
-import { EventCreateNestedManyWithoutBuildingInput } from '../event/event-create-nested-many-without-building.input';
+import { EventOccurrenceCreateNestedManyWithoutBuildingInput } from '../event-occurrence/event-occurrence-create-nested-many-without-building.input';
 
 @InputType()
 export class BuildingCreateInput {
@@ -37,6 +37,8 @@ export class BuildingCreateInput {
   @Field(() => RoomCreateNestedManyWithoutBuildingInput, { nullable: true })
   rooms?: RoomCreateNestedManyWithoutBuildingInput;
 
-  @Field(() => EventCreateNestedManyWithoutBuildingInput, { nullable: true })
-  events?: EventCreateNestedManyWithoutBuildingInput;
+  @Field(() => EventOccurrenceCreateNestedManyWithoutBuildingInput, {
+    nullable: true,
+  })
+  EventOccurrence?: EventOccurrenceCreateNestedManyWithoutBuildingInput;
 }

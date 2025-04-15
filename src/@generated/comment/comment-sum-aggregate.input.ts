@@ -17,4 +17,7 @@ export class CommentSumAggregateInput {
 
   @Field(() => Boolean, { nullable: true })
   parentId?: true;
+
+  @Field(() => Boolean, { nullable: true })
+  eventOccurrenceId?: true;
 }

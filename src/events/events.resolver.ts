@@ -59,4 +59,65 @@ export class EventsResolver {
   ): Promise<Event[]> {
     return this.eventsService.findAllEvents(filterInput ?? {}, includeInput);
   }
+
+  /**
+   * @method findOneEvent
+   * @description Retrieves a single event by its ID, optionally including specified relations.
+   * @param eventId the ID of the event to retrieve
+   * @param includeInput optional include input for including relations
+   * @returns Event the retrieved event
+   * @throws any errors that occur during the retrieval process
+   */
+  @Query(() => Event)
+  async findOneEvent(
+    @Args('eventId', { type: () => Int }) eventId: number,
+    @Args('includeInput', { nullable: true })
+    includeInput?: EventIncludeInput,
+  ): Promise<Event> {
+    return this.eventsService.findEventById(eventId, includeInput);
+  }
+
+  /**
+   * @method updateEvent
+   * @description Updates an existing event by its ID.
+   * @param eventId the ID of the event to update
+   * @param user the authenticated user updating the event
+   * @param updateEventInput the data for updating the event
+   * @param includeInput optional include input for including relations
+   * @returns Event the updated event
+   */
+  @UseGuards(JwtAuthGuard)
+  @Mutation(() => Event)
+  async updateEvent(
+    @Args('eventId', { type: () => Int }) eventId: number,
+    @CurrentUser() user: AuthenticatedUser,
+    @Args('updateEventInput') updateEventInput: UpdateEventInput,
+    @Args('includeInput', { nullable: true })
+    includeInput?: EventIncludeInput,
+  ): Promise<Event> {
+    return this.eventsService.updateEvent(
+      eventId,
+      user.userId,
+      updateEventInput,
+      includeInput,
+    );
+  }
+
+  /**
+   * @method removeEvent
+   * @description Deletes an event by its ID.
+   * @param eventId the ID of the event to delete
+   * @param user the authenticated user deleting the event
+   * @returns Event the deleted event
+   */
+  @UseGuards(JwtAuthGuard)
+  @Mutation(() => Event)
+  async removeEvent(
+    @Args('eventId', { type: () => Int }) eventId: number,
+    @CurrentUser() user: AuthenticatedUser,
+    @Args('includeInput', { nullable: true })
+    includeInput?: EventIncludeInput,
+  ): Promise<Event> {
+    return this.eventsService.deleteEvent(eventId, user.userId, includeInput);
+  }
 }

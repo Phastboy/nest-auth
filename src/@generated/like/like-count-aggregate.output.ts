@@ -20,5 +20,8 @@ export class LikeCountAggregate {
   createdAt!: number;
 
   @Field(() => Int, { nullable: false })
+  eventOccurrenceId!: number;
+
+  @Field(() => Int, { nullable: false })
   _all!: number;
 }

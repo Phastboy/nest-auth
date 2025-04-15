@@ -3,21 +3,17 @@ import { InputType } from '@nestjs/graphql';
 import { IntFilter } from '../prisma/int-filter.input';
 import { StringFilter } from '../prisma/string-filter.input';
 import { StringNullableFilter } from '../prisma/string-nullable-filter.input';
-import { DateTimeNullableFilter } from '../prisma/date-time-nullable-filter.input';
 import { BoolFilter } from '../prisma/bool-filter.input';
-import { EnumEventStatusFilter } from '../prisma/enum-event-status-filter.input';
 import { EnumEventModeFilter } from '../prisma/enum-event-mode-filter.input';
 import { EnumEventTypeFilter } from '../prisma/enum-event-type-filter.input';
-import { IntNullableFilter } from '../prisma/int-nullable-filter.input';
 import { DateTimeFilter } from '../prisma/date-time-filter.input';
 import { UserScalarRelationFilter } from '../user/user-scalar-relation-filter.input';
 import { PostNullableScalarRelationFilter } from '../post/post-nullable-scalar-relation-filter.input';
 import { CategoryListRelationFilter } from '../category/category-list-relation-filter.input';
-import { RoomNullableScalarRelationFilter } from '../room/room-nullable-scalar-relation-filter.input';
-import { BuildingNullableScalarRelationFilter } from '../building/building-nullable-scalar-relation-filter.input';
 import { CommentListRelationFilter } from '../comment/comment-list-relation-filter.input';
 import { RSVPListRelationFilter } from '../rsvp/rsvp-list-relation-filter.input';
 import { LikeListRelationFilter } from '../like/like-list-relation-filter.input';
+import { EventOccurrenceListRelationFilter } from '../event-occurrence/event-occurrence-list-relation-filter.input';
 
 @InputType()
 export class EventWhereInput {
@@ -39,12 +35,6 @@ export class EventWhereInput {
   @Field(() => StringNullableFilter, { nullable: true })
   description?: StringNullableFilter;
 
-  @Field(() => DateTimeNullableFilter, { nullable: true })
-  startTime?: DateTimeNullableFilter;
-
-  @Field(() => DateTimeNullableFilter, { nullable: true })
-  endTime?: DateTimeNullableFilter;
-
   @Field(() => StringNullableFilter, { nullable: true })
   image?: StringNullableFilter;
 
@@ -57,14 +47,14 @@ export class EventWhereInput {
   @Field(() => BoolFilter, { nullable: true })
   isPublic?: BoolFilter;
 
+  @Field(() => BoolFilter, { nullable: true })
+  active?: BoolFilter;
+
   @Field(() => IntFilter, { nullable: true })
   userId?: IntFilter;
 
   @Field(() => BoolFilter, { nullable: true })
   shareAsPost?: BoolFilter;
-
-  @Field(() => EnumEventStatusFilter, { nullable: true })
-  eventStatus?: EnumEventStatusFilter;
 
   @Field(() => EnumEventModeFilter, { nullable: true })
   eventMode?: EnumEventModeFilter;
@@ -74,12 +64,6 @@ export class EventWhereInput {
 
   @Field(() => StringNullableFilter, { nullable: true })
   eventLink?: StringNullableFilter;
-
-  @Field(() => IntNullableFilter, { nullable: true })
-  roomId?: IntNullableFilter;
-
-  @Field(() => IntNullableFilter, { nullable: true })
-  buildingId?: IntNullableFilter;
 
   @Field(() => DateTimeFilter, { nullable: true })
   createdAt?: DateTimeFilter;
@@ -96,12 +80,6 @@ export class EventWhereInput {
   @Field(() => CategoryListRelationFilter, { nullable: true })
   categories?: CategoryListRelationFilter;
 
-  @Field(() => RoomNullableScalarRelationFilter, { nullable: true })
-  room?: RoomNullableScalarRelationFilter;
-
-  @Field(() => BuildingNullableScalarRelationFilter, { nullable: true })
-  building?: BuildingNullableScalarRelationFilter;
-
   @Field(() => CommentListRelationFilter, { nullable: true })
   comments?: CommentListRelationFilter;
 
@@ -110,4 +88,7 @@ export class EventWhereInput {
 
   @Field(() => LikeListRelationFilter, { nullable: true })
   likes?: LikeListRelationFilter;
+
+  @Field(() => EventOccurrenceListRelationFilter, { nullable: true })
+  occurrences?: EventOccurrenceListRelationFilter;
 }
